@@ -20,7 +20,7 @@ type TProps = {
   timelineData: TTimelineData;
 };
 
-function Output (props: TProps) {
+function Output(props: TProps) {
   const {timelineData} = props;
 
   return (

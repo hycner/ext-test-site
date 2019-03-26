@@ -22,7 +22,7 @@ const ICON_STYLE = {
 
 type TProps = {};
 
-export default function CreditCardFields2 (props: TProps) {
+export default function CreditCardFields2(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (

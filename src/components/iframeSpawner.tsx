@@ -38,15 +38,15 @@ type TIframe = {
   url: string;
 };
 
-function IFrameSpawner (props: TProps) {
+function IFrameSpawner(props: TProps) {
   const [url, setUrl] = useState<string>('');
   const [iframes, setIframes] = useState<Array<TIframe>>([]);
 
-  function onUrlChange (e: React.FormEvent<HTMLInputElement>) {
+  function onUrlChange(e: React.FormEvent<HTMLInputElement>) {
     setUrl(e.currentTarget.value);
   }
 
-  function onSubmit () {
+  function onSubmit() {
     console.log(`spawn iframe button clicked. URL: ${url}`);
     setUrl('');
     setIframes([...iframes, {url}]);

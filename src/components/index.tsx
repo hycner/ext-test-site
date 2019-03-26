@@ -27,7 +27,7 @@ type TProps = {
   isBootstrapDone: boolean;
 };
 
-export function App (props: TProps) {
+export function App(props: TProps) {
   useEffect(() => {
     setTimeout(() => {
       dispatch(bootstrap());

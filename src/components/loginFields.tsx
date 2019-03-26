@@ -23,16 +23,16 @@ const PASSWORD_STYLE = {
 
 type TProps = {};
 
-export default function LoginFields (props: TProps) {
+export default function LoginFields(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  function toggleVisibility () {
+  function toggleVisibility() {
     setIsVisible(!isVisible);
   }
 
-  function onSubmit () {
+  function onSubmit() {
     console.log('login clicked');
     console.log({
       isVisible,

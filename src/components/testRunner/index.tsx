@@ -32,8 +32,8 @@ type TProps = {
   hasTestsRan: boolean;
 };
 
-function TestRunner (props: TProps) {
-  function runTestsHelper () {
+function TestRunner(props: TProps) {
+  function runTestsHelper() {
     dispatch(runTests());
   }
 

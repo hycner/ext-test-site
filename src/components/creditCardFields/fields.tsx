@@ -45,7 +45,7 @@ const BTN_STYLE = {
 
 type TProps = {};
 
-export default function Fields (props: TProps) {
+export default function Fields(props: TProps) {
   const [cardNumber, setCardNumber] = useState<string>('');
   const [cvv, setCvv] = useState<string>('');
   const [expDateFull, setExpDateFull] = useState<string>('');
@@ -54,13 +54,13 @@ export default function Fields (props: TProps) {
   const [isAlternateDateFormat, setIsAlternateDateFormat] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
 
-  function toggleDateFormat () {
+  function toggleDateFormat() {
     setIsAlternateDateFormat(!isAlternateDateFormat);
   }
 
-  function onSubmit () {
+  function onSubmit() {
     console.log('save credit card clicked');
-    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name,});
+    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name});
   }
 
   return (
@@ -130,10 +130,7 @@ export default function Fields (props: TProps) {
       )}
 
       <SwitchWrap>
-        <Switch
-          checked={isAlternateDateFormat}
-          onChange={toggleDateFormat}
-        />
+        <Switch checked={isAlternateDateFormat} onChange={toggleDateFormat} />
         &nbsp; Alternate Expiration Format
       </SwitchWrap>
 
