@@ -8,6 +8,7 @@
   "scripts": {
     "start": "PORT=3010 react-app-rewired start",
     "build": "react-app-rewired build",
+    "now-build": "npm run build",
     "deploy": "now ./build --name ext-test-site",
     "test": "react-app-rewired test",
     "test:ci": "CI=true react-app-rewired test",
