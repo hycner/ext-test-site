@@ -1,13 +1,12 @@
 pipeline {
     agent any
+    tools {nodejs "node"}
     stages {
         stage('Build') {
             steps {
-                nodejs(nodeJSInstallationName: 'node') {
-                    echo 'Building...'
-                    sh 'node -v'
-                    sh 'npm i'
-                }
+                echo 'Building...'
+                sh 'node -v'
+                sh 'npm i'
             }
         }
         stage('Test') {
