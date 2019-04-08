@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                sh 'nodejs -v'
                 sh 'node -v'
                 sh 'npm i'
             }
