@@ -4,10 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building...'
-                sh 'nodejs -v'
-                sh 'node -v'
-                sh 'npm i'
+                nodejs(nodeJSInstallationName: 'node') {
+                    echo 'Building...'
+                    sh 'node -v'
+                    sh 'npm i'
+                }
             }
         }
         stage('Test') {
