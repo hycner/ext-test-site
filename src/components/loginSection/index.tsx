@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon, Tooltip} from 'antd';
+import localforage from 'localforage'
 
 import LoginFields from './loginFields'
 import ConfigMenu from './configMenu'
@@ -27,6 +28,14 @@ const ICON_STYLE = {
   fontSize: 18,
 };
 
+type LSConfig = {
+  isVisible: boolean
+  areIdsUnique: boolean
+  iterations: number
+}
+
+const STATE_KEYS = ['isVisible', 'areIdsUnique', 'iterations']
+
 type TProps = {};
 
 export default function LoginSection(props: TProps) {
@@ -34,21 +43,56 @@ export default function LoginSection(props: TProps) {
   const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
 
+  useEffect(() => {
+    // @ts-ignore
+    localforage.getItem('loginSection').then((config: LSConfig) => {
+      if (!config) return;
+
+      // Wipe config if mismatched
+      const isCfgMismatch = Object.keys(config).every(key => STATE_KEYS.includes(key))
+      if (!isCfgMismatch) {
+        console.log('Persisted config key mismatch. Wiping settings (probably new config schema)')
+        return localforage.removeItem('loginSection')
+      }
+
+      // Persist config
+      setIsVisible(config.isVisible)
+      setAreIdsUnique(config.areIdsUnique)
+      setIterations(config.iterations)
+    })
+  }, [])
+
+  function persistSettings(changes: Object) {
+    localforage.setItem('loginSection', {
+      isVisible,
+      areIdsUnique,
+      iterations,
+      ...changes,
+    })
+  }
   function toggleVisibility() {
-    setIsVisible(!isVisible);
+    let newVal = !isVisible
+    setIsVisible(newVal);
+    persistSettings({isVisible: newVal})
   }
   function toggleUniqueIds () {
-    setAreIdsUnique(!areIdsUnique)
+    let newVal = !areIdsUnique
+    setAreIdsUnique(newVal)
+    persistSettings({areIdsUnique: newVal})
   }
-
   function increaseIterations() {
-    setIterations(iterations + 1);
+    let newVal = iterations + 1
+    setIterations(newVal);
+    persistSettings({iterations: newVal})
   }
   function decreaseIterations() {
     if (iterations > 1) {
-      setIterations(iterations - 1);
+      let newVal = iterations - 1
+      setIterations(newVal);
+      persistSettings({iterations: newVal})
     }
   }
+
   function renderIterations() {
     const iNodes = []
     for (let i=0; i < iterations; i++) {
