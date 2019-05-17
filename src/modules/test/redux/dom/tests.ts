@@ -12,7 +12,7 @@ export function testIframeNodeLeaks(): string[] {
   // Try to select various Keeper iframe's inner DOM nodes
   for (let x of DOM_NODES) {
     const iframeDomNode = document.querySelector(x)
-    if (iframeDomNode) errors.push(`Able to see Keeper Extension iframe\'s inner DOM node: ${x}`)
+    if (iframeDomNode) errors.push(`Able to see Keeper Extension iframe's inner DOM node: ${x}`)
   }
 
   return errors
