@@ -1,2 +1,2 @@
 # ext-test-site
-Site to play with security testing extension exploits
+Site to play with testing browser extensions
