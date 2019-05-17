@@ -30,18 +30,18 @@ const ICON_STYLE = {
 
 type LSConfig = {
   isVisible: boolean
-  areIdsUnique: boolean
   iterations: number
+  areIdsUnique: boolean
 }
 
-const STATE_KEYS = ['isVisible', 'areIdsUnique', 'iterations']
+const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique']
 
 type TProps = {};
 
 export default function LoginSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
+  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
 
   useEffect(() => {
     // @ts-ignore
@@ -57,8 +57,8 @@ export default function LoginSection(props: TProps) {
 
       // Persist config
       setIsVisible(config.isVisible)
-      setAreIdsUnique(config.areIdsUnique)
       setIterations(config.iterations)
+      setAreIdsUnique(config.areIdsUnique)
     })
   }, [])
 
@@ -75,11 +75,6 @@ export default function LoginSection(props: TProps) {
     setIsVisible(newVal);
     persistSettings({isVisible: newVal})
   }
-  function toggleUniqueIds () {
-    let newVal = !areIdsUnique
-    setAreIdsUnique(newVal)
-    persistSettings({areIdsUnique: newVal})
-  }
   function increaseIterations() {
     let newVal = iterations + 1
     setIterations(newVal);
@@ -91,6 +86,11 @@ export default function LoginSection(props: TProps) {
       setIterations(newVal);
       persistSettings({iterations: newVal})
     }
+  }
+  function toggleUniqueIds () {
+    let newVal = !areIdsUnique
+    setAreIdsUnique(newVal)
+    persistSettings({areIdsUnique: newVal})
   }
 
   function renderIterations() {

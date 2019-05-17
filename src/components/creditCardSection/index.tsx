@@ -31,18 +31,18 @@ const ICON_STYLE = {
 
 type CCConfig = {
   isVisible: boolean
-  areIdsUnique: boolean
   iterations: number
+  areIdsUnique: boolean
 }
 
-const STATE_KEYS = ['isVisible', 'areIdsUnique', 'iterations']
+const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique']
 
 type TProps = {};
 
 export default function CreditCardSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
+  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
 
   useEffect(() => {
     // @ts-ignore
