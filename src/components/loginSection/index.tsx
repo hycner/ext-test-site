@@ -123,24 +123,26 @@ export default function LoginSection(props: TProps) {
           </Tooltip>
         </div>
 
-        <SpecificSettings>
-          <Icon
-            type="plus-circle"
-            theme="filled"
-            style={ICON_STYLE}
-            onClick={increaseIterations}
-          />
-          <Icon
-            type="minus-circle"
-            theme="filled"
-            style={ICON_STYLE}
-            onClick={decreaseIterations}
-          />
-          <ConfigMenu
-            areIdsUnique={areIdsUnique}
-            toggleUniqueIds={toggleUniqueIds}
-          />
-        </SpecificSettings>
+        {isVisible && (
+          <SpecificSettings>
+            <Icon
+              type="plus-circle"
+              theme="filled"
+              style={ICON_STYLE}
+              onClick={increaseIterations}
+            />
+            <Icon
+              type="minus-circle"
+              theme="filled"
+              style={ICON_STYLE}
+              onClick={decreaseIterations}
+            />
+            <ConfigMenu
+              areIdsUnique={areIdsUnique}
+              toggleUniqueIds={toggleUniqueIds}
+            />
+          </SpecificSettings>
+        )}
       </Header>
 
       {isVisible && renderIterations()}
