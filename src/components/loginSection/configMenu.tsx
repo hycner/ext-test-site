@@ -4,7 +4,6 @@ import {Checkbox, Icon, Popover} from 'antd'
 
 const SettingWrap = styled.div`
   margin-bottom: 10px;
-  text-align: right;
 `
 
 const ICON_STYLE = {
@@ -24,13 +23,14 @@ export default function configMenu(props: TProps) {
   const popoverContent = (
     <div>
       <SettingWrap key="unique">
-        Disable Unique IDs :&nbsp;
-        <Checkbox checked={!props.areIdsUnique} onChange={props.toggleUniqueIds} />
+        <Checkbox checked={!props.areIdsUnique} onChange={props.toggleUniqueIds}>
+          Disable Unique IDs
+        </Checkbox>
       </SettingWrap>
       <SettingWrap key="form">
-        Wrap each in {'<form>'}
-        :&nbsp;
-        <Checkbox checked={props.isForm} onChange={props.toggleIsForm} />
+        <Checkbox checked={props.isForm} onChange={props.toggleIsForm}>
+          Wrap each in {'<form>'}
+        </Checkbox>
       </SettingWrap>
     </div>
   )
