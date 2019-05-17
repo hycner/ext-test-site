@@ -15,6 +15,7 @@ const PASSWORD_STYLE = {
 };
 
 type TProps = {
+  areIdsUnique: boolean
   iteration: number
 };
 
@@ -31,6 +32,7 @@ export default function LoginFields(props: TProps) {
   }
 
   let iteration = props.iteration > 1 ? props.iteration : ''
+  if (!props.areIdsUnique) iteration = ''
 
   return (
     <Wrap>

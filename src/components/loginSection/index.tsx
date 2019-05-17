@@ -31,11 +31,16 @@ type TProps = {};
 
 export default function LoginSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
 
   function toggleVisibility() {
     setIsVisible(!isVisible);
   }
+  function toggleUniqueIds () {
+    setAreIdsUnique(!areIdsUnique)
+  }
+
   function increaseIterations() {
     setIterations(iterations + 1);
   }
@@ -48,7 +53,11 @@ export default function LoginSection(props: TProps) {
     const iNodes = []
     for (let i=0; i < iterations; i++) {
       iNodes.push(
-        <LoginFields iteration={i+1} key={i} />
+        <LoginFields
+          key={i}
+          iteration={i+1}
+          areIdsUnique={areIdsUnique}
+        />
       )
     }
     return iNodes
@@ -85,7 +94,10 @@ export default function LoginSection(props: TProps) {
             style={ICON_STYLE}
             onClick={decreaseIterations}
           />
-          <ConfigMenu />
+          <ConfigMenu
+            areIdsUnique={areIdsUnique}
+            toggleUniqueIds={toggleUniqueIds}
+          />
         </SecondRow>
       </Header>
 

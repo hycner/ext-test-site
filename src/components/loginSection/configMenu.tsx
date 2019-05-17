@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {Checkbox, Icon, Popover} from 'antd'
 
@@ -13,23 +13,20 @@ const ICON_STYLE = {
   fontSize: 18,
 };
 
-type TProps = {};
+type TProps = {
+  areIdsUnique: boolean
+  toggleUniqueIds: () => void
+};
 
 export default function configMenu(props: TProps) {
-  const [isUnique, setIsUnique] = useState<boolean>(true);
-
-  function toggleUniqueIds () {
-    setIsUnique(!isUnique)
-  }
-
   const popoverContent = (
     <div>
       <SettingWrap key="unique">
         Disable Unique IDs
         :&nbsp;
         <Checkbox
-          checked={!isUnique}
-          onChange={toggleUniqueIds}
+          checked={!props.areIdsUnique}
+          onChange={props.toggleUniqueIds}
         />
       </SettingWrap>
     </div>
