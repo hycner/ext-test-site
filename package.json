@@ -15,7 +15,8 @@
     "eject": "react-scripts eject",
     "format": "./node_modules/.bin/prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:dry": "./node_modules/.bin/prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
-    "types": "./node_modules/.bin/tsc"
+    "types": "./node_modules/.bin/tsc",
+    "types:watch": "./node_modules/.bin/tsc --watch"
   },
   "dependencies": {
     "antd": "3.15.2",

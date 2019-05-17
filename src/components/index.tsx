@@ -7,7 +7,7 @@ import {dispatch} from '../store';
 import {bootstrap} from '../modules/app/redux/bootstrap';
 import CreditCardFields from './creditCardFields';
 import IFrameSpawner from './iframeSpawner';
-import LoginFields from './loginFields';
+import LoginSection from './loginSection';
 import TestRunner from './testRunner';
 
 const Wrap = styled.div`
@@ -36,10 +36,10 @@ export function App(props: TProps) {
 
   return (
     <Wrap>
-      <Header>Extension Security Tester</Header>
+      <Header>Extension Tester</Header>
 
       <TestRunner />
-      <LoginFields />
+      <LoginSection />
       <CreditCardFields />
       <IFrameSpawner />
     </Wrap>
