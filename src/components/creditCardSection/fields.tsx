@@ -29,7 +29,7 @@ for (let i = currentYear; i < currentYear + 10; i++) {
 const SwitchWrap = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 2px;
 `;
 
 const INPUT_STYLE = {
@@ -41,9 +41,13 @@ const SELECT_STYLE = {
 };
 const BTN_STYLE = {
   marginTop: 5,
+  marginBottom: 15,
 };
 
-type TProps = {};
+type TProps = {
+  areIdsUnique: boolean
+  iteration: number
+};
 
 export default function Fields(props: TProps) {
   const [cardNumber, setCardNumber] = useState<string>('');
@@ -63,10 +67,13 @@ export default function Fields(props: TProps) {
     console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name});
   }
 
+  let iteration = props.iteration > 1 ? props.iteration : ''
+  if (!props.areIdsUnique) iteration = ''
+
   return (
     <>
       <Input
-        id="name"
+        id={`name${iteration}`}
         placeholder="Name on Card"
         style={INPUT_STYLE}
         value={name}
@@ -74,7 +81,7 @@ export default function Fields(props: TProps) {
       />
 
       <Input
-        id="cardNumber"
+        id={`cardNumber${iteration}`}
         placeholder="Card Number"
         style={INPUT_STYLE}
         value={cardNumber}
@@ -82,7 +89,7 @@ export default function Fields(props: TProps) {
       />
 
       <Input
-        id="cvv"
+        id={`cvv${iteration}`}
         placeholder="CVV"
         style={INPUT_STYLE}
         value={cvv}
@@ -91,7 +98,7 @@ export default function Fields(props: TProps) {
 
       {!isAlternateDateFormat && (
         <Input
-          id="expiration-date"
+          id={`expiration-date${iteration}`}
           placeholder="Expiration Date"
           style={INPUT_STYLE}
           value={expDateFull}
@@ -102,7 +109,7 @@ export default function Fields(props: TProps) {
       {isAlternateDateFormat && (
         <div>
           <Select
-            id="expiration-month"
+            id={`expiration-month${iteration}`}
             style={SELECT_STYLE}
             value={expMonth}
             onChange={val => setExpMonth(val)}
@@ -115,7 +122,7 @@ export default function Fields(props: TProps) {
           </Select>
 
           <Select
-            id="expiration-year"
+            id={`expiration-year${iteration}`}
             style={SELECT_STYLE}
             value={expYear}
             onChange={val => setExpYear(val)}

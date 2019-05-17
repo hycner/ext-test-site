@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Icon, Tooltip} from 'antd';
-import localforage from 'localforage'
+import localforage from "localforage";
 
-import LoginFields from './loginFields'
-import ConfigMenu from './configMenu'
+import Fields from './fields';
+import ConfigMenu from './configMenu';
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
   width: 300px;
 `;
 const Header = styled.div`
@@ -28,7 +29,7 @@ const ICON_STYLE = {
   fontSize: 18,
 };
 
-type LSConfig = {
+type CCConfig = {
   isVisible: boolean
   areIdsUnique: boolean
   iterations: number
@@ -38,21 +39,21 @@ const STATE_KEYS = ['isVisible', 'areIdsUnique', 'iterations']
 
 type TProps = {};
 
-export default function LoginSection(props: TProps) {
+export default function CreditCardSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
 
   useEffect(() => {
     // @ts-ignore
-    localforage.getItem('login').then((config: LSConfig) => {
+    localforage.getItem('creditCard').then((config: CCConfig) => {
       if (!config) return;
 
       // Wipe config if mismatched
       const isCfgMismatch = Object.keys(config).every(key => STATE_KEYS.includes(key))
       if (!isCfgMismatch) {
-        console.log('Persisted config key mismatch (login). Wiping config. Probably because of a new config schema version')
-        return localforage.removeItem('login')
+        console.log('Persisted config key mismatch (creditCard). Wiping config. Probably because of a new config schema version')
+        return localforage.removeItem('creditCard')
       }
 
       // Persist config
@@ -63,7 +64,7 @@ export default function LoginSection(props: TProps) {
   }, [])
 
   function persistSettings(changes: Object) {
-    localforage.setItem('login', {
+    localforage.setItem('creditCard', {
       isVisible,
       areIdsUnique,
       iterations,
@@ -97,7 +98,7 @@ export default function LoginSection(props: TProps) {
     const iNodes = []
     for (let i=0; i < iterations; i++) {
       iNodes.push(
-        <LoginFields
+        <Fields
           key={i}
           iteration={i+1}
           areIdsUnique={areIdsUnique}
@@ -117,8 +118,8 @@ export default function LoginSection(props: TProps) {
             style={ICON_STYLE}
             onClick={toggleVisibility}
           />
-          &nbsp; Login Fields &nbsp;
-          <Tooltip title="Fake login fields available for Keeper's extension to target.">
+          &nbsp; Credit Card Fields &nbsp;
+          <Tooltip title="Fake credit card fields available for Keeper's extension to target.">
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>
         </div>

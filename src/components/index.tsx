@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {TStore} from '../modules/rootReducer';
 import {dispatch} from '../store';
 import {bootstrap} from '../modules/app/redux/bootstrap';
-import CreditCardFields from './creditCardFields';
+import CreditCardSection from './creditCardSection';
 import IFrameSpawner from './iframeSpawner';
 import LoginSection from './loginSection';
 import TestRunner from './testRunner';
@@ -40,7 +40,7 @@ export function App(props: TProps) {
 
       <TestRunner />
       <LoginSection />
-      <CreditCardFields />
+      <CreditCardSection />
       <IFrameSpawner />
     </Wrap>
   );
