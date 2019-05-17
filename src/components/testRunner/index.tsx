@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import {connect} from 'react-redux';
-import {Button, Icon, Tooltip} from 'antd';
+import React from 'react'
+import styled from 'styled-components'
+import {connect} from 'react-redux'
+import {Button, Icon, Tooltip} from 'antd'
 
-import {TStore} from '../../modules/rootReducer';
-import {dispatch} from '../../store';
-import {runTests} from '../../modules/test/redux/run';
-import Output from './output';
+import {TStore} from '../../modules/rootReducer'
+import {dispatch} from '../../store'
+import {runTests} from '../../modules/test/redux/run'
+import Output from './output'
 
 const Wrap = styled.div`
   display: flex;
@@ -14,27 +14,27 @@ const Wrap = styled.div`
   align-items: center;
   margin-bottom: 40px;
   width: 300px;
-`;
+`
 
 const Header = styled.div`
   font-size: 16px;
-`;
+`
 
 const ICON_STYLE = {
   fontSize: 18,
-};
+}
 const BTN_STYLE = {
   marginBottom: 5,
-};
+}
 
 type TProps = {
-  areTestsRunning: boolean;
-  hasTestsRan: boolean;
-};
+  areTestsRunning: boolean
+  hasTestsRan: boolean
+}
 
 function TestRunner(props: TProps) {
   function runTestsHelper() {
-    dispatch(runTests());
+    dispatch(runTests())
   }
 
   return (
@@ -57,14 +57,14 @@ function TestRunner(props: TProps) {
 
       {props.hasTestsRan && <Output />}
     </Wrap>
-  );
+  )
 }
 
 function mapStateToProps(state: TStore) {
   return {
     areTestsRunning: state.test.run.isLoading,
     hasTestsRan: state.test.run.data.hasRun,
-  };
+  }
 }
 
-export default connect(mapStateToProps)(TestRunner);
+export default connect(mapStateToProps)(TestRunner)

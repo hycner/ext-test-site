@@ -1,6 +1,6 @@
-import {createSelector} from 'reselect';
+import {createSelector} from 'reselect'
 
-import {TStore} from '../../rootReducer';
+import {TStore} from '../../rootReducer'
 
 const TESTS = [
   {
@@ -15,23 +15,23 @@ const TESTS = [
     key: 'events',
     label: 'Event Hijacking',
   },
-];
+]
 
 export type TTimelineData = {
-  pendingText: string | null;
-  items: Array<TTimelineItem>;
-};
+  pendingText: string | null
+  items: Array<TTimelineItem>
+}
 export type TTimelineItem = {
-  errors: string[];
-  hasErrors: boolean;
-  key: string;
-  label: string;
-};
+  errors: string[]
+  hasErrors: boolean
+  key: string
+  label: string
+}
 
 const INACTIVE_STATE = {
   pendingText: null,
   items: [],
-};
+}
 
 export const getTimelineData = createSelector(
   [
@@ -47,18 +47,18 @@ export const getTimelineData = createSelector(
       dom: domErrors,
       events: eventsErrors,
       iframes: iframesErrors,
-    };
+    }
 
-    if (!hasTestRan) return INACTIVE_STATE;
+    if (!hasTestRan) return INACTIVE_STATE
 
     let items: Array<TTimelineItem> = TESTS.map(x => ({
       ...x,
       errors: testErrors[x.key],
       hasErrors: !!testErrors[x.key].length,
-    }));
+    }))
 
     if (isTestRunning) {
-      items = items.slice(0, currentTestIdx - 1);
+      items = items.slice(0, currentTestIdx - 1)
     }
 
     return {
@@ -66,6 +66,6 @@ export const getTimelineData = createSelector(
         ? `Running test ${currentTestIdx}: ${TESTS[currentTestIdx - 1].label}`
         : null,
       items,
-    };
+    }
   }
-);
+)

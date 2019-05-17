@@ -1,27 +1,27 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Card, Timeline} from 'antd';
-import styled from 'styled-components';
+import React from 'react'
+import {connect} from 'react-redux'
+import {Card, Timeline} from 'antd'
+import styled from 'styled-components'
 
-import {TStore} from '../../modules/rootReducer';
-import {TTimelineData} from '../../modules/test/selectors/getTimelineData';
-import {getTimelineData} from '../../modules/test/selectors/getTimelineData';
+import {TStore} from '../../modules/rootReducer'
+import {TTimelineData} from '../../modules/test/selectors/getTimelineData'
+import {getTimelineData} from '../../modules/test/selectors/getTimelineData'
 
 const CARD_STYLE = {
   paddingTop: 60,
   minWidth: 200,
-};
+}
 
 const TestTitle = styled.div`
   font-size: 16px;
-`;
+`
 
 type TProps = {
-  timelineData: TTimelineData;
-};
+  timelineData: TTimelineData
+}
 
 function Output(props: TProps) {
-  const {timelineData} = props;
+  const {timelineData} = props
 
   return (
     <Card style={CARD_STYLE}>
@@ -36,13 +36,13 @@ function Output(props: TProps) {
         ))}
       </Timeline>
     </Card>
-  );
+  )
 }
 
 function mapStateToProps(state: TStore) {
   return {
     timelineData: getTimelineData(state),
-  };
+  }
 }
 
-export default connect(mapStateToProps)(Output);
+export default connect(mapStateToProps)(Output)

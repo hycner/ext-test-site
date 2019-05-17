@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import {Button, Input, Select, Switch} from 'antd';
+import React, {useState} from 'react'
+import styled from 'styled-components'
+import {Button, Input, Select, Switch} from 'antd'
 
 type TExpirationValues = Array<{
-  label: string;
-  value: string;
-}>;
+  label: string
+  value: string
+}>
 const MONTHS: TExpirationValues = [
   {value: '01', label: 'January'},
   {value: '02', label: 'February'},
@@ -19,11 +19,11 @@ const MONTHS: TExpirationValues = [
   {value: '10', label: 'October'},
   {value: '11', label: 'November'},
   {value: '12', label: 'December'},
-];
-const YEARS: TExpirationValues = [];
-const currentYear = new Date().getFullYear();
+]
+const YEARS: TExpirationValues = []
+const currentYear = new Date().getFullYear()
 for (let i = currentYear; i < currentYear + 10; i++) {
-  YEARS.push({value: String(i).slice(2), label: String(i)});
+  YEARS.push({value: String(i).slice(2), label: String(i)})
 }
 
 const Wrap = styled.div`
@@ -31,47 +31,47 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   width: 300px;
-`;
+`
 const SwitchWrap = styled.div`
   display: flex;
   align-items: center;
   margin-top: 2px;
-`;
+`
 
 const INPUT_STYLE = {
   marginBottom: 5,
-};
+}
 const SELECT_STYLE = {
   margin: '0 5px',
   width: 120,
-};
+}
 const BTN_STYLE = {
   marginTop: 5,
   marginBottom: 15,
-};
+}
 
 type TProps = {
   areIdsUnique: boolean
   isForm: boolean
   iteration: number
-};
+}
 
 export default function Fields(props: TProps) {
-  const [cardNumber, setCardNumber] = useState<string>('');
-  const [cvv, setCvv] = useState<string>('');
-  const [expDateFull, setExpDateFull] = useState<string>('');
-  const [expMonth, setExpMonth] = useState<string>('');
-  const [expYear, setExpYear] = useState<string>('');
-  const [isAlternateDateFormat, setIsAlternateDateFormat] = useState<boolean>(false);
-  const [name, setName] = useState<string>('');
+  const [cardNumber, setCardNumber] = useState<string>('')
+  const [cvv, setCvv] = useState<string>('')
+  const [expDateFull, setExpDateFull] = useState<string>('')
+  const [expMonth, setExpMonth] = useState<string>('')
+  const [expYear, setExpYear] = useState<string>('')
+  const [isAlternateDateFormat, setIsAlternateDateFormat] = useState<boolean>(false)
+  const [name, setName] = useState<string>('')
 
   function toggleDateFormat() {
-    setIsAlternateDateFormat(!isAlternateDateFormat);
+    setIsAlternateDateFormat(!isAlternateDateFormat)
   }
 
   function onSubmit() {
-    console.log('save credit card clicked');
-    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name});
+    console.log('save credit card clicked')
+    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
   }
 
   let Form = props.isForm ? RealForm : FakeForm
@@ -156,23 +156,15 @@ export default function Fields(props: TProps) {
         </Button>
       </Wrap>
     </Form>
-  );
+  )
 }
 
 type FormProps = {
   children: any
 }
 function RealForm(props: FormProps) {
-  return (
-    <form>
-      {props.children}
-    </form>
-  )
+  return <form>{props.children}</form>
 }
 function FakeForm(props: FormProps) {
-  return (
-    <>
-      {props.children}
-    </>
-  )
+  return <>{props.children}</>
 }

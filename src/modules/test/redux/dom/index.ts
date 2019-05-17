@@ -1,98 +1,98 @@
-import {delay, put, takeEvery} from 'redux-saga/effects';
-import {SagaIterator} from 'redux-saga';
+import {delay, put, takeEvery} from 'redux-saga/effects'
+import {SagaIterator} from 'redux-saga'
 
-import {TAction} from '../../../../store';
-import {testFail} from '../run';
-import {testIframeNodeLeaks} from './tests';
+import {TAction} from '../../../../store'
+import {testFail} from '../run'
+import {testIframeNodeLeaks} from './tests'
 
-const INIT = 'test/dom';
-const PENDING = 'test/dom/PENDING';
-const SUCCESS = 'test/dom/SUCCESS';
-const FAILURE = 'test/dom/FAILURE';
+const INIT = 'test/dom'
+const PENDING = 'test/dom/PENDING'
+const SUCCESS = 'test/dom/SUCCESS'
+const FAILURE = 'test/dom/FAILURE'
 
 type TInitAction = {
-  type: 'test/dom';
-};
+  type: 'test/dom'
+}
 type TPendingAction = {
-  type: 'test/dom/PENDING';
-};
+  type: 'test/dom/PENDING'
+}
 type TSuccessAction = {
-  type: 'test/dom/SUCCESS';
-  payload: string[];
-};
+  type: 'test/dom/SUCCESS'
+  payload: string[]
+}
 type TFailureAction = {
-  type: 'test/dom/FAILURE';
-  payload: Error;
-};
+  type: 'test/dom/FAILURE'
+  payload: Error
+}
 
 export function testDom(): TInitAction {
-  return {type: INIT};
+  return {type: INIT}
 }
 function testDomPending(): TPendingAction {
-  return {type: PENDING};
+  return {type: PENDING}
 }
 function testDomSuccess(errors: string[]): TSuccessAction {
   return {
     type: SUCCESS,
     payload: errors,
-  };
+  }
 }
 function testDomFailure(error: Error): TFailureAction {
   return {
     type: FAILURE,
     payload: error,
-  };
+  }
 }
 
 export function* testDomTask(): SagaIterator {
-  yield put(testDomPending());
-  yield delay(1000);
+  yield put(testDomPending())
+  yield delay(1000)
 
   try {
-    const errors = [];
+    const errors = []
 
-    errors.push(...testIframeNodeLeaks());
+    errors.push(...testIframeNodeLeaks())
 
-    if (errors.length) yield put(testFail());
+    if (errors.length) yield put(testFail())
 
-    yield put(testDomSuccess(errors));
+    yield put(testDomSuccess(errors))
   } catch (err) {
-    yield put(testDomFailure(err));
+    yield put(testDomFailure(err))
   }
 }
 
 export function* testDomWatcher(): SagaIterator {
-  yield takeEvery(INIT, testDomTask);
+  yield takeEvery(INIT, testDomTask)
 }
 
 type TStoreTestDom = {
   data: {
-    testErrors: string[];
-  };
-  isLoading: boolean;
-  error: Error | null;
-};
+    testErrors: string[]
+  }
+  isLoading: boolean
+  error: Error | null
+}
 const initialState: TStoreTestDom = {
   data: {
     testErrors: [],
   },
   isLoading: false,
   error: null,
-};
+}
 
 export function domReducer(state: TStoreTestDom = initialState, action: TAction): TStoreTestDom {
   switch (action.type) {
     case PENDING:
-      return {...state, isLoading: true, data: {testErrors: []}};
+      return {...state, isLoading: true, data: {testErrors: []}}
     case SUCCESS:
-      const newState = {...state, isLoading: false};
+      const newState = {...state, isLoading: false}
       if (action.payload.length) {
-        newState.data = {testErrors: [...newState.data.testErrors, ...action.payload]};
+        newState.data = {testErrors: [...newState.data.testErrors, ...action.payload]}
       }
-      return newState;
+      return newState
     case FAILURE:
-      return {...state, error: action.payload, isLoading: false};
+      return {...state, error: action.payload, isLoading: false}
     default:
-      return state;
+      return state
   }
 }

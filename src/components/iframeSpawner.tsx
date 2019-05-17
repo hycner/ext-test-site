@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import styled from 'styled-components';
-import {Button, Icon, Input, Tooltip} from 'antd';
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import styled from 'styled-components'
+import {Button, Icon, Input, Tooltip} from 'antd'
 
-import {TStore} from '../modules/rootReducer';
+import {TStore} from '../modules/rootReducer'
 
 const Wrap = styled.div`
   display: flex;
@@ -12,44 +12,44 @@ const Wrap = styled.div`
   margin-top: 30px;
   margin-bottom: 15px;
   width: 300px;
-`;
+`
 
 const Header = styled.div`
   font-size: 16px;
-`;
+`
 
 const IframeWrap = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
-`;
+`
 
 const ICON_STYLE = {
   fontSize: 18,
-};
+}
 const BTN_STYLE = {
   marginTop: 5,
   marginBottom: 20,
-};
+}
 
 type TProps = {
-  areTestsRunning: boolean;
-};
+  areTestsRunning: boolean
+}
 type TIframe = {
-  url: string;
-};
+  url: string
+}
 
 function IFrameSpawner(props: TProps) {
-  const [url, setUrl] = useState<string>('');
-  const [iframes, setIframes] = useState<Array<TIframe>>([]);
+  const [url, setUrl] = useState<string>('')
+  const [iframes, setIframes] = useState<Array<TIframe>>([])
 
   function onUrlChange(e: React.FormEvent<HTMLInputElement>) {
-    setUrl(e.currentTarget.value);
+    setUrl(e.currentTarget.value)
   }
 
   function onSubmit() {
-    console.log(`spawn iframe button clicked. URL: ${url}`);
-    setUrl('');
-    setIframes([...iframes, {url}]);
+    console.log(`spawn iframe button clicked. URL: ${url}`)
+    setUrl('')
+    setIframes([...iframes, {url}])
   }
 
   return (
@@ -78,13 +78,13 @@ function IFrameSpawner(props: TProps) {
         </IframeWrap>
       ))}
     </Wrap>
-  );
+  )
 }
 
 function mapStateToProps(state: TStore) {
   return {
     areTestsRunning: state.test.run.isLoading,
-  };
+  }
 }
 
-export default connect(mapStateToProps)(IFrameSpawner);
+export default connect(mapStateToProps)(IFrameSpawner)
