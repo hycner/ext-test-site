@@ -32,9 +32,10 @@ type LSConfig = {
   isVisible: boolean
   iterations: number
   areIdsUnique: boolean
+  isForm: boolean
 }
 
-const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique']
+const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
 type TProps = {};
 
@@ -42,6 +43,7 @@ export default function LoginSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
   const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
+  const [isForm, setIsForm] = useState<boolean>(false);
 
   useEffect(() => {
     // @ts-ignore
@@ -49,8 +51,12 @@ export default function LoginSection(props: TProps) {
       if (!config) return;
 
       // Wipe config if mismatched
-      const isCfgMismatch = Object.keys(config).every(key => STATE_KEYS.includes(key))
-      if (!isCfgMismatch) {
+      const cfgKeys = Object.keys(config)
+      if (cfgKeys.length !== STATE_KEYS.length) {
+        return localforage.removeItem('login')
+      }
+      const isCfgMismatch = !cfgKeys.every(key => STATE_KEYS.includes(key))
+      if (isCfgMismatch) {
         console.log('Persisted config key mismatch (login). Wiping config. Probably because of a new config schema version')
         return localforage.removeItem('login')
       }
@@ -59,14 +65,16 @@ export default function LoginSection(props: TProps) {
       setIsVisible(config.isVisible)
       setIterations(config.iterations)
       setAreIdsUnique(config.areIdsUnique)
+      setIsForm(config.isForm)
     })
   }, [])
 
   function persistSettings(changes: Object) {
     localforage.setItem('login', {
       isVisible,
-      areIdsUnique,
       iterations,
+      areIdsUnique,
+      isForm,
       ...changes,
     })
   }
@@ -92,6 +100,11 @@ export default function LoginSection(props: TProps) {
     setAreIdsUnique(newVal)
     persistSettings({areIdsUnique: newVal})
   }
+  function toggleIsForm () {
+    let newVal = !isForm
+    setIsForm(newVal)
+    persistSettings({isForm: newVal})
+  }
 
   function renderIterations() {
     const iNodes = []
@@ -101,6 +114,7 @@ export default function LoginSection(props: TProps) {
           key={i}
           iteration={i+1}
           areIdsUnique={areIdsUnique}
+          isForm={isForm}
         />
       )
     }
@@ -139,6 +153,8 @@ export default function LoginSection(props: TProps) {
             />
             <ConfigMenu
               areIdsUnique={areIdsUnique}
+              isForm={isForm}
+              toggleIsForm={toggleIsForm}
               toggleUniqueIds={toggleUniqueIds}
             />
           </SpecificSettings>

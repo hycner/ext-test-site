@@ -16,6 +16,7 @@ const PASSWORD_STYLE = {
 
 type TProps = {
   areIdsUnique: boolean
+  isForm: boolean
   iteration: number
 };
 
@@ -31,30 +32,52 @@ export default function LoginFields(props: TProps) {
     });
   }
 
+  let Form = props.isForm ? RealForm : FakeForm
+
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.areIdsUnique) iteration = ''
 
   return (
-    <Wrap>
-      <Input
-        id={`username${iteration}`}
-        placeholder="Username"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
-      <Input.Password
-        style={PASSWORD_STYLE}
-        id={`password${iteration}`}
-        placeholder="Password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <Button
-        id={`login${iteration}`}
-        onClick={onSubmit}
-      >
-        Submit
-      </Button>
-    </Wrap>
+    <Form>
+      <Wrap>
+        <Input
+          id={`username${iteration}`}
+          placeholder="Username"
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+        />
+        <Input.Password
+          style={PASSWORD_STYLE}
+          id={`password${iteration}`}
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <Button
+          id={`login${iteration}`}
+          onClick={onSubmit}
+        >
+          Submit
+        </Button>
+      </Wrap>
+    </Form>
   );
+}
+
+type FormProps = {
+  children: any
+}
+function RealForm(props: FormProps) {
+  return (
+    <form>
+      {props.children}
+    </form>
+  )
+}
+function FakeForm(props: FormProps) {
+  return (
+    <>
+      {props.children}
+    </>
+  )
 }

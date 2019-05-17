@@ -15,6 +15,8 @@ const ICON_STYLE = {
 
 type TProps = {
   areIdsUnique: boolean
+  isForm: boolean
+  toggleIsForm: () => void
   toggleUniqueIds: () => void
 };
 
@@ -27,6 +29,14 @@ export default function configMenu(props: TProps) {
         <Checkbox
           checked={!props.areIdsUnique}
           onChange={props.toggleUniqueIds}
+        />
+      </SettingWrap>
+      <SettingWrap key="form">
+        Wrap each in {'<form>'}
+        :&nbsp;
+        <Checkbox
+          checked={props.isForm}
+          onChange={props.toggleIsForm}
         />
       </SettingWrap>
     </div>

@@ -11,7 +11,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
-  width: 300px;
+ 
 `;
 const Header = styled.div`
   font-size: 16px;
@@ -33,9 +33,10 @@ type CCConfig = {
   isVisible: boolean
   iterations: number
   areIdsUnique: boolean
+  isForm: boolean
 }
 
-const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique']
+const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
 type TProps = {};
 
@@ -43,6 +44,7 @@ export default function CreditCardSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [iterations, setIterations] = useState<number>(1);
   const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true);
+  const [isForm, setIsForm] = useState<boolean>(false);
 
   useEffect(() => {
     // @ts-ignore
@@ -50,9 +52,13 @@ export default function CreditCardSection(props: TProps) {
       if (!config) return;
 
       // Wipe config if mismatched
-      const isCfgMismatch = Object.keys(config).every(key => STATE_KEYS.includes(key))
-      if (!isCfgMismatch) {
-        console.log('Persisted config key mismatch (creditCard). Wiping config. Probably because of a new config schema version')
+      const cfgKeys = Object.keys(config)
+      if (cfgKeys.length !== STATE_KEYS.length) {
+        return localforage.removeItem('creditCard')
+      }
+      const isCfgMismatch = !cfgKeys.every(key => STATE_KEYS.includes(key))
+      if (isCfgMismatch) {
+        console.log('Persisted config key mismatch (login). Wiping config. Probably because of a new config schema version')
         return localforage.removeItem('creditCard')
       }
 
@@ -60,14 +66,16 @@ export default function CreditCardSection(props: TProps) {
       setIsVisible(config.isVisible)
       setAreIdsUnique(config.areIdsUnique)
       setIterations(config.iterations)
+      setIsForm(config.isForm)
     })
   }, [])
 
   function persistSettings(changes: Object) {
     localforage.setItem('creditCard', {
       isVisible,
-      areIdsUnique,
       iterations,
+      areIdsUnique,
+      isForm,
       ...changes,
     })
   }
@@ -75,11 +83,6 @@ export default function CreditCardSection(props: TProps) {
     let newVal = !isVisible
     setIsVisible(newVal);
     persistSettings({isVisible: newVal})
-  }
-  function toggleUniqueIds () {
-    let newVal = !areIdsUnique
-    setAreIdsUnique(newVal)
-    persistSettings({areIdsUnique: newVal})
   }
   function increaseIterations() {
     let newVal = iterations + 1
@@ -93,6 +96,16 @@ export default function CreditCardSection(props: TProps) {
       persistSettings({iterations: newVal})
     }
   }
+  function toggleUniqueIds () {
+    let newVal = !areIdsUnique
+    setAreIdsUnique(newVal)
+    persistSettings({areIdsUnique: newVal})
+  }
+  function toggleIsForm () {
+    let newVal = !isForm
+    setIsForm(newVal)
+    persistSettings({isForm: newVal})
+  }
 
   function renderIterations() {
     const iNodes = []
@@ -102,6 +115,7 @@ export default function CreditCardSection(props: TProps) {
           key={i}
           iteration={i+1}
           areIdsUnique={areIdsUnique}
+          isForm={isForm}
         />
       )
     }
@@ -140,6 +154,8 @@ export default function CreditCardSection(props: TProps) {
             />
             <ConfigMenu
               areIdsUnique={areIdsUnique}
+              isForm={isForm}
+              toggleIsForm={toggleIsForm}
               toggleUniqueIds={toggleUniqueIds}
             />
           </SpecificSettings>
