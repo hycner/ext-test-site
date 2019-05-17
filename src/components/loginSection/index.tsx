@@ -15,7 +15,7 @@ const Wrap = styled.div`
 const Header = styled.div`
   font-size: 16px;
 `;
-const SecondRow = styled.div`
+const SpecificSettings = styled.div`
   margin-top: 3px;
   margin-bottom: 7px;
   display: flex;
@@ -125,7 +125,7 @@ export default function LoginSection(props: TProps) {
           </Tooltip>
         </div>
 
-        <SecondRow>
+        <SpecificSettings>
           <Icon
             type="plus-circle"
             theme="filled"
@@ -142,7 +142,7 @@ export default function LoginSection(props: TProps) {
             areIdsUnique={areIdsUnique}
             toggleUniqueIds={toggleUniqueIds}
           />
-        </SecondRow>
+        </SpecificSettings>
       </Header>
 
       {isVisible && renderIterations()}
