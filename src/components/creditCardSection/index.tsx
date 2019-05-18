@@ -1,10 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 import localforage from 'localforage'
 
 import Fields from './fields'
 import ConfigMenu from './configMenu'
+import {setConfig} from '../../modules/customization/redux';
+import {dispatch} from '../../store';
+import {TStore} from '../../modules/rootReducer';
+import {TStoreCustomizationCreditCard} from '../../modules/customization/redux';
+import {connect} from 'react-redux';
 
 const Wrap = styled.div`
   display: flex;
@@ -37,14 +42,11 @@ type CCConfig = {
 
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
-type TProps = {}
+type TProps = {
+  config: TStoreCustomizationCreditCard
+}
 
-export default function CreditCardSection(props: TProps) {
-  const [isVisible, setIsVisible] = useState<boolean>(true)
-  const [iterations, setIterations] = useState<number>(1)
-  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true)
-  const [isForm, setIsForm] = useState<boolean>(false)
-
+function CreditCardSection(props: TProps) {
   useEffect(() => {
     // @ts-ignore
     localforage.getItem('creditCard').then((config: CCConfig) => {
@@ -64,54 +66,84 @@ export default function CreditCardSection(props: TProps) {
       }
 
       // Load config
-      setIsVisible(config.isVisible)
-      setAreIdsUnique(config.areIdsUnique)
-      setIterations(config.iterations)
-      setIsForm(config.isForm)
+      dispatch(setConfig({
+        section: 'creditCard',
+        config,
+      }))
     })
   }, [])
 
   function persistSettings(changes: Object) {
     localforage.setItem('creditCard', {
-      isVisible,
-      iterations,
-      areIdsUnique,
-      isForm,
+      isVisible: props.config.isVisible,
+      iterations: props.config.iterations,
+      areIdsUnique: props.config.areIdsUnique,
+      isForm: props.config.isForm,
       ...changes,
     })
   }
   function toggleVisibility() {
-    let newVal = !isVisible
-    setIsVisible(newVal)
+    let newVal = !props.config.isVisible
     persistSettings({isVisible: newVal})
+
+    dispatch(setConfig({
+      section: 'creditCard',
+      config: {
+        isVisible: newVal,
+      },
+    }))
   }
   function increaseIterations() {
-    let newVal = iterations + 1
-    setIterations(newVal)
+    let newVal = props.config.iterations + 1
     persistSettings({iterations: newVal})
+
+    dispatch(setConfig({
+      section: 'creditCard',
+      config: {
+        iterations: newVal,
+      },
+    }))
   }
   function decreaseIterations() {
-    if (iterations > 1) {
-      let newVal = iterations - 1
-      setIterations(newVal)
+    if (props.config.iterations > 1) {
+      let newVal = props.config.iterations - 1
       persistSettings({iterations: newVal})
+
+      dispatch(setConfig({
+        section: 'creditCard',
+        config: {
+          iterations: newVal,
+        },
+      }))
     }
   }
   function toggleUniqueIds() {
-    let newVal = !areIdsUnique
-    setAreIdsUnique(newVal)
+    let newVal = !props.config.areIdsUnique
     persistSettings({areIdsUnique: newVal})
+
+    dispatch(setConfig({
+      section: 'creditCard',
+      config: {
+        areIdsUnique: newVal,
+      },
+    }))
   }
   function toggleIsForm() {
-    let newVal = !isForm
-    setIsForm(newVal)
+    let newVal = !props.config.isForm
     persistSettings({isForm: newVal})
+
+    dispatch(setConfig({
+      section: 'creditCard',
+      config: {
+        isForm: newVal,
+      },
+    }))
   }
 
   function renderIterations() {
     const iNodes = []
-    for (let i = 0; i < iterations; i++) {
-      iNodes.push(<Fields key={i} iteration={i + 1} areIdsUnique={areIdsUnique} isForm={isForm} />)
+    for (let i = 0; i < props.config.iterations; i++) {
+      iNodes.push(<Fields key={i} iteration={i + 1} areIdsUnique={props.config.areIdsUnique} isForm={props.config.isForm} />)
     }
     return iNodes
   }
@@ -121,7 +153,7 @@ export default function CreditCardSection(props: TProps) {
       <Header>
         <div>
           <Icon
-            type={isVisible ? 'eye' : 'eye-invisible'}
+            type={props.config.isVisible ? 'eye' : 'eye-invisible'}
             theme="filled"
             style={ICON_STYLE}
             onClick={toggleVisibility}
@@ -132,7 +164,7 @@ export default function CreditCardSection(props: TProps) {
           </Tooltip>
         </div>
 
-        {isVisible && (
+        {props.config.isVisible && (
           <SpecificSettings>
             <Icon
               type="plus-circle"
@@ -147,8 +179,8 @@ export default function CreditCardSection(props: TProps) {
               onClick={decreaseIterations}
             />
             <ConfigMenu
-              areIdsUnique={areIdsUnique}
-              isForm={isForm}
+              areIdsUnique={props.config.areIdsUnique}
+              isForm={props.config.isForm}
               toggleIsForm={toggleIsForm}
               toggleUniqueIds={toggleUniqueIds}
             />
@@ -156,7 +188,15 @@ export default function CreditCardSection(props: TProps) {
         )}
       </Header>
 
-      {isVisible && renderIterations()}
+      {props.config.isVisible && renderIterations()}
     </Wrap>
   )
 }
+
+function mapStateToProps(state: TStore) {
+  return {
+    config: state.customization.creditCard,
+  }
+}
+
+export default connect(mapStateToProps)(CreditCardSection)

@@ -200,7 +200,6 @@ function LoginSection(props: TProps) {
   )
 }
 
-
 function mapStateToProps(state: TStore) {
   return {
     config: state.customization.login,
