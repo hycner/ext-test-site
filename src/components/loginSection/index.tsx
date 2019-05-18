@@ -82,14 +82,14 @@ function LoginSection(props: TProps) {
       ...changes,
     })
   }
-  function toggleVisibility() {
-    let newVal = !props.config.isVisible
-    persistSettings({isVisible: newVal})
+  function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
+    let newVal = !props.config[field]
+    persistSettings({[field]: newVal})
 
     dispatch(setConfig({
       section: 'login',
       config: {
-        isVisible: newVal,
+        [field]: newVal,
       },
     }))
   }
@@ -117,28 +117,6 @@ function LoginSection(props: TProps) {
       }))
     }
   }
-  function toggleUniqueIds() {
-    let newVal = !props.config.areIdsUnique
-    persistSettings({areIdsUnique: newVal})
-
-    dispatch(setConfig({
-      section: 'login',
-      config: {
-        areIdsUnique: newVal,
-      },
-    }))
-  }
-  function toggleIsForm() {
-    let newVal = !props.config.isForm
-    persistSettings({isForm: newVal})
-
-    dispatch(setConfig({
-      section: 'login',
-      config: {
-        isForm: newVal,
-      },
-    }))
-  }
 
   function renderIterations() {
     const iNodes = []
@@ -163,7 +141,7 @@ function LoginSection(props: TProps) {
             type={props.config.isVisible ? 'eye' : 'eye-invisible'}
             theme="filled"
             style={ICON_STYLE}
-            onClick={toggleVisibility}
+            onClick={() => toggleField('isVisible')}
           />
           &nbsp; Login Fields &nbsp;
           <Tooltip title="Fake login fields available for Keeper's extension to target.">
@@ -188,8 +166,8 @@ function LoginSection(props: TProps) {
             <ConfigMenu
               areIdsUnique={props.config.areIdsUnique}
               isForm={props.config.isForm}
-              toggleIsForm={toggleIsForm}
-              toggleUniqueIds={toggleUniqueIds}
+              toggleIsForm={() => toggleField('isForm')}
+              toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
           </SpecificSettings>
         )}
