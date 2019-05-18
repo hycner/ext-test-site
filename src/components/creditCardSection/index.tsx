@@ -63,7 +63,7 @@ export default function CreditCardSection(props: TProps) {
         return localforage.removeItem('creditCard')
       }
 
-      // Persist config
+      // Load config
       setIsVisible(config.isVisible)
       setAreIdsUnique(config.areIdsUnique)
       setIterations(config.iterations)

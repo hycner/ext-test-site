@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
@@ -47,11 +47,6 @@ type TProps = {
 }
 
 function LoginSection(props: TProps) {
-  const [isVisible, setIsVisible] = useState<boolean>(true)
-  const [iterations, setIterations] = useState<number>(1)
-  const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true)
-  const [isForm, setIsForm] = useState<boolean>(false)
-
   useEffect(() => {
     // @ts-ignore
     localforage.getItem('login').then((config: LSConfig) => {
@@ -70,26 +65,25 @@ function LoginSection(props: TProps) {
         return localforage.removeItem('login')
       }
 
-      // Persist config
-      setIsVisible(config.isVisible)
-      setIterations(config.iterations)
-      setAreIdsUnique(config.areIdsUnique)
-      setIsForm(config.isForm)
+      // Load config
+      dispatch(setConfig({
+        section: 'login',
+        config,
+      }))
     })
   }, [])
 
   function persistSettings(changes: Object) {
     localforage.setItem('login', {
-      isVisible,
-      iterations,
-      areIdsUnique,
-      isForm,
+      isVisible: props.config.isVisible,
+      iterations: props.config.iterations,
+      areIdsUnique: props.config.areIdsUnique,
+      isForm: props.config.isForm,
       ...changes,
     })
   }
   function toggleVisibility() {
-    let newVal = !isVisible
-    setIsVisible(newVal)
+    let newVal = !props.config.isVisible
     persistSettings({isVisible: newVal})
 
     dispatch(setConfig({
@@ -100,8 +94,7 @@ function LoginSection(props: TProps) {
     }))
   }
   function increaseIterations() {
-    let newVal = iterations + 1
-    setIterations(newVal)
+    let newVal = props.config.iterations + 1
     persistSettings({iterations: newVal})
 
     dispatch(setConfig({
@@ -112,9 +105,8 @@ function LoginSection(props: TProps) {
     }))
   }
   function decreaseIterations() {
-    if (iterations > 1) {
-      let newVal = iterations - 1
-      setIterations(newVal)
+    if (props.config.iterations > 1) {
+      let newVal = props.config.iterations - 1
       persistSettings({iterations: newVal})
 
       dispatch(setConfig({
@@ -126,8 +118,7 @@ function LoginSection(props: TProps) {
     }
   }
   function toggleUniqueIds() {
-    let newVal = !areIdsUnique
-    setAreIdsUnique(newVal)
+    let newVal = !props.config.areIdsUnique
     persistSettings({areIdsUnique: newVal})
 
     dispatch(setConfig({
@@ -138,8 +129,7 @@ function LoginSection(props: TProps) {
     }))
   }
   function toggleIsForm() {
-    let newVal = !isForm
-    setIsForm(newVal)
+    let newVal = !props.config.isForm
     persistSettings({isForm: newVal})
 
     dispatch(setConfig({
@@ -152,9 +142,14 @@ function LoginSection(props: TProps) {
 
   function renderIterations() {
     const iNodes = []
-    for (let i = 0; i < iterations; i++) {
+    for (let i = 0; i < props.config.iterations; i++) {
       iNodes.push(
-        <LoginFields key={i} iteration={i + 1} areIdsUnique={areIdsUnique} isForm={isForm} />
+        <LoginFields
+          key={i}
+          iteration={i + 1}
+          areIdsUnique={props.config.areIdsUnique}
+          isForm={props.config.isForm}
+        />
       )
     }
     return iNodes
@@ -165,7 +160,7 @@ function LoginSection(props: TProps) {
       <Header>
         <div>
           <Icon
-            type={isVisible ? 'eye' : 'eye-invisible'}
+            type={props.config.isVisible ? 'eye' : 'eye-invisible'}
             theme="filled"
             style={ICON_STYLE}
             onClick={toggleVisibility}
@@ -176,7 +171,7 @@ function LoginSection(props: TProps) {
           </Tooltip>
         </div>
 
-        {isVisible && (
+        {props.config.isVisible && (
           <SpecificSettings>
             <Icon
               type="plus-circle"
@@ -191,8 +186,8 @@ function LoginSection(props: TProps) {
               onClick={decreaseIterations}
             />
             <ConfigMenu
-              areIdsUnique={areIdsUnique}
-              isForm={isForm}
+              areIdsUnique={props.config.areIdsUnique}
+              isForm={props.config.isForm}
               toggleIsForm={toggleIsForm}
               toggleUniqueIds={toggleUniqueIds}
             />
@@ -200,7 +195,7 @@ function LoginSection(props: TProps) {
         )}
       </Header>
 
-      {isVisible && renderIterations()}
+      {props.config.isVisible && renderIterations()}
     </Wrap>
   )
 }
