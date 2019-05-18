@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react'
+import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 import localforage from 'localforage'
 
 import LoginFields from './loginFields'
 import ConfigMenu from './configMenu'
+import {setConfig} from '../../modules/customization/redux';
+import {dispatch} from '../../store';
+import {TStore} from '../../modules/rootReducer';
+import {TStoreCustomizationLogin} from '../../modules/customization/redux';
 
 const Wrap = styled.div`
   display: flex;
@@ -37,9 +42,11 @@ type LSConfig = {
 
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
-type TProps = {}
+type TProps = {
+  config: TStoreCustomizationLogin
+}
 
-export default function LoginSection(props: TProps) {
+function LoginSection(props: TProps) {
   const [isVisible, setIsVisible] = useState<boolean>(true)
   const [iterations, setIterations] = useState<number>(1)
   const [areIdsUnique, setAreIdsUnique] = useState<boolean>(true)
@@ -84,28 +91,63 @@ export default function LoginSection(props: TProps) {
     let newVal = !isVisible
     setIsVisible(newVal)
     persistSettings({isVisible: newVal})
+
+    dispatch(setConfig({
+      section: 'login',
+      config: {
+        isVisible: newVal,
+      },
+    }))
   }
   function increaseIterations() {
     let newVal = iterations + 1
     setIterations(newVal)
     persistSettings({iterations: newVal})
+
+    dispatch(setConfig({
+      section: 'login',
+      config: {
+        iterations: newVal,
+      },
+    }))
   }
   function decreaseIterations() {
     if (iterations > 1) {
       let newVal = iterations - 1
       setIterations(newVal)
       persistSettings({iterations: newVal})
+
+      dispatch(setConfig({
+        section: 'login',
+        config: {
+          iterations: newVal,
+        },
+      }))
     }
   }
   function toggleUniqueIds() {
     let newVal = !areIdsUnique
     setAreIdsUnique(newVal)
     persistSettings({areIdsUnique: newVal})
+
+    dispatch(setConfig({
+      section: 'login',
+      config: {
+        areIdsUnique: newVal,
+      },
+    }))
   }
   function toggleIsForm() {
     let newVal = !isForm
     setIsForm(newVal)
     persistSettings({isForm: newVal})
+
+    dispatch(setConfig({
+      section: 'login',
+      config: {
+        isForm: newVal,
+      },
+    }))
   }
 
   function renderIterations() {
@@ -162,3 +204,12 @@ export default function LoginSection(props: TProps) {
     </Wrap>
   )
 }
+
+
+function mapStateToProps(state: TStore) {
+  return {
+    config: state.customization.login,
+  }
+}
+
+export default connect(mapStateToProps)(LoginSection)
