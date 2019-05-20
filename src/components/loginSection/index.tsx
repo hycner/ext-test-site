@@ -6,7 +6,7 @@ import {Icon, Tooltip} from 'antd'
 import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
-import {StoreSettings, StoreSettingsLogin} from '../../modules/settings/redux'
+import {StoreSettingsLogin} from '../../modules/settings/redux'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
 
@@ -33,7 +33,6 @@ const ICON_STYLE = {
 }
 
 type Props = {
-  allSettings: StoreSettings
   settings: StoreSettingsLogin
 }
 
@@ -133,7 +132,6 @@ function LoginSection(props: Props) {
 
 function mapStateToProps(state: Store) {
   return {
-    allSettings: state.settings,
     settings: state.settings.login,
   }
 }

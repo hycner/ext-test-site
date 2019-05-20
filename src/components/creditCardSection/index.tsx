@@ -5,7 +5,7 @@ import {Icon, Tooltip} from 'antd'
 import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
-import {StoreSettings, StoreSettingsCreditCard} from '../../modules/settings/redux'
+import {StoreSettingsCreditCard} from '../../modules/settings/redux'
 import {connect} from 'react-redux'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
@@ -33,7 +33,6 @@ const ICON_STYLE = {
 }
 
 type Props = {
-  allSettings: StoreSettings
   settings: StoreSettingsCreditCard
 }
 
@@ -133,7 +132,6 @@ function CreditCardSection(props: Props) {
 
 function mapStateToProps(state: Store) {
   return {
-    allSettings: state.settings,
     settings: state.settings.creditCard,
   }
 }
