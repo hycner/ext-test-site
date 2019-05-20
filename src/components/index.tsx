@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
+import {Spin} from 'antd';
 
 import {Store} from '../modules/rootReducer'
 import {dispatch} from '../store'
@@ -14,7 +15,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 `
 
 const Header = styled.div`
@@ -35,14 +36,16 @@ export function App(props: Props) {
   }, [])
 
   return (
-    <Wrap>
-      <Header>Extension Tester</Header>
+    <Spin size="large" spinning={!props.isBootstrapDone}>
+      <Wrap>
+          <Header>Extension Tester</Header>
 
-      <TestRunner />
-      <LoginSection />
-      <CreditCardSection />
-      <IFrameSpawner />
-    </Wrap>
+          <TestRunner />
+          <LoginSection />
+          <CreditCardSection />
+          <IFrameSpawner />
+      </Wrap>
+    </Spin>
   )
 }
 
