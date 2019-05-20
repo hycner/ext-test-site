@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect'
 
-import {TStore} from '../../rootReducer'
+import {Store} from '../../rootReducer'
 
 const TESTS = [
   {
@@ -17,11 +17,11 @@ const TESTS = [
   },
 ]
 
-export type TTimelineData = {
+export type TimelineData = {
   pendingText: string | null
-  items: Array<TTimelineItem>
+  items: Array<TimelineItem>
 }
-export type TTimelineItem = {
+export type TimelineItem = {
   errors: string[]
   hasErrors: boolean
   key: string
@@ -35,12 +35,12 @@ const INACTIVE_STATE = {
 
 export const getTimelineData = createSelector(
   [
-    (state: TStore) => state.test.run.data.currentTest,
-    (state: TStore) => state.test.run.data.hasRun,
-    (state: TStore) => state.test.run.isLoading,
-    (state: TStore) => state.test.iframes.data.testErrors,
-    (state: TStore) => state.test.dom.data.testErrors,
-    (state: TStore) => state.test.events.data.testErrors,
+    (state: Store) => state.test.run.data.currentTest,
+    (state: Store) => state.test.run.data.hasRun,
+    (state: Store) => state.test.run.isLoading,
+    (state: Store) => state.test.iframes.data.testErrors,
+    (state: Store) => state.test.dom.data.testErrors,
+    (state: Store) => state.test.events.data.testErrors,
   ],
   (currentTestIdx, hasTestRan, isTestRunning, iframesErrors, domErrors, eventsErrors) => {
     const testErrors: {[key: string]: string[]} = {
@@ -51,7 +51,7 @@ export const getTimelineData = createSelector(
 
     if (!hasTestRan) return INACTIVE_STATE
 
-    let items: Array<TTimelineItem> = TESTS.map(x => ({
+    let items: Array<TimelineItem> = TESTS.map(x => ({
       ...x,
       errors: testErrors[x.key],
       hasErrors: !!testErrors[x.key].length,

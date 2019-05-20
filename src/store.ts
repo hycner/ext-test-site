@@ -23,12 +23,12 @@ export let dispatch = store.dispatch
 
 // Abstract types
 
-export type TAction = {
+export type Action = {
   type: string
   payload: any
 }
 
-export type TAsyncState = {
+export type AsyncState = {
   error: string | null | undefined
   isLoading: boolean
 }

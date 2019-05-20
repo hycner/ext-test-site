@@ -1,7 +1,7 @@
 import {delay, put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
-import {TAction} from '../../../../store'
+import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testEventHijacking} from './tests'
 
@@ -10,34 +10,34 @@ const PENDING = 'test/events/PENDING'
 const SUCCESS = 'test/events/SUCCESS'
 const FAILURE = 'test/events/FAILURE'
 
-type TInitAction = {
+type InitAction = {
   type: 'test/events'
 }
-type TPendingAction = {
+type PendingAction = {
   type: 'test/events/PENDING'
 }
-type TSuccessAction = {
+type SuccessAction = {
   type: 'test/events/SUCCESS'
   payload: string[]
 }
-type TFailureAction = {
+type FailureAction = {
   type: 'test/events/FAILURE'
   payload: Error
 }
 
-export function testEvents(): TInitAction {
+export function testEvents(): InitAction {
   return {type: INIT}
 }
-function testEventsPending(): TPendingAction {
+function testEventsPending(): PendingAction {
   return {type: PENDING}
 }
-function testEventsSuccess(errors: string[]): TSuccessAction {
+function testEventsSuccess(errors: string[]): SuccessAction {
   return {
     type: SUCCESS,
     payload: errors,
   }
 }
-function testEventsFailure(error: Error): TFailureAction {
+function testEventsFailure(error: Error): FailureAction {
   return {
     type: FAILURE,
     payload: error,
@@ -72,26 +72,26 @@ export function* testEventsWatcher(): SagaIterator {
 
 const EVENT_CAUGHT = 'test/events/event-caught'
 
-type TEventCaughtAction = {
+type EventCaughtAction = {
   type: 'test/events/event-caught'
   payload: string
 }
 
-export function messageEventCaught(): TEventCaughtAction {
+export function messageEventCaught(): EventCaughtAction {
   return {
     type: EVENT_CAUGHT,
     payload: `Message event caught at ${new Date().toLocaleTimeString()}`,
   }
 }
 
-type TStoreTestEvents = {
+type StoreTestEvents = {
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
 }
-const initialState: TStoreTestEvents = {
+const initialState: StoreTestEvents = {
   data: {
     testErrors: [],
   },
@@ -100,9 +100,9 @@ const initialState: TStoreTestEvents = {
 }
 
 export function eventsReducer(
-  state: TStoreTestEvents = initialState,
-  action: TAction
-): TStoreTestEvents {
+  state: StoreTestEvents = initialState,
+  action: Action
+): StoreTestEvents {
   switch (action.type) {
     case PENDING:
       return {...state, isLoading: true}

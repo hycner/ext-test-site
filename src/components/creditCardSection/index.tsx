@@ -7,8 +7,8 @@ import Fields from './fields'
 import ConfigMenu from './configMenu'
 import {setConfig} from '../../modules/customization/redux';
 import {dispatch} from '../../store';
-import {TStore} from '../../modules/rootReducer';
-import {TStoreCustomizationCreditCard} from '../../modules/customization/redux';
+import {Store} from '../../modules/rootReducer';
+import {StoreCustomizationCreditCard} from '../../modules/customization/redux';
 import {connect} from 'react-redux';
 
 const Wrap = styled.div`
@@ -42,11 +42,11 @@ type CCConfig = {
 
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
-type TProps = {
-  config: TStoreCustomizationCreditCard
+type Props = {
+  config: StoreCustomizationCreditCard
 }
 
-function CreditCardSection(props: TProps) {
+function CreditCardSection(props: Props) {
   useEffect(() => {
     // @ts-ignore
     localforage.getItem('creditCard').then((config: CCConfig) => {
@@ -171,7 +171,7 @@ function CreditCardSection(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     config: state.customization.creditCard,
   }

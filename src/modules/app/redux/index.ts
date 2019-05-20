@@ -6,6 +6,6 @@ const appReducer = combineReducers({
   bootstrap: bootstrapReducer,
 })
 
-export type TStoreApp = ReturnType<typeof appReducer>
+export type StoreApp = ReturnType<typeof appReducer>
 
 export default appReducer

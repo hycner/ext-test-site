@@ -1,7 +1,7 @@
 import {delay, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
-import {TAction} from '../../../../store'
+import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testIframeNodeLeaks} from './tests'
 
@@ -10,34 +10,34 @@ const PENDING = 'test/dom/PENDING'
 const SUCCESS = 'test/dom/SUCCESS'
 const FAILURE = 'test/dom/FAILURE'
 
-type TInitAction = {
+type InitAction = {
   type: 'test/dom'
 }
-type TPendingAction = {
+type PendingAction = {
   type: 'test/dom/PENDING'
 }
-type TSuccessAction = {
+type SuccessAction = {
   type: 'test/dom/SUCCESS'
   payload: string[]
 }
-type TFailureAction = {
+type FailureAction = {
   type: 'test/dom/FAILURE'
   payload: Error
 }
 
-export function testDom(): TInitAction {
+export function testDom(): InitAction {
   return {type: INIT}
 }
-function testDomPending(): TPendingAction {
+function testDomPending(): PendingAction {
   return {type: PENDING}
 }
-function testDomSuccess(errors: string[]): TSuccessAction {
+function testDomSuccess(errors: string[]): SuccessAction {
   return {
     type: SUCCESS,
     payload: errors,
   }
 }
-function testDomFailure(error: Error): TFailureAction {
+function testDomFailure(error: Error): FailureAction {
   return {
     type: FAILURE,
     payload: error,
@@ -65,14 +65,14 @@ export function* testDomWatcher(): SagaIterator {
   yield takeEvery(INIT, testDomTask)
 }
 
-type TStoreTestDom = {
+type StoreTestDom = {
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
 }
-const initialState: TStoreTestDom = {
+const initialState: StoreTestDom = {
   data: {
     testErrors: [],
   },
@@ -80,7 +80,7 @@ const initialState: TStoreTestDom = {
   error: null,
 }
 
-export function domReducer(state: TStoreTestDom = initialState, action: TAction): TStoreTestDom {
+export function domReducer(state: StoreTestDom = initialState, action: Action): StoreTestDom {
   switch (action.type) {
     case PENDING:
       return {...state, isLoading: true, data: {testErrors: []}}

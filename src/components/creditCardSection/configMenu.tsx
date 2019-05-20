@@ -12,14 +12,14 @@ const ICON_STYLE = {
   fontSize: 18,
 }
 
-type TProps = {
+type Props = {
   areIdsUnique: boolean
   isForm: boolean
   toggleIsForm: () => void
   toggleUniqueIds: () => void
 }
 
-export default function configMenu(props: TProps) {
+export default function configMenu(props: Props) {
   const popoverContent = (
     <div>
       <SettingWrap key="unique">

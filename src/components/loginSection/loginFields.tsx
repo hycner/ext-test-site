@@ -14,13 +14,13 @@ const PASSWORD_STYLE = {
   marginBottom: 5,
 }
 
-type TProps = {
+type Props = {
   areIdsUnique: boolean
   isForm: boolean
   iteration: number
 }
 
-export default function LoginFields(props: TProps) {
+export default function LoginFields(props: Props) {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 

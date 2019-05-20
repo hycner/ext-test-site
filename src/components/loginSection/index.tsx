@@ -8,8 +8,8 @@ import LoginFields from './loginFields'
 import ConfigMenu from './configMenu'
 import {setConfig} from '../../modules/customization/redux';
 import {dispatch} from '../../store';
-import {TStore} from '../../modules/rootReducer';
-import {TStoreCustomizationLogin} from '../../modules/customization/redux';
+import {Store} from '../../modules/rootReducer';
+import {StoreCustomizationLogin} from '../../modules/customization/redux';
 
 const Wrap = styled.div`
   display: flex;
@@ -42,11 +42,11 @@ type LSConfig = {
 
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
-type TProps = {
-  config: TStoreCustomizationLogin
+type Props = {
+  config: StoreCustomizationLogin
 }
 
-function LoginSection(props: TProps) {
+function LoginSection(props: Props) {
   useEffect(() => {
     // @ts-ignore
     localforage.getItem('login').then((config: LSConfig) => {
@@ -178,7 +178,7 @@ function LoginSection(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     config: state.customization.login,
   }

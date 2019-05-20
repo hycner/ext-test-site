@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
-import {TAction} from '../../../store'
+import {Action} from '../../../store'
 import {testEventsTask} from './events'
 import {testIframesTask} from './iframes'
 import {testDomTask} from './dom'
@@ -13,30 +13,30 @@ const PENDING = 'test/run/PENDING'
 const SUCCESS = 'test/run/SUCCESS'
 const FAILURE = 'test/run/FAILURE'
 
-type TInitAction = {
+type InitAction = {
   type: 'test/run'
 }
-type TPendingAction = {
+type PendingAction = {
   type: 'test/run/PENDING'
 }
-type TSuccessAction = {
+type SuccessAction = {
   type: 'test/run/SUCCESS'
 }
-type TFailureAction = {
+type FailureAction = {
   type: 'test/run/FAILURE'
   payload: Error
 }
 
-export function runTests(): TInitAction {
+export function runTests(): InitAction {
   return {type: INIT}
 }
-function runTestsPending(): TPendingAction {
+function runTestsPending(): PendingAction {
   return {type: PENDING}
 }
-function runTestsSuccess(): TSuccessAction {
+function runTestsSuccess(): SuccessAction {
   return {type: SUCCESS}
 }
-function runTestsFailure(error: Error): TFailureAction {
+function runTestsFailure(error: Error): FailureAction {
   return {
     type: FAILURE,
     payload: error,
@@ -69,11 +69,11 @@ export function* runTestsWatcher(): SagaIterator {
 
 const INCREMENT = 'test/run/increment'
 
-type TIncrementAction = {
+type IncrementAction = {
   type: 'test/run/increment'
 }
 
-function increment(): TIncrementAction {
+function increment(): IncrementAction {
   return {type: INCREMENT}
 }
 
@@ -81,15 +81,15 @@ function increment(): TIncrementAction {
 
 const TEST_FAIL = 'test/run/test-fail'
 
-type TTestFailAction = {
+type TestFailAction = {
   type: 'test/run/test-fail'
 }
 
-export function testFail(): TTestFailAction {
+export function testFail(): TestFailAction {
   return {type: TEST_FAIL}
 }
 
-type TStoreTestRun = {
+type StoreTestRun = {
   data: {
     currentTest: number
     hasFailedTest: boolean
@@ -98,7 +98,7 @@ type TStoreTestRun = {
   isLoading: boolean
   error: Error | null
 }
-const initialState: TStoreTestRun = {
+const initialState: StoreTestRun = {
   data: {
     currentTest: 0,
     hasFailedTest: false,
@@ -108,7 +108,7 @@ const initialState: TStoreTestRun = {
   error: null,
 }
 
-export function runReducer(state: TStoreTestRun = initialState, action: TAction): TStoreTestRun {
+export function runReducer(state: StoreTestRun = initialState, action: Action): StoreTestRun {
   switch (action.type) {
     case PENDING:
       return {

@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
   test,
 })
 
-export type TStore = ReturnType<typeof rootReducer>
+export type Store = ReturnType<typeof rootReducer>
 
 export default rootReducer

@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {Card, Timeline} from 'antd'
 import styled from 'styled-components'
 
-import {TStore} from '../../modules/rootReducer'
-import {TTimelineData} from '../../modules/test/selectors/getTimelineData'
+import {Store} from '../../modules/rootReducer'
+import {TimelineData} from '../../modules/test/selectors/getTimelineData'
 import {getTimelineData} from '../../modules/test/selectors/getTimelineData'
 
 const CARD_STYLE = {
@@ -16,11 +16,11 @@ const TestTitle = styled.div`
   font-size: 16px;
 `
 
-type TProps = {
-  timelineData: TTimelineData
+type Props = {
+  timelineData: TimelineData
 }
 
-function Output(props: TProps) {
+function Output(props: Props) {
   const {timelineData} = props
 
   return (
@@ -39,7 +39,7 @@ function Output(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     timelineData: getTimelineData(state),
   }

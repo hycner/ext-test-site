@@ -12,6 +12,6 @@ const testReducer = combineReducers({
   run: runReducer,
 })
 
-export type TStoreTest = ReturnType<typeof testReducer>
+export type StoreTest = ReturnType<typeof testReducer>
 
 export default testReducer

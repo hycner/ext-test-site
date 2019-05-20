@@ -1,43 +1,43 @@
-import {TAction} from '../../../store'
+import {Action} from '../../../store'
 
 const INIT = 'customization/SET'
 
-type InitActionPayload = {
+type SetActionPayload = {
   section: 'login' | 'creditCard'
   config: {
     [option: string]: boolean | number
   }
 }
-type TInitAction = {
+type SetAction = {
   type: typeof INIT
-  payload: InitActionPayload
+  payload: SetActionPayload
 }
 
-export function setConfig(payload: InitActionPayload): TInitAction {
+export function setConfig(payload: SetActionPayload): SetAction {
   return {
     type: INIT,
     payload,
   }
 }
 
-export type TStoreCustomizationCreditCard = {
+export type StoreCustomizationCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
   isVisible: boolean
   iterations: number
 }
-export type TStoreCustomizationLogin = {
+export type StoreCustomizationLogin = {
   areIdsUnique: boolean
   isForm: boolean
   isVisible: boolean
   iterations: number
 }
-type TStoreCustomization = {
-  creditCard: TStoreCustomizationCreditCard
-  login: TStoreCustomizationLogin
+type StoreCustomization = {
+  creditCard: StoreCustomizationCreditCard
+  login: StoreCustomizationLogin
   [section: string]: Object
 }
-const initialState: TStoreCustomization = {
+const initialState: StoreCustomization = {
   creditCard: {
     areIdsUnique: true,
     isForm: false,
@@ -53,9 +53,9 @@ const initialState: TStoreCustomization = {
 }
 
 export default function customizationReducer(
-  state: TStoreCustomization = initialState,
-  action: TAction
-): TStoreCustomization {
+  state: StoreCustomization = initialState,
+  action: Action
+): StoreCustomization {
   switch (action.type) {
     case INIT:
       return {

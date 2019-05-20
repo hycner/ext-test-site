@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Button, Icon, Input, Tooltip} from 'antd'
 
-import {TStore} from '../modules/rootReducer'
+import {Store} from '../modules/rootReducer'
 
 const Wrap = styled.div`
   display: flex;
@@ -31,16 +31,16 @@ const BTN_STYLE = {
   marginBottom: 20,
 }
 
-type TProps = {
+type Props = {
   areTestsRunning: boolean
 }
-type TIframe = {
+type Iframe = {
   url: string
 }
 
-function IFrameSpawner(props: TProps) {
+function IFrameSpawner(props: Props) {
   const [url, setUrl] = useState<string>('')
-  const [iframes, setIframes] = useState<Array<TIframe>>([])
+  const [iframes, setIframes] = useState<Array<Iframe>>([])
 
   function onUrlChange(e: React.FormEvent<HTMLInputElement>) {
     setUrl(e.currentTarget.value)
@@ -71,7 +71,7 @@ function IFrameSpawner(props: TProps) {
         Spawn New IFrame
       </Button>
 
-      {iframes.map((x: TIframe, i: number) => (
+      {iframes.map((x: Iframe, i: number) => (
         <IframeWrap key={`${i}${x.url}`}>
           <div>URL: {x.url}</div>
           <iframe src={x.url} width={500} height={350} />
@@ -81,7 +81,7 @@ function IFrameSpawner(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     areTestsRunning: state.test.run.isLoading,
   }

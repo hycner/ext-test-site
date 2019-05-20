@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 
-import {TStore} from '../modules/rootReducer'
+import {Store} from '../modules/rootReducer'
 import {dispatch} from '../store'
 import {bootstrap} from '../modules/app/redux/bootstrap'
 import CreditCardSection from './creditCardSection'
@@ -23,11 +23,11 @@ const Header = styled.div`
   font-size: 26px;
 `
 
-type TProps = {
+type Props = {
   isBootstrapDone: boolean
 }
 
-export function App(props: TProps) {
+export function App(props: Props) {
   useEffect(() => {
     setTimeout(() => {
       dispatch(bootstrap())
@@ -46,7 +46,7 @@ export function App(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     isBootstrapDone: state.app.bootstrap.isDone,
   }

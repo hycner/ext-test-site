@@ -1,7 +1,7 @@
 import {delay, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
-import {TAction} from '../../../../store'
+import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testIframeAccessibility} from './tests'
 
@@ -10,31 +10,31 @@ const PENDING = 'test/iframes/PENDING'
 const SUCCESS = 'test/iframes/SUCCESS'
 const FAILURE = 'test/iframes/FAILURE'
 
-type TInitAction = {
+type InitAction = {
   type: 'test/iframes'
 }
-type TPendingAction = {
+type PendingAction = {
   type: 'test/iframes/PENDING'
 }
-type TSuccessAction = {
+type SuccessAction = {
   type: 'test/iframes/SUCCESS'
   payload: string[]
 }
-type TFailureAction = {
+type FailureAction = {
   type: 'test/iframes/FAILURE'
   payload: Error
 }
 
-export function testIframes(): TInitAction {
+export function testIframes(): InitAction {
   return {type: INIT}
 }
-function testIframesPending(): TPendingAction {
+function testIframesPending(): PendingAction {
   return {type: PENDING}
 }
-function testIframesSuccess(errors: string[]): TSuccessAction {
+function testIframesSuccess(errors: string[]): SuccessAction {
   return {type: SUCCESS, payload: errors}
 }
-function testIframesFailure(error: Error): TFailureAction {
+function testIframesFailure(error: Error): FailureAction {
   return {
     type: FAILURE,
     payload: error,
@@ -62,14 +62,14 @@ export function* testIframesWatcher(): SagaIterator {
   yield takeEvery(INIT, testIframesTask)
 }
 
-type TStoreTestIframes = {
+type StoreTestIframes = {
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
 }
-const initialState: TStoreTestIframes = {
+const initialState: StoreTestIframes = {
   data: {
     testErrors: [],
   },
@@ -78,9 +78,9 @@ const initialState: TStoreTestIframes = {
 }
 
 export function iframesReducer(
-  state: TStoreTestIframes = initialState,
-  action: TAction
-): TStoreTestIframes {
+  state: StoreTestIframes = initialState,
+  action: Action
+): StoreTestIframes {
   switch (action.type) {
     case PENDING:
       return {...state, isLoading: true, data: {testErrors: []}}

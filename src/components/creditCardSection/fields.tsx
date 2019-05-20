@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input, Select, Switch} from 'antd'
 
-type TExpirationValues = Array<{
+type ExpirationValues = Array<{
   label: string
   value: string
 }>
-const MONTHS: TExpirationValues = [
+const MONTHS: ExpirationValues = [
   {value: '01', label: 'January'},
   {value: '02', label: 'February'},
   {value: '03', label: 'March'},
@@ -20,7 +20,7 @@ const MONTHS: TExpirationValues = [
   {value: '11', label: 'November'},
   {value: '12', label: 'December'},
 ]
-const YEARS: TExpirationValues = []
+const YEARS: ExpirationValues = []
 const currentYear = new Date().getFullYear()
 for (let i = currentYear; i < currentYear + 10; i++) {
   YEARS.push({value: String(i).slice(2), label: String(i)})
@@ -50,13 +50,13 @@ const BTN_STYLE = {
   marginBottom: 15,
 }
 
-type TProps = {
+type Props = {
   areIdsUnique: boolean
   isForm: boolean
   iteration: number
 }
 
-export default function Fields(props: TProps) {
+export default function Fields(props: Props) {
   const [cardNumber, setCardNumber] = useState<string>('')
   const [cvv, setCvv] = useState<string>('')
   const [expDateFull, setExpDateFull] = useState<string>('')

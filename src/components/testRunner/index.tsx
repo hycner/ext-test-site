@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {Button, Icon, Tooltip} from 'antd'
 
-import {TStore} from '../../modules/rootReducer'
+import {Store} from '../../modules/rootReducer'
 import {dispatch} from '../../store'
 import {runTests} from '../../modules/test/redux/run'
 import Output from './output'
@@ -27,12 +27,12 @@ const BTN_STYLE = {
   marginBottom: 5,
 }
 
-type TProps = {
+type Props = {
   areTestsRunning: boolean
   hasTestsRan: boolean
 }
 
-function TestRunner(props: TProps) {
+function TestRunner(props: Props) {
   function runTestsHelper() {
     dispatch(runTests())
   }
@@ -60,7 +60,7 @@ function TestRunner(props: TProps) {
   )
 }
 
-function mapStateToProps(state: TStore) {
+function mapStateToProps(state: Store) {
   return {
     areTestsRunning: state.test.run.isLoading,
     hasTestsRan: state.test.run.data.hasRun,
