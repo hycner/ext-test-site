@@ -39,33 +39,27 @@ type Props = {
 
 function CreditCardSection(props: Props) {
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
-    let newVal = !props.settings[field]
-
     dispatch(setSettings({
       section: 'creditCard',
       settings: {
-        [field]: newVal,
+        [field]: !props.settings[field],
       },
     }))
   }
   function increaseIterations() {
-    let newVal = props.settings.iterations + 1
-
     dispatch(setSettings({
       section: 'creditCard',
       settings: {
-        iterations: newVal,
+        iterations: props.settings.iterations + 1,
       },
     }))
   }
   function decreaseIterations() {
     if (props.settings.iterations > 1) {
-      let newVal = props.settings.iterations - 1
-
       dispatch(setSettings({
         section: 'creditCard',
         settings: {
-          iterations: newVal,
+          iterations: props.settings.iterations - 1,
         },
       }))
     }
