@@ -5,8 +5,8 @@ import * as yup from 'yup'
 
 import {Action} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
-import {setSettings} from '../../settings/redux';
-import {StoreSettings} from '../../settings/redux';
+import {setSettings} from '../../settings/redux'
+import {StoreSettings} from '../../settings/redux'
 
 const INIT = 'app/bootstrap'
 const PENDING = 'app/bootstrap/PENDING'
@@ -59,7 +59,7 @@ const settingsSchema = yup
     }),
   })
   .strict(true)
-  .noUnknown();
+  .noUnknown()
 
 function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
@@ -72,14 +72,16 @@ function* bootstrapTask(): SagaIterator {
     const settings: StoreSettings = yield call(localforage.getItem, 'settings')
 
     try {
-      if (!settings) throw new Error("No Settings found")
+      if (!settings) throw new Error('No Settings found')
 
-      settingsSchema.validateSync(settings);
+      settingsSchema.validateSync(settings)
 
-      yield put(setSettings({
-        section: 'all',
-        settings,
-      }))
+      yield put(
+        setSettings({
+          section: 'all',
+          settings,
+        })
+      )
     } catch (err) {
       console.log(
         'Persisted settings key mismatch (login). Wiping settings. Either no existing settings or because of a new settings schema version'

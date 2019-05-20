@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
-import {setSettings} from '../../modules/settings/redux';
-import {dispatch} from '../../store';
-import {Store} from '../../modules/rootReducer';
-import {StoreSettings, StoreSettingsCreditCard} from '../../modules/settings/redux';
-import {connect} from 'react-redux';
+import {setSettings} from '../../modules/settings/redux'
+import {dispatch} from '../../store'
+import {Store} from '../../modules/rootReducer'
+import {StoreSettings, StoreSettingsCreditCard} from '../../modules/settings/redux'
+import {connect} from 'react-redux'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
 
@@ -39,36 +39,49 @@ type Props = {
 
 function CreditCardSection(props: Props) {
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
-    dispatch(setSettings({
-      section: 'creditCard',
-      settings: {
-        [field]: !props.settings[field],
-      },
-    }))
+    dispatch(
+      setSettings({
+        section: 'creditCard',
+        settings: {
+          [field]: !props.settings[field],
+        },
+      })
+    )
   }
   function increaseIterations() {
-    dispatch(setSettings({
-      section: 'creditCard',
-      settings: {
-        iterations: props.settings.iterations + 1,
-      },
-    }))
+    dispatch(
+      setSettings({
+        section: 'creditCard',
+        settings: {
+          iterations: props.settings.iterations + 1,
+        },
+      })
+    )
   }
   function decreaseIterations() {
     if (props.settings.iterations > 1) {
-      dispatch(setSettings({
-        section: 'creditCard',
-        settings: {
-          iterations: props.settings.iterations - 1,
-        },
-      }))
+      dispatch(
+        setSettings({
+          section: 'creditCard',
+          settings: {
+            iterations: props.settings.iterations - 1,
+          },
+        })
+      )
     }
   }
 
   function renderIterations() {
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
-      iNodes.push(<Fields key={i} iteration={i + 1} areIdsUnique={props.settings.areIdsUnique} isForm={props.settings.isForm} />)
+      iNodes.push(
+        <Fields
+          key={i}
+          iteration={i + 1}
+          areIdsUnique={props.settings.areIdsUnique}
+          isForm={props.settings.isForm}
+        />
+      )
     }
     return iNodes
   }

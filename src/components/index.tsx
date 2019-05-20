@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {Spin} from 'antd';
+import {Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
 import {dispatch} from '../store'
@@ -38,12 +38,12 @@ export function App(props: Props) {
   return (
     <Spin size="large" spinning={!props.isBootstrapDone}>
       <Wrap>
-          <Header>Extension Tester</Header>
+        <Header>Extension Tester</Header>
 
-          <TestRunner />
-          <LoginSection />
-          <CreditCardSection />
-          <IFrameSpawner />
+        <TestRunner />
+        <LoginSection />
+        <CreditCardSection />
+        <IFrameSpawner />
       </Wrap>
     </Spin>
   )

@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
-import {setSettings} from '../../modules/settings/redux';
-import {dispatch} from '../../store';
-import {Store} from '../../modules/rootReducer';
-import {StoreSettings, StoreSettingsLogin} from '../../modules/settings/redux';
+import {setSettings} from '../../modules/settings/redux'
+import {dispatch} from '../../store'
+import {Store} from '../../modules/rootReducer'
+import {StoreSettings, StoreSettingsLogin} from '../../modules/settings/redux'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
 
@@ -39,29 +39,35 @@ type Props = {
 
 function LoginSection(props: Props) {
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
-    dispatch(setSettings({
-      section: 'login',
-      settings: {
-        [field]: !props.settings[field],
-      },
-    }))
+    dispatch(
+      setSettings({
+        section: 'login',
+        settings: {
+          [field]: !props.settings[field],
+        },
+      })
+    )
   }
   function increaseIterations() {
-    dispatch(setSettings({
-      section: 'login',
-      settings: {
-        iterations: props.settings.iterations + 1,
-      },
-    }))
+    dispatch(
+      setSettings({
+        section: 'login',
+        settings: {
+          iterations: props.settings.iterations + 1,
+        },
+      })
+    )
   }
   function decreaseIterations() {
     if (props.settings.iterations > 1) {
-      dispatch(setSettings({
-        section: 'login',
-        settings: {
-          iterations: props.settings.iterations - 1,
-        },
-      }))
+      dispatch(
+        setSettings({
+          section: 'login',
+          settings: {
+            iterations: props.settings.iterations - 1,
+          },
+        })
+      )
     }
   }
 

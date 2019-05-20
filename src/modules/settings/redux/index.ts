@@ -1,6 +1,6 @@
 import {put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
-import localforage from "localforage";
+import localforage from 'localforage'
 
 import {Action} from '../../../store'
 
@@ -9,9 +9,11 @@ const COMMIT = 'settings/set/COMMIT'
 
 type InitActionPayload = {
   section: 'login' | 'creditCard' | 'all'
-  settings: StoreSettings | {
-    [option: string]: boolean | number
-  }
+  settings:
+    | StoreSettings
+    | {
+        [option: string]: boolean | number
+      }
 }
 type InitAction = {
   type: typeof INIT
@@ -38,7 +40,7 @@ function setSettingsCommit(payload: StoreSettings): CommitAction {
 function* setTask(action: InitAction): SagaIterator {
   const state = yield select(state => state.settings)
 
-  let newState;
+  let newState
   if (action.payload.section === 'all') {
     newState = action.payload.settings
   } else {
@@ -47,7 +49,7 @@ function* setTask(action: InitAction): SagaIterator {
       [action.payload.section]: {
         ...state[action.payload.section],
         ...action.payload.settings,
-      }
+      },
     }
   }
 
