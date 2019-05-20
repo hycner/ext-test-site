@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
 
 import app from './app/redux'
-import customization from './customization/redux'
+import settings from './settings/redux'
 import test from './test/redux'
 
 const rootReducer = combineReducers({
   app,
-  customization,
+  settings,
   test,
 })
 

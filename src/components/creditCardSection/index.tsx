@@ -5,10 +5,10 @@ import localforage from 'localforage'
 
 import Fields from './fields'
 import ConfigMenu from './configMenu'
-import {setConfig} from '../../modules/customization/redux';
+import {setConfig} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
 import {Store} from '../../modules/rootReducer';
-import {StoreCustomizationCreditCard} from '../../modules/customization/redux';
+import {StoreSettingsCreditCard} from '../../modules/settings/redux';
 import {connect} from 'react-redux';
 
 const Wrap = styled.div`
@@ -43,7 +43,7 @@ type CCConfig = {
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
 type Props = {
-  config: StoreCustomizationCreditCard
+  config: StoreSettingsCreditCard
 }
 
 function CreditCardSection(props: Props) {
@@ -173,7 +173,7 @@ function CreditCardSection(props: Props) {
 
 function mapStateToProps(state: Store) {
   return {
-    config: state.customization.creditCard,
+    config: state.settings.creditCard,
   }
 }
 

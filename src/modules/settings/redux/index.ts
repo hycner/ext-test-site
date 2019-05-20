@@ -1,6 +1,6 @@
 import {Action} from '../../../store'
 
-const INIT = 'customization/SET'
+const INIT = 'settings/SET'
 
 type SetActionPayload = {
   section: 'login' | 'creditCard'
@@ -20,24 +20,24 @@ export function setConfig(payload: SetActionPayload): SetAction {
   }
 }
 
-export type StoreCustomizationCreditCard = {
+export type StoreSettingsCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
   isVisible: boolean
   iterations: number
 }
-export type StoreCustomizationLogin = {
+export type StoreSettingsLogin = {
   areIdsUnique: boolean
   isForm: boolean
   isVisible: boolean
   iterations: number
 }
-type StoreCustomization = {
-  creditCard: StoreCustomizationCreditCard
-  login: StoreCustomizationLogin
+type StoreSettings = {
+  creditCard: StoreSettingsCreditCard
+  login: StoreSettingsLogin
   [section: string]: Object
 }
-const initialState: StoreCustomization = {
+const initialState: StoreSettings = {
   creditCard: {
     areIdsUnique: true,
     isForm: false,
@@ -52,10 +52,10 @@ const initialState: StoreCustomization = {
   },
 }
 
-export default function customizationReducer(
-  state: StoreCustomization = initialState,
+export default function settingsReducer(
+  state: StoreSettings = initialState,
   action: Action
-): StoreCustomization {
+): StoreSettings {
   switch (action.type) {
     case INIT:
       return {

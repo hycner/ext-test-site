@@ -6,10 +6,10 @@ import localforage from 'localforage'
 
 import LoginFields from './loginFields'
 import ConfigMenu from './configMenu'
-import {setConfig} from '../../modules/customization/redux';
+import {setConfig} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
 import {Store} from '../../modules/rootReducer';
-import {StoreCustomizationLogin} from '../../modules/customization/redux';
+import {StoreSettingsLogin} from '../../modules/settings/redux';
 
 const Wrap = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ type LSConfig = {
 const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
 
 type Props = {
-  config: StoreCustomizationLogin
+  config: StoreSettingsLogin
 }
 
 function LoginSection(props: Props) {
@@ -180,7 +180,7 @@ function LoginSection(props: Props) {
 
 function mapStateToProps(state: Store) {
   return {
-    config: state.customization.login,
+    config: state.settings.login,
   }
 }
 
