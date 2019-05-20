@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 import localforage from 'localforage'
 
-import LoginFields from './loginFields'
+import Fields from './fields'
 import ConfigMenu from './configMenu'
 import {setConfig} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
@@ -122,7 +122,7 @@ function LoginSection(props: Props) {
     const iNodes = []
     for (let i = 0; i < props.config.iterations; i++) {
       iNodes.push(
-        <LoginFields
+        <Fields
           key={i}
           iteration={i + 1}
           areIdsUnique={props.config.areIdsUnique}

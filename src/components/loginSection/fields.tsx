@@ -20,7 +20,7 @@ type Props = {
   iteration: number
 }
 
-export default function LoginFields(props: Props) {
+export default function Fields(props: Props) {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
