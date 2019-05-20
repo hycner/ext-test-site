@@ -65,8 +65,10 @@ function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
 
   try {
-    window.addEventListener('message', messageCallback) // for event testing
+    // for event testing
+    window.addEventListener('message', messageCallback)
 
+    // load settings
     const settings: StoreSettings = yield call(localforage.getItem, 'settings')
 
     try {
