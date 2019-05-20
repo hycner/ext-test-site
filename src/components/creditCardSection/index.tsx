@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
-import localforage from 'localforage'
 
 import {setSettings} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
@@ -39,21 +38,8 @@ type Props = {
 }
 
 function CreditCardSection(props: Props) {
-  function persistSettings(changes: Object) {
-    localforage.setItem('settings', {
-      ...props.allSettings,
-      creditCard: {
-        isVisible: props.settings.isVisible,
-        iterations: props.settings.iterations,
-        areIdsUnique: props.settings.areIdsUnique,
-        isForm: props.settings.isForm,
-        ...changes,
-      }
-    })
-  }
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
     let newVal = !props.settings[field]
-    persistSettings({[field]: newVal})
 
     dispatch(setSettings({
       section: 'creditCard',
@@ -64,7 +50,6 @@ function CreditCardSection(props: Props) {
   }
   function increaseIterations() {
     let newVal = props.settings.iterations + 1
-    persistSettings({iterations: newVal})
 
     dispatch(setSettings({
       section: 'creditCard',
@@ -76,7 +61,6 @@ function CreditCardSection(props: Props) {
   function decreaseIterations() {
     if (props.settings.iterations > 1) {
       let newVal = props.settings.iterations - 1
-      persistSettings({iterations: newVal})
 
       dispatch(setSettings({
         section: 'creditCard',
