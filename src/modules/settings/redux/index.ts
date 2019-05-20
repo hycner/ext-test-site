@@ -1,21 +1,21 @@
 import {Action} from '../../../store'
 
-const INIT = 'settings/SET'
+const SET = 'settings/SET'
 
 type SetActionPayload = {
-  section: 'login' | 'creditCard'
-  config: {
+  section: 'login' | 'creditCard' | 'all'
+  settings: StoreSettings | {
     [option: string]: boolean | number
   }
 }
 type SetAction = {
-  type: typeof INIT
+  type: typeof SET
   payload: SetActionPayload
 }
 
-export function setConfig(payload: SetActionPayload): SetAction {
+export function setSettings(payload: SetActionPayload): SetAction {
   return {
-    type: INIT,
+    type: SET,
     payload,
   }
 }
@@ -32,7 +32,7 @@ export type StoreSettingsLogin = {
   isVisible: boolean
   iterations: number
 }
-type StoreSettings = {
+export type StoreSettings = {
   creditCard: StoreSettingsCreditCard
   login: StoreSettingsLogin
   [section: string]: Object
@@ -57,12 +57,16 @@ export default function settingsReducer(
   action: Action
 ): StoreSettings {
   switch (action.type) {
-    case INIT:
-      return {
-        ...state,
-        [action.payload.section]: {
-          ...state[action.payload.section],
-          ...action.payload.config,
+    case SET:
+      if (action.payload.section === 'all') {
+        return action.payload.settings
+      } else {
+        return {
+          ...state,
+          [action.payload.section]: {
+            ...state[action.payload.section],
+            ...action.payload.settings,
+          }
         }
       }
     default:

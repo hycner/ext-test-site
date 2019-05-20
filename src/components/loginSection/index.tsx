@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 import localforage from 'localforage'
 
-import Fields from './fields'
-import ConfigMenu from './configMenu'
-import {setConfig} from '../../modules/settings/redux';
+import {setSettings} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
 import {Store} from '../../modules/rootReducer';
-import {StoreSettingsLogin} from '../../modules/settings/redux';
+import {StoreSettings, StoreSettingsLogin} from '../../modules/settings/redux';
+import Fields from './fields'
+import ConfigMenu from './configMenu'
 
 const Wrap = styled.div`
   display: flex;
@@ -33,85 +33,54 @@ const ICON_STYLE = {
   fontSize: 18,
 }
 
-type LSConfig = {
-  isVisible: boolean
-  iterations: number
-  areIdsUnique: boolean
-  isForm: boolean
-}
-
-const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
-
 type Props = {
-  config: StoreSettingsLogin
+  allSettings: StoreSettings
+  settings: StoreSettingsLogin
 }
 
 function LoginSection(props: Props) {
-  useEffect(() => {
-    // @ts-ignore
-    localforage.getItem('login').then((config: LSConfig) => {
-      if (!config) return
-
-      // Wipe config if mismatched
-      const cfgKeys = Object.keys(config)
-      if (cfgKeys.length !== STATE_KEYS.length) {
-        return localforage.removeItem('login')
-      }
-      const isCfgMismatch = !cfgKeys.every(key => STATE_KEYS.includes(key))
-      if (isCfgMismatch) {
-        console.log(
-          'Persisted config key mismatch (login). Wiping config. Probably because of a new config schema version'
-        )
-        return localforage.removeItem('login')
-      }
-
-      // Load config
-      dispatch(setConfig({
-        section: 'login',
-        config,
-      }))
-    })
-  }, [])
-
   function persistSettings(changes: Object) {
-    localforage.setItem('login', {
-      isVisible: props.config.isVisible,
-      iterations: props.config.iterations,
-      areIdsUnique: props.config.areIdsUnique,
-      isForm: props.config.isForm,
-      ...changes,
+    localforage.setItem('settings', {
+      ...props.allSettings,
+      login: {
+        isVisible: props.settings.isVisible,
+        iterations: props.settings.iterations,
+        areIdsUnique: props.settings.areIdsUnique,
+        isForm: props.settings.isForm,
+        ...changes,
+      }
     })
   }
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
-    let newVal = !props.config[field]
+    let newVal = !props.settings[field]
     persistSettings({[field]: newVal})
 
-    dispatch(setConfig({
+    dispatch(setSettings({
       section: 'login',
-      config: {
+      settings: {
         [field]: newVal,
       },
     }))
   }
   function increaseIterations() {
-    let newVal = props.config.iterations + 1
+    let newVal = props.settings.iterations + 1
     persistSettings({iterations: newVal})
 
-    dispatch(setConfig({
+    dispatch(setSettings({
       section: 'login',
-      config: {
+      settings: {
         iterations: newVal,
       },
     }))
   }
   function decreaseIterations() {
-    if (props.config.iterations > 1) {
-      let newVal = props.config.iterations - 1
+    if (props.settings.iterations > 1) {
+      let newVal = props.settings.iterations - 1
       persistSettings({iterations: newVal})
 
-      dispatch(setConfig({
+      dispatch(setSettings({
         section: 'login',
-        config: {
+        settings: {
           iterations: newVal,
         },
       }))
@@ -120,13 +89,13 @@ function LoginSection(props: Props) {
 
   function renderIterations() {
     const iNodes = []
-    for (let i = 0; i < props.config.iterations; i++) {
+    for (let i = 0; i < props.settings.iterations; i++) {
       iNodes.push(
         <Fields
           key={i}
           iteration={i + 1}
-          areIdsUnique={props.config.areIdsUnique}
-          isForm={props.config.isForm}
+          areIdsUnique={props.settings.areIdsUnique}
+          isForm={props.settings.isForm}
         />
       )
     }
@@ -138,7 +107,7 @@ function LoginSection(props: Props) {
       <Header>
         <div>
           <Icon
-            type={props.config.isVisible ? 'eye' : 'eye-invisible'}
+            type={props.settings.isVisible ? 'eye' : 'eye-invisible'}
             theme="filled"
             style={ICON_STYLE}
             onClick={() => toggleField('isVisible')}
@@ -149,7 +118,7 @@ function LoginSection(props: Props) {
           </Tooltip>
         </div>
 
-        {props.config.isVisible && (
+        {props.settings.isVisible && (
           <SpecificSettings>
             <Icon
               type="plus-circle"
@@ -164,8 +133,8 @@ function LoginSection(props: Props) {
               onClick={decreaseIterations}
             />
             <ConfigMenu
-              areIdsUnique={props.config.areIdsUnique}
-              isForm={props.config.isForm}
+              areIdsUnique={props.settings.areIdsUnique}
+              isForm={props.settings.isForm}
               toggleIsForm={() => toggleField('isForm')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
@@ -173,14 +142,15 @@ function LoginSection(props: Props) {
         )}
       </Header>
 
-      {props.config.isVisible && renderIterations()}
+      {props.settings.isVisible && renderIterations()}
     </Wrap>
   )
 }
 
 function mapStateToProps(state: Store) {
   return {
-    config: state.settings.login,
+    allSettings: state.settings,
+    settings: state.settings.login,
   }
 }
 

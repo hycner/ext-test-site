@@ -1,8 +1,12 @@
-import {put, takeEvery} from 'redux-saga/effects'
+import {call, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
+import localforage from 'localforage'
+import * as yup from 'yup'
 
 import {Action} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
+import {setSettings} from '../../settings/redux';
+import {StoreSettings} from '../../settings/redux';
 
 const INIT = 'app/bootstrap'
 const PENDING = 'app/bootstrap/PENDING'
@@ -39,11 +43,47 @@ function bootstrapFailure(error: Error): FailureAction {
   }
 }
 
+const settingsSchema = yup
+  .object({
+    creditCard: yup.object({
+      isVisible: yup.boolean().required(),
+      iterations: yup.number().required(),
+      areIdsUnique: yup.boolean().required(),
+      isForm: yup.boolean().required(),
+    }),
+    login: yup.object({
+      isVisible: yup.boolean().required(),
+      iterations: yup.number().required(),
+      areIdsUnique: yup.boolean().required(),
+      isForm: yup.boolean().required(),
+    }),
+  })
+  .strict(true)
+  .noUnknown();
+
 function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
 
   try {
-    window.addEventListener('message', messageCallback)
+    window.addEventListener('message', messageCallback) // for event testing
+
+    const settings: StoreSettings = yield call(localforage.getItem, 'settings')
+
+    try {
+      if (!settings) throw new Error("No Settings found")
+
+      settingsSchema.validateSync(settings);
+
+      yield put(setSettings({
+        section: 'all',
+        settings,
+      }))
+    } catch (err) {
+      console.log(
+        'Persisted settings key mismatch (login). Wiping settings. Either no existing settings or because of a new settings schema version'
+      )
+      localforage.removeItem('settings')
+    }
 
     yield put(bootstrapSuccess())
   } catch (err) {

@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 import localforage from 'localforage'
 
-import Fields from './fields'
-import ConfigMenu from './configMenu'
-import {setConfig} from '../../modules/settings/redux';
+import {setSettings} from '../../modules/settings/redux';
 import {dispatch} from '../../store';
 import {Store} from '../../modules/rootReducer';
-import {StoreSettingsCreditCard} from '../../modules/settings/redux';
+import {StoreSettings, StoreSettingsCreditCard} from '../../modules/settings/redux';
 import {connect} from 'react-redux';
+import Fields from './fields'
+import ConfigMenu from './configMenu'
 
 const Wrap = styled.div`
   display: flex;
@@ -33,85 +33,54 @@ const ICON_STYLE = {
   fontSize: 18,
 }
 
-type CCConfig = {
-  isVisible: boolean
-  iterations: number
-  areIdsUnique: boolean
-  isForm: boolean
-}
-
-const STATE_KEYS = ['isVisible', 'iterations', 'areIdsUnique', 'isForm']
-
 type Props = {
-  config: StoreSettingsCreditCard
+  allSettings: StoreSettings
+  settings: StoreSettingsCreditCard
 }
 
 function CreditCardSection(props: Props) {
-  useEffect(() => {
-    // @ts-ignore
-    localforage.getItem('creditCard').then((config: CCConfig) => {
-      if (!config) return
-
-      // Wipe config if mismatched
-      const cfgKeys = Object.keys(config)
-      if (cfgKeys.length !== STATE_KEYS.length) {
-        return localforage.removeItem('creditCard')
-      }
-      const isCfgMismatch = !cfgKeys.every(key => STATE_KEYS.includes(key))
-      if (isCfgMismatch) {
-        console.log(
-          'Persisted config key mismatch (login). Wiping config. Probably because of a new config schema version'
-        )
-        return localforage.removeItem('creditCard')
-      }
-
-      // Load config
-      dispatch(setConfig({
-        section: 'creditCard',
-        config,
-      }))
-    })
-  }, [])
-
   function persistSettings(changes: Object) {
-    localforage.setItem('creditCard', {
-      isVisible: props.config.isVisible,
-      iterations: props.config.iterations,
-      areIdsUnique: props.config.areIdsUnique,
-      isForm: props.config.isForm,
-      ...changes,
+    localforage.setItem('settings', {
+      ...props.allSettings,
+      creditCard: {
+        isVisible: props.settings.isVisible,
+        iterations: props.settings.iterations,
+        areIdsUnique: props.settings.areIdsUnique,
+        isForm: props.settings.isForm,
+        ...changes,
+      }
     })
   }
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
-    let newVal = !props.config[field]
+    let newVal = !props.settings[field]
     persistSettings({[field]: newVal})
 
-    dispatch(setConfig({
+    dispatch(setSettings({
       section: 'creditCard',
-      config: {
+      settings: {
         [field]: newVal,
       },
     }))
   }
   function increaseIterations() {
-    let newVal = props.config.iterations + 1
+    let newVal = props.settings.iterations + 1
     persistSettings({iterations: newVal})
 
-    dispatch(setConfig({
+    dispatch(setSettings({
       section: 'creditCard',
-      config: {
+      settings: {
         iterations: newVal,
       },
     }))
   }
   function decreaseIterations() {
-    if (props.config.iterations > 1) {
-      let newVal = props.config.iterations - 1
+    if (props.settings.iterations > 1) {
+      let newVal = props.settings.iterations - 1
       persistSettings({iterations: newVal})
 
-      dispatch(setConfig({
+      dispatch(setSettings({
         section: 'creditCard',
-        config: {
+        settings: {
           iterations: newVal,
         },
       }))
@@ -120,8 +89,8 @@ function CreditCardSection(props: Props) {
 
   function renderIterations() {
     const iNodes = []
-    for (let i = 0; i < props.config.iterations; i++) {
-      iNodes.push(<Fields key={i} iteration={i + 1} areIdsUnique={props.config.areIdsUnique} isForm={props.config.isForm} />)
+    for (let i = 0; i < props.settings.iterations; i++) {
+      iNodes.push(<Fields key={i} iteration={i + 1} areIdsUnique={props.settings.areIdsUnique} isForm={props.settings.isForm} />)
     }
     return iNodes
   }
@@ -131,7 +100,7 @@ function CreditCardSection(props: Props) {
       <Header>
         <div>
           <Icon
-            type={props.config.isVisible ? 'eye' : 'eye-invisible'}
+            type={props.settings.isVisible ? 'eye' : 'eye-invisible'}
             theme="filled"
             style={ICON_STYLE}
             onClick={() => toggleField('isVisible')}
@@ -142,7 +111,7 @@ function CreditCardSection(props: Props) {
           </Tooltip>
         </div>
 
-        {props.config.isVisible && (
+        {props.settings.isVisible && (
           <SpecificSettings>
             <Icon
               type="plus-circle"
@@ -157,8 +126,8 @@ function CreditCardSection(props: Props) {
               onClick={decreaseIterations}
             />
             <ConfigMenu
-              areIdsUnique={props.config.areIdsUnique}
-              isForm={props.config.isForm}
+              areIdsUnique={props.settings.areIdsUnique}
+              isForm={props.settings.isForm}
               toggleIsForm={() => toggleField('isForm')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
@@ -166,14 +135,15 @@ function CreditCardSection(props: Props) {
         )}
       </Header>
 
-      {props.config.isVisible && renderIterations()}
+      {props.settings.isVisible && renderIterations()}
     </Wrap>
   )
 }
 
 function mapStateToProps(state: Store) {
   return {
-    config: state.settings.creditCard,
+    allSettings: state.settings,
+    settings: state.settings.creditCard,
   }
 }
 

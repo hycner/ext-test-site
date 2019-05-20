@@ -47,8 +47,6 @@ function* runTestsTask(): SagaIterator {
   yield put(runTestsPending())
 
   try {
-    console.log('runTestsTask')
-
     yield call(testIframesTask)
     yield put(increment())
     yield call(testDomTask)
