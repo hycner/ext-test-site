@@ -87,6 +87,28 @@ function* bootstrapTask(): SagaIterator {
         'Persisted settings key mismatch (login). Wiping settings. Either no existing settings or because of a new settings schema version'
       )
       localforage.removeItem('settings')
+
+      // todo: instead of doing this should the fields just not render fully until loading is done?
+      // Default starter settings after 'loading' bootstrap starting state
+      yield put(
+        setSettings({
+          section: 'all',
+          settings: {
+            creditCard: {
+              areIdsUnique: true,
+              isForm: false,
+              isVisible: true,
+              iterations: 1,
+            },
+            login: {
+              areIdsUnique: true,
+              isForm: false,
+              isVisible: true,
+              iterations: 1,
+            },
+          },
+        })
+      )
     }
 
     yield put(bootstrapSuccess())
