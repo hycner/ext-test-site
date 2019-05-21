@@ -20,7 +20,7 @@ type Props = {
   iteration: number
 }
 
-export default function Fields(props: Props) {
+const Fields: React.FC<Props> = (props) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -60,6 +60,7 @@ export default function Fields(props: Props) {
     </Form>
   )
 }
+export default Fields
 
 type FormProps = {
   children: any

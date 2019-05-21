@@ -56,7 +56,7 @@ type Props = {
   iteration: number
 }
 
-export default function Fields(props: Props) {
+const Fields: React.FC<Props> = (props) => {
   const [cardNumber, setCardNumber] = useState<string>('')
   const [cvv, setCvv] = useState<string>('')
   const [expDateFull, setExpDateFull] = useState<string>('')
@@ -158,6 +158,7 @@ export default function Fields(props: Props) {
     </Form>
   )
 }
+export default Fields
 
 type FormProps = {
   children: any

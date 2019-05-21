@@ -36,7 +36,7 @@ type Props = {
   settings: StoreSettingsLogin
 }
 
-function LoginSection(props: Props) {
+const LoginSection: React.FC<Props> = (props) => {
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
     dispatch(
       setSettings({

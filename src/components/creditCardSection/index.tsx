@@ -36,7 +36,7 @@ type Props = {
   settings: StoreSettingsCreditCard
 }
 
-function CreditCardSection(props: Props) {
+const CreditCardSection: React.FC<Props> = (props) => {
   function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
     dispatch(
       setSettings({

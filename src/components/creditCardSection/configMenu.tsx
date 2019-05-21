@@ -19,7 +19,7 @@ type Props = {
   toggleUniqueIds: () => void
 }
 
-export default function configMenu(props: Props) {
+const configMenu: React.FC<Props> = (props) => {
   const popoverContent = (
     <div>
       <SettingWrap key="unique">
@@ -41,3 +41,4 @@ export default function configMenu(props: Props) {
     </Popover>
   )
 }
+export default configMenu
