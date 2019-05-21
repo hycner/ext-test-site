@@ -70,7 +70,7 @@ export default function Fields(props: Props) {
   }
 
   function onSubmit() {
-    console.log('save credit card clicked')
+    console.log(`Credit card (${props.iteration}) save clicked`)
     console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
   }
 

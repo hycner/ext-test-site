@@ -25,7 +25,7 @@ export default function Fields(props: Props) {
   const [password, setPassword] = useState<string>('')
 
   function onSubmit() {
-    console.log(`login(${props.iteration}) clicked`)
+    console.log(`Login (${props.iteration}) submit clicked`)
     console.log({
       username,
       password,
