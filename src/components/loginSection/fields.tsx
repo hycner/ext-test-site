@@ -9,6 +9,9 @@ const Wrap = styled.div`
   align-items: center;
 `
 
+const ACCOUNT_ID_STYLE = {
+  marginBottom: 5,
+}
 const PASSWORD_STYLE = {
   marginTop: 5,
   marginBottom: 5,
@@ -17,10 +20,12 @@ const PASSWORD_STYLE = {
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isThreeField: boolean
   iteration: number
 }
 
 const Fields: React.FC<Props> = props => {
+  const [accountId, setAccountId] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -29,6 +34,7 @@ const Fields: React.FC<Props> = props => {
     console.log({
       username,
       password,
+      ...(props.isThreeField && {accountId}),
     })
   }
 
@@ -40,6 +46,15 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
+        {props.isThreeField && (
+          <Input
+            style={ACCOUNT_ID_STYLE}
+            id={`accountId${iteration}`}
+            placeholder="Account ID"
+            value={accountId}
+            onChange={e => setAccountId(e.target.value)}
+          />
+        )}
         <Input
           id={`username${iteration}`}
           placeholder="Username"

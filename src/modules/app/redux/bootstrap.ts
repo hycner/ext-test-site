@@ -55,6 +55,7 @@ const settingsSchema = yup
     login: yup.object({
       areIdsUnique: yup.boolean().required(),
       isForm: yup.boolean().required(),
+      isThreeField: yup.boolean().required(),
       isVisible: yup.boolean().required(),
       iterations: yup.number().required(),
     }),
@@ -105,6 +106,7 @@ function* bootstrapTask(): SagaIterator {
             login: {
               areIdsUnique: true,
               isForm: false,
+              isThreeField: false,
               isVisible: true,
               iterations: 1,
             },

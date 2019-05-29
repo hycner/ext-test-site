@@ -37,7 +37,7 @@ type Props = {
 }
 
 const LoginSection: React.FC<Props> = props => {
-  function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
+  function toggleField(field: 'areIdsUnique' | 'isForm' | 'isThreeField' | 'isVisible') {
     dispatch(
       setSettings({
         section: 'login',
@@ -79,6 +79,7 @@ const LoginSection: React.FC<Props> = props => {
           iteration={i + 1}
           areIdsUnique={props.settings.areIdsUnique}
           isForm={props.settings.isForm}
+          isThreeField={props.settings.isThreeField}
         />
       )
     }
@@ -118,7 +119,9 @@ const LoginSection: React.FC<Props> = props => {
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
               isForm={props.settings.isForm}
+              isThreeField={props.settings.isThreeField}
               toggleIsForm={() => toggleField('isForm')}
+              toggleIsThreeField={() => toggleField('isThreeField')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
           </SpecificSettings>
