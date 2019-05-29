@@ -61,7 +61,7 @@ type Props = {
   iteration: number
 }
 
-const Fields: React.FC<Props> = (props) => {
+const Fields: React.FC<Props> = props => {
   const [cardNumber, setCardNumber] = useState<string>('')
   const [cvv, setCvv] = useState<string>('')
   const [expDateFull, setExpDateFull] = useState<string>('')

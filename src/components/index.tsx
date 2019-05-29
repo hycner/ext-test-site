@@ -28,7 +28,7 @@ type Props = {
   isBootstrapDone: boolean
 }
 
-export const App: React.FC<Props> = (props) => {
+export const App: React.FC<Props> = props => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(bootstrap())

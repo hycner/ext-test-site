@@ -38,7 +38,7 @@ type Iframe = {
   url: string
 }
 
-const IFrameSpawner: React.FC<Props> = (props) => {
+const IFrameSpawner: React.FC<Props> = props => {
   const [url, setUrl] = useState<string>('')
   const [iframes, setIframes] = useState<Array<Iframe>>([])
 

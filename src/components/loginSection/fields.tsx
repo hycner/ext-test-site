@@ -20,7 +20,7 @@ type Props = {
   iteration: number
 }
 
-const Fields: React.FC<Props> = (props) => {
+const Fields: React.FC<Props> = props => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 

@@ -20,7 +20,7 @@ type Props = {
   timelineData: TimelineData
 }
 
-const Output: React.FC<Props> = (props) => {
+const Output: React.FC<Props> = props => {
   const {timelineData} = props
 
   return (

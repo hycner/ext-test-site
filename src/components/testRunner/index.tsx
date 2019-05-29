@@ -32,7 +32,7 @@ type Props = {
   hasTestsRan: boolean
 }
 
-const TestRunner: React.FC<Props> = (props) => {
+const TestRunner: React.FC<Props> = props => {
   function runTestsHelper() {
     dispatch(runTests())
   }

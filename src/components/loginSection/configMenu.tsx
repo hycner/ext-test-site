@@ -19,7 +19,7 @@ type Props = {
   toggleUniqueIds: () => void
 }
 
-const configMenu: React.FC<Props> = (props) => {
+const configMenu: React.FC<Props> = props => {
   const popoverContent = (
     <div>
       <SettingWrap key="unique">
