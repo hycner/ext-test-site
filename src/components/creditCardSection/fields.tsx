@@ -37,6 +37,10 @@ const SwitchWrap = styled.div`
   align-items: center;
   margin-top: 2px;
 `
+const ButtonsWrap = styled.div`
+  margin-top: 5px;
+  margin-bottom: 15px;
+`
 
 const INPUT_STYLE = {
   marginBottom: 5,
@@ -46,13 +50,14 @@ const SELECT_STYLE = {
   width: 120,
 }
 const BTN_STYLE = {
-  marginTop: 5,
-  marginBottom: 15,
+  marginLeft: 2,
+  marginRight: 2,
 }
 
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isMultiButton: boolean
   iteration: number
 }
 
@@ -69,9 +74,22 @@ const Fields: React.FC<Props> = (props) => {
     setIsAlternateDateFormat(!isAlternateDateFormat)
   }
 
+  function onClear() {
+    setCardNumber('')
+    setCvv('')
+    setExpDateFull('')
+    setExpMonth('')
+    setExpYear('')
+    setName('')
+  }
+
   function onSubmit() {
     console.log(`Credit card (${props.iteration}) save clicked`)
     console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
+  }
+
+  function onNothing() {
+    console.log(`Nothing button (${props.iteration}) clicked`)
   }
 
   let Form = props.isForm ? RealForm : FakeForm
@@ -151,9 +169,21 @@ const Fields: React.FC<Props> = (props) => {
           &nbsp; Alternate Expiration Format
         </SwitchWrap>
 
-        <Button style={BTN_STYLE} onClick={onSubmit}>
-          Save Credit Card
-        </Button>
+        <ButtonsWrap>
+          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+            Save Credit Card
+          </Button>
+          {props.isMultiButton && (
+            <>
+              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                Clear
+              </Button>
+              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                Nothing
+              </Button>
+            </>
+          )}
+        </ButtonsWrap>
       </Wrap>
     </Form>
   )

@@ -37,7 +37,7 @@ type Props = {
 }
 
 const CreditCardSection: React.FC<Props> = (props) => {
-  function toggleField(field: 'isVisible' | 'areIdsUnique' | 'isForm') {
+  function toggleField(field: 'areIdsUnique' | 'isForm' | 'isMultiButton' | 'isVisible') {
     dispatch(
       setSettings({
         section: 'creditCard',
@@ -79,6 +79,7 @@ const CreditCardSection: React.FC<Props> = (props) => {
           iteration={i + 1}
           areIdsUnique={props.settings.areIdsUnique}
           isForm={props.settings.isForm}
+          isMultiButton={props.settings.isMultiButton}
         />
       )
     }
@@ -118,7 +119,9 @@ const CreditCardSection: React.FC<Props> = (props) => {
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
               isForm={props.settings.isForm}
+              isMultiButton={props.settings.isMultiButton}
               toggleIsForm={() => toggleField('isForm')}
+              toggleMultiButton={() => toggleField('isMultiButton')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
           </SpecificSettings>

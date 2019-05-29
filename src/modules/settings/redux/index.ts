@@ -65,6 +65,7 @@ export function* setWatcher(): SagaIterator {
 export type StoreSettingsCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
+  isMultiButton: boolean
   isVisible: boolean
   iterations: number
 }
@@ -83,6 +84,7 @@ const initialState: StoreSettings = {
   creditCard: {
     areIdsUnique: true,
     isForm: false,
+    isMultiButton: false,
     isVisible: false,
     iterations: 1,
   },

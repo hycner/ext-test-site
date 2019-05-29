@@ -15,7 +15,9 @@ const ICON_STYLE = {
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isMultiButton: boolean
   toggleIsForm: () => void
+  toggleMultiButton: () => void
   toggleUniqueIds: () => void
 }
 
@@ -27,9 +29,16 @@ const configMenu: React.FC<Props> = (props) => {
           Disable Unique IDs
         </Checkbox>
       </SettingWrap>
+
       <SettingWrap key="form">
         <Checkbox checked={props.isForm} onChange={props.toggleIsForm}>
           Wrap each in {'<form>'}
+        </Checkbox>
+      </SettingWrap>
+
+      <SettingWrap key="buttons">
+        <Checkbox checked={props.isMultiButton} onChange={props.toggleMultiButton}>
+          Multiple Buttons
         </Checkbox>
       </SettingWrap>
     </div>

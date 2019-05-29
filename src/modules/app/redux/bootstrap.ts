@@ -46,16 +46,17 @@ function bootstrapFailure(error: Error): FailureAction {
 const settingsSchema = yup
   .object({
     creditCard: yup.object({
-      isVisible: yup.boolean().required(),
-      iterations: yup.number().required(),
       areIdsUnique: yup.boolean().required(),
       isForm: yup.boolean().required(),
+      isMultiButton: yup.boolean().required(),
+      isVisible: yup.boolean().required(),
+      iterations: yup.number().required(),
     }),
     login: yup.object({
-      isVisible: yup.boolean().required(),
-      iterations: yup.number().required(),
       areIdsUnique: yup.boolean().required(),
       isForm: yup.boolean().required(),
+      isVisible: yup.boolean().required(),
+      iterations: yup.number().required(),
     }),
   })
   .strict(true)
@@ -97,6 +98,7 @@ function* bootstrapTask(): SagaIterator {
             creditCard: {
               areIdsUnique: true,
               isForm: false,
+              isMultiButton: false,
               isVisible: true,
               iterations: 1,
             },
