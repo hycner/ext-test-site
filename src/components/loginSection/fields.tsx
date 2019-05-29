@@ -8,6 +8,10 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
 `
+const ButtonsWrap = styled.div`
+  margin-top: 5px;
+  margin-bottom: 15px;
+`
 
 const ACCOUNT_ID_STYLE = {
   marginBottom: 5,
@@ -16,10 +20,15 @@ const PASSWORD_STYLE = {
   marginTop: 5,
   marginBottom: 5,
 }
+const BTN_STYLE = {
+  marginLeft: 2,
+  marginRight: 2,
+}
 
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isMultiButton: boolean
   isThreeField: boolean
   iteration: number
 }
@@ -36,6 +45,17 @@ const Fields: React.FC<Props> = props => {
       password,
       ...(props.isThreeField && {accountId}),
     })
+  }
+
+  function onClear() {
+    console.log(`Login (${props.iteration}) clear clicked`)
+    setAccountId('')
+    setUsername('')
+    setPassword('')
+  }
+
+  function onNothing() {
+    console.log(`Login (${props.iteration}) nothing clicked`)
   }
 
   let Form = props.isForm ? RealForm : FakeForm
@@ -68,9 +88,22 @@ const Fields: React.FC<Props> = props => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <Button id={`login${iteration}`} onClick={onSubmit}>
-          Submit
-        </Button>
+
+        <ButtonsWrap>
+          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+            Submit
+          </Button>
+          {props.isMultiButton && (
+            <>
+              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                Clear
+              </Button>
+              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                Nothing
+              </Button>
+            </>
+          )}
+        </ButtonsWrap>
       </Wrap>
     </Form>
   )

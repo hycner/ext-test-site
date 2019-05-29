@@ -74,7 +74,13 @@ const Fields: React.FC<Props> = props => {
     setIsAlternateDateFormat(!isAlternateDateFormat)
   }
 
+  function onSubmit() {
+    console.log(`Credit card (${props.iteration}) save clicked`)
+    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
+  }
+
   function onClear() {
+    console.log(`Credit card (${props.iteration}) clear clicked`)
     setCardNumber('')
     setCvv('')
     setExpDateFull('')
@@ -83,13 +89,8 @@ const Fields: React.FC<Props> = props => {
     setName('')
   }
 
-  function onSubmit() {
-    console.log(`Credit card (${props.iteration}) save clicked`)
-    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
-  }
-
   function onNothing() {
-    console.log(`Nothing button (${props.iteration}) clicked`)
+    console.log(`Credit card (${props.iteration}) nothing clicked`)
   }
 
   let Form = props.isForm ? RealForm : FakeForm
