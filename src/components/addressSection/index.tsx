@@ -37,7 +37,7 @@ type Props = {
 }
 
 const AddressSection: React.FC<Props> = props => {
-  function toggleField(field: 'areIdsUnique' | 'isForm' | 'isMultiButton' | 'isVisible') {
+  function toggleField(field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isMultiButton' | 'isVisible') {
     dispatch(
       setSettings({
         section: 'address',
@@ -78,6 +78,8 @@ const AddressSection: React.FC<Props> = props => {
           key={i}
           iteration={i + 1}
           areIdsUnique={props.settings.areIdsUnique}
+          hasEmail={props.settings.hasEmail}
+          hasPhone={props.settings.hasPhone}
           isForm={props.settings.isForm}
           isMultiButton={props.settings.isMultiButton}
         />
@@ -118,8 +120,12 @@ const AddressSection: React.FC<Props> = props => {
             />
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
+              hasEmail={props.settings.hasEmail}
+              hasPhone={props.settings.hasPhone}
               isForm={props.settings.isForm}
               isMultiButton={props.settings.isMultiButton}
+              toggleHasEmail={() => toggleField('hasEmail')}
+              toggleHasPhone={() => toggleField('hasPhone')}
               toggleIsForm={() => toggleField('isForm')}
               toggleMultiButton={() => toggleField('isMultiButton')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
@@ -134,7 +140,6 @@ const AddressSection: React.FC<Props> = props => {
 }
 
 function mapStateToProps(state: Store) {
-  console.log('** state.settings', state.settings)
   return {
     settings: state.settings.address,
   }

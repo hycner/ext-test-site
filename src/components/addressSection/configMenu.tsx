@@ -14,8 +14,12 @@ const ICON_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
+  hasEmail: boolean
+  hasPhone: boolean
   isForm: boolean
   isMultiButton: boolean
+  toggleHasEmail: () => void
+  toggleHasPhone: () => void
   toggleIsForm: () => void
   toggleMultiButton: () => void
   toggleUniqueIds: () => void
@@ -32,13 +36,25 @@ const configMenu: React.FC<Props> = props => {
 
       <SettingWrap key="form">
         <Checkbox checked={props.isForm} onChange={props.toggleIsForm}>
-          Wrap each in {'<form>'}
+          Wrap each section in {'<form>'}
         </Checkbox>
       </SettingWrap>
 
       <SettingWrap key="buttons">
         <Checkbox checked={props.isMultiButton} onChange={props.toggleMultiButton}>
           Multiple Buttons
+        </Checkbox>
+      </SettingWrap>
+
+      <SettingWrap key="email">
+        <Checkbox checked={props.hasEmail} onChange={props.toggleHasEmail}>
+          Email Field
+        </Checkbox>
+      </SettingWrap>
+
+      <SettingWrap key="phone">
+        <Checkbox checked={props.hasPhone} onChange={props.toggleHasPhone}>
+          Phone Field
         </Checkbox>
       </SettingWrap>
     </div>

@@ -24,6 +24,8 @@ const BTN_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
+  hasEmail: boolean
+  hasPhone: boolean
   isForm: boolean
   isMultiButton: boolean
   iteration: number
@@ -32,7 +34,9 @@ type Props = {
 const Fields: React.FC<Props> = props => {
   const [city, setCity] = useState<string>('')
   const [country, setCountry] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [name, setName] = useState<string>('')
+  const [phone, setPhone] = useState<string>('')
   const [state, setState] = useState<string>('')
   const [streetOne, setStreetOne] = useState<string>('')
   const [streetTwo, setStreetTwo] = useState<string>('')
@@ -43,7 +47,9 @@ const Fields: React.FC<Props> = props => {
     console.log({
       city,
       country,
+      ...(props.hasEmail && {email}),
       name,
+      ...(props.hasPhone && {phone}),
       state,
       streetOne,
       streetTwo,
@@ -55,7 +61,9 @@ const Fields: React.FC<Props> = props => {
     console.log(`Address (${props.iteration}) clear clicked`)
     setCity('')
     setCountry('')
+    setEmail('')
     setName('')
+    setPhone('')
     setState('')
     setStreetOne('')
     setStreetTwo('')
@@ -81,6 +89,24 @@ const Fields: React.FC<Props> = props => {
           value={name}
           onChange={e => setName(e.target.value)}
         />
+        {props.hasEmail && (
+          <Input
+            style={FIELD_STYLE}
+            id={`email${iteration}`}
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        )}
+        {props.hasPhone && (
+          <Input
+            style={FIELD_STYLE}
+            id={`phone${iteration}`}
+            placeholder="Phone"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+          />
+        )}
         <Input
           style={FIELD_STYLE}
           id={`streetOne${iteration}`}

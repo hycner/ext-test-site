@@ -48,6 +48,8 @@ const settingsSchema = yup
     address: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        hasEmail: yup.boolean().required(),
+        hasPhone: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
@@ -112,6 +114,8 @@ function* bootstrapTask(): SagaIterator {
           settings: {
             address: {
               areIdsUnique: true,
+              hasEmail: false,
+              hasPhone: false,
               isForm: false,
               isMultiButton: false,
               isVisible: true,

@@ -34,7 +34,7 @@ const configMenu: React.FC<Props> = props => {
 
       <SettingWrap key="form">
         <Checkbox checked={props.isForm} onChange={props.toggleIsForm}>
-          Wrap each in {'<form>'}
+          Wrap each section in {'<form>'}
         </Checkbox>
       </SettingWrap>
 
