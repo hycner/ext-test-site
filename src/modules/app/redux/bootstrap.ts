@@ -90,7 +90,6 @@ function* bootstrapTask(): SagaIterator {
     try {
       if (!settings) throw new Error('No Settings found')
 
-      console.log('** settings', settings)
       settingsSchema.validateSync(settings)
 
       yield put(

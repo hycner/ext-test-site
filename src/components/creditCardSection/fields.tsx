@@ -102,7 +102,7 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Wrap>
         <Input
-          id={`name${iteration}`}
+          id={`cardholderName${iteration}`}
           placeholder="Name on Card"
           style={INPUT_STYLE}
           value={name}
