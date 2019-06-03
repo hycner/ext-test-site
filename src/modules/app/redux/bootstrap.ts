@@ -45,28 +45,34 @@ function bootstrapFailure(error: Error): FailureAction {
 
 const settingsSchema = yup
   .object({
-    address: yup.object({
-      areIdsUnique: yup.boolean().required(),
-      isForm: yup.boolean().required(),
-      isMultiButton: yup.boolean().required(),
-      isVisible: yup.boolean().required(),
-      iterations: yup.number().required(),
-    }),
-    creditCard: yup.object({
-      areIdsUnique: yup.boolean().required(),
-      isForm: yup.boolean().required(),
-      isMultiButton: yup.boolean().required(),
-      isVisible: yup.boolean().required(),
-      iterations: yup.number().required(),
-    }),
-    login: yup.object({
-      areIdsUnique: yup.boolean().required(),
-      isForm: yup.boolean().required(),
-      isMultiButton: yup.boolean().required(),
-      isThreeField: yup.boolean().required(),
-      isVisible: yup.boolean().required(),
-      iterations: yup.number().required(),
-    }),
+    address: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+    creditCard: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+    login: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isThreeField: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
   })
   .strict(true)
   .noUnknown()
