@@ -6,6 +6,7 @@ import {Spin} from 'antd'
 import {Store} from '../modules/rootReducer'
 import {dispatch} from '../store'
 import {bootstrap} from '../modules/app/redux/bootstrap'
+import AddressSection from './addressSection'
 import CreditCardSection from './creditCardSection'
 import IFrameSpawner from './iframeSpawner'
 import LoginSection from './loginSection'
@@ -43,6 +44,7 @@ export const App: React.FC<Props> = props => {
         <TestRunner />
         <LoginSection />
         <CreditCardSection />
+        <AddressSection />
         <IFrameSpawner />
       </Wrap>
     </Spin>

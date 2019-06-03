@@ -8,7 +8,7 @@ const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'
 
 type InitActionPayload = {
-  section: 'login' | 'creditCard' | 'all'
+  section: 'address' | 'creditCard' | 'login' | 'all'
   settings:
     | StoreSettings
     | {
@@ -62,6 +62,13 @@ export function* setWatcher(): SagaIterator {
   yield takeEvery(INIT, setTask)
 }
 
+export type StoreSettingsAddress = {
+  areIdsUnique: boolean
+  isForm: boolean
+  isMultiButton: boolean
+  isVisible: boolean
+  iterations: number
+}
 export type StoreSettingsCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
@@ -78,11 +85,19 @@ export type StoreSettingsLogin = {
   iterations: number
 }
 export type StoreSettings = {
+  address: StoreSettingsAddress
   creditCard: StoreSettingsCreditCard
   login: StoreSettingsLogin
   [section: string]: Object
 }
 const initialState: StoreSettings = {
+  address: {
+    areIdsUnique: true,
+    isForm: false,
+    isMultiButton: false,
+    isVisible: false,
+    iterations: 1,
+  },
   creditCard: {
     areIdsUnique: true,
     isForm: false,

@@ -45,6 +45,13 @@ function bootstrapFailure(error: Error): FailureAction {
 
 const settingsSchema = yup
   .object({
+    address: yup.object({
+      areIdsUnique: yup.boolean().required(),
+      isForm: yup.boolean().required(),
+      isMultiButton: yup.boolean().required(),
+      isVisible: yup.boolean().required(),
+      iterations: yup.number().required(),
+    }),
     creditCard: yup.object({
       areIdsUnique: yup.boolean().required(),
       isForm: yup.boolean().required(),
@@ -77,6 +84,7 @@ function* bootstrapTask(): SagaIterator {
     try {
       if (!settings) throw new Error('No Settings found')
 
+      console.log('** settings', settings)
       settingsSchema.validateSync(settings)
 
       yield put(
@@ -97,6 +105,13 @@ function* bootstrapTask(): SagaIterator {
         setSettings({
           section: 'all',
           settings: {
+            address: {
+              areIdsUnique: true,
+              isForm: false,
+              isMultiButton: false,
+              isVisible: true,
+              iterations: 1,
+            },
             creditCard: {
               areIdsUnique: true,
               isForm: false,
