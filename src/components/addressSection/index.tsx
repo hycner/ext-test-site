@@ -101,7 +101,7 @@ const AddressSection: React.FC<Props> = props => {
             onClick={() => toggleField('isVisible')}
           />
           &nbsp; Address Fields &nbsp;
-          <Tooltip title="Fake address fields available for Keeper's extension to target.">
+          <Tooltip title="Fake address fields for extensions to target">
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>
         </div>

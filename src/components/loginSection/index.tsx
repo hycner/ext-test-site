@@ -100,7 +100,7 @@ const LoginSection: React.FC<Props> = props => {
             onClick={() => toggleField('isVisible')}
           />
           &nbsp; Login Fields &nbsp;
-          <Tooltip title="Fake login fields available for Keeper's extension to target.">
+          <Tooltip title="Fake login fields for extensions to target">
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>
         </div>

@@ -97,7 +97,7 @@ const CreditCardSection: React.FC<Props> = props => {
             onClick={() => toggleField('isVisible')}
           />
           &nbsp; Credit Card Fields &nbsp;
-          <Tooltip title="Fake credit card fields available for Keeper's extension to target.">
+          <Tooltip title="Fake credit card fields for extensions to target">
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>
         </div>
