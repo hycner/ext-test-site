@@ -30,27 +30,36 @@ type Props = {
 }
 
 const Fields: React.FC<Props> = props => {
+  const [city, setCity] = useState<string>('')
   const [country, setCountry] = useState<string>('')
   const [name, setName] = useState<string>('')
+  const [state, setState] = useState<string>('')
   const [streetOne, setStreetOne] = useState<string>('')
   const [streetTwo, setStreetTwo] = useState<string>('')
+  const [zip, setZip] = useState<string>('')
 
   function onSubmit() {
     console.log(`Address (${props.iteration}) submit clicked`)
     console.log({
+      city,
       country,
       name,
+      state,
       streetOne,
       streetTwo,
+      zip,
     })
   }
 
   function onClear() {
     console.log(`Address (${props.iteration}) clear clicked`)
+    setCity('')
     setCountry('')
     setName('')
+    setState('')
     setStreetOne('')
     setStreetTwo('')
+    setZip('')
   }
 
   function onNothing() {
@@ -85,6 +94,27 @@ const Fields: React.FC<Props> = props => {
           placeholder="Street 2"
           value={streetTwo}
           onChange={e => setStreetTwo(e.target.value)}
+        />
+        <Input
+          style={FIELD_STYLE}
+          id={`city${iteration}`}
+          placeholder="City"
+          value={city}
+          onChange={e => setCity(e.target.value)}
+        />
+        <Input
+          style={FIELD_STYLE}
+          id={`state${iteration}`}
+          placeholder="State"
+          value={state}
+          onChange={e => setState(e.target.value)}
+        />
+        <Input
+          style={FIELD_STYLE}
+          id={`zip${iteration}`}
+          placeholder="Zip"
+          value={zip}
+          onChange={e => setZip(e.target.value)}
         />
         <Input
           style={FIELD_STYLE}
