@@ -37,7 +37,9 @@ type Props = {
 }
 
 const AddressSection: React.FC<Props> = props => {
-  function toggleField(field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isMultiButton' | 'isVisible') {
+  function toggleField(
+    field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isMultiButton' | 'isVisible'
+  ) {
     dispatch(
       setSettings({
         section: 'address',
