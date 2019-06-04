@@ -44,12 +44,10 @@ const ButtonsWrap = styled.div`
   margin-bottom: 15px;
 `
 
-const INPUT_STYLE = {
+const FIELD_STYLE = {
+  marginLeft: 2,
+  marginRight: 2,
   marginBottom: 5,
-}
-const SELECT_STYLE = {
-  margin: '0 5px',
-  width: 120,
 }
 const BTN_STYLE = {
   marginLeft: 2,
@@ -106,7 +104,7 @@ const Fields: React.FC<Props> = props => {
         <Input
           id={`cardholderName${iteration}`}
           placeholder="Name on Card"
-          style={INPUT_STYLE}
+          style={FIELD_STYLE}
           value={name}
           onChange={e => setName(e.target.value)}
         />
@@ -114,58 +112,60 @@ const Fields: React.FC<Props> = props => {
         <Input
           id={`cardNumber${iteration}`}
           placeholder="Card Number"
-          style={INPUT_STYLE}
+          style={FIELD_STYLE}
           value={cardNumber}
           onChange={e => setCardNumber(e.target.value)}
         />
 
-        <Input
-          id={`cvv${iteration}`}
-          placeholder="CVV"
-          style={INPUT_STYLE}
-          value={cvv}
-          onChange={e => setCvv(e.target.value)}
-        />
-
-        {!isAlternateDateFormat && (
+        <div style={{display: 'flex'}}>
           <Input
-            id={`expiration-date${iteration}`}
-            placeholder="Expiration Date"
-            style={INPUT_STYLE}
-            value={expDateFull}
-            onChange={e => setExpDateFull(e.target.value)}
+            id={`cvv${iteration}`}
+            placeholder="CVV"
+            style={FIELD_STYLE}
+            value={cvv}
+            onChange={e => setCvv(e.target.value)}
           />
-        )}
 
-        {isAlternateDateFormat && (
-          <div>
-            <Select
-              id={`expiration-month${iteration}`}
-              style={SELECT_STYLE}
-              value={expMonth}
-              onChange={(val: string) => setExpMonth(val)}
-            >
-              {MONTHS.map(x => (
-                <Select.Option key={x.value} value={x.value}>
-                  {x.label}
-                </Select.Option>
-              ))}
-            </Select>
+          {!isAlternateDateFormat && (
+            <Input
+              id={`expiration-date${iteration}`}
+              placeholder="Expiration Date"
+              style={FIELD_STYLE}
+              value={expDateFull}
+              onChange={e => setExpDateFull(e.target.value)}
+            />
+          )}
 
-            <Select
-              id={`expiration-year${iteration}`}
-              style={SELECT_STYLE}
-              value={expYear}
-              onChange={(val: string) => setExpYear(val)}
-            >
-              {YEARS.map(x => (
-                <Select.Option key={x.value} value={x.value}>
-                  {x.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </div>
-        )}
+          {isAlternateDateFormat && (
+            <>
+              <Select
+                id={`expiration-month${iteration}`}
+                style={{...FIELD_STYLE, flex: '120px 0 0'}}
+                value={expMonth}
+                onChange={(val: string) => setExpMonth(val)}
+              >
+                {MONTHS.map(x => (
+                  <Select.Option key={x.value} value={x.value}>
+                    {x.label}
+                  </Select.Option>
+                ))}
+              </Select>
+
+              <Select
+                id={`expiration-year${iteration}`}
+                style={{...FIELD_STYLE, flex: '80px 0 0'}}
+                value={expYear}
+                onChange={(val: string) => setExpYear(val)}
+              >
+                {YEARS.map(x => (
+                  <Select.Option key={x.value} value={x.value}>
+                    {x.label}
+                  </Select.Option>
+                ))}
+              </Select>
+            </>
+          )}
+        </div>
 
         <SwitchWrap>
           <Switch checked={isAlternateDateFormat} onChange={toggleDateFormat} />

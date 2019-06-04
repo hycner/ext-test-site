@@ -10,6 +10,7 @@ import {StoreSettingsLogin} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
+// todo: look at combining some of the logic from different sections
 
 const Wrap = styled.div`
   display: flex;

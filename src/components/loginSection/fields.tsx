@@ -15,11 +15,9 @@ const ButtonsWrap = styled.div`
   margin-bottom: 15px;
 `
 
-const ACCOUNT_ID_STYLE = {
-  marginBottom: 5,
-}
-const PASSWORD_STYLE = {
-  marginTop: 5,
+const FIELD_STYLE = {
+  marginLeft: 2,
+  marginRight: 2,
   marginBottom: 5,
 }
 const BTN_STYLE = {
@@ -70,7 +68,7 @@ const Fields: React.FC<Props> = props => {
       <Wrap>
         {props.isThreeField && (
           <Input
-            style={ACCOUNT_ID_STYLE}
+            style={FIELD_STYLE}
             id={`accountId${iteration}`}
             placeholder="Account ID"
             value={accountId}
@@ -78,13 +76,14 @@ const Fields: React.FC<Props> = props => {
           />
         )}
         <Input
+          style={FIELD_STYLE}
           id={`username${iteration}`}
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
         />
         <Input.Password
-          style={PASSWORD_STYLE}
+          style={FIELD_STYLE}
           id={`password${iteration}`}
           placeholder="Password"
           value={password}

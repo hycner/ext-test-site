@@ -18,6 +18,8 @@ const ButtonsWrap = styled.div`
 `
 
 const FIELD_STYLE = {
+  marginLeft: 2,
+  marginRight: 2,
   marginBottom: 5,
 }
 const BTN_STYLE = {
