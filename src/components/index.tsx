@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
-import {SingleSectionDisplay} from '../modules/app/redux/bootstrap';
+import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
 
 import {dispatch} from '../store'
 import {bootstrap} from '../modules/app/redux/bootstrap'
@@ -57,9 +57,7 @@ export const App: React.FC<Props> = props => {
         {props.singleComponentDisplay && (
           <SingleComponent component={String(props.singleComponentDisplay) || ''} />
         )}
-        {props.singleSectionDisplay && (
-          <SingleSection />
-        )}
+        {props.singleSectionDisplay && <SingleSection />}
       </Wrap>
     </Spin>
   )

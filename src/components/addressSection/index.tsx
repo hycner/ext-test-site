@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
-import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap';
+import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
@@ -35,7 +35,7 @@ const ICON_STYLE = {
 const DISABLED_ICON_STYLE = {
   ...ICON_STYLE,
   opacity: 0.5,
-  cursor: 'initial'
+  cursor: 'initial',
 }
 
 type Props = {
@@ -45,7 +45,15 @@ type Props = {
 
 const AddressSection: React.FC<Props> = props => {
   function toggleField(
-    field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isIframeField' | 'isIframeSection' | 'isMultiButton' | 'isVisible'
+    field:
+      | 'areIdsUnique'
+      | 'hasEmail'
+      | 'hasPhone'
+      | 'isForm'
+      | 'isIframeField'
+      | 'isIframeSection'
+      | 'isMultiButton'
+      | 'isVisible'
   ) {
     dispatch(
       setSettings({
@@ -93,16 +101,11 @@ const AddressSection: React.FC<Props> = props => {
             src={`${window.location.href}?singleSection=address&iteration=${i + 1}`}
             width="320"
             height={height}
-            style={{border:0}}
+            style={{border: 0}}
           />
         )
       } else {
-        iNodes.push(
-          <Fields
-            key={i}
-            iteration={i + 1}
-          />
-        )
+        iNodes.push(<Fields key={i} iteration={i + 1} />)
       }
     }
     return iNodes

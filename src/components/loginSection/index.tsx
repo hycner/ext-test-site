@@ -7,7 +7,7 @@ import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsLogin} from '../../modules/settings/redux'
-import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap';
+import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
 
@@ -35,7 +35,7 @@ const ICON_STYLE = {
 const DISABLED_ICON_STYLE = {
   ...ICON_STYLE,
   opacity: 0.5,
-  cursor: 'initial'
+  cursor: 'initial',
 }
 
 type Props = {
@@ -45,7 +45,13 @@ type Props = {
 
 const LoginSection: React.FC<Props> = props => {
   function toggleField(
-    field: 'areIdsUnique' | 'isForm' | 'isIframeSection' | 'isMultiButton' | 'isThreeField' | 'isVisible'
+    field:
+      | 'areIdsUnique'
+      | 'isForm'
+      | 'isIframeSection'
+      | 'isMultiButton'
+      | 'isThreeField'
+      | 'isVisible'
   ) {
     dispatch(
       setSettings({
@@ -92,16 +98,11 @@ const LoginSection: React.FC<Props> = props => {
             src={`${window.location.href}?singleSection=login&iteration=${i + 1}`}
             width="320"
             height={height}
-            style={{border:0}}
+            style={{border: 0}}
           />
         )
       } else {
-        iNodes.push(
-          <Fields
-            key={i}
-            iteration={i + 1}
-          />
-        )
+        iNodes.push(<Fields key={i} iteration={i + 1} />)
       }
     }
     return iNodes

@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
-import {Store} from '../../modules/rootReducer';
-import {connect} from 'react-redux';
+import {Store} from '../../modules/rootReducer'
+import {connect} from 'react-redux'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -121,7 +121,9 @@ function mapStateToProps(state: Store) {
     isThreeField: lSettings.isThreeField,
     isMultiButton: lSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
-    ...state.app.bootstrap.singleSectionDisplay === 'login' && {iteration: state.app.bootstrap.singleDisplayIteration}
+    ...(state.app.bootstrap.singleSectionDisplay === 'login' && {
+      iteration: state.app.bootstrap.singleDisplayIteration,
+    }),
   }
 }
 

@@ -34,7 +34,7 @@ const ICON_STYLE = {
 const DISABLED_ICON_STYLE = {
   ...ICON_STYLE,
   opacity: 0.5,
-  cursor: 'initial'
+  cursor: 'initial',
 }
 
 type Props = {

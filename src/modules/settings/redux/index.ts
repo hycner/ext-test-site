@@ -2,7 +2,7 @@ import {put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
 import {Action} from '../../../store'
-import {db} from '../../../lib/database';
+import {db} from '../../../lib/database'
 
 const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'

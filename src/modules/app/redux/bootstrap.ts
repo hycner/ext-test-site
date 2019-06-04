@@ -4,11 +4,11 @@ import * as yup from 'yup'
 
 import {Action} from '../../../store'
 import {db} from '../../../lib/database'
-import {dispatch} from '../../../store';
+import {dispatch} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
 import {setSettings, setSettingsCommit} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
-import singleSection from '../../../components/singleSection';
+import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
 
@@ -49,7 +49,7 @@ function bootstrapSuccess(payload: {
 }): SuccessAction {
   return {
     type: SUCCESS,
-    payload
+    payload,
   }
 }
 function bootstrapFailure(error: Error): FailureAction {
@@ -164,11 +164,11 @@ function* bootstrapTask(): SagaIterator {
     }
 
     // see if this is a single component/section render of the page (in an iframe)
-    let singleComponentDisplay: boolean | string = false;
-    let singleDisplayIteration: number = 0;
-    let singleSectionDisplay: SingleSectionDisplay = '';
-    let query = window.location.search.substring(1);
-    let params = query.split('&');
+    let singleComponentDisplay: boolean | string = false
+    let singleDisplayIteration: number = 0
+    let singleSectionDisplay: SingleSectionDisplay = ''
+    let query = window.location.search.substring(1)
+    let params = query.split('&')
 
     for (let p of params) {
       if (p.includes('singleComponent')) {
@@ -190,17 +190,15 @@ function* bootstrapTask(): SagaIterator {
 
     // if a single component/section render, then listen for localstorage changes to reload settings
     if (singleSectionDisplay || singleComponentDisplay) {
-      window.addEventListener("storage", function (changes) {
+      window.addEventListener('storage', function(changes) {
         if (
-          window.location.href.includes(changes.url)
-          && window.location.href !== changes.url
-          && changes.isTrusted
-          && changes.key === 'localforage/settings'
+          window.location.href.includes(changes.url) &&
+          window.location.href !== changes.url &&
+          changes.isTrusted &&
+          changes.key === 'localforage/settings'
         ) {
           if (changes.newValue) {
-            dispatch(
-              setSettingsCommit(JSON.parse(changes.newValue))
-            )
+            dispatch(setSettingsCommit(JSON.parse(changes.newValue)))
           } else {
             dispatch(
               setSettingsCommit({
@@ -235,14 +233,16 @@ function* bootstrapTask(): SagaIterator {
             )
           }
         }
-      });
+      })
     }
 
-    yield put(bootstrapSuccess({
-      singleComponentDisplay,
-      singleDisplayIteration,
-      singleSectionDisplay,
-    }))
+    yield put(
+      bootstrapSuccess({
+        singleComponentDisplay,
+        singleDisplayIteration,
+        singleSectionDisplay,
+      })
+    )
   } catch (err) {
     yield put(bootstrapFailure(err))
   }
