@@ -75,16 +75,19 @@ const AddressSection: React.FC<Props> = props => {
   }
 
   function renderIterations() {
+    let height = 325
+    if (props.settings.hasEmail) height += 37
+    if (props.settings.hasPhone) height += 37
+
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
       if (props.settings.isIframeSection && !props.singleSectionDisplay) {
-        // todo: make height dynamic depending on phone & email fields being present
         iNodes.push(
           <iframe
             key={i}
             src={`${window.location.href}?singleSection=address&iteration=${i + 1}`}
             width="320"
-            height="325"
+            height={height}
             style={{border:0}}
           />
         )
