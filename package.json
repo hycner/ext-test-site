@@ -19,7 +19,7 @@
     "types:watch": "./node_modules/.bin/tsc --watch"
   },
   "dependencies": {
-    "antd": "3.18.2",
+    "antd": "3.19.2",
     "localforage": "1.7.3",
     "lodash": "4.17.11",
     "react": "16.8.6",
@@ -29,7 +29,7 @@
     "redux-logger": "3.0.6",
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
-    "styled-components": "4.2.0",
+    "styled-components": "4.2.1",
     "yup": "0.27.0"
   },
   "devDependencies": {
@@ -42,10 +42,10 @@
     "@types/redux-logger": "3.0.7",
     "@types/styled-components": "4.1.8",
     "@types/yup": "0.26.13",
-    "babel-plugin-import": "1.11.2",
-    "customize-cra": "0.2.12",
-    "enzyme": "3.9.0",
-    "enzyme-adapter-react-16": "1.13.1",
+    "babel-plugin-import": "1.12.0",
+    "customize-cra": "0.2.13",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
     "prettier": "1.17.1",
     "react-app-rewired": "2.1.3",
     "react-scripts": "3.0.1",
