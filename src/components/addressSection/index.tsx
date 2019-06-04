@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
+import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap';
 import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
@@ -34,7 +35,7 @@ const ICON_STYLE = {
 
 type Props = {
   settings: StoreSettingsAddress
-  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
+  singleSectionDisplay: SingleSectionDisplay
 }
 
 const AddressSection: React.FC<Props> = props => {
@@ -81,7 +82,7 @@ const AddressSection: React.FC<Props> = props => {
         iNodes.push(
           <iframe
             key={i}
-            src={`${window.location.href}?singleSection=address`}
+            src={`${window.location.href}?singleSection=address&iteration=${i + 1}`}
             width="320"
             height="350"
           />
@@ -91,13 +92,6 @@ const AddressSection: React.FC<Props> = props => {
           <Fields
             key={i}
             iteration={i + 1}
-            areIdsUnique={props.settings.areIdsUnique}
-            hasEmail={props.settings.hasEmail}
-            hasPhone={props.settings.hasPhone}
-            isForm={props.settings.isForm}
-            isIframeField={props.settings.isIframeField}
-            isIframeSection={props.settings.isIframeSection}
-            isMultiButton={props.settings.isMultiButton}
           />
         )
       }

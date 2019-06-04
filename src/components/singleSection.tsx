@@ -1,15 +1,17 @@
 import React from 'react'
 import {Store} from '../modules/rootReducer';
 import {connect} from 'react-redux';
+
 import {StoreSettingsAddress, StoreSettingsCreditCard, StoreSettingsLogin} from '../modules/settings/redux';
+import {SingleSectionDisplay} from '../modules/app/redux/bootstrap';
 
 type Props = {
-  section: boolean | 'address' | 'creditCard' | 'login'
+  section: SingleSectionDisplay
   settings: StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin | {}
 }
 
 const SingleSection: React.FC<Props> = (props) => {
-  if (typeof props.section === 'boolean') {
+  if (!props.section) {
     return null
   }
 
@@ -21,9 +23,7 @@ const SingleSection: React.FC<Props> = (props) => {
 }
 
 function mapStateToProps(state: Store) {
-  const settingsSection = typeof state.app.bootstrap.singleSectionDisplay === 'boolean'
-    ? ''
-    : state.app.bootstrap.singleSectionDisplay
+  const settingsSection = state.app.bootstrap.singleSectionDisplay
 
   return {
     section: state.app.bootstrap.singleSectionDisplay,

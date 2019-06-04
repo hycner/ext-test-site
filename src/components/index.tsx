@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
+import {SingleSectionDisplay} from '../modules/app/redux/bootstrap';
+
 import {dispatch} from '../store'
 import {bootstrap} from '../modules/app/redux/bootstrap'
 import AddressSection from './addressSection'
@@ -30,7 +32,7 @@ const Header = styled.div`
 type Props = {
   isBootstrapDone: boolean
   singleComponentDisplay: boolean | string
-  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
+  singleSectionDisplay: SingleSectionDisplay
 }
 
 export const App: React.FC<Props> = props => {

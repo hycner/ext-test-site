@@ -7,6 +7,9 @@ import {Action} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
 import {setSettings} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
+import singleSection from '../../../components/singleSection';
+
+export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
 
 const INIT = 'app/bootstrap'
 const PENDING = 'app/bootstrap/PENDING'
@@ -23,7 +26,8 @@ type SuccessAction = {
   type: 'app/bootstrap/SUCCESS'
   payload: {
     singleComponentDisplay: boolean | string
-    singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
+    singleDisplayIteration: number
+    singleSectionDisplay: SingleSectionDisplay
   }
 }
 type FailureAction = {
@@ -39,7 +43,8 @@ function bootstrapPending(): PendingAction {
 }
 function bootstrapSuccess(payload: {
   singleComponentDisplay: boolean | string
-  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
+  singleDisplayIteration: number
+  singleSectionDisplay: SingleSectionDisplay
 }): SuccessAction {
   return {
     type: SUCCESS,
@@ -157,26 +162,34 @@ function* bootstrapTask(): SagaIterator {
 
     // see if this is a single component/section render of the page (in an iframe)
     let singleComponentDisplay: boolean | string = false;
-    let singleSectionDisplay: boolean | string = false;
+    let singleDisplayIteration: number = 0;
+    let singleSectionDisplay: SingleSectionDisplay = '';
     let query = window.location.search.substring(1);
     let params = query.split('&');
-    params.some(p => {
+
+    for (let p of params) {
       if (p.includes('singleComponent')) {
-        singleComponentDisplay = decodeURIComponent(p.split('=')[1]);
-        return true
+        singleComponentDisplay = decodeURIComponent(p.split('=')[1])
       }
       if (p.includes('singleSection')) {
-        singleSectionDisplay = decodeURIComponent(p.split('=')[1])
-        if (!['address', 'creditCard', 'login'].includes(singleSectionDisplay)) {
-          singleSectionDisplay = false;
-          console.log('Invalid singleSection query parameter')
+        const singleSection: string = decodeURIComponent(p.split('=')[1])
+        switch (singleSection) {
+          case 'address':
+          case 'creditCard':
+          case 'login':
+            singleSectionDisplay = singleSection
         }
-        return true
       }
-      return false
-    })
+      if (p.includes('iteration')) {
+        singleDisplayIteration = Number(decodeURIComponent(p.split('=')[1]))
+      }
+    }
 
-    yield put(bootstrapSuccess({singleComponentDisplay, singleSectionDisplay}))
+    yield put(bootstrapSuccess({
+      singleComponentDisplay,
+      singleDisplayIteration,
+      singleSectionDisplay,
+    }))
   } catch (err) {
     yield put(bootstrapFailure(err))
   }
@@ -189,12 +202,14 @@ export function* bootstrapWatcher(): SagaIterator {
 type StoreAppBootstrap = {
   isDone: boolean
   singleComponentDisplay: boolean | string
-  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
+  singleDisplayIteration: number
+  singleSectionDisplay: SingleSectionDisplay
 }
 const initialState: StoreAppBootstrap = {
   isDone: false,
   singleComponentDisplay: false,
-  singleSectionDisplay: false,
+  singleDisplayIteration: 0,
+  singleSectionDisplay: '',
 }
 
 export function bootstrapReducer(
@@ -206,6 +221,7 @@ export function bootstrapReducer(
       return {
         isDone: true,
         singleComponentDisplay: action.payload.singleComponentDisplay,
+        singleDisplayIteration: action.payload.singleDisplayIteration,
         singleSectionDisplay: action.payload.singleSectionDisplay,
       }
     case FAILURE:
