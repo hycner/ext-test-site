@@ -67,6 +67,8 @@ export type StoreSettingsAddress = {
   hasEmail: boolean
   hasPhone: boolean
   isForm: boolean
+  isIframeField: boolean
+  isIframeSection: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -98,6 +100,8 @@ const initialState: StoreSettings = {
     hasEmail: false,
     hasPhone: false,
     isForm: false,
+    isIframeField: false,
+    isIframeSection: false,
     isMultiButton: false,
     isVisible: false,
     iterations: 1,

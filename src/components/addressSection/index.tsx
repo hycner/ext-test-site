@@ -34,11 +34,12 @@ const ICON_STYLE = {
 
 type Props = {
   settings: StoreSettingsAddress
+  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
 }
 
 const AddressSection: React.FC<Props> = props => {
   function toggleField(
-    field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isMultiButton' | 'isVisible'
+    field: 'areIdsUnique' | 'hasEmail' | 'hasPhone' | 'isForm' | 'isIframeField' | 'isIframeSection' | 'isMultiButton' | 'isVisible'
   ) {
     dispatch(
       setSettings({
@@ -75,17 +76,31 @@ const AddressSection: React.FC<Props> = props => {
   function renderIterations() {
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
-      iNodes.push(
-        <Fields
-          key={i}
-          iteration={i + 1}
-          areIdsUnique={props.settings.areIdsUnique}
-          hasEmail={props.settings.hasEmail}
-          hasPhone={props.settings.hasPhone}
-          isForm={props.settings.isForm}
-          isMultiButton={props.settings.isMultiButton}
-        />
-      )
+      if (props.settings.isIframeSection && !props.singleSectionDisplay) {
+        // todo: need to add iteration to query params
+        iNodes.push(
+          <iframe
+            key={i}
+            src={`${window.location.href}?singleSection=address`}
+            width="320"
+            height="350"
+          />
+        )
+      } else {
+        iNodes.push(
+          <Fields
+            key={i}
+            iteration={i + 1}
+            areIdsUnique={props.settings.areIdsUnique}
+            hasEmail={props.settings.hasEmail}
+            hasPhone={props.settings.hasPhone}
+            isForm={props.settings.isForm}
+            isIframeField={props.settings.isIframeField}
+            isIframeSection={props.settings.isIframeSection}
+            isMultiButton={props.settings.isMultiButton}
+          />
+        )
+      }
     }
     return iNodes
   }
@@ -125,10 +140,14 @@ const AddressSection: React.FC<Props> = props => {
               hasEmail={props.settings.hasEmail}
               hasPhone={props.settings.hasPhone}
               isForm={props.settings.isForm}
+              isIframeField={props.settings.isIframeField}
+              isIframeSection={props.settings.isIframeSection}
               isMultiButton={props.settings.isMultiButton}
               toggleHasEmail={() => toggleField('hasEmail')}
               toggleHasPhone={() => toggleField('hasPhone')}
               toggleIsForm={() => toggleField('isForm')}
+              toggleIsIframeField={() => toggleField('isIframeField')}
+              toggleIsIframeSection={() => toggleField('isIframeSection')}
               toggleMultiButton={() => toggleField('isMultiButton')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
@@ -144,6 +163,7 @@ const AddressSection: React.FC<Props> = props => {
 function mapStateToProps(state: Store) {
   return {
     settings: state.settings.address,
+    singleSectionDisplay: state.app.bootstrap.singleSectionDisplay,
   }
 }
 

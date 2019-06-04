@@ -10,6 +10,8 @@ import AddressSection from './addressSection'
 import CreditCardSection from './creditCardSection'
 import IFrameSpawner from './iframeSpawner'
 import LoginSection from './loginSection'
+import SingleComponent from './singleComponent'
+import SingleSection from './singleSection'
 import TestRunner from './testRunner'
 
 const Wrap = styled.div`
@@ -27,25 +29,35 @@ const Header = styled.div`
 
 type Props = {
   isBootstrapDone: boolean
+  singleComponentDisplay: boolean | string
+  singleSectionDisplay: boolean | 'address' | 'creditCard' | 'login'
 }
 
 export const App: React.FC<Props> = props => {
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(bootstrap())
-    }, 1000)
+    dispatch(bootstrap())
   }, [])
 
   return (
     <Spin size="large" spinning={!props.isBootstrapDone}>
       <Wrap>
-        <Header>Extension Tester</Header>
+        {!props.singleComponentDisplay && !props.singleSectionDisplay && (
+          <>
+            <Header>Extension Tester</Header>
 
-        <TestRunner />
-        <LoginSection />
-        <CreditCardSection />
-        <AddressSection />
-        <IFrameSpawner />
+            <TestRunner />
+            <LoginSection />
+            <CreditCardSection />
+            <AddressSection />
+            <IFrameSpawner />
+          </>
+        )}
+        {props.singleComponentDisplay && (
+          <SingleComponent component={String(props.singleComponentDisplay) || ''} />
+        )}
+        {props.singleSectionDisplay && (
+          <SingleSection />
+        )}
       </Wrap>
     </Spin>
   )
@@ -54,6 +66,8 @@ export const App: React.FC<Props> = props => {
 function mapStateToProps(state: Store) {
   return {
     isBootstrapDone: state.app.bootstrap.isDone,
+    singleComponentDisplay: state.app.bootstrap.singleComponentDisplay,
+    singleSectionDisplay: state.app.bootstrap.singleSectionDisplay,
   }
 }
 

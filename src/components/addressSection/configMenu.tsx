@@ -17,10 +17,14 @@ type Props = {
   hasEmail: boolean
   hasPhone: boolean
   isForm: boolean
+  isIframeField: boolean
+  isIframeSection: boolean
   isMultiButton: boolean
   toggleHasEmail: () => void
   toggleHasPhone: () => void
   toggleIsForm: () => void
+  toggleIsIframeField: () => void
+  toggleIsIframeSection: () => void
   toggleMultiButton: () => void
   toggleUniqueIds: () => void
 }
@@ -39,6 +43,18 @@ const configMenu: React.FC<Props> = props => {
           Wrap each section in {'<form>'}
         </Checkbox>
       </SettingWrap>
+
+      <SettingWrap key="iframeSection">
+        <Checkbox checked={props.isIframeSection} onChange={props.toggleIsIframeSection}>
+          Wrap each section in {'<iframe>'}
+        </Checkbox>
+      </SettingWrap>
+
+      {/*<SettingWrap key="iframeField">*/}
+      {/*  <Checkbox checked={props.isIframeField} onChange={props.toggleIsIframeField}>*/}
+      {/*    Wrap each field in {'<iframe>'}*/}
+      {/*  </Checkbox>*/}
+      {/*</SettingWrap>*/}
 
       <SettingWrap key="buttons">
         <Checkbox checked={props.isMultiButton} onChange={props.toggleMultiButton}>

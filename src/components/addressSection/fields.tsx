@@ -22,11 +22,14 @@ const BTN_STYLE = {
   marginRight: 2,
 }
 
+// todo: pass in the entire settings object instead
 type Props = {
   areIdsUnique: boolean
   hasEmail: boolean
   hasPhone: boolean
   isForm: boolean
+  isIframeField: boolean
+  isIframeSection: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -75,98 +78,102 @@ const Fields: React.FC<Props> = props => {
   }
 
   let Form = props.isForm ? RealForm : FakeForm
+  let IframeSection = props.isIframeSection ? RealIframeSection : FakeIframeSection
+  let IframeField = props.isIframeField ? RealIframeField : FakeIframeField
 
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.areIdsUnique) iteration = ''
 
   return (
-    <Form>
-      <Wrap>
-        <Input
-          style={FIELD_STYLE}
-          id={`name${iteration}`}
-          placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        {props.hasEmail && (
+    <IframeSection>
+      <Form>
+        <Wrap>
           <Input
             style={FIELD_STYLE}
-            id={`email${iteration}`}
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            id={`name${iteration}`}
+            placeholder="Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
-        )}
-        {props.hasPhone && (
-          <Input
-            style={FIELD_STYLE}
-            id={`phone${iteration}`}
-            placeholder="Phone"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
-          />
-        )}
-        <Input
-          style={FIELD_STYLE}
-          id={`streetOne${iteration}`}
-          placeholder="Street 1"
-          value={streetOne}
-          onChange={e => setStreetOne(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`streetTwo${iteration}`}
-          placeholder="Street 2"
-          value={streetTwo}
-          onChange={e => setStreetTwo(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`city${iteration}`}
-          placeholder="City"
-          value={city}
-          onChange={e => setCity(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`state${iteration}`}
-          placeholder="State"
-          value={state}
-          onChange={e => setState(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`zip${iteration}`}
-          placeholder="Zip"
-          value={zip}
-          onChange={e => setZip(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`country${iteration}`}
-          placeholder="Country"
-          value={country}
-          onChange={e => setCountry(e.target.value)}
-        />
-
-        <ButtonsWrap>
-          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-            Save
-          </Button>
-          {props.isMultiButton && (
-            <>
-              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                Clear
-              </Button>
-              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                Nothing
-              </Button>
-            </>
+          {props.hasEmail && (
+            <Input
+              style={FIELD_STYLE}
+              id={`email${iteration}`}
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
           )}
-        </ButtonsWrap>
-      </Wrap>
-    </Form>
+          {props.hasPhone && (
+            <Input
+              style={FIELD_STYLE}
+              id={`phone${iteration}`}
+              placeholder="Phone"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+          )}
+          <Input
+            style={FIELD_STYLE}
+            id={`streetOne${iteration}`}
+            placeholder="Street 1"
+            value={streetOne}
+            onChange={e => setStreetOne(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`streetTwo${iteration}`}
+            placeholder="Street 2"
+            value={streetTwo}
+            onChange={e => setStreetTwo(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`city${iteration}`}
+            placeholder="City"
+            value={city}
+            onChange={e => setCity(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`state${iteration}`}
+            placeholder="State"
+            value={state}
+            onChange={e => setState(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`zip${iteration}`}
+            placeholder="Zip"
+            value={zip}
+            onChange={e => setZip(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`country${iteration}`}
+            placeholder="Country"
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+          />
+
+          <ButtonsWrap>
+            <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+              Save
+            </Button>
+            {props.isMultiButton && (
+              <>
+                <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                  Clear
+                </Button>
+                <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                  Nothing
+                </Button>
+              </>
+            )}
+          </ButtonsWrap>
+        </Wrap>
+      </Form>
+    </IframeSection>
   )
 }
 export default Fields
@@ -178,5 +185,17 @@ function RealForm(props: FormProps) {
   return <form>{props.children}</form>
 }
 function FakeForm(props: FormProps) {
+  return <>{props.children}</>
+}
+function RealIframeField(props: FormProps) {
+  return <iframe>{props.children}</iframe>
+}
+function FakeIframeField(props: FormProps) {
+  return <>{props.children}</>
+}
+function RealIframeSection(props: FormProps) {
+  return <iframe>{props.children}</iframe>
+}
+function FakeIframeSection(props: FormProps) {
   return <>{props.children}</>
 }
