@@ -1,8 +1,8 @@
 import {put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
-import localforage from 'localforage'
 
 import {Action} from '../../../store'
+import {db} from '../../../lib/database';
 
 const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'
@@ -53,7 +53,7 @@ function* setTask(action: InitAction): SagaIterator {
     }
   }
 
-  localforage.setItem('settings', newState)
+  db.setItem('settings', newState)
 
   yield put(setSettingsCommit(newState))
 }

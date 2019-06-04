@@ -1,17 +1,14 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
-import localforage from 'localforage'
 import * as yup from 'yup'
 
 import {Action} from '../../../store'
+import {db} from '../../../lib/database'
 import {dispatch} from '../../../store';
 import {messageCallback} from '../../test/redux/events/tests'
 import {setSettings, setSettingsCommit} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
 import singleSection from '../../../components/singleSection';
-
-// todo: abstract localforage as a lib
-localforage.setDriver(localforage.LOCALSTORAGE)
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
 
@@ -108,7 +105,7 @@ function* bootstrapTask(): SagaIterator {
     window.addEventListener('message', messageCallback)
 
     // load settings
-    const settings: StoreSettings = yield call(localforage.getItem, 'settings')
+    const settings: StoreSettings = yield call(db.getItem, 'settings')
 
     try {
       if (!settings) throw new Error('No Settings found')
@@ -125,7 +122,7 @@ function* bootstrapTask(): SagaIterator {
       console.log(
         'Persisted settings key mismatch (login). Wiping settings. Either no existing settings or because of a new settings schema version'
       )
-      localforage.removeItem('settings')
+      db.removeItem('settings')
 
       // todo: instead of doing this should the fields just not render fully until loading is done?
       // Default starter settings after 'loading' bootstrap starting state

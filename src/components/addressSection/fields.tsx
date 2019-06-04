@@ -25,7 +25,6 @@ const BTN_STYLE = {
   marginRight: 2,
 }
 
-// todo: pass in the entire settings object instead
 type Props = {
   areIdsUnique: boolean
   hasEmail: boolean
