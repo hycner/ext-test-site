@@ -83,6 +83,7 @@ export type StoreSettingsCreditCard = {
 export type StoreSettingsLogin = {
   areIdsUnique: boolean
   isForm: boolean
+  isIframeSection: boolean
   isMultiButton: boolean
   isThreeField: boolean
   isVisible: boolean
@@ -116,6 +117,7 @@ const initialState: StoreSettings = {
   login: {
     areIdsUnique: true,
     isForm: false,
+    isIframeSection: false,
     isMultiButton: false,
     isThreeField: false,
     isVisible: false,

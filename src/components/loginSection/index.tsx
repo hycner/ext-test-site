@@ -7,6 +7,7 @@ import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsLogin} from '../../modules/settings/redux'
+import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap';
 import Fields from './fields'
 import ConfigMenu from './configMenu'
 
@@ -39,11 +40,12 @@ const DISABLED_ICON_STYLE = {
 
 type Props = {
   settings: StoreSettingsLogin
+  singleSectionDisplay: SingleSectionDisplay
 }
 
 const LoginSection: React.FC<Props> = props => {
   function toggleField(
-    field: 'areIdsUnique' | 'isForm' | 'isMultiButton' | 'isThreeField' | 'isVisible'
+    field: 'areIdsUnique' | 'isForm' | 'isIframeSection' | 'isMultiButton' | 'isThreeField' | 'isVisible'
   ) {
     dispatch(
       setSettings({
@@ -78,18 +80,29 @@ const LoginSection: React.FC<Props> = props => {
   }
 
   function renderIterations() {
+    let height = 140
+    if (props.settings.isThreeField) height += 37
+
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
-      iNodes.push(
-        <Fields
-          key={i}
-          iteration={i + 1}
-          areIdsUnique={props.settings.areIdsUnique}
-          isForm={props.settings.isForm}
-          isMultiButton={props.settings.isMultiButton}
-          isThreeField={props.settings.isThreeField}
-        />
-      )
+      if (props.settings.isIframeSection && !props.singleSectionDisplay) {
+        iNodes.push(
+          <iframe
+            key={i}
+            src={`${window.location.href}?singleSection=login&iteration=${i + 1}`}
+            width="320"
+            height={height}
+            style={{border:0}}
+          />
+        )
+      } else {
+        iNodes.push(
+          <Fields
+            key={i}
+            iteration={i + 1}
+          />
+        )
+      }
     }
     return iNodes
   }
@@ -127,9 +140,11 @@ const LoginSection: React.FC<Props> = props => {
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
               isForm={props.settings.isForm}
+              isIframeSection={props.settings.isIframeSection}
               isMultiButton={props.settings.isMultiButton}
               isThreeField={props.settings.isThreeField}
               toggleIsForm={() => toggleField('isForm')}
+              toggleIsIframeSection={() => toggleField('isIframeSection')}
               toggleMultiButton={() => toggleField('isMultiButton')}
               toggleIsThreeField={() => toggleField('isThreeField')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
@@ -146,6 +161,7 @@ const LoginSection: React.FC<Props> = props => {
 function mapStateToProps(state: Store) {
   return {
     settings: state.settings.login,
+    singleSectionDisplay: state.app.bootstrap.singleSectionDisplay,
   }
 }
 

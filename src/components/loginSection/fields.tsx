@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
+import {Store} from '../../modules/rootReducer';
+import {connect} from 'react-redux';
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -108,7 +110,24 @@ const Fields: React.FC<Props> = props => {
     </Form>
   )
 }
-export default Fields
+
+function mapStateToProps(state: Store) {
+  const lSettings = state.settings.login
+
+  return {
+    areIdsUnique: lSettings.areIdsUnique,
+    isForm: lSettings.isForm,
+    isIframeSection: lSettings.isIframeSection,
+    isThreeField: lSettings.isThreeField,
+    isMultiButton: lSettings.isMultiButton,
+    // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
+    ...state.app.bootstrap.singleSectionDisplay === 'login' && {iteration: state.app.bootstrap.singleDisplayIteration}
+  }
+}
+
+export default connect(mapStateToProps)(Fields)
+
+// Helper functions
 
 type FormProps = {
   children: any
