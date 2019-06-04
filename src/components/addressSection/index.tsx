@@ -32,6 +32,11 @@ const ICON_STYLE = {
   marginLeft: 3,
   fontSize: 18,
 }
+const DISABLED_ICON_STYLE = {
+  ...ICON_STYLE,
+  opacity: 0.5,
+  cursor: 'initial'
+}
 
 type Props = {
   settings: StoreSettingsAddress
@@ -130,7 +135,7 @@ const AddressSection: React.FC<Props> = props => {
             <Icon
               type="minus-circle"
               theme="filled"
-              style={ICON_STYLE}
+              style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
             <ConfigMenu
