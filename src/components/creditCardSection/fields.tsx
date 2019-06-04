@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input, Select, Switch} from 'antd'
+import {Store} from '../../modules/rootReducer'
+import {connect} from 'react-redux'
 
 type ExpirationValues = Array<{
   label: string
@@ -189,7 +191,24 @@ const Fields: React.FC<Props> = props => {
     </Form>
   )
 }
-export default Fields
+
+function mapStateToProps(state: Store) {
+  const cSettings = state.settings.creditCard
+
+  return {
+    areIdsUnique: cSettings.areIdsUnique,
+    isForm: cSettings.isForm,
+    isMultiButton: cSettings.isMultiButton,
+    // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
+    ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {
+      iteration: state.app.bootstrap.singleDisplayIteration,
+    }),
+  }
+}
+
+export default connect(mapStateToProps)(Fields)
+
+// Helper functions
 
 type FormProps = {
   children: any

@@ -76,6 +76,7 @@ export type StoreSettingsAddress = {
 export type StoreSettingsCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
+  isIframeSection: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -110,6 +111,7 @@ const initialState: StoreSettings = {
   creditCard: {
     areIdsUnique: true,
     isForm: false,
+    isIframeSection: false,
     isMultiButton: false,
     isVisible: false,
     iterations: 1,

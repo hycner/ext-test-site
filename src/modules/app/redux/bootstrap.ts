@@ -78,6 +78,7 @@ const settingsSchema = yup
       .object({
         areIdsUnique: yup.boolean().required(),
         isForm: yup.boolean().required(),
+        isIframeSection: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
@@ -145,6 +146,7 @@ function* bootstrapTask(): SagaIterator {
             creditCard: {
               areIdsUnique: true,
               isForm: false,
+              isIframeSection: false,
               isMultiButton: false,
               isVisible: true,
               iterations: 1,
@@ -216,6 +218,7 @@ function* bootstrapTask(): SagaIterator {
                 creditCard: {
                   areIdsUnique: true,
                   isForm: false,
+                  isIframeSection: false,
                   isMultiButton: false,
                   isVisible: true,
                   iterations: 1,

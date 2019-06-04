@@ -6,6 +6,7 @@ import {setSettings} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsCreditCard} from '../../modules/settings/redux'
+import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import {connect} from 'react-redux'
 import Fields from './fields'
 import ConfigMenu from './configMenu'
@@ -39,10 +40,13 @@ const DISABLED_ICON_STYLE = {
 
 type Props = {
   settings: StoreSettingsCreditCard
+  singleSectionDisplay: SingleSectionDisplay
 }
 
 const CreditCardSection: React.FC<Props> = props => {
-  function toggleField(field: 'areIdsUnique' | 'isForm' | 'isMultiButton' | 'isVisible') {
+  function toggleField(
+    field: 'areIdsUnique' | 'isForm' | 'isIframeSection' | 'isMultiButton' | 'isVisible'
+  ) {
     dispatch(
       setSettings({
         section: 'creditCard',
@@ -78,15 +82,19 @@ const CreditCardSection: React.FC<Props> = props => {
   function renderIterations() {
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
-      iNodes.push(
-        <Fields
-          key={i}
-          iteration={i + 1}
-          areIdsUnique={props.settings.areIdsUnique}
-          isForm={props.settings.isForm}
-          isMultiButton={props.settings.isMultiButton}
-        />
-      )
+      if (props.settings.isIframeSection && !props.singleSectionDisplay) {
+        iNodes.push(
+          <iframe
+            key={i}
+            src={`${window.location.href}?singleSection=creditCard&iteration=${i + 1}`}
+            width="320"
+            height="228"
+            style={{border: 0}}
+          />
+        )
+      } else {
+        iNodes.push(<Fields key={i} iteration={i + 1} />)
+      }
     }
     return iNodes
   }
@@ -124,8 +132,10 @@ const CreditCardSection: React.FC<Props> = props => {
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
               isForm={props.settings.isForm}
+              isIframeSection={props.settings.isIframeSection}
               isMultiButton={props.settings.isMultiButton}
               toggleIsForm={() => toggleField('isForm')}
+              toggleIsIframeSection={() => toggleField('isIframeSection')}
               toggleMultiButton={() => toggleField('isMultiButton')}
               toggleUniqueIds={() => toggleField('areIdsUnique')}
             />
@@ -141,6 +151,7 @@ const CreditCardSection: React.FC<Props> = props => {
 function mapStateToProps(state: Store) {
   return {
     settings: state.settings.creditCard,
+    singleSectionDisplay: state.app.bootstrap.singleSectionDisplay,
   }
 }
 

@@ -31,7 +31,6 @@ type Props = {
   hasPhone: boolean
   isForm: boolean
   isIframeField: boolean
-  isIframeSection: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -185,7 +184,6 @@ function mapStateToProps(state: Store) {
     hasPhone: aSettings.hasPhone,
     isForm: aSettings.isForm,
     isIframeField: aSettings.isIframeField,
-    isIframeSection: aSettings.isIframeSection,
     isMultiButton: aSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'address' && {
