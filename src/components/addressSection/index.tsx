@@ -114,7 +114,7 @@ const AddressSection: React.FC<Props> = props => {
             onClick={() => toggleField('isVisible')}
           />
           &nbsp; Address Fields &nbsp;
-          <Tooltip title="Fake address fields for extensions to target">
+          <Tooltip title="Fake address fields for extensions to target. If you enable any iframe config settings, then DOM iframe access tests will fail.">
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>
         </div>
