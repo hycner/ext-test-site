@@ -30,7 +30,7 @@ export function setSettings(payload: InitActionPayload): InitAction {
     payload,
   }
 }
-function setSettingsCommit(payload: StoreSettings): CommitAction {
+export function setSettingsCommit(payload: StoreSettings): CommitAction {
   return {
     type: COMMIT,
     payload,

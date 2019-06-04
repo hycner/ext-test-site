@@ -4,10 +4,14 @@ import localforage from 'localforage'
 import * as yup from 'yup'
 
 import {Action} from '../../../store'
+import {dispatch} from '../../../store';
 import {messageCallback} from '../../test/redux/events/tests'
-import {setSettings} from '../../settings/redux'
+import {setSettings, setSettingsCommit} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
 import singleSection from '../../../components/singleSection';
+
+// todo: abstract localforage as a lib
+localforage.setDriver(localforage.LOCALSTORAGE)
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
 
@@ -183,6 +187,55 @@ function* bootstrapTask(): SagaIterator {
       if (p.includes('iteration')) {
         singleDisplayIteration = Number(decodeURIComponent(p.split('=')[1]))
       }
+    }
+
+    // if a single component/section render, then listen for localstorage changes to reload settings
+    if (singleSectionDisplay || singleComponentDisplay) {
+      window.addEventListener("storage", function (changes) {
+        if (
+          window.location.href.includes(changes.url)
+          && window.location.href !== changes.url
+          && changes.isTrusted
+          && changes.key === 'localforage/settings'
+        ) {
+          if (changes.newValue) {
+            dispatch(
+              setSettingsCommit(JSON.parse(changes.newValue))
+            )
+          } else {
+            dispatch(
+              setSettingsCommit({
+                address: {
+                  areIdsUnique: true,
+                  hasEmail: false,
+                  hasPhone: false,
+                  isForm: false,
+                  isIframeField: false,
+                  isIframeSection: false,
+                  isMultiButton: false,
+                  isVisible: true,
+                  iterations: 1,
+                },
+                creditCard: {
+                  areIdsUnique: true,
+                  isForm: false,
+                  isMultiButton: false,
+                  isVisible: true,
+                  iterations: 1,
+                },
+                login: {
+                  areIdsUnique: true,
+                  isForm: false,
+                  isMultiButton: false,
+                  isThreeField: false,
+                  isVisible: true,
+                  iterations: 1,
+                },
+              })
+            )
+          }
+        }
+      });
     }
 
     yield put(bootstrapSuccess({
