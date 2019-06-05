@@ -96,24 +96,26 @@ const Fields: React.FC<Props> = props => {
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        {props.hasEmail && (
-          <Input
-            style={FIELD_STYLE}
-            id={`email${iteration}`}
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        )}
-        {props.hasPhone && (
-          <Input
-            style={FIELD_STYLE}
-            id={`phone${iteration}`}
-            placeholder="Phone"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
-          />
-        )}
+        <div style={{display: 'flex', width: '100%'}}>
+          {props.hasEmail && (
+            <Input
+              style={FIELD_STYLE}
+              id={`email${iteration}`}
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          )}
+          {props.hasPhone && (
+            <Input
+              style={FIELD_STYLE}
+              id={`phone${iteration}`}
+              placeholder="Phone"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+          )}
+        </div>
         <Input
           style={FIELD_STYLE}
           id={`streetOne${iteration}`}
@@ -135,20 +137,22 @@ const Fields: React.FC<Props> = props => {
           value={city}
           onChange={e => setCity(e.target.value)}
         />
-        <Input
-          style={FIELD_STYLE}
-          id={`state${iteration}`}
-          placeholder="State"
-          value={state}
-          onChange={e => setState(e.target.value)}
-        />
-        <Input
-          style={FIELD_STYLE}
-          id={`zip${iteration}`}
-          placeholder="Zip"
-          value={zip}
-          onChange={e => setZip(e.target.value)}
-        />
+        <div style={{display: 'flex'}}>
+          <Input
+            style={FIELD_STYLE}
+            id={`state${iteration}`}
+            placeholder="State"
+            value={state}
+            onChange={e => setState(e.target.value)}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`zip${iteration}`}
+            placeholder="Zip"
+            value={zip}
+            onChange={e => setZip(e.target.value)}
+          />
+        </div>
         <Input
           style={FIELD_STYLE}
           id={`country${iteration}`}
