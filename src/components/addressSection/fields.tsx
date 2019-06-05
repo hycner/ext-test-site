@@ -30,6 +30,7 @@ const BTN_STYLE = {
 type Props = {
   areIdsUnique: boolean
   hasEmail: boolean
+  hasName: boolean
   hasPhone: boolean
   isForm: boolean
   isIframeField: boolean
@@ -89,13 +90,15 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
-        <Input
-          style={FIELD_STYLE}
-          id={`name${iteration}`}
-          placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+        {props.hasName && (
+          <Input
+            style={FIELD_STYLE}
+            id={`name${iteration}`}
+            placeholder="Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        )}
         <div style={{display: 'flex', width: '100%'}}>
           {props.hasEmail && (
             <Input
@@ -187,6 +190,7 @@ function mapStateToProps(state: Store) {
   return {
     areIdsUnique: aSettings.areIdsUnique,
     hasEmail: aSettings.hasEmail,
+    hasName: aSettings.hasName,
     hasPhone: aSettings.hasPhone,
     isForm: aSettings.isForm,
     isIframeField: aSettings.isIframeField,

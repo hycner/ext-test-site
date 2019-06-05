@@ -65,6 +65,7 @@ export function* setWatcher(): SagaIterator {
 export type StoreSettingsAddress = {
   areIdsUnique: boolean
   hasEmail: boolean
+  hasName: boolean
   hasPhone: boolean
   isForm: boolean
   isIframeField: boolean
@@ -100,6 +101,7 @@ const initialState: StoreSettings = {
   address: {
     areIdsUnique: true,
     hasEmail: false,
+    hasName: false,
     hasPhone: false,
     isForm: false,
     isIframeField: false,

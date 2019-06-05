@@ -48,6 +48,7 @@ const AddressSection: React.FC<Props> = props => {
     field:
       | 'areIdsUnique'
       | 'hasEmail'
+      | 'hasName'
       | 'hasPhone'
       | 'isForm'
       | 'isIframeField'
@@ -144,12 +145,14 @@ const AddressSection: React.FC<Props> = props => {
             <ConfigMenu
               areIdsUnique={props.settings.areIdsUnique}
               hasEmail={props.settings.hasEmail}
+              hasName={props.settings.hasName}
               hasPhone={props.settings.hasPhone}
               isForm={props.settings.isForm}
               isIframeField={props.settings.isIframeField}
               isIframeSection={props.settings.isIframeSection}
               isMultiButton={props.settings.isMultiButton}
               toggleHasEmail={() => toggleField('hasEmail')}
+              toggleHasName={() => toggleField('hasName')}
               toggleHasPhone={() => toggleField('hasPhone')}
               toggleIsForm={() => toggleField('isForm')}
               toggleIsIframeField={() => toggleField('isIframeField')}

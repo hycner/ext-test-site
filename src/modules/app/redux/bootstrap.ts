@@ -65,6 +65,7 @@ const settingsSchema = yup
       .object({
         areIdsUnique: yup.boolean().required(),
         hasEmail: yup.boolean().required(),
+        hasName: yup.boolean().required(),
         hasPhone: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeField: yup.boolean().required(),
@@ -135,6 +136,7 @@ function* bootstrapTask(): SagaIterator {
             address: {
               areIdsUnique: true,
               hasEmail: false,
+              hasName: false,
               hasPhone: false,
               isForm: false,
               isIframeField: false,
@@ -207,6 +209,7 @@ function* bootstrapTask(): SagaIterator {
                 address: {
                   areIdsUnique: true,
                   hasEmail: false,
+                  hasName: false,
                   hasPhone: false,
                   isForm: false,
                   isIframeField: false,

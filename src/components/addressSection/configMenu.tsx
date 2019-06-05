@@ -15,12 +15,14 @@ const ICON_STYLE = {
 type Props = {
   areIdsUnique: boolean
   hasEmail: boolean
+  hasName: boolean
   hasPhone: boolean
   isForm: boolean
   isIframeField: boolean
   isIframeSection: boolean
   isMultiButton: boolean
   toggleHasEmail: () => void
+  toggleHasName: () => void
   toggleHasPhone: () => void
   toggleIsForm: () => void
   toggleIsIframeField: () => void
@@ -65,6 +67,12 @@ const configMenu: React.FC<Props> = props => {
       <SettingWrap key="email">
         <Checkbox checked={props.hasEmail} onChange={props.toggleHasEmail}>
           Email Field
+        </Checkbox>
+      </SettingWrap>
+
+      <SettingWrap key="name">
+        <Checkbox checked={props.hasName} onChange={props.toggleHasName}>
+          Name Field
         </Checkbox>
       </SettingWrap>
 
