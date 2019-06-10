@@ -154,7 +154,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeSection: false,
     isMultiButton: false,
-    isVisible: true,
+    isVisible: false,
     iterations: 1,
   },
 }
