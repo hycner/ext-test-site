@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
-import {setSettings} from '../../modules/settings/redux'
+import {setSettings, StoreSettingsAddress} from '../../modules/settings/redux'
 import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
-import {StoreSettingsAddress} from '../../modules/settings/redux'
+
 import Fields from './fields'
 import ConfigMenu from '../_configMenu'
 

@@ -1,13 +1,10 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
 
-import {Action} from '../../../store'
+import {Action, dispatch} from '../../../store'
 import {db} from '../../../lib/database'
-import {dispatch} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
-import {setSettings, setSettingsCommit} from '../../settings/redux'
-import {StoreSettings} from '../../settings/redux'
-import {settingsSchema} from '../../settings/redux'
+import {resetSettings, setSettings, setSettingsCommit, settingsSchema, StoreSettings} from '../../settings/redux'
 import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
@@ -124,39 +121,7 @@ function* bootstrapTask(): SagaIterator {
           if (changes.newValue) {
             dispatch(setSettingsCommit(JSON.parse(changes.newValue)))
           } else {
-            dispatch(
-              setSettingsCommit({
-                address: {
-                  areIdsUnique: true,
-                  hasEmail: false,
-                  hasName: false,
-                  hasPhone: false,
-                  isForm: false,
-                  isIframeField: false,
-                  isIframeSection: false,
-                  isMultiButton: false,
-                  isVisible: true,
-                  iterations: 1,
-                },
-                creditCard: {
-                  areIdsUnique: true,
-                  isForm: false,
-                  isIframeSection: false,
-                  isMultiButton: false,
-                  isVisible: true,
-                  iterations: 1,
-                },
-                login: {
-                  areIdsUnique: true,
-                  isForm: false,
-                  isIframeSection: false,
-                  isMultiButton: false,
-                  isThreeField: false,
-                  isVisible: true,
-                  iterations: 1,
-                },
-              })
-            )
+            dispatch(resetSettings())
           }
         }
       })

@@ -7,6 +7,7 @@ import {db} from '../../../lib/database'
 
 const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'
+const RESET = 'settings/RESET'
 
 type InitActionPayload = {
   section: 'address' | 'creditCard' | 'login' | 'all'
@@ -24,6 +25,9 @@ type CommitAction = {
   type: typeof COMMIT
   payload: StoreSettings
 }
+type ResetAction = {
+  type: typeof RESET
+}
 
 export function setSettings(payload: InitActionPayload): InitAction {
   return {
@@ -36,6 +40,9 @@ export function setSettingsCommit(payload: StoreSettings): CommitAction {
     type: COMMIT,
     payload,
   }
+}
+export function resetSettings(): ResetAction {
+  return {type: RESET}
 }
 
 function* setTask(action: InitAction): SagaIterator {
@@ -137,6 +144,8 @@ export default function settingsReducer(
   switch (action.type) {
     case COMMIT:
       return action.payload
+    case RESET:
+      return initialState
     default:
       return state
   }
