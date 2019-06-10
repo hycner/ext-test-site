@@ -9,6 +9,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
 `
 const ButtonsWrap = styled.div`
   margin-top: 5px;
