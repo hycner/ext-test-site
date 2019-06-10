@@ -142,10 +142,7 @@ const LoginSection: React.FC<Props> = props => {
               style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
-            <ConfigMenu
-              items={props.configMenuItems}
-              toggleFunc={toggleField}
-            />
+            <ConfigMenu items={props.configMenuItems} toggleFunc={toggleField} />
           </SpecificSettings>
         )}
       </Header>
