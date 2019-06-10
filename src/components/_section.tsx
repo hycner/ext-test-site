@@ -50,6 +50,7 @@ type Props = {
   description: string
   fieldsComponent: typeof AddressFields | typeof CreditCardFields | typeof LoginFields
   iterationHeight: number
+  label: string
   section: 'address' | 'creditCard' | 'login' // todo: combine this with other similar types as a base
   settings: StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin
   singleSectionDisplay: SingleSectionDisplay
@@ -120,7 +121,7 @@ const LoginSection: React.FC<Props> = props => {
             style={ICON_STYLE}
             onClick={() => toggleField('isVisible')}
           />
-          &nbsp; Login Fields &nbsp;
+          &nbsp; {props.label} &nbsp;
           <Tooltip title={props.description}>
             <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
           </Tooltip>

@@ -77,6 +77,7 @@ const LoginSection: React.FC<Props> = props => {
       description="Fake login fields for extensions to target"
       fieldsComponent={Fields}
       iterationHeight={iterationHeight}
+      label="Login Fields"
       section="login"
       settings={props.settings}
       singleSectionDisplay={props.singleSectionDisplay}
