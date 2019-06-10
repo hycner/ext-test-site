@@ -4,7 +4,13 @@ import {SagaIterator} from 'redux-saga'
 import {Action, dispatch} from '../../../store'
 import {db} from '../../../lib/database'
 import {messageCallback} from '../../test/redux/events/tests'
-import {resetSettings, setSettings, setSettingsCommit, settingsSchema, StoreSettings} from '../../settings/redux'
+import {
+  resetSettings,
+  setSettings,
+  setSettingsCommit,
+  settingsSchema,
+  StoreSettings,
+} from '../../settings/redux'
 import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
