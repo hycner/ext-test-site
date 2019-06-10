@@ -9,7 +9,7 @@ import {Store} from '../../modules/rootReducer'
 import {StoreSettingsLogin} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import Fields from './fields'
-import ConfigMenu from './configMenu'
+import ConfigMenu from '../_configMenu'
 // todo: look at combining some of the logic from different sections
 
 const Wrap = styled.div`
@@ -109,6 +109,39 @@ const LoginSection: React.FC<Props> = props => {
     return iNodes
   }
 
+  const configMenuItems = [
+    {
+      key: 'unique',
+      label: 'Disable Unique IDs',
+      onChange: () => toggleField('areIdsUnique'),
+      value: !props.settings.areIdsUnique,
+    },
+    {
+      key: 'form',
+      label: 'Wrap each section in <form>',
+      onChange: () => toggleField('isForm'),
+      value: props.settings.isForm,
+    },
+    {
+      key: 'iframeSection',
+      label: 'Wrap each section in <iframe>',
+      onChange: () => toggleField('isIframeSection'),
+      value: props.settings.isIframeSection,
+    },
+    {
+      key: 'buttons',
+      label: 'Multiple Buttons',
+      onChange: () => toggleField('isMultiButton'),
+      value: props.settings.isMultiButton,
+    },
+    {
+      key: 'three',
+      label: 'Three fields',
+      onChange: () => toggleField('isThreeField'),
+      value: props.settings.isThreeField,
+    },
+  ]
+
   return (
     <Wrap>
       <Header>
@@ -139,18 +172,7 @@ const LoginSection: React.FC<Props> = props => {
               style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
-            <ConfigMenu
-              areIdsUnique={props.settings.areIdsUnique}
-              isForm={props.settings.isForm}
-              isIframeSection={props.settings.isIframeSection}
-              isMultiButton={props.settings.isMultiButton}
-              isThreeField={props.settings.isThreeField}
-              toggleIsForm={() => toggleField('isForm')}
-              toggleIsIframeSection={() => toggleField('isIframeSection')}
-              toggleMultiButton={() => toggleField('isMultiButton')}
-              toggleIsThreeField={() => toggleField('isThreeField')}
-              toggleUniqueIds={() => toggleField('areIdsUnique')}
-            />
+            <ConfigMenu items={configMenuItems}/>
           </SpecificSettings>
         )}
       </Header>

@@ -9,7 +9,7 @@ import {StoreSettingsCreditCard} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import {connect} from 'react-redux'
 import Fields from './fields'
-import ConfigMenu from './configMenu'
+import ConfigMenu from '../_configMenu'
 
 const Wrap = styled.div`
   display: flex;
@@ -99,6 +99,33 @@ const CreditCardSection: React.FC<Props> = props => {
     return iNodes
   }
 
+  const configMenuItems = [
+    {
+      key: 'unique',
+      label: 'Disable Unique IDs',
+      onChange: () => toggleField('areIdsUnique'),
+      value: !props.settings.areIdsUnique,
+    },
+    {
+      key: 'form',
+      label: 'Wrap each section in <form>',
+      onChange: () => toggleField('isForm'),
+      value: props.settings.isForm,
+    },
+    {
+      key: 'iframeSection',
+      label: 'Wrap each section in <iframe>',
+      onChange: () => toggleField('isIframeSection'),
+      value: props.settings.isIframeSection,
+    },
+    {
+      key: 'buttons',
+      label: 'Multiple Buttons',
+      onChange: () => toggleField('isMultiButton'),
+      value: props.settings.isMultiButton,
+    },
+  ]
+
   return (
     <Wrap>
       <Header>
@@ -129,16 +156,7 @@ const CreditCardSection: React.FC<Props> = props => {
               style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
-            <ConfigMenu
-              areIdsUnique={props.settings.areIdsUnique}
-              isForm={props.settings.isForm}
-              isIframeSection={props.settings.isIframeSection}
-              isMultiButton={props.settings.isMultiButton}
-              toggleIsForm={() => toggleField('isForm')}
-              toggleIsIframeSection={() => toggleField('isIframeSection')}
-              toggleMultiButton={() => toggleField('isMultiButton')}
-              toggleUniqueIds={() => toggleField('areIdsUnique')}
-            />
+            <ConfigMenu items={configMenuItems}/>
           </SpecificSettings>
         )}
       </Header>
