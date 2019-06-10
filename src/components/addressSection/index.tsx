@@ -15,7 +15,8 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
 const Header = styled.div`
   font-size: 16px;

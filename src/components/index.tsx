@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {Skeleton, Spin} from 'antd'
+import {Divider, Skeleton, Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
@@ -26,6 +26,9 @@ const Header = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 26px;
+`
+const DividerWrap = styled.div`
+  width: 75%;
 `
 const SkeleWrap = styled.div`
   margin: auto;
@@ -55,10 +58,15 @@ export const App: React.FC<Props> = props => {
         <>
           <Header>Extension Tester</Header>
 
-          <TestRunner />
           <LoginSection />
           <CreditCardSection />
           <AddressSection />
+
+          <DividerWrap>
+            <Divider />
+          </DividerWrap>
+
+          <TestRunner />
           <IFrameSpawner />
         </>
       )}
