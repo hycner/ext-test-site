@@ -1,6 +1,5 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
-import * as yup from 'yup'
 
 import {Action} from '../../../store'
 import {db} from '../../../lib/database'
@@ -8,6 +7,7 @@ import {dispatch} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
 import {setSettings, setSettingsCommit} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
+import {settingsSchema} from '../../settings/redux';
 import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
@@ -59,47 +59,6 @@ function bootstrapFailure(error: Error): FailureAction {
   }
 }
 
-const settingsSchema = yup
-  .object({
-    address: yup
-      .object({
-        areIdsUnique: yup.boolean().required(),
-        hasEmail: yup.boolean().required(),
-        hasName: yup.boolean().required(),
-        hasPhone: yup.boolean().required(),
-        isForm: yup.boolean().required(),
-        isIframeField: yup.boolean().required(),
-        isIframeSection: yup.boolean().required(),
-        isMultiButton: yup.boolean().required(),
-        isVisible: yup.boolean().required(),
-        iterations: yup.number().required(),
-      })
-      .required(),
-    creditCard: yup
-      .object({
-        areIdsUnique: yup.boolean().required(),
-        isForm: yup.boolean().required(),
-        isIframeSection: yup.boolean().required(),
-        isMultiButton: yup.boolean().required(),
-        isVisible: yup.boolean().required(),
-        iterations: yup.number().required(),
-      })
-      .required(),
-    login: yup
-      .object({
-        areIdsUnique: yup.boolean().required(),
-        isForm: yup.boolean().required(),
-        isIframeSection: yup.boolean().required(),
-        isMultiButton: yup.boolean().required(),
-        isThreeField: yup.boolean().required(),
-        isVisible: yup.boolean().required(),
-        iterations: yup.number().required(),
-      })
-      .required(),
-  })
-  .strict(true)
-  .noUnknown()
-
 function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
 
@@ -126,45 +85,6 @@ function* bootstrapTask(): SagaIterator {
         'Persisted settings key mismatch (login). Wiping settings. Either no existing settings or because of a new settings schema version'
       )
       db.removeItem('settings')
-
-      // todo: instead of doing this should the fields just not render fully until loading is done?
-      // Default starter settings after 'loading' bootstrap starting state
-      yield put(
-        setSettings({
-          section: 'all',
-          settings: {
-            address: {
-              areIdsUnique: true,
-              hasEmail: false,
-              hasName: false,
-              hasPhone: false,
-              isForm: false,
-              isIframeField: false,
-              isIframeSection: false,
-              isMultiButton: false,
-              isVisible: true,
-              iterations: 1,
-            },
-            creditCard: {
-              areIdsUnique: true,
-              isForm: false,
-              isIframeSection: false,
-              isMultiButton: false,
-              isVisible: true,
-              iterations: 1,
-            },
-            login: {
-              areIdsUnique: true,
-              isForm: false,
-              isIframeSection: false,
-              isMultiButton: false,
-              isThreeField: false,
-              isVisible: true,
-              iterations: 1,
-            },
-          },
-        })
-      )
     }
 
     // see if this is a single component/section render of the page (in an iframe)

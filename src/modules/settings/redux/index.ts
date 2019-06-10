@@ -1,5 +1,6 @@
 import {put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
+import * as yup from 'yup';
 
 import {Action} from '../../../store'
 import {db} from '../../../lib/database'
@@ -107,7 +108,7 @@ const initialState: StoreSettings = {
     isIframeField: false,
     isIframeSection: false,
     isMultiButton: false,
-    isVisible: false,
+    isVisible: true,
     iterations: 1,
   },
   creditCard: {
@@ -115,7 +116,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeSection: false,
     isMultiButton: false,
-    isVisible: false,
+    isVisible: true,
     iterations: 1,
   },
   login: {
@@ -124,7 +125,7 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isMultiButton: false,
     isThreeField: false,
-    isVisible: false,
+    isVisible: true,
     iterations: 1,
   },
 }
@@ -140,3 +141,44 @@ export default function settingsReducer(
       return state
   }
 }
+
+export const settingsSchema = yup
+  .object({
+    address: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        hasEmail: yup.boolean().required(),
+        hasName: yup.boolean().required(),
+        hasPhone: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isIframeField: yup.boolean().required(),
+        isIframeSection: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+    creditCard: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isIframeSection: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+    login: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isIframeSection: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
+        isThreeField: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+  })
+  .strict(true)
+  .noUnknown()

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {Spin} from 'antd'
+import {Skeleton, Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
@@ -22,11 +22,19 @@ const Wrap = styled.div`
   align-items: center;
   min-height: 100vh;
 `
-
 const Header = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 26px;
+`
+const SkeleWrap = styled.div`
+  margin: auto;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 50px;
 `
 
 type Props = {
@@ -37,11 +45,12 @@ type Props = {
 
 export const App: React.FC<Props> = props => {
   useEffect(() => {
+    // setTimeout(() => dispatch(bootstrap()), 5000)
     dispatch(bootstrap())
   }, [])
 
-  return (
-    <Spin size="large" spinning={!props.isBootstrapDone}>
+  const content = props.isBootstrapDone
+    ? (
       <Wrap>
         {!props.singleComponentDisplay && !props.singleSectionDisplay && (
           <>
@@ -59,6 +68,17 @@ export const App: React.FC<Props> = props => {
         )}
         {props.singleSectionDisplay && <SingleSection />}
       </Wrap>
+    ) : (
+      <SkeleWrap>
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+      </SkeleWrap>
+    )
+
+  return (
+    <Spin size="large" spinning={!props.isBootstrapDone}>
+      {content}
     </Spin>
   )
 }
