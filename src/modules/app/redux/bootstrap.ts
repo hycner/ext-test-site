@@ -7,7 +7,7 @@ import {dispatch} from '../../../store'
 import {messageCallback} from '../../test/redux/events/tests'
 import {setSettings, setSettingsCommit} from '../../settings/redux'
 import {StoreSettings} from '../../settings/redux'
-import {settingsSchema} from '../../settings/redux';
+import {settingsSchema} from '../../settings/redux'
 import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'

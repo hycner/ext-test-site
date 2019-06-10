@@ -49,32 +49,31 @@ export const App: React.FC<Props> = props => {
     dispatch(bootstrap())
   }, [])
 
-  const content = props.isBootstrapDone
-    ? (
-      <Wrap>
-        {!props.singleComponentDisplay && !props.singleSectionDisplay && (
-          <>
-            <Header>Extension Tester</Header>
+  const content = props.isBootstrapDone ? (
+    <Wrap>
+      {!props.singleComponentDisplay && !props.singleSectionDisplay && (
+        <>
+          <Header>Extension Tester</Header>
 
-            <TestRunner />
-            <LoginSection />
-            <CreditCardSection />
-            <AddressSection />
-            <IFrameSpawner />
-          </>
-        )}
-        {props.singleComponentDisplay && (
-          <SingleComponent component={String(props.singleComponentDisplay) || ''} />
-        )}
-        {props.singleSectionDisplay && <SingleSection />}
-      </Wrap>
-    ) : (
-      <SkeleWrap>
-        <Skeleton active />
-        <Skeleton active />
-        <Skeleton active />
-      </SkeleWrap>
-    )
+          <TestRunner />
+          <LoginSection />
+          <CreditCardSection />
+          <AddressSection />
+          <IFrameSpawner />
+        </>
+      )}
+      {props.singleComponentDisplay && (
+        <SingleComponent component={String(props.singleComponentDisplay) || ''} />
+      )}
+      {props.singleSectionDisplay && <SingleSection />}
+    </Wrap>
+  ) : (
+    <SkeleWrap>
+      <Skeleton active />
+      <Skeleton active />
+      <Skeleton active />
+    </SkeleWrap>
+  )
 
   return (
     <Spin size="large" spinning={!props.isBootstrapDone}>

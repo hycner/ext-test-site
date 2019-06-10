@@ -9,7 +9,7 @@ import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsAddress} from '../../modules/settings/redux'
 import Fields from './fields'
-import ConfigMenu from './configMenu'
+import ConfigMenu from '../_configMenu'
 
 const Wrap = styled.div`
   display: flex;
@@ -112,6 +112,57 @@ const AddressSection: React.FC<Props> = props => {
     return iNodes
   }
 
+  const configMenuItems = [
+    {
+      key: 'unique',
+      label: 'Disable Unique IDs',
+      onChange: () => toggleField('areIdsUnique'),
+      value: !props.settings.areIdsUnique,
+    },
+    {
+      key: 'form',
+      label: 'Wrap each section in <form>',
+      onChange: () => toggleField('isForm'),
+      value: props.settings.isForm,
+    },
+    {
+      key: 'iframeSection',
+      label: 'Wrap each section in <iframe>',
+      onChange: () => toggleField('isIframeSection'),
+      value: props.settings.isIframeSection,
+    },
+    // {
+    //   key: 'iframeField',
+    //   label: 'Wrap each field in <iframe>',
+    //   onChange: () => toggleField('isIframeField'),
+    //   value: props.settings.isIframeField,
+    // },
+    {
+      key: 'buttons',
+      label: 'Multiple Buttons',
+      onChange: () => toggleField('isMultiButton'),
+      value: props.settings.isMultiButton,
+    },
+    {
+      key: 'email',
+      label: 'Email Field',
+      onChange: () => toggleField('hasEmail'),
+      value: props.settings.hasEmail,
+    },
+    {
+      key: 'name',
+      label: 'Name Field',
+      onChange: () => toggleField('hasName'),
+      value: props.settings.hasName,
+    },
+    {
+      key: 'phone',
+      label: 'Phone Field',
+      onChange: () => toggleField('hasPhone'),
+      value: props.settings.hasPhone,
+    },
+  ]
+
   return (
     <Wrap>
       <Header>
@@ -142,24 +193,7 @@ const AddressSection: React.FC<Props> = props => {
               style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
-            <ConfigMenu
-              areIdsUnique={props.settings.areIdsUnique}
-              hasEmail={props.settings.hasEmail}
-              hasName={props.settings.hasName}
-              hasPhone={props.settings.hasPhone}
-              isForm={props.settings.isForm}
-              isIframeField={props.settings.isIframeField}
-              isIframeSection={props.settings.isIframeSection}
-              isMultiButton={props.settings.isMultiButton}
-              toggleHasEmail={() => toggleField('hasEmail')}
-              toggleHasName={() => toggleField('hasName')}
-              toggleHasPhone={() => toggleField('hasPhone')}
-              toggleIsForm={() => toggleField('isForm')}
-              toggleIsIframeField={() => toggleField('isIframeField')}
-              toggleIsIframeSection={() => toggleField('isIframeSection')}
-              toggleMultiButton={() => toggleField('isMultiButton')}
-              toggleUniqueIds={() => toggleField('areIdsUnique')}
-            />
+            <ConfigMenu items={configMenuItems} />
           </SpecificSettings>
         )}
       </Header>

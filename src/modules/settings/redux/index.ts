@@ -1,6 +1,6 @@
 import {put, select, takeEvery} from 'redux-saga/effects'
 import {SagaIterator} from 'redux-saga'
-import * as yup from 'yup';
+import * as yup from 'yup'
 
 import {Action} from '../../../store'
 import {db} from '../../../lib/database'
