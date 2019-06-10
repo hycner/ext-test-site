@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input, Select, Switch} from 'antd'
-import {Store} from '../../modules/rootReducer'
 import {connect} from 'react-redux'
+
+import {Store} from '../../modules/rootReducer'
 
 type ExpirationValues = Array<{
   label: string

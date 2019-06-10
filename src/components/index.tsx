@@ -12,6 +12,7 @@ import AddressSection from './addressSection'
 import CreditCardSection from './creditCardSection'
 import IFrameSpawner from './iframeSpawner'
 import LoginSection from './loginSection'
+import PasswordResetSection from './passwordResetSection'
 import SingleComponent from './singleComponent'
 import SingleSection from './singleSection'
 import TestRunner from './testRunner'
@@ -61,6 +62,7 @@ export const App: React.FC<Props> = props => {
           <LoginSection />
           <CreditCardSection />
           <AddressSection />
+          <PasswordResetSection />
 
           <DividerWrap>
             <Divider />

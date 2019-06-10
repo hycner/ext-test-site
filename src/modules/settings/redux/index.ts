@@ -9,8 +9,9 @@ const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'
 const RESET = 'settings/RESET'
 
+export type SectionTypes = 'address' | 'creditCard' | 'login' | 'passwordReset'
 type InitActionPayload = {
-  section: 'address' | 'creditCard' | 'login' | 'all'
+  section: SectionTypes | 'all'
   settings:
     | StoreSettings
     | {
@@ -99,10 +100,21 @@ export type StoreSettingsLogin = {
   isVisible: boolean
   iterations: number
 }
+export type StoreSettingsPasswordReset = {
+  areIdsUnique: boolean
+  isConfirmNew: boolean
+  isConfirmOld: boolean
+  isForm: boolean
+  isIframeSection: boolean
+  isMultiButton: boolean
+  isVisible: boolean
+  iterations: number
+}
 export type StoreSettings = {
   address: StoreSettingsAddress
   creditCard: StoreSettingsCreditCard
   login: StoreSettingsLogin
+  passwordReset: StoreSettingsPasswordReset
   [section: string]: Object
 }
 const initialState: StoreSettings = {
@@ -132,6 +144,16 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isMultiButton: false,
     isThreeField: false,
+    isVisible: true,
+    iterations: 1,
+  },
+  passwordReset: {
+    areIdsUnique: true,
+    isConfirmNew: true,
+    isConfirmOld: true,
+    isForm: false,
+    isIframeSection: false,
+    isMultiButton: false,
     isVisible: true,
     iterations: 1,
   },
@@ -184,6 +206,18 @@ export const settingsSchema = yup
         isIframeSection: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isThreeField: yup.boolean().required(),
+        isVisible: yup.boolean().required(),
+        iterations: yup.number().required(),
+      })
+      .required(),
+    passwordReset: yup
+      .object({
+        areIdsUnique: yup.boolean().required(),
+        isConfirmNew: yup.boolean().required(),
+        isConfirmOld: yup.boolean().required(),
+        isForm: yup.boolean().required(),
+        isIframeSection: yup.boolean().required(),
+        isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
       })

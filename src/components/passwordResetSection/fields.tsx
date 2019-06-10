@@ -29,35 +29,36 @@ const BTN_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
+  isConfirmNew: boolean
+  isConfirmOld: boolean
   isForm: boolean
   isMultiButton: boolean
-  isThreeField: boolean
   iteration: number
 }
 
 const Fields: React.FC<Props> = props => {
-  const [accountId, setAccountId] = useState<string>('')
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [oldPassword, setOldPassword] = useState<string>('')
+  const [newPassword, setNewPassword] = useState<string>('')
+  const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
 
   function onSubmit() {
-    console.log(`Login (${props.iteration}) submit clicked`)
+    console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
-      username,
-      password,
-      ...(props.isThreeField && {accountId}),
+      ...(props.isConfirmOld && {oldPassword}),
+      newPassword,
+      ...(props.isConfirmNew && {confirmNewPassword}),
     })
   }
 
   function onClear() {
-    console.log(`Login (${props.iteration}) clear clicked`)
-    setAccountId('')
-    setUsername('')
-    setPassword('')
+    console.log(`Password Reset (${props.iteration}) clear clicked`)
+    setOldPassword('')
+    setNewPassword('')
+    setConfirmNewPassword('')
   }
 
   function onNothing() {
-    console.log(`Login (${props.iteration}) nothing clicked`)
+    console.log(`Password Reset (${props.iteration}) nothing clicked`)
   }
 
   let Form = props.isForm ? RealForm : FakeForm
@@ -68,29 +69,31 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
-        {props.isThreeField && (
-          <Input
+        {props.isConfirmOld && (
+          <Input.Password
             style={FIELD_STYLE}
-            id={`accountId${iteration}`}
-            placeholder="Account ID"
-            value={accountId}
-            onChange={e => setAccountId(e.target.value)}
+            id={`oldPassword${iteration}`}
+            placeholder="Current Password"
+            value={oldPassword}
+            onChange={e => setOldPassword(e.target.value)}
           />
         )}
-        <Input
-          style={FIELD_STYLE}
-          id={`username${iteration}`}
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
         <Input.Password
           style={FIELD_STYLE}
-          id={`password${iteration}`}
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          id={`newPassword${iteration}`}
+          placeholder="New Password"
+          value={newPassword}
+          onChange={e => setNewPassword(e.target.value)}
         />
+        {props.isConfirmNew && (
+          <Input.Password
+            style={FIELD_STYLE}
+            id={`confirmNewPassword${iteration}`}
+            placeholder="Confirm New Password"
+            value={confirmNewPassword}
+            onChange={e => setConfirmNewPassword(e.target.value)}
+          />
+        )}
 
         <ButtonsWrap>
           <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
@@ -113,16 +116,17 @@ const Fields: React.FC<Props> = props => {
 }
 
 function mapStateToProps(state: Store) {
-  const lSettings = state.settings.login
+  const prSettings = state.settings.passwordReset
 
   return {
-    areIdsUnique: lSettings.areIdsUnique,
-    isForm: lSettings.isForm,
-    isIframeSection: lSettings.isIframeSection,
-    isThreeField: lSettings.isThreeField,
-    isMultiButton: lSettings.isMultiButton,
+    areIdsUnique: prSettings.areIdsUnique,
+    isConfirmNew: prSettings.isConfirmNew,
+    isConfirmOld: prSettings.isConfirmOld,
+    isForm: prSettings.isForm,
+    isIframeSection: prSettings.isIframeSection,
+    isMultiButton: prSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
-    ...(state.app.bootstrap.singleSectionDisplay === 'login' && {
+    ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {
       iteration: state.app.bootstrap.singleDisplayIteration,
     }),
   }

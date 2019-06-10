@@ -6,6 +6,7 @@ import {db} from '../../../lib/database'
 import {messageCallback} from '../../test/redux/events/tests'
 import {
   resetSettings,
+  SectionTypes,
   setSettings,
   setSettingsCommit,
   settingsSchema,
@@ -13,7 +14,7 @@ import {
 } from '../../settings/redux'
 import singleSection from '../../../components/singleSection'
 
-export type SingleSectionDisplay = '' | 'address' | 'creditCard' | 'login'
+export type SingleSectionDisplay = '' | SectionTypes
 
 const INIT = 'app/bootstrap'
 const PENDING = 'app/bootstrap/PENDING'
@@ -107,6 +108,7 @@ function* bootstrapTask(): SagaIterator {
           case 'address':
           case 'creditCard':
           case 'login':
+          case 'passwordReset':
             singleSectionDisplay = singleSection
         }
       }

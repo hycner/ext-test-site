@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
 
 import {
+  SectionTypes,
   setSettings,
   StoreSettingsAddress,
   StoreSettingsCreditCard,
@@ -16,6 +17,7 @@ import ConfigMenu from './_configMenu'
 import AddressFields from './addressSection/fields'
 import CreditCardFields from './creditCardSection/fields'
 import LoginFields from './loginSection/fields'
+import PasswordResetFields from './passwordResetSection/fields'
 
 const Wrap = styled.div`
   display: flex;
@@ -48,10 +50,14 @@ const DISABLED_ICON_STYLE = {
 type Props = {
   configMenuItems: ConfigMenuItems
   description: string
-  fieldsComponent: typeof AddressFields | typeof CreditCardFields | typeof LoginFields
+  fieldsComponent:
+    | typeof AddressFields
+    | typeof CreditCardFields
+    | typeof LoginFields
+    | typeof PasswordResetFields
   iterationHeight: number
   label: string
-  section: 'address' | 'creditCard' | 'login' // todo: combine this with other similar types as a base
+  section: SectionTypes
   settings: StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin
   singleSectionDisplay: SingleSectionDisplay
 }
