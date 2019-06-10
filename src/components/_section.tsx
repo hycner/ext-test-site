@@ -68,6 +68,7 @@ const LoginSection: React.FC<Props> = props => {
       })
     )
   }
+
   function increaseIterations() {
     dispatch(
       setSettings({
@@ -141,7 +142,10 @@ const LoginSection: React.FC<Props> = props => {
               style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
               onClick={decreaseIterations}
             />
-            <ConfigMenu items={props.configMenuItems} />
+            <ConfigMenu
+              items={props.configMenuItems}
+              toggleFunc={toggleField}
+            />
           </SpecificSettings>
         )}
       </Header>

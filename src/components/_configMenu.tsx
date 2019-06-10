@@ -15,11 +15,11 @@ const ICON_STYLE = {
 export type ConfigMenuItems = Array<{
   key: string
   label: any
-  onChange: () => void
   value: boolean
 }>
 type Props = {
   items: ConfigMenuItems
+  toggleFunc: (key: string) => void
 }
 
 const configMenu: React.FC<Props> = props => {
@@ -27,7 +27,7 @@ const configMenu: React.FC<Props> = props => {
     <div>
       {props.items.map(x => (
         <SettingWrap key={x.key}>
-          <Checkbox checked={x.value} onChange={x.onChange}>
+          <Checkbox checked={x.value} onChange={() => props.toggleFunc(x.key)}>
             {x.label}
           </Checkbox>
         </SettingWrap>

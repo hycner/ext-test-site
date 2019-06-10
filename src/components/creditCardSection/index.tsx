@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {setSettings} from '../../modules/settings/redux'
-import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsCreditCard} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
@@ -16,42 +14,25 @@ type Props = {
 }
 
 const CreditCardSection: React.FC<Props> = props => {
-  function toggleField(
-    field: 'areIdsUnique' | 'isForm' | 'isIframeSection' | 'isMultiButton' | 'isVisible'
-  ) {
-    dispatch(
-      setSettings({
-        section: 'creditCard',
-        settings: {
-          [field]: !props.settings[field],
-        },
-      })
-    )
-  }
-
   const configMenuItems = [
     {
-      key: 'unique',
+      key: 'areIdsUnique',
       label: 'Disable Unique IDs',
-      onChange: () => toggleField('areIdsUnique'),
       value: !props.settings.areIdsUnique,
     },
     {
-      key: 'form',
+      key: 'isForm',
       label: 'Wrap each section in <form>',
-      onChange: () => toggleField('isForm'),
       value: props.settings.isForm,
     },
     {
-      key: 'iframeSection',
+      key: 'isIframeSection',
       label: 'Wrap each section in <iframe>',
-      onChange: () => toggleField('isIframeSection'),
       value: props.settings.isIframeSection,
     },
     {
-      key: 'buttons',
+      key: 'isMultiButton',
       label: 'Multiple Buttons',
-      onChange: () => toggleField('isMultiButton'),
       value: props.settings.isMultiButton,
     },
   ]

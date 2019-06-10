@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
-import {setSettings, StoreSettingsAddress} from '../../modules/settings/redux'
-import {dispatch} from '../../store'
+import {StoreSettingsAddress} from '../../modules/settings/redux'
 import {Store} from '../../modules/rootReducer'
 
 import Fields from './fields'
@@ -15,75 +14,45 @@ type Props = {
 }
 
 const AddressSection: React.FC<Props> = props => {
-  function toggleField(
-    field:
-      | 'areIdsUnique'
-      | 'hasEmail'
-      | 'hasName'
-      | 'hasPhone'
-      | 'isForm'
-      | 'isIframeField'
-      | 'isIframeSection'
-      | 'isMultiButton'
-      | 'isVisible'
-  ) {
-    dispatch(
-      setSettings({
-        section: 'address',
-        settings: {
-          [field]: !props.settings[field],
-        },
-      })
-    )
-  }
-
   const configMenuItems = [
     {
-      key: 'unique',
+      key: 'areIdsUnique',
       label: 'Disable Unique IDs',
-      onChange: () => toggleField('areIdsUnique'),
       value: !props.settings.areIdsUnique,
     },
     {
-      key: 'form',
+      key: 'isForm',
       label: 'Wrap each section in <form>',
-      onChange: () => toggleField('isForm'),
       value: props.settings.isForm,
     },
     {
-      key: 'iframeSection',
+      key: 'isIframeSection',
       label: 'Wrap each section in <iframe>',
-      onChange: () => toggleField('isIframeSection'),
       value: props.settings.isIframeSection,
     },
     // {
-    //   key: 'iframeField',
+    //   key: 'isIframeField',
     //   label: 'Wrap each field in <iframe>',
-    //   onChange: () => toggleField('isIframeField'),
     //   value: props.settings.isIframeField,
     // },
     {
-      key: 'buttons',
+      key: 'isMultiButton',
       label: 'Multiple Buttons',
-      onChange: () => toggleField('isMultiButton'),
       value: props.settings.isMultiButton,
     },
     {
-      key: 'email',
+      key: 'hasEmail',
       label: 'Email Field',
-      onChange: () => toggleField('hasEmail'),
       value: props.settings.hasEmail,
     },
     {
-      key: 'name',
+      key: 'hasName',
       label: 'Name Field',
-      onChange: () => toggleField('hasName'),
       value: props.settings.hasName,
     },
     {
-      key: 'phone',
+      key: 'hasPhone',
       label: 'Phone Field',
-      onChange: () => toggleField('hasPhone'),
       value: props.settings.hasPhone,
     },
   ]
