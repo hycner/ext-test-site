@@ -12,13 +12,14 @@ const ICON_STYLE = {
   fontSize: 18,
 }
 
+export type ConfigMenuItems = Array<{
+  key: string
+  label: any
+  onChange: () => void
+  value: boolean
+}>
 type Props = {
-  items: Array<{
-    key: string
-    label: any
-    onChange: () => void
-    value: boolean
-  }>
+  items: ConfigMenuItems
 }
 
 const configMenu: React.FC<Props> = props => {

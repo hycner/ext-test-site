@@ -5,9 +5,9 @@ import {Divider, Skeleton, Spin} from 'antd'
 
 import {Store} from '../modules/rootReducer'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
-
 import {dispatch} from '../store'
 import {bootstrap} from '../modules/app/redux/bootstrap'
+
 import AddressSection from './addressSection'
 import CreditCardSection from './creditCardSection'
 import IFrameSpawner from './iframeSpawner'
