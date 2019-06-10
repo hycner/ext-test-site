@@ -7,8 +7,8 @@ import {Store} from '../../modules/rootReducer'
 import {StoreSettingsLogin} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 
-import Section from '../_section'
 import Fields from './fields'
+import Section from '../_section'
 
 type Props = {
   settings: StoreSettingsLogin
