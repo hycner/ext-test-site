@@ -41,4 +41,4 @@ const configMenu: React.FC<Props> = props => {
     </Popover>
   )
 }
-export default configMenu
+export default React.memo(configMenu)

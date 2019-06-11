@@ -107,4 +107,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(React.memo(App))

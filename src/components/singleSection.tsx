@@ -33,4 +33,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(SingleSection)
+export default connect(mapStateToProps)(React.memo(SingleSection))

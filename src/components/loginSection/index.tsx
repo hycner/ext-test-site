@@ -71,4 +71,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(LoginSection)
+export default connect(mapStateToProps)(React.memo(LoginSection))

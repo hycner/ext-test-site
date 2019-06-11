@@ -77,4 +77,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(PasswordResetSection)
+export default connect(mapStateToProps)(React.memo(PasswordResetSection))

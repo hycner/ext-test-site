@@ -65,4 +65,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(CreditCardSection)
+export default connect(mapStateToProps)(React.memo(CreditCardSection))

@@ -74,7 +74,7 @@ const IFrameSpawner: React.FC<Props> = props => {
       {iframes.map((x: Iframe, i: number) => (
         <IframeWrap key={`${i}${x.url}`}>
           <div>URL: {x.url}</div>
-          <iframe src={x.url} width={500} height={350} />
+          <iframe src={x.url} width={500} height={350} title={`${i}${x.url}`} />
         </IframeWrap>
       ))}
     </Wrap>
@@ -87,4 +87,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(IFrameSpawner)
+export default connect(mapStateToProps)(React.memo(IFrameSpawner))

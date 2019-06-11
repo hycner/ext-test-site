@@ -17,4 +17,4 @@ const maybeLabel: React.FC<Props> = props => {
 
   return <Label htmlFor={props.target}>{props.label}</Label>
 }
-export default maybeLabel
+export default React.memo(maybeLabel)

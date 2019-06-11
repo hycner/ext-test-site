@@ -87,4 +87,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(AddressSection)
+export default connect(mapStateToProps)(React.memo(AddressSection))

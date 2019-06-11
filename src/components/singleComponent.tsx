@@ -21,4 +21,4 @@ const SingleComponent: React.FC<Props> = props => {
     />
   )
 }
-export default SingleComponent
+export default React.memo(SingleComponent)

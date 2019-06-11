@@ -156,7 +156,7 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(Fields)
+export default connect(mapStateToProps)(React.memo(Fields))
 
 // Helper functions
 

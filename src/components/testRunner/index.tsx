@@ -68,4 +68,4 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(TestRunner)
+export default connect(mapStateToProps)(React.memo(TestRunner))

@@ -104,6 +104,7 @@ const LoginSection: React.FC<Props> = props => {
         iNodes.push(
           <iframe
             key={i}
+            title={`${props.section}${i + 1}`}
             src={`${window.location.href}?singleSection=${props.section}&iteration=${i + 1}`}
             width="320"
             height={props.iterationHeight}
@@ -157,4 +158,4 @@ const LoginSection: React.FC<Props> = props => {
   )
 }
 
-export default LoginSection
+export default React.memo(LoginSection)
