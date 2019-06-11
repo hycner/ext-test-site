@@ -32,5 +32,5 @@ jobs:
 
       # run tests!
       - run: npm run format:dry
-      - run: npm run types
+      - run: npm run types:ci
       - run: npm run test:ci

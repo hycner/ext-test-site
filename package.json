@@ -15,8 +15,8 @@
     "eject": "react-scripts eject",
     "format": "./node_modules/.bin/prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:dry": "./node_modules/.bin/prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
-    "types": "./node_modules/.bin/tsc",
-    "types:watch": "./node_modules/.bin/tsc --watch"
+    "types": "./node_modules/.bin/tsc --watch",
+    "types:ci": "./node_modules/.bin/tsc"
   },
   "dependencies": {
     "antd": "3.19.2",
@@ -34,14 +34,14 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.13",
-    "@types/lodash": "4.14.133",
-    "@types/node": "12.0.4",
+    "@types/lodash": "4.14.134",
+    "@types/node": "12.0.8",
     "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "7.0.9",
     "@types/redux-logger": "3.0.7",
     "@types/styled-components": "4.1.8",
-    "@types/yup": "0.26.14",
+    "@types/yup": "0.26.15",
     "babel-plugin-import": "1.12.0",
     "customize-cra": "0.2.13",
     "enzyme": "3.10.0",

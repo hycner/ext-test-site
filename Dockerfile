@@ -11,5 +11,5 @@ COPY ./ ./
 
 # Run tests
 RUN npm run format:dry && \
-  npm run types && \
+  npm run types:ci && \
   npm run test:ci
