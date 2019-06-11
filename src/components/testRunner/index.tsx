@@ -12,7 +12,8 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   width: 300px;
 `
 

@@ -28,6 +28,11 @@ const Header = styled.div`
   margin-bottom: 20px;
   font-size: 26px;
 `
+const SubAreaWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
 const DividerWrap = styled.div`
   width: 75%;
 `
@@ -59,10 +64,12 @@ export const App: React.FC<Props> = props => {
         <>
           <Header>Extension Tester</Header>
 
-          <LoginSection />
-          <CreditCardSection />
-          <AddressSection />
-          <PasswordResetSection />
+          <SubAreaWrap>
+            <LoginSection />
+            <CreditCardSection />
+            <AddressSection />
+            <PasswordResetSection />
+          </SubAreaWrap>
 
           <DividerWrap>
             <Divider />
