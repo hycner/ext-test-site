@@ -4,6 +4,7 @@ import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -33,6 +34,7 @@ type Props = {
   hasName: boolean
   hasPhone: boolean
   isForm: boolean
+  isLabelled: boolean
   isIframeField: boolean
   isMultiButton: boolean
   iteration: number
@@ -91,34 +93,45 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Wrap>
         {props.hasName && (
-          <Input
-            style={FIELD_STYLE}
-            id={`name${iteration}`}
-            placeholder="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
+          <>
+            <MaybeLabel isActive={props.isLabelled} label="Name" target={`name${iteration}`} />
+            <Input
+              style={FIELD_STYLE}
+              id={`name${iteration}`}
+              placeholder="Name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </>
         )}
+
         <div style={{display: 'flex', width: '100%'}}>
           {props.hasEmail && (
-            <Input
-              style={FIELD_STYLE}
-              id={`email${iteration}`}
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
+            <div style={FIELD_STYLE}>
+              <MaybeLabel isActive={props.isLabelled} label="Email" target={`email${iteration}`} />
+              <Input
+                id={`email${iteration}`}
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+            </div>
           )}
+
           {props.hasPhone && (
-            <Input
-              style={FIELD_STYLE}
-              id={`phone${iteration}`}
-              placeholder="Phone"
-              value={phone}
-              onChange={e => setPhone(e.target.value)}
-            />
+            <div style={FIELD_STYLE}>
+              <MaybeLabel isActive={props.isLabelled} label="Phone" target={`phone${iteration}`} />
+              <Input
+                id={`phone${iteration}`}
+                placeholder="Phone"
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+              />
+            </div>
           )}
         </div>
+
+        <MaybeLabel isActive={props.isLabelled} label="Street 1" target={`streetOne${iteration}`} />
         <Input
           style={FIELD_STYLE}
           id={`streetOne${iteration}`}
@@ -126,6 +139,8 @@ const Fields: React.FC<Props> = props => {
           value={streetOne}
           onChange={e => setStreetOne(e.target.value)}
         />
+
+        <MaybeLabel isActive={props.isLabelled} label="Street 2" target={`streetTwo${iteration}`} />
         <Input
           style={FIELD_STYLE}
           id={`streetTwo${iteration}`}
@@ -133,6 +148,8 @@ const Fields: React.FC<Props> = props => {
           value={streetTwo}
           onChange={e => setStreetTwo(e.target.value)}
         />
+
+        <MaybeLabel isActive={props.isLabelled} label="City" target={`city${iteration}`} />
         <Input
           style={FIELD_STYLE}
           id={`city${iteration}`}
@@ -140,22 +157,30 @@ const Fields: React.FC<Props> = props => {
           value={city}
           onChange={e => setCity(e.target.value)}
         />
+
         <div style={{display: 'flex'}}>
-          <Input
-            style={FIELD_STYLE}
-            id={`state${iteration}`}
-            placeholder="State"
-            value={state}
-            onChange={e => setState(e.target.value)}
-          />
-          <Input
-            style={FIELD_STYLE}
-            id={`zip${iteration}`}
-            placeholder="Zip"
-            value={zip}
-            onChange={e => setZip(e.target.value)}
-          />
+          <div style={FIELD_STYLE}>
+            <MaybeLabel isActive={props.isLabelled} label="State" target={`state${iteration}`} />
+            <Input
+              id={`state${iteration}`}
+              placeholder="State"
+              value={state}
+              onChange={e => setState(e.target.value)}
+            />
+          </div>
+
+          <div style={FIELD_STYLE}>
+            <MaybeLabel isActive={props.isLabelled} label="Zip" target={`zip${iteration}`} />
+            <Input
+              id={`zip${iteration}`}
+              placeholder="Zip"
+              value={zip}
+              onChange={e => setZip(e.target.value)}
+            />
+          </div>
         </div>
+
+        <MaybeLabel isActive={props.isLabelled} label="Country" target={`country${iteration}`} />
         <Input
           style={FIELD_STYLE}
           id={`country${iteration}`}
@@ -193,6 +218,7 @@ function mapStateToProps(state: Store) {
     hasName: aSettings.hasName,
     hasPhone: aSettings.hasPhone,
     isForm: aSettings.isForm,
+    isLabelled: aSettings.isLabelled,
     isIframeField: aSettings.isIframeField,
     isMultiButton: aSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

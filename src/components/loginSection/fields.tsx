@@ -4,6 +4,7 @@ import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -30,6 +31,7 @@ const BTN_STYLE = {
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   isThreeField: boolean
   iteration: number
@@ -69,14 +71,23 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Wrap>
         {props.isThreeField && (
-          <Input
-            style={FIELD_STYLE}
-            id={`accountId${iteration}`}
-            placeholder="Account ID"
-            value={accountId}
-            onChange={e => setAccountId(e.target.value)}
-          />
+          <>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              label="Account ID"
+              target={`accountId${iteration}`}
+            />
+            <Input
+              style={FIELD_STYLE}
+              id={`accountId${iteration}`}
+              placeholder="Account ID"
+              value={accountId}
+              onChange={e => setAccountId(e.target.value)}
+            />
+          </>
         )}
+
+        <MaybeLabel isActive={props.isLabelled} label="Username" target={`username${iteration}`} />
         <Input
           style={FIELD_STYLE}
           id={`username${iteration}`}
@@ -84,6 +95,8 @@ const Fields: React.FC<Props> = props => {
           value={username}
           onChange={e => setUsername(e.target.value)}
         />
+
+        <MaybeLabel isActive={props.isLabelled} label="Password" target={`password${iteration}`} />
         <Input.Password
           style={FIELD_STYLE}
           id={`password${iteration}`}
@@ -119,6 +132,7 @@ function mapStateToProps(state: Store) {
     areIdsUnique: lSettings.areIdsUnique,
     isForm: lSettings.isForm,
     isIframeSection: lSettings.isIframeSection,
+    isLabelled: lSettings.isLabelled,
     isThreeField: lSettings.isThreeField,
     isMultiButton: lSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

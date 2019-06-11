@@ -35,6 +35,11 @@ const CreditCardSection: React.FC<Props> = props => {
       label: 'Multiple Buttons',
       value: props.settings.isMultiButton,
     },
+    {
+      key: 'isLabelled',
+      label: 'Each Field has a <label>',
+      value: props.settings.isLabelled,
+    },
   ]
 
   let iterationHeight = 228

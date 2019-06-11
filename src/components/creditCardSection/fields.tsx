@@ -4,6 +4,7 @@ import {Button, Input, Select, Switch} from 'antd'
 import {connect} from 'react-redux'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeLabel from '../_maybeLabel'
 
 type ExpirationValues = Array<{
   label: string
@@ -58,6 +59,7 @@ const BTN_STYLE = {
 type Props = {
   areIdsUnique: boolean
   isForm: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -102,6 +104,11 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
+        <MaybeLabel
+          isActive={props.isLabelled}
+          label="Name on Card"
+          target={`cardholderName${iteration}`}
+        />
         <Input
           id={`cardholderName${iteration}`}
           placeholder="Name on Card"
@@ -110,6 +117,11 @@ const Fields: React.FC<Props> = props => {
           onChange={e => setName(e.target.value)}
         />
 
+        <MaybeLabel
+          isActive={props.isLabelled}
+          label="Card Number"
+          target={`cardNumber${iteration}`}
+        />
         <Input
           id={`cardNumber${iteration}`}
           placeholder="Card Number"
@@ -119,51 +131,73 @@ const Fields: React.FC<Props> = props => {
         />
 
         <div style={{display: 'flex'}}>
-          <Input
-            id={`cvv${iteration}`}
-            placeholder="CVV"
-            style={FIELD_STYLE}
-            value={cvv}
-            onChange={e => setCvv(e.target.value)}
-          />
+          <div style={FIELD_STYLE}>
+            <MaybeLabel isActive={props.isLabelled} label="CVV" target={`cvv${iteration}`} />
+            <Input
+              id={`cvv${iteration}`}
+              placeholder="CVV"
+              value={cvv}
+              onChange={e => setCvv(e.target.value)}
+            />
+          </div>
 
           {!isAlternateDateFormat && (
-            <Input
-              id={`expiration-date${iteration}`}
-              placeholder="Expiration Date"
-              style={FIELD_STYLE}
-              value={expDateFull}
-              onChange={e => setExpDateFull(e.target.value)}
-            />
+            <div style={FIELD_STYLE}>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Exp Date"
+                target={`expiration-date${iteration}`}
+              />
+              <Input
+                id={`expiration-date${iteration}`}
+                placeholder="Expiration Date"
+                value={expDateFull}
+                onChange={e => setExpDateFull(e.target.value)}
+              />
+            </div>
           )}
 
           {isAlternateDateFormat && (
             <>
-              <Select
-                id={`expiration-month${iteration}`}
-                style={{...FIELD_STYLE, flex: '120px 0 0'}}
-                value={expMonth}
-                onChange={(val: string) => setExpMonth(val)}
-              >
-                {MONTHS.map(x => (
-                  <Select.Option key={x.value} value={x.value}>
-                    {x.label}
-                  </Select.Option>
-                ))}
-              </Select>
+              <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
+                <MaybeLabel
+                  isActive={props.isLabelled}
+                  label="Exp Month"
+                  target={`expiration-month${iteration}`}
+                />
+                <Select
+                  id={`expiration-month${iteration}`}
+                  value={expMonth}
+                  onChange={(val: string) => setExpMonth(val)}
+                  style={{width: '100%'}}
+                >
+                  {MONTHS.map(x => (
+                    <Select.Option key={x.value} value={x.value}>
+                      {x.label}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
 
-              <Select
-                id={`expiration-year${iteration}`}
-                style={{...FIELD_STYLE, flex: '80px 0 0'}}
-                value={expYear}
-                onChange={(val: string) => setExpYear(val)}
-              >
-                {YEARS.map(x => (
-                  <Select.Option key={x.value} value={x.value}>
-                    {x.label}
-                  </Select.Option>
-                ))}
-              </Select>
+              <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
+                <MaybeLabel
+                  isActive={props.isLabelled}
+                  label="Exp Year"
+                  target={`expiration-year${iteration}`}
+                />
+                <Select
+                  id={`expiration-year${iteration}`}
+                  value={expYear}
+                  onChange={(val: string) => setExpYear(val)}
+                  style={{width: '100%'}}
+                >
+                  {YEARS.map(x => (
+                    <Select.Option key={x.value} value={x.value}>
+                      {x.label}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
             </>
           )}
         </div>
@@ -199,6 +233,7 @@ function mapStateToProps(state: Store) {
   return {
     areIdsUnique: cSettings.areIdsUnique,
     isForm: cSettings.isForm,
+    isLabelled: cSettings.isLabelled,
     isMultiButton: cSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {

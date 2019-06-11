@@ -79,6 +79,7 @@ export type StoreSettingsAddress = {
   isForm: boolean
   isIframeField: boolean
   isIframeSection: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -87,6 +88,7 @@ export type StoreSettingsCreditCard = {
   areIdsUnique: boolean
   isForm: boolean
   isIframeSection: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -95,6 +97,7 @@ export type StoreSettingsLogin = {
   areIdsUnique: boolean
   isForm: boolean
   isIframeSection: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   isThreeField: boolean
   isVisible: boolean
@@ -106,6 +109,7 @@ export type StoreSettingsPasswordReset = {
   isConfirmOld: boolean
   isForm: boolean
   isIframeSection: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -126,6 +130,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeField: false,
     isIframeSection: false,
+    isLabelled: false,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
@@ -134,6 +139,7 @@ const initialState: StoreSettings = {
     areIdsUnique: true,
     isForm: false,
     isIframeSection: false,
+    isLabelled: false,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
@@ -142,6 +148,7 @@ const initialState: StoreSettings = {
     areIdsUnique: true,
     isForm: false,
     isIframeSection: false,
+    isLabelled: false,
     isMultiButton: false,
     isThreeField: false,
     isVisible: true,
@@ -153,6 +160,7 @@ const initialState: StoreSettings = {
     isConfirmOld: true,
     isForm: false,
     isIframeSection: false,
+    isLabelled: false,
     isMultiButton: false,
     isVisible: false,
     iterations: 1,
@@ -184,6 +192,7 @@ export const settingsSchema = yup
         isForm: yup.boolean().required(),
         isIframeField: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
+        isLabelled: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
@@ -194,6 +203,7 @@ export const settingsSchema = yup
         areIdsUnique: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
+        isLabelled: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
@@ -204,6 +214,7 @@ export const settingsSchema = yup
         areIdsUnique: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
+        isLabelled: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isThreeField: yup.boolean().required(),
         isVisible: yup.boolean().required(),
@@ -217,6 +228,7 @@ export const settingsSchema = yup
         isConfirmOld: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
+        isLabelled: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),

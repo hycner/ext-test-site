@@ -36,6 +36,11 @@ const LoginSection: React.FC<Props> = props => {
       value: props.settings.isMultiButton,
     },
     {
+      key: 'isLabelled',
+      label: 'Each Field has a <label>',
+      value: props.settings.isLabelled,
+    },
+    {
       key: 'isThreeField',
       label: 'Three fields',
       value: props.settings.isThreeField,

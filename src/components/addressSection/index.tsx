@@ -41,6 +41,11 @@ const AddressSection: React.FC<Props> = props => {
       value: props.settings.isMultiButton,
     },
     {
+      key: 'isLabelled',
+      label: 'Each Field has a <label>',
+      value: props.settings.isLabelled,
+    },
+    {
       key: 'hasEmail',
       label: 'Email Field',
       value: props.settings.hasEmail,

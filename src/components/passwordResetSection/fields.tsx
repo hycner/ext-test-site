@@ -4,6 +4,7 @@ import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -32,6 +33,7 @@ type Props = {
   isConfirmNew: boolean
   isConfirmOld: boolean
   isForm: boolean
+  isLabelled: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -70,14 +72,27 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Wrap>
         {props.isConfirmOld && (
-          <Input.Password
-            style={FIELD_STYLE}
-            id={`oldPassword${iteration}`}
-            placeholder="Current Password"
-            value={oldPassword}
-            onChange={e => setOldPassword(e.target.value)}
-          />
+          <>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              label="Current Password"
+              target={`oldPassword${iteration}`}
+            />
+            <Input.Password
+              style={FIELD_STYLE}
+              id={`oldPassword${iteration}`}
+              placeholder="Current Password"
+              value={oldPassword}
+              onChange={e => setOldPassword(e.target.value)}
+            />
+          </>
         )}
+
+        <MaybeLabel
+          isActive={props.isLabelled}
+          label="New Password"
+          target={`newPassword${iteration}`}
+        />
         <Input.Password
           style={FIELD_STYLE}
           id={`newPassword${iteration}`}
@@ -85,14 +100,22 @@ const Fields: React.FC<Props> = props => {
           value={newPassword}
           onChange={e => setNewPassword(e.target.value)}
         />
+
         {props.isConfirmNew && (
-          <Input.Password
-            style={FIELD_STYLE}
-            id={`confirmNewPassword${iteration}`}
-            placeholder="Confirm New Password"
-            value={confirmNewPassword}
-            onChange={e => setConfirmNewPassword(e.target.value)}
-          />
+          <>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              label="Confirm New Password"
+              target={`confirmNewPassword${iteration}`}
+            />
+            <Input.Password
+              style={FIELD_STYLE}
+              id={`confirmNewPassword${iteration}`}
+              placeholder="Confirm New Password"
+              value={confirmNewPassword}
+              onChange={e => setConfirmNewPassword(e.target.value)}
+            />
+          </>
         )}
 
         <ButtonsWrap>
@@ -124,6 +147,7 @@ function mapStateToProps(state: Store) {
     isConfirmOld: prSettings.isConfirmOld,
     isForm: prSettings.isForm,
     isIframeSection: prSettings.isIframeSection,
+    isLabelled: prSettings.isLabelled,
     isMultiButton: prSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {

@@ -36,6 +36,11 @@ const PasswordResetSection: React.FC<Props> = props => {
       value: props.settings.isMultiButton,
     },
     {
+      key: 'isLabelled',
+      label: 'Each Field has a <label>',
+      value: props.settings.isLabelled,
+    },
+    {
       key: 'isConfirmNew',
       label: "Don't Confirm New Password",
       value: !props.settings.isConfirmNew,
