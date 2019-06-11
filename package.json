@@ -19,15 +19,15 @@
     "types:ci": "./node_modules/.bin/tsc"
   },
   "dependencies": {
-    "antd": "3.19.2",
+    "antd": "3.19.3",
     "localforage": "1.7.3",
     "lodash": "4.17.11",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-redux": "7.0.3",
+    "react-redux": "7.1.0",
     "redux": "4.0.1",
     "redux-logger": "3.0.6",
-    "redux-saga": "1.0.2",
+    "redux-saga": "1.0.3",
     "reselect": "4.0.0",
     "styled-components": "4.2.1",
     "yup": "0.27.0"
