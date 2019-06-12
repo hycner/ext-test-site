@@ -151,12 +151,12 @@ export function* bootstrapWatcher(): SagaIterator {
   yield takeEvery(INIT, bootstrapTask)
 }
 
-type StoreAppBootstrap = {
+type StoreAppBootstrap = Readonly<{
   isDone: boolean
   singleComponentDisplay: boolean | string
   singleDisplayIteration: number
   singleSectionDisplay: SingleSectionDisplay
-}
+}>
 const initialState: StoreAppBootstrap = {
   isDone: false,
   singleComponentDisplay: false,

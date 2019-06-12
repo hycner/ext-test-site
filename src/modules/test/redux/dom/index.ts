@@ -65,13 +65,13 @@ export function* testDomWatcher(): SagaIterator {
   yield takeEvery(INIT, testDomTask)
 }
 
-type StoreTestDom = {
+type StoreTestDom = Readonly<{
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
-}
+}>
 const initialState: StoreTestDom = {
   data: {
     testErrors: [],

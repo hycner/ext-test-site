@@ -71,7 +71,7 @@ export function* setWatcher(): SagaIterator {
   yield takeEvery(INIT, setTask)
 }
 
-export type StoreSettingsAddress = {
+export type StoreSettingsAddress = Readonly<{
   areIdsUnique: boolean
   hasEmail: boolean
   hasName: boolean
@@ -83,8 +83,8 @@ export type StoreSettingsAddress = {
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
-}
-export type StoreSettingsCreditCard = {
+}>
+export type StoreSettingsCreditCard = Readonly<{
   areIdsUnique: boolean
   isForm: boolean
   isIframeSection: boolean
@@ -92,8 +92,8 @@ export type StoreSettingsCreditCard = {
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
-}
-export type StoreSettingsLogin = {
+}>
+export type StoreSettingsLogin = Readonly<{
   areIdsUnique: boolean
   isForm: boolean
   isIframeSection: boolean
@@ -102,8 +102,8 @@ export type StoreSettingsLogin = {
   isThreeField: boolean
   isVisible: boolean
   iterations: number
-}
-export type StoreSettingsPasswordReset = {
+}>
+export type StoreSettingsPasswordReset = Readonly<{
   areIdsUnique: boolean
   isConfirmNew: boolean
   isConfirmOld: boolean
@@ -113,14 +113,14 @@ export type StoreSettingsPasswordReset = {
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
-}
-export type StoreSettings = {
+}>
+export type StoreSettings = Readonly<{
   address: StoreSettingsAddress
   creditCard: StoreSettingsCreditCard
   login: StoreSettingsLogin
   passwordReset: StoreSettingsPasswordReset
   [section: string]: Object
-}
+}>
 const initialState: StoreSettings = {
   address: {
     areIdsUnique: true,

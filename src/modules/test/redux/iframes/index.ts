@@ -62,13 +62,13 @@ export function* testIframesWatcher(): SagaIterator {
   yield takeEvery(INIT, testIframesTask)
 }
 
-type StoreTestIframes = {
+type StoreTestIframes = Readonly<{
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
-}
+}>
 const initialState: StoreTestIframes = {
   data: {
     testErrors: [],

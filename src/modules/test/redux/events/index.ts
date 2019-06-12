@@ -84,13 +84,13 @@ export function messageEventCaught(): EventCaughtAction {
   }
 }
 
-type StoreTestEvents = {
+type StoreTestEvents = Readonly<{
   data: {
     testErrors: string[]
   }
   isLoading: boolean
   error: Error | null
-}
+}>
 const initialState: StoreTestEvents = {
   data: {
     testErrors: [],
