@@ -41,7 +41,7 @@
     "@types/react-redux": "7.0.9",
     "@types/redux-logger": "3.0.7",
     "@types/styled-components": "4.1.8",
-    "@types/yup": "0.26.15",
+    "@types/yup": "0.26.16",
     "babel-plugin-import": "1.12.0",
     "customize-cra": "0.2.13",
     "enzyme": "3.10.0",
