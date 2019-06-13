@@ -105,8 +105,8 @@ export type StoreSettingsLogin = Readonly<{
 }>
 export type StoreSettingsPasswordReset = Readonly<{
   areIdsUnique: boolean
-  isConfirmNew: boolean
-  isConfirmOld: boolean
+  hasConfirmNew: boolean
+  hasConfirmOld: boolean
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
@@ -156,8 +156,8 @@ const initialState: StoreSettings = {
   },
   passwordReset: {
     areIdsUnique: true,
-    isConfirmNew: true,
-    isConfirmOld: true,
+    hasConfirmNew: true,
+    hasConfirmOld: true,
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
@@ -224,8 +224,8 @@ export const settingsSchema = yup
     passwordReset: yup
       .object({
         areIdsUnique: yup.boolean().required(),
-        isConfirmNew: yup.boolean().required(),
-        isConfirmOld: yup.boolean().required(),
+        hasConfirmNew: yup.boolean().required(),
+        hasConfirmOld: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),

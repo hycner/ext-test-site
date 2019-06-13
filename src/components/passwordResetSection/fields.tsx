@@ -30,8 +30,8 @@ const BTN_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
-  isConfirmNew: boolean
-  isConfirmOld: boolean
+  hasConfirmNew: boolean
+  hasConfirmOld: boolean
   isForm: boolean
   isLabelled: boolean
   isMultiButton: boolean
@@ -46,9 +46,9 @@ const Fields: React.FC<Props> = props => {
   function onSubmit() {
     console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
-      ...(props.isConfirmOld && {oldPassword}),
+      ...(props.hasConfirmOld && {oldPassword}),
       newPassword,
-      ...(props.isConfirmNew && {confirmNewPassword}),
+      ...(props.hasConfirmNew && {confirmNewPassword}),
     })
   }
 
@@ -71,7 +71,7 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
-        {props.isConfirmOld && (
+        {props.hasConfirmOld && (
           <>
             <MaybeLabel
               isActive={props.isLabelled}
@@ -101,7 +101,7 @@ const Fields: React.FC<Props> = props => {
           onChange={e => setNewPassword(e.target.value)}
         />
 
-        {props.isConfirmNew && (
+        {props.hasConfirmNew && (
           <>
             <MaybeLabel
               isActive={props.isLabelled}
@@ -143,8 +143,8 @@ function mapStateToProps(state: Store) {
 
   return {
     areIdsUnique: prSettings.areIdsUnique,
-    isConfirmNew: prSettings.isConfirmNew,
-    isConfirmOld: prSettings.isConfirmOld,
+    hasConfirmNew: prSettings.hasConfirmNew,
+    hasConfirmOld: prSettings.hasConfirmOld,
     isForm: prSettings.isForm,
     isIframeSection: prSettings.isIframeSection,
     isLabelled: prSettings.isLabelled,

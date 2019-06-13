@@ -41,20 +41,20 @@ const PasswordResetSection: React.FC<Props> = props => {
       value: props.settings.isLabelled,
     },
     {
-      key: 'isConfirmNew',
+      key: 'hasConfirmNew',
       label: "Don't Confirm New Password",
-      value: !props.settings.isConfirmNew,
+      value: !props.settings.hasConfirmNew,
     },
     {
-      key: 'isConfirmOld',
+      key: 'hasConfirmOld',
       label: "Don't Verify Current Password",
-      value: !props.settings.isConfirmOld,
+      value: !props.settings.hasConfirmOld,
     },
   ]
 
   let iterationHeight = 100
-  if (props.settings.isConfirmNew) iterationHeight += 37
-  if (props.settings.isConfirmOld) iterationHeight += 37
+  if (props.settings.hasConfirmNew) iterationHeight += 37
+  if (props.settings.hasConfirmOld) iterationHeight += 37
 
   return (
     <Section
