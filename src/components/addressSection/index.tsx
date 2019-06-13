@@ -15,56 +15,64 @@ type Props = {
 
 const AddressSection: React.FC<Props> = props => {
   const configMenuItems = [
-    {
-      key: 'areIdsUnique',
-      label: 'Disable Unique IDs',
-      value: !props.settings.areIdsUnique,
-    },
-    {
-      key: 'isForm',
-      label: 'Wrap each section in <form>',
-      value: props.settings.isForm,
-    },
-    {
-      key: 'isFieldset',
-      label: 'Wrap each section in <fieldset>',
-      value: props.settings.isFieldset,
-    },
-    {
-      key: 'isIframeSection',
-      label: 'Wrap each section in <iframe>',
-      value: props.settings.isIframeSection,
-    },
-    // {
-    //   key: 'isIframeField',
-    //   label: 'Wrap each field in <iframe>',
-    //   value: props.settings.isIframeField,
-    // },
-    {
-      key: 'isMultiButton',
-      label: 'Multiple Buttons',
-      value: props.settings.isMultiButton,
-    },
-    {
-      key: 'isLabelled',
-      label: 'Each Field has a <label>',
-      value: props.settings.isLabelled,
-    },
-    {
-      key: 'hasEmail',
-      label: 'Email Field',
-      value: props.settings.hasEmail,
-    },
-    {
-      key: 'hasName',
-      label: 'Name Field',
-      value: props.settings.hasName,
-    },
-    {
-      key: 'hasPhone',
-      label: 'Phone Field',
-      value: props.settings.hasPhone,
-    },
+    [
+      {
+        key: 'isForm',
+        label: 'Wrap each section in <form>',
+        value: props.settings.isForm,
+      },
+      {
+        key: 'isFieldset',
+        label: 'Wrap each section in <fieldset>',
+        value: props.settings.isFieldset,
+      },
+      {
+        key: 'isIframeSection',
+        label: 'Wrap each section in <iframe>',
+        value: props.settings.isIframeSection,
+      },
+    ],
+
+    [
+      {
+        key: 'areIdsUnique',
+        label: 'Disable Unique IDs',
+        value: !props.settings.areIdsUnique,
+      },
+      // {
+      //   key: 'isIframeField',
+      //   label: 'Wrap each field in <iframe>',
+      //   value: props.settings.isIframeField,
+      // },
+      {
+        key: 'isMultiButton',
+        label: 'Multiple Buttons',
+        value: props.settings.isMultiButton,
+      },
+      {
+        key: 'isLabelled',
+        label: 'Each Field has a <label>',
+        value: props.settings.isLabelled,
+      },
+    ],
+
+    [
+      {
+        key: 'hasEmail',
+        label: 'Email Field',
+        value: props.settings.hasEmail,
+      },
+      {
+        key: 'hasName',
+        label: 'Name Field',
+        value: props.settings.hasName,
+      },
+      {
+        key: 'hasPhone',
+        label: 'Phone Field',
+        value: props.settings.hasPhone,
+      },
+    ],
   ]
 
   let iterationHeight = 325

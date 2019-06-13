@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Checkbox, Icon, Popover} from 'antd'
+import {Checkbox, Divider, Icon, Popover} from 'antd'
 
 const SettingWrap = styled.div`
   margin-bottom: 10px;
@@ -11,12 +11,18 @@ const ICON_STYLE = {
   marginLeft: 3,
   fontSize: 18,
 }
+const DIVIDER_STYLE = {
+  marginTop: 15,
+  marginBottom: 15,
+}
 
-export type ConfigMenuItems = Array<{
-  key: string
-  label: any
-  value: boolean
-}>
+export type ConfigMenuItems = Array<
+  Array<{
+    key: string
+    label: any
+    value: boolean
+  }>
+>
 type Props = {
   items: ConfigMenuItems
   toggleFunc: (key: string) => void
@@ -25,12 +31,18 @@ type Props = {
 const configMenu: React.FC<Props> = props => {
   const popoverContent = (
     <div>
-      {props.items.map(x => (
-        <SettingWrap key={x.key}>
-          <Checkbox checked={x.value} onChange={() => props.toggleFunc(x.key)}>
-            {x.label}
-          </Checkbox>
-        </SettingWrap>
+      {props.items.map((category, i) => (
+        <div key={i}>
+          {category.map(item => (
+            <SettingWrap key={item.key}>
+              <Checkbox checked={item.value} onChange={() => props.toggleFunc(item.key)}>
+                {item.label}
+              </Checkbox>
+            </SettingWrap>
+          ))}
+
+          {i !== props.items.length - 1 && <Divider style={DIVIDER_STYLE} />}
+        </div>
       ))}
     </div>
   )

@@ -15,51 +15,59 @@ type Props = {
 
 const PasswordResetSection: React.FC<Props> = props => {
   const configMenuItems = [
-    {
-      key: 'areIdsUnique',
-      label: 'Disable Unique IDs',
-      value: !props.settings.areIdsUnique,
-    },
-    {
-      key: 'isForm',
-      label: 'Wrap each section in <form>',
-      value: props.settings.isForm,
-    },
-    {
-      key: 'isFieldset',
-      label: 'Wrap each section in <fieldset>',
-      value: props.settings.isFieldset,
-    },
-    {
-      key: 'isIframeSection',
-      label: 'Wrap each section in <iframe>',
-      value: props.settings.isIframeSection,
-    },
-    {
-      key: 'isMultiButton',
-      label: 'Multiple Buttons',
-      value: props.settings.isMultiButton,
-    },
-    {
-      key: 'isLabelled',
-      label: 'Each Field has a <label>',
-      value: props.settings.isLabelled,
-    },
-    {
-      key: 'hasConfirmNew',
-      label: "Don't Confirm New Password",
-      value: !props.settings.hasConfirmNew,
-    },
-    {
-      key: 'hasConfirmOld',
-      label: "Don't Verify Current Password",
-      value: !props.settings.hasConfirmOld,
-    },
-    {
-      key: 'hasEmail',
-      label: 'Email Field',
-      value: props.settings.hasEmail,
-    },
+    [
+      {
+        key: 'isForm',
+        label: 'Wrap each section in <form>',
+        value: props.settings.isForm,
+      },
+      {
+        key: 'isFieldset',
+        label: 'Wrap each section in <fieldset>',
+        value: props.settings.isFieldset,
+      },
+      {
+        key: 'isIframeSection',
+        label: 'Wrap each section in <iframe>',
+        value: props.settings.isIframeSection,
+      },
+    ],
+
+    [
+      {
+        key: 'areIdsUnique',
+        label: 'Disable Unique IDs',
+        value: !props.settings.areIdsUnique,
+      },
+      {
+        key: 'isMultiButton',
+        label: 'Multiple Buttons',
+        value: props.settings.isMultiButton,
+      },
+      {
+        key: 'isLabelled',
+        label: 'Each Field has a <label>',
+        value: props.settings.isLabelled,
+      },
+    ],
+
+    [
+      {
+        key: 'hasConfirmNew',
+        label: "Don't Confirm New Password",
+        value: !props.settings.hasConfirmNew,
+      },
+      {
+        key: 'hasConfirmOld',
+        label: "Don't Verify Current Password",
+        value: !props.settings.hasConfirmOld,
+      },
+      {
+        key: 'hasEmail',
+        label: 'Email Field',
+        value: props.settings.hasEmail,
+      },
+    ],
   ]
 
   let iterationHeight = 100

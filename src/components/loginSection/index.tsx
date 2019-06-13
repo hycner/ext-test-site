@@ -15,41 +15,49 @@ type Props = {
 
 const LoginSection: React.FC<Props> = props => {
   const configMenuItems = [
-    {
-      key: 'areIdsUnique',
-      label: 'Disable Unique IDs',
-      value: !props.settings.areIdsUnique,
-    },
-    {
-      key: 'isForm',
-      label: 'Wrap each section in <form>',
-      value: props.settings.isForm,
-    },
-    {
-      key: 'isFieldset',
-      label: 'Wrap each section in <fieldset>',
-      value: props.settings.isFieldset,
-    },
-    {
-      key: 'isIframeSection',
-      label: 'Wrap each section in <iframe>',
-      value: props.settings.isIframeSection,
-    },
-    {
-      key: 'isMultiButton',
-      label: 'Multiple Buttons',
-      value: props.settings.isMultiButton,
-    },
-    {
-      key: 'isLabelled',
-      label: 'Each Field has a <label>',
-      value: props.settings.isLabelled,
-    },
-    {
-      key: 'isThreeField',
-      label: 'Three fields',
-      value: props.settings.isThreeField,
-    },
+    [
+      {
+        key: 'isForm',
+        label: 'Wrap each section in <form>',
+        value: props.settings.isForm,
+      },
+      {
+        key: 'isFieldset',
+        label: 'Wrap each section in <fieldset>',
+        value: props.settings.isFieldset,
+      },
+      {
+        key: 'isIframeSection',
+        label: 'Wrap each section in <iframe>',
+        value: props.settings.isIframeSection,
+      },
+    ],
+
+    [
+      {
+        key: 'areIdsUnique',
+        label: 'Disable Unique IDs',
+        value: !props.settings.areIdsUnique,
+      },
+      {
+        key: 'isMultiButton',
+        label: 'Multiple Buttons',
+        value: props.settings.isMultiButton,
+      },
+      {
+        key: 'isLabelled',
+        label: 'Each Field has a <label>',
+        value: props.settings.isLabelled,
+      },
+    ],
+
+    [
+      {
+        key: 'isThreeField',
+        label: 'Three fields',
+        value: props.settings.isThreeField,
+      },
+    ],
   ]
 
   let iterationHeight = 140
