@@ -85,7 +85,7 @@ const Fields: React.FC<Props> = props => {
                 label="Email"
                 target={`psEmail${iteration}`}
               />
-              <Input.Password
+              <Input
                 style={FIELD_STYLE}
                 id={`psEmail${iteration}`}
                 placeholder="Email"
