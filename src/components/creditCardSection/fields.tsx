@@ -58,6 +58,7 @@ const BTN_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
+  isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
   isMultiButton: boolean
@@ -97,132 +98,135 @@ const Fields: React.FC<Props> = props => {
   }
 
   let Form = props.isForm ? RealForm : FakeForm
+  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.areIdsUnique) iteration = ''
 
   return (
     <Form>
-      <Wrap>
-        <MaybeLabel
-          isActive={props.isLabelled}
-          label="Name on Card"
-          target={`cardholderName${iteration}`}
-        />
-        <Input
-          id={`cardholderName${iteration}`}
-          placeholder="Name on Card"
-          style={FIELD_STYLE}
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+      <Fieldset>
+        <Wrap>
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Name on Card"
+            target={`cardholderName${iteration}`}
+          />
+          <Input
+            id={`cardholderName${iteration}`}
+            placeholder="Name on Card"
+            style={FIELD_STYLE}
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
 
-        <MaybeLabel
-          isActive={props.isLabelled}
-          label="Card Number"
-          target={`cardNumber${iteration}`}
-        />
-        <Input
-          id={`cardNumber${iteration}`}
-          placeholder="Card Number"
-          style={FIELD_STYLE}
-          value={cardNumber}
-          onChange={e => setCardNumber(e.target.value)}
-        />
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Card Number"
+            target={`cardNumber${iteration}`}
+          />
+          <Input
+            id={`cardNumber${iteration}`}
+            placeholder="Card Number"
+            style={FIELD_STYLE}
+            value={cardNumber}
+            onChange={e => setCardNumber(e.target.value)}
+          />
 
-        <div style={{display: 'flex'}}>
-          <div style={FIELD_STYLE}>
-            <MaybeLabel isActive={props.isLabelled} label="CVV" target={`cvv${iteration}`} />
-            <Input
-              id={`cvv${iteration}`}
-              placeholder="CVV"
-              value={cvv}
-              onChange={e => setCvv(e.target.value)}
-            />
-          </div>
-
-          {!isAlternateDateFormat && (
+          <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
-              <MaybeLabel
-                isActive={props.isLabelled}
-                label="Exp Date"
-                target={`expiration-date${iteration}`}
-              />
+              <MaybeLabel isActive={props.isLabelled} label="CVV" target={`cvv${iteration}`} />
               <Input
-                id={`expiration-date${iteration}`}
-                placeholder="Expiration Date"
-                value={expDateFull}
-                onChange={e => setExpDateFull(e.target.value)}
+                id={`cvv${iteration}`}
+                placeholder="CVV"
+                value={cvv}
+                onChange={e => setCvv(e.target.value)}
               />
             </div>
-          )}
 
-          {isAlternateDateFormat && (
-            <>
-              <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
+            {!isAlternateDateFormat && (
+              <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
-                  label="Exp Month"
-                  target={`expiration-month${iteration}`}
+                  label="Exp Date"
+                  target={`expiration-date${iteration}`}
                 />
-                <Select
-                  id={`expiration-month${iteration}`}
-                  value={expMonth}
-                  onChange={(val: string) => setExpMonth(val)}
-                  style={{width: '100%'}}
-                >
-                  {MONTHS.map(x => (
-                    <Select.Option key={x.value} value={x.value}>
-                      {x.label}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </div>
-
-              <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
-                <MaybeLabel
-                  isActive={props.isLabelled}
-                  label="Exp Year"
-                  target={`expiration-year${iteration}`}
+                <Input
+                  id={`expiration-date${iteration}`}
+                  placeholder="Expiration Date"
+                  value={expDateFull}
+                  onChange={e => setExpDateFull(e.target.value)}
                 />
-                <Select
-                  id={`expiration-year${iteration}`}
-                  value={expYear}
-                  onChange={(val: string) => setExpYear(val)}
-                  style={{width: '100%'}}
-                >
-                  {YEARS.map(x => (
-                    <Select.Option key={x.value} value={x.value}>
-                      {x.label}
-                    </Select.Option>
-                  ))}
-                </Select>
               </div>
-            </>
-          )}
-        </div>
+            )}
 
-        <SwitchWrap>
-          <Switch checked={isAlternateDateFormat} onChange={toggleDateFormat} />
-          &nbsp; Alternate Expiration Format
-        </SwitchWrap>
+            {isAlternateDateFormat && (
+              <>
+                <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
+                  <MaybeLabel
+                    isActive={props.isLabelled}
+                    label="Exp Month"
+                    target={`expiration-month${iteration}`}
+                  />
+                  <Select
+                    id={`expiration-month${iteration}`}
+                    value={expMonth}
+                    onChange={(val: string) => setExpMonth(val)}
+                    style={{width: '100%'}}
+                  >
+                    {MONTHS.map(x => (
+                      <Select.Option key={x.value} value={x.value}>
+                        {x.label}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
 
-        <ButtonsWrap>
-          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-            Save Credit Card
-          </Button>
-          {props.isMultiButton && (
-            <>
-              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                Clear
-              </Button>
-              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                Nothing
-              </Button>
-            </>
-          )}
-        </ButtonsWrap>
-      </Wrap>
+                <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
+                  <MaybeLabel
+                    isActive={props.isLabelled}
+                    label="Exp Year"
+                    target={`expiration-year${iteration}`}
+                  />
+                  <Select
+                    id={`expiration-year${iteration}`}
+                    value={expYear}
+                    onChange={(val: string) => setExpYear(val)}
+                    style={{width: '100%'}}
+                  >
+                    {YEARS.map(x => (
+                      <Select.Option key={x.value} value={x.value}>
+                        {x.label}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
+              </>
+            )}
+          </div>
+
+          <SwitchWrap>
+            <Switch checked={isAlternateDateFormat} onChange={toggleDateFormat} />
+            &nbsp; Alternate Expiration Format
+          </SwitchWrap>
+
+          <ButtonsWrap>
+            <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+              Save Credit Card
+            </Button>
+            {props.isMultiButton && (
+              <>
+                <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                  Clear
+                </Button>
+                <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                  Nothing
+                </Button>
+              </>
+            )}
+          </ButtonsWrap>
+        </Wrap>
+      </Fieldset>
     </Form>
   )
 }
@@ -232,6 +236,7 @@ function mapStateToProps(state: Store) {
 
   return {
     areIdsUnique: cSettings.areIdsUnique,
+    isFieldset: cSettings.isFieldset,
     isForm: cSettings.isForm,
     isLabelled: cSettings.isLabelled,
     isMultiButton: cSettings.isMultiButton,
@@ -246,12 +251,18 @@ export default connect(mapStateToProps)(React.memo(Fields))
 
 // Helper functions
 
-type FormProps = {
+type ChildProps = {
   children: any
 }
-function RealForm(props: FormProps) {
+function RealForm(props: ChildProps) {
   return <form>{props.children}</form>
 }
-function FakeForm(props: FormProps) {
+function FakeForm(props: ChildProps) {
+  return <>{props.children}</>
+}
+function RealFieldset(props: ChildProps) {
+  return <fieldset>{props.children}</fieldset>
+}
+function FakeFieldset(props: ChildProps) {
   return <>{props.children}</>
 }

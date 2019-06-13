@@ -33,6 +33,7 @@ type Props = {
   hasEmail: boolean
   hasName: boolean
   hasPhone: boolean
+  isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
   isIframeField: boolean
@@ -84,6 +85,7 @@ const Fields: React.FC<Props> = props => {
   }
 
   let Form = props.isForm ? RealForm : FakeForm
+  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
   let IframeField = props.isIframeField ? RealIframeField : FakeIframeField
 
   let iteration = props.iteration > 1 ? props.iteration : ''
@@ -91,120 +93,138 @@ const Fields: React.FC<Props> = props => {
 
   return (
     <Form>
-      <Wrap>
-        {props.hasName && (
-          <>
-            <MaybeLabel isActive={props.isLabelled} label="Name" target={`name${iteration}`} />
-            <Input
-              style={FIELD_STYLE}
-              id={`name${iteration}`}
-              placeholder="Name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </>
-        )}
-
-        <div style={{display: 'flex', width: '100%'}}>
-          {props.hasEmail && (
-            <div style={FIELD_STYLE}>
-              <MaybeLabel isActive={props.isLabelled} label="Email" target={`email${iteration}`} />
-              <Input
-                id={`email${iteration}`}
-                placeholder="Email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </div>
-          )}
-
-          {props.hasPhone && (
-            <div style={FIELD_STYLE}>
-              <MaybeLabel isActive={props.isLabelled} label="Phone" target={`phone${iteration}`} />
-              <Input
-                id={`phone${iteration}`}
-                placeholder="Phone"
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-              />
-            </div>
-          )}
-        </div>
-
-        <MaybeLabel isActive={props.isLabelled} label="Street 1" target={`streetOne${iteration}`} />
-        <Input
-          style={FIELD_STYLE}
-          id={`streetOne${iteration}`}
-          placeholder="Street 1"
-          value={streetOne}
-          onChange={e => setStreetOne(e.target.value)}
-        />
-
-        <MaybeLabel isActive={props.isLabelled} label="Street 2" target={`streetTwo${iteration}`} />
-        <Input
-          style={FIELD_STYLE}
-          id={`streetTwo${iteration}`}
-          placeholder="Street 2"
-          value={streetTwo}
-          onChange={e => setStreetTwo(e.target.value)}
-        />
-
-        <MaybeLabel isActive={props.isLabelled} label="City" target={`city${iteration}`} />
-        <Input
-          style={FIELD_STYLE}
-          id={`city${iteration}`}
-          placeholder="City"
-          value={city}
-          onChange={e => setCity(e.target.value)}
-        />
-
-        <div style={{display: 'flex'}}>
-          <div style={FIELD_STYLE}>
-            <MaybeLabel isActive={props.isLabelled} label="State" target={`state${iteration}`} />
-            <Input
-              id={`state${iteration}`}
-              placeholder="State"
-              value={state}
-              onChange={e => setState(e.target.value)}
-            />
-          </div>
-
-          <div style={FIELD_STYLE}>
-            <MaybeLabel isActive={props.isLabelled} label="Zip" target={`zip${iteration}`} />
-            <Input
-              id={`zip${iteration}`}
-              placeholder="Zip"
-              value={zip}
-              onChange={e => setZip(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <MaybeLabel isActive={props.isLabelled} label="Country" target={`country${iteration}`} />
-        <Input
-          style={FIELD_STYLE}
-          id={`country${iteration}`}
-          placeholder="Country"
-          value={country}
-          onChange={e => setCountry(e.target.value)}
-        />
-
-        <ButtonsWrap>
-          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-            Save
-          </Button>
-          {props.isMultiButton && (
+      <Fieldset>
+        <Wrap>
+          {props.hasName && (
             <>
-              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                Clear
-              </Button>
-              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                Nothing
-              </Button>
+              <MaybeLabel isActive={props.isLabelled} label="Name" target={`name${iteration}`} />
+              <Input
+                style={FIELD_STYLE}
+                id={`name${iteration}`}
+                placeholder="Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
             </>
           )}
-        </ButtonsWrap>
-      </Wrap>
+
+          <div style={{display: 'flex', width: '100%'}}>
+            {props.hasEmail && (
+              <div style={FIELD_STYLE}>
+                <MaybeLabel
+                  isActive={props.isLabelled}
+                  label="Email"
+                  target={`email${iteration}`}
+                />
+                <Input
+                  id={`email${iteration}`}
+                  placeholder="Email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </div>
+            )}
+
+            {props.hasPhone && (
+              <div style={FIELD_STYLE}>
+                <MaybeLabel
+                  isActive={props.isLabelled}
+                  label="Phone"
+                  target={`phone${iteration}`}
+                />
+                <Input
+                  id={`phone${iteration}`}
+                  placeholder="Phone"
+                  value={phone}
+                  onChange={e => setPhone(e.target.value)}
+                />
+              </div>
+            )}
+          </div>
+
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Street 1"
+            target={`streetOne${iteration}`}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`streetOne${iteration}`}
+            placeholder="Street 1"
+            value={streetOne}
+            onChange={e => setStreetOne(e.target.value)}
+          />
+
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Street 2"
+            target={`streetTwo${iteration}`}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`streetTwo${iteration}`}
+            placeholder="Street 2"
+            value={streetTwo}
+            onChange={e => setStreetTwo(e.target.value)}
+          />
+
+          <MaybeLabel isActive={props.isLabelled} label="City" target={`city${iteration}`} />
+          <Input
+            style={FIELD_STYLE}
+            id={`city${iteration}`}
+            placeholder="City"
+            value={city}
+            onChange={e => setCity(e.target.value)}
+          />
+
+          <div style={{display: 'flex'}}>
+            <div style={FIELD_STYLE}>
+              <MaybeLabel isActive={props.isLabelled} label="State" target={`state${iteration}`} />
+              <Input
+                id={`state${iteration}`}
+                placeholder="State"
+                value={state}
+                onChange={e => setState(e.target.value)}
+              />
+            </div>
+
+            <div style={FIELD_STYLE}>
+              <MaybeLabel isActive={props.isLabelled} label="Zip" target={`zip${iteration}`} />
+              <Input
+                id={`zip${iteration}`}
+                placeholder="Zip"
+                value={zip}
+                onChange={e => setZip(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <MaybeLabel isActive={props.isLabelled} label="Country" target={`country${iteration}`} />
+          <Input
+            style={FIELD_STYLE}
+            id={`country${iteration}`}
+            placeholder="Country"
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+          />
+
+          <ButtonsWrap>
+            <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+              Save
+            </Button>
+            {props.isMultiButton && (
+              <>
+                <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                  Clear
+                </Button>
+                <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                  Nothing
+                </Button>
+              </>
+            )}
+          </ButtonsWrap>
+        </Wrap>
+      </Fieldset>
     </Form>
   )
 }
@@ -217,6 +237,7 @@ function mapStateToProps(state: Store) {
     hasEmail: aSettings.hasEmail,
     hasName: aSettings.hasName,
     hasPhone: aSettings.hasPhone,
+    isFieldset: aSettings.isFieldset,
     isForm: aSettings.isForm,
     isLabelled: aSettings.isLabelled,
     isIframeField: aSettings.isIframeField,
@@ -232,18 +253,24 @@ export default connect(mapStateToProps)(React.memo(Fields))
 
 // Helper functions
 
-type FormProps = {
+type ChildProps = {
   children: any
 }
-function RealForm(props: FormProps) {
+function RealForm(props: ChildProps) {
   return <form>{props.children}</form>
 }
-function FakeForm(props: FormProps) {
+function FakeForm(props: ChildProps) {
   return <>{props.children}</>
 }
-function RealIframeField(props: FormProps) {
+function RealFieldset(props: ChildProps) {
+  return <fieldset>{props.children}</fieldset>
+}
+function FakeFieldset(props: ChildProps) {
+  return <>{props.children}</>
+}
+function RealIframeField(props: ChildProps) {
   return <iframe>{props.children}</iframe>
 }
-function FakeIframeField(props: FormProps) {
+function FakeIframeField(props: ChildProps) {
   return <>{props.children}</>
 }

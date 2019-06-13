@@ -30,6 +30,7 @@ const BTN_STYLE = {
 
 type Props = {
   areIdsUnique: boolean
+  isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
   isMultiButton: boolean
@@ -63,64 +64,75 @@ const Fields: React.FC<Props> = props => {
   }
 
   let Form = props.isForm ? RealForm : FakeForm
+  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.areIdsUnique) iteration = ''
 
   return (
     <Form>
-      <Wrap>
-        {props.isThreeField && (
-          <>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              label="Account ID"
-              target={`accountId${iteration}`}
-            />
-            <Input
-              style={FIELD_STYLE}
-              id={`accountId${iteration}`}
-              placeholder="Account ID"
-              value={accountId}
-              onChange={e => setAccountId(e.target.value)}
-            />
-          </>
-        )}
-
-        <MaybeLabel isActive={props.isLabelled} label="Username" target={`username${iteration}`} />
-        <Input
-          style={FIELD_STYLE}
-          id={`username${iteration}`}
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-
-        <MaybeLabel isActive={props.isLabelled} label="Password" target={`password${iteration}`} />
-        <Input.Password
-          style={FIELD_STYLE}
-          id={`password${iteration}`}
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-
-        <ButtonsWrap>
-          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-            Submit
-          </Button>
-          {props.isMultiButton && (
+      <Fieldset>
+        <Wrap>
+          {props.isThreeField && (
             <>
-              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                Clear
-              </Button>
-              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                Nothing
-              </Button>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Account ID"
+                target={`accountId${iteration}`}
+              />
+              <Input
+                style={FIELD_STYLE}
+                id={`accountId${iteration}`}
+                placeholder="Account ID"
+                value={accountId}
+                onChange={e => setAccountId(e.target.value)}
+              />
             </>
           )}
-        </ButtonsWrap>
-      </Wrap>
+
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Username"
+            target={`username${iteration}`}
+          />
+          <Input
+            style={FIELD_STYLE}
+            id={`username${iteration}`}
+            placeholder="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Password"
+            target={`password${iteration}`}
+          />
+          <Input.Password
+            style={FIELD_STYLE}
+            id={`password${iteration}`}
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+
+          <ButtonsWrap>
+            <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+              Submit
+            </Button>
+            {props.isMultiButton && (
+              <>
+                <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                  Clear
+                </Button>
+                <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                  Nothing
+                </Button>
+              </>
+            )}
+          </ButtonsWrap>
+        </Wrap>
+      </Fieldset>
     </Form>
   )
 }
@@ -130,6 +142,7 @@ function mapStateToProps(state: Store) {
 
   return {
     areIdsUnique: lSettings.areIdsUnique,
+    isFieldset: lSettings.isFieldset,
     isForm: lSettings.isForm,
     isIframeSection: lSettings.isIframeSection,
     isLabelled: lSettings.isLabelled,
@@ -146,12 +159,18 @@ export default connect(mapStateToProps)(React.memo(Fields))
 
 // Helper functions
 
-type FormProps = {
+type ChildProps = {
   children: any
 }
-function RealForm(props: FormProps) {
+function RealForm(props: ChildProps) {
   return <form>{props.children}</form>
 }
-function FakeForm(props: FormProps) {
+function FakeForm(props: ChildProps) {
+  return <>{props.children}</>
+}
+function RealFieldset(props: ChildProps) {
+  return <fieldset>{props.children}</fieldset>
+}
+function FakeFieldset(props: ChildProps) {
   return <>{props.children}</>
 }

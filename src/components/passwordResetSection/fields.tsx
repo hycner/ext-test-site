@@ -33,6 +33,7 @@ type Props = {
   hasConfirmNew: boolean
   hasConfirmOld: boolean
   hasEmail: boolean
+  isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
   isMultiButton: boolean
@@ -68,89 +69,96 @@ const Fields: React.FC<Props> = props => {
   }
 
   let Form = props.isForm ? RealForm : FakeForm
+  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.areIdsUnique) iteration = ''
 
   return (
     <Form>
-      <Wrap>
-        {props.hasEmail && (
-          <>
-            <MaybeLabel isActive={props.isLabelled} label="Email" target={`psEmail${iteration}`} />
-            <Input.Password
-              style={FIELD_STYLE}
-              id={`psEmail${iteration}`}
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-          </>
-        )}
-
-        {props.hasConfirmOld && (
-          <>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              label="Current Password"
-              target={`oldPassword${iteration}`}
-            />
-            <Input.Password
-              style={FIELD_STYLE}
-              id={`oldPassword${iteration}`}
-              placeholder="Current Password"
-              value={oldPassword}
-              onChange={e => setOldPassword(e.target.value)}
-            />
-          </>
-        )}
-
-        <MaybeLabel
-          isActive={props.isLabelled}
-          label="New Password"
-          target={`newPassword${iteration}`}
-        />
-        <Input.Password
-          style={FIELD_STYLE}
-          id={`newPassword${iteration}`}
-          placeholder="New Password"
-          value={newPassword}
-          onChange={e => setNewPassword(e.target.value)}
-        />
-
-        {props.hasConfirmNew && (
-          <>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              label="Confirm New Password"
-              target={`confirmNewPassword${iteration}`}
-            />
-            <Input.Password
-              style={FIELD_STYLE}
-              id={`confirmNewPassword${iteration}`}
-              placeholder="Confirm New Password"
-              value={confirmNewPassword}
-              onChange={e => setConfirmNewPassword(e.target.value)}
-            />
-          </>
-        )}
-
-        <ButtonsWrap>
-          <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-            Submit
-          </Button>
-          {props.isMultiButton && (
+      <Fieldset>
+        <Wrap>
+          {props.hasEmail && (
             <>
-              <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                Clear
-              </Button>
-              <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                Nothing
-              </Button>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Email"
+                target={`psEmail${iteration}`}
+              />
+              <Input.Password
+                style={FIELD_STYLE}
+                id={`psEmail${iteration}`}
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
             </>
           )}
-        </ButtonsWrap>
-      </Wrap>
+
+          {props.hasConfirmOld && (
+            <>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Current Password"
+                target={`oldPassword${iteration}`}
+              />
+              <Input.Password
+                style={FIELD_STYLE}
+                id={`oldPassword${iteration}`}
+                placeholder="Current Password"
+                value={oldPassword}
+                onChange={e => setOldPassword(e.target.value)}
+              />
+            </>
+          )}
+
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="New Password"
+            target={`newPassword${iteration}`}
+          />
+          <Input.Password
+            style={FIELD_STYLE}
+            id={`newPassword${iteration}`}
+            placeholder="New Password"
+            value={newPassword}
+            onChange={e => setNewPassword(e.target.value)}
+          />
+
+          {props.hasConfirmNew && (
+            <>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Confirm New Password"
+                target={`confirmNewPassword${iteration}`}
+              />
+              <Input.Password
+                style={FIELD_STYLE}
+                id={`confirmNewPassword${iteration}`}
+                placeholder="Confirm New Password"
+                value={confirmNewPassword}
+                onChange={e => setConfirmNewPassword(e.target.value)}
+              />
+            </>
+          )}
+
+          <ButtonsWrap>
+            <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
+              Submit
+            </Button>
+            {props.isMultiButton && (
+              <>
+                <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
+                  Clear
+                </Button>
+                <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
+                  Nothing
+                </Button>
+              </>
+            )}
+          </ButtonsWrap>
+        </Wrap>
+      </Fieldset>
     </Form>
   )
 }
@@ -163,6 +171,7 @@ function mapStateToProps(state: Store) {
     hasConfirmNew: prSettings.hasConfirmNew,
     hasConfirmOld: prSettings.hasConfirmOld,
     hasEmail: prSettings.hasEmail,
+    isFieldset: prSettings.isFieldset,
     isForm: prSettings.isForm,
     isIframeSection: prSettings.isIframeSection,
     isLabelled: prSettings.isLabelled,
@@ -178,12 +187,18 @@ export default connect(mapStateToProps)(React.memo(Fields))
 
 // Helper functions
 
-type FormProps = {
+type ChildProps = {
   children: any
 }
-function RealForm(props: FormProps) {
+function RealForm(props: ChildProps) {
   return <form>{props.children}</form>
 }
-function FakeForm(props: FormProps) {
+function FakeForm(props: ChildProps) {
+  return <>{props.children}</>
+}
+function RealFieldset(props: ChildProps) {
+  return <fieldset>{props.children}</fieldset>
+}
+function FakeFieldset(props: ChildProps) {
   return <>{props.children}</>
 }

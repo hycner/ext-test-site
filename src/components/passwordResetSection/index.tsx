@@ -26,6 +26,11 @@ const PasswordResetSection: React.FC<Props> = props => {
       value: props.settings.isForm,
     },
     {
+      key: 'isFieldset',
+      label: 'Wrap each section in <fieldset>',
+      value: props.settings.isFieldset,
+    },
+    {
       key: 'isIframeSection',
       label: 'Wrap each section in <iframe>',
       value: props.settings.isIframeSection,

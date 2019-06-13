@@ -76,6 +76,7 @@ export type StoreSettingsAddress = Readonly<{
   hasEmail: boolean
   hasName: boolean
   hasPhone: boolean
+  isFieldset: boolean
   isForm: boolean
   isIframeField: boolean
   isIframeSection: boolean
@@ -86,6 +87,7 @@ export type StoreSettingsAddress = Readonly<{
 }>
 export type StoreSettingsCreditCard = Readonly<{
   areIdsUnique: boolean
+  isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
@@ -95,6 +97,7 @@ export type StoreSettingsCreditCard = Readonly<{
 }>
 export type StoreSettingsLogin = Readonly<{
   areIdsUnique: boolean
+  isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
@@ -108,6 +111,7 @@ export type StoreSettingsPasswordReset = Readonly<{
   hasConfirmNew: boolean
   hasConfirmOld: boolean
   hasEmail: boolean
+  isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
@@ -128,6 +132,7 @@ const initialState: StoreSettings = {
     hasEmail: false,
     hasName: false,
     hasPhone: false,
+    isFieldset: false,
     isForm: false,
     isIframeField: false,
     isIframeSection: false,
@@ -138,6 +143,7 @@ const initialState: StoreSettings = {
   },
   creditCard: {
     areIdsUnique: true,
+    isFieldset: false,
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
@@ -147,6 +153,7 @@ const initialState: StoreSettings = {
   },
   login: {
     areIdsUnique: true,
+    isFieldset: false,
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
@@ -160,6 +167,7 @@ const initialState: StoreSettings = {
     hasConfirmNew: true,
     hasConfirmOld: true,
     hasEmail: false,
+    isFieldset: false,
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
@@ -191,6 +199,7 @@ export const settingsSchema = yup
         hasEmail: yup.boolean().required(),
         hasName: yup.boolean().required(),
         hasPhone: yup.boolean().required(),
+        isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeField: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
@@ -203,6 +212,7 @@ export const settingsSchema = yup
     creditCard: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
@@ -214,6 +224,7 @@ export const settingsSchema = yup
     login: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
@@ -229,6 +240,7 @@ export const settingsSchema = yup
         hasConfirmNew: yup.boolean().required(),
         hasConfirmOld: yup.boolean().required(),
         hasEmail: yup.boolean().required(),
+        isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
