@@ -32,6 +32,7 @@ type Props = {
   areIdsUnique: boolean
   hasConfirmNew: boolean
   hasConfirmOld: boolean
+  hasEmail: boolean
   isForm: boolean
   isLabelled: boolean
   isMultiButton: boolean
@@ -39,6 +40,7 @@ type Props = {
 }
 
 const Fields: React.FC<Props> = props => {
+  const [email, setEmail] = useState<string>('')
   const [oldPassword, setOldPassword] = useState<string>('')
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
@@ -46,6 +48,7 @@ const Fields: React.FC<Props> = props => {
   function onSubmit() {
     console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
+      ...(props.hasEmail && {email}),
       ...(props.hasConfirmOld && {oldPassword}),
       newPassword,
       ...(props.hasConfirmNew && {confirmNewPassword}),
@@ -54,6 +57,7 @@ const Fields: React.FC<Props> = props => {
 
   function onClear() {
     console.log(`Password Reset (${props.iteration}) clear clicked`)
+    setEmail('')
     setOldPassword('')
     setNewPassword('')
     setConfirmNewPassword('')
@@ -71,6 +75,19 @@ const Fields: React.FC<Props> = props => {
   return (
     <Form>
       <Wrap>
+        {props.hasEmail && (
+          <>
+            <MaybeLabel isActive={props.isLabelled} label="Email" target={`psEmail${iteration}`} />
+            <Input.Password
+              style={FIELD_STYLE}
+              id={`psEmail${iteration}`}
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </>
+        )}
+
         {props.hasConfirmOld && (
           <>
             <MaybeLabel
@@ -145,6 +162,7 @@ function mapStateToProps(state: Store) {
     areIdsUnique: prSettings.areIdsUnique,
     hasConfirmNew: prSettings.hasConfirmNew,
     hasConfirmOld: prSettings.hasConfirmOld,
+    hasEmail: prSettings.hasEmail,
     isForm: prSettings.isForm,
     isIframeSection: prSettings.isIframeSection,
     isLabelled: prSettings.isLabelled,

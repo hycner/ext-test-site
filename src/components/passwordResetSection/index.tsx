@@ -50,11 +50,17 @@ const PasswordResetSection: React.FC<Props> = props => {
       label: "Don't Verify Current Password",
       value: !props.settings.hasConfirmOld,
     },
+    {
+      key: 'hasEmail',
+      label: 'Email Field',
+      value: props.settings.hasEmail,
+    },
   ]
 
   let iterationHeight = 100
   if (props.settings.hasConfirmNew) iterationHeight += 37
   if (props.settings.hasConfirmOld) iterationHeight += 37
+  if (props.settings.hasEmail) iterationHeight += 37
 
   return (
     <Section
