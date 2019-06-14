@@ -33,6 +33,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   isThreeField: boolean
   iteration: number
@@ -78,7 +79,7 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label="Account ID"
-                target={`accountId${iteration}`}
+                {...(props.isLabelledWithFor && {target: `accountId${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
@@ -93,7 +94,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Username"
-            target={`username${iteration}`}
+            {...(props.isLabelledWithFor && {target: `username${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
@@ -106,7 +107,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Password"
-            target={`password${iteration}`}
+            {...(props.isLabelledWithFor && {target: `password${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
@@ -146,6 +147,7 @@ function mapStateToProps(state: Store) {
     isForm: lSettings.isForm,
     isIframeSection: lSettings.isIframeSection,
     isLabelled: lSettings.isLabelled,
+    isLabelledWithFor: lSettings.isLabelledWithFor,
     isThreeField: lSettings.isThreeField,
     isMultiButton: lSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

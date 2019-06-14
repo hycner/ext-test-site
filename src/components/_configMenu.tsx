@@ -5,6 +5,9 @@ import {Checkbox, Divider, Icon, Popover} from 'antd'
 const SettingWrap = styled.div`
   margin-bottom: 10px;
 `
+const Indent = styled.span`
+  margin-right: 15px;
+`
 
 const ICON_STYLE = {
   marginRight: 3,
@@ -20,6 +23,7 @@ export type ConfigMenuItems = Array<
   Array<{
     key: string
     label: any
+    masterValid?: boolean
     value: boolean
   }>
 >
@@ -33,13 +37,18 @@ const configMenu: React.FC<Props> = props => {
     <div>
       {props.items.map((category, i) => (
         <div key={i}>
-          {category.map(item => (
-            <SettingWrap key={item.key}>
-              <Checkbox checked={item.value} onChange={() => props.toggleFunc(item.key)}>
-                {item.label}
-              </Checkbox>
-            </SettingWrap>
-          ))}
+          {category.map(item => {
+            if (item.masterValid === false) return null
+
+            return (
+              <SettingWrap key={item.key}>
+                {item.masterValid && <Indent />}
+                <Checkbox checked={item.value} onChange={() => props.toggleFunc(item.key)}>
+                  {item.label}
+                </Checkbox>
+              </SettingWrap>
+            )
+          })}
 
           {i !== props.items.length - 1 && <Divider style={DIVIDER_STYLE} />}
         </div>

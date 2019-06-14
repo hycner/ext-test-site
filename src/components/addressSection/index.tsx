@@ -54,6 +54,12 @@ const AddressSection: React.FC<Props> = props => {
         label: 'Each Field has a <label>',
         value: props.settings.isLabelled,
       },
+      {
+        key: 'isLabelledWithFor',
+        label: "Exclude 'for' on <label>",
+        masterValid: props.settings.isLabelled,
+        value: !props.settings.isLabelledWithFor,
+      },
     ],
 
     [

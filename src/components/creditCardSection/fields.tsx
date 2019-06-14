@@ -61,6 +61,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -110,7 +111,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Name on Card"
-            target={`cardholderName${iteration}`}
+            {...(props.isLabelledWithFor && {target: `cardholderName${iteration}`})}
           />
           <Input
             id={`cardholderName${iteration}`}
@@ -123,7 +124,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Card Number"
-            target={`cardNumber${iteration}`}
+            {...(props.isLabelledWithFor && {target: `cardNumber${iteration}`})}
           />
           <Input
             id={`cardNumber${iteration}`}
@@ -135,7 +136,11 @@ const Fields: React.FC<Props> = props => {
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
-              <MaybeLabel isActive={props.isLabelled} label="CVV" target={`cvv${iteration}`} />
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="CVV"
+                {...(props.isLabelledWithFor && {target: `cvv${iteration}`})}
+              />
               <Input
                 id={`cvv${iteration}`}
                 placeholder="CVV"
@@ -149,7 +154,7 @@ const Fields: React.FC<Props> = props => {
                 <MaybeLabel
                   isActive={props.isLabelled}
                   label="Exp Date"
-                  target={`expiration-date${iteration}`}
+                  {...(props.isLabelledWithFor && {target: `expiration-date${iteration}`})}
                 />
                 <Input
                   id={`expiration-date${iteration}`}
@@ -166,7 +171,7 @@ const Fields: React.FC<Props> = props => {
                   <MaybeLabel
                     isActive={props.isLabelled}
                     label="Exp Month"
-                    target={`expiration-month${iteration}`}
+                    {...(props.isLabelledWithFor && {target: `expiration-month${iteration}`})}
                   />
                   <Select
                     id={`expiration-month${iteration}`}
@@ -186,7 +191,7 @@ const Fields: React.FC<Props> = props => {
                   <MaybeLabel
                     isActive={props.isLabelled}
                     label="Exp Year"
-                    target={`expiration-year${iteration}`}
+                    {...(props.isLabelledWithFor && {target: `expiration-year${iteration}`})}
                   />
                   <Select
                     id={`expiration-year${iteration}`}
@@ -239,6 +244,7 @@ function mapStateToProps(state: Store) {
     isFieldset: cSettings.isFieldset,
     isForm: cSettings.isForm,
     isLabelled: cSettings.isLabelled,
+    isLabelledWithFor: cSettings.isLabelledWithFor,
     isMultiButton: cSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {

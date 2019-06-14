@@ -36,6 +36,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isIframeField: boolean
   isMultiButton: boolean
   iteration: number
@@ -97,7 +98,11 @@ const Fields: React.FC<Props> = props => {
         <Wrap>
           {props.hasName && (
             <>
-              <MaybeLabel isActive={props.isLabelled} label="Name" target={`name${iteration}`} />
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Name"
+                {...(props.isLabelledWithFor && {target: `name${iteration}`})}
+              />
               <Input
                 style={FIELD_STYLE}
                 id={`name${iteration}`}
@@ -114,7 +119,7 @@ const Fields: React.FC<Props> = props => {
                 <MaybeLabel
                   isActive={props.isLabelled}
                   label="Email"
-                  target={`email${iteration}`}
+                  {...(props.isLabelledWithFor && {target: `email${iteration}`})}
                 />
                 <Input
                   id={`email${iteration}`}
@@ -130,7 +135,7 @@ const Fields: React.FC<Props> = props => {
                 <MaybeLabel
                   isActive={props.isLabelled}
                   label="Phone"
-                  target={`phone${iteration}`}
+                  {...(props.isLabelledWithFor && {target: `phone${iteration}`})}
                 />
                 <Input
                   id={`phone${iteration}`}
@@ -145,7 +150,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Street 1"
-            target={`streetOne${iteration}`}
+            {...(props.isLabelledWithFor && {target: `streetOne${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
@@ -158,7 +163,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="Street 2"
-            target={`streetTwo${iteration}`}
+            {...(props.isLabelledWithFor && {target: `streetTwo${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
@@ -168,7 +173,11 @@ const Fields: React.FC<Props> = props => {
             onChange={e => setStreetTwo(e.target.value)}
           />
 
-          <MaybeLabel isActive={props.isLabelled} label="City" target={`city${iteration}`} />
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="City"
+            {...(props.isLabelledWithFor && {target: `city${iteration}`})}
+          />
           <Input
             style={FIELD_STYLE}
             id={`city${iteration}`}
@@ -179,7 +188,11 @@ const Fields: React.FC<Props> = props => {
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
-              <MaybeLabel isActive={props.isLabelled} label="State" target={`state${iteration}`} />
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="State"
+                {...(props.isLabelledWithFor && {target: `state${iteration}`})}
+              />
               <Input
                 id={`state${iteration}`}
                 placeholder="State"
@@ -189,7 +202,11 @@ const Fields: React.FC<Props> = props => {
             </div>
 
             <div style={FIELD_STYLE}>
-              <MaybeLabel isActive={props.isLabelled} label="Zip" target={`zip${iteration}`} />
+              <MaybeLabel
+                isActive={props.isLabelled}
+                label="Zip"
+                {...(props.isLabelledWithFor && {target: `zip${iteration}`})}
+              />
               <Input
                 id={`zip${iteration}`}
                 placeholder="Zip"
@@ -199,7 +216,11 @@ const Fields: React.FC<Props> = props => {
             </div>
           </div>
 
-          <MaybeLabel isActive={props.isLabelled} label="Country" target={`country${iteration}`} />
+          <MaybeLabel
+            isActive={props.isLabelled}
+            label="Country"
+            {...(props.isLabelledWithFor && {target: `country${iteration}`})}
+          />
           <Input
             style={FIELD_STYLE}
             id={`country${iteration}`}
@@ -240,6 +261,7 @@ function mapStateToProps(state: Store) {
     isFieldset: aSettings.isFieldset,
     isForm: aSettings.isForm,
     isLabelled: aSettings.isLabelled,
+    isLabelledWithFor: aSettings.isLabelledWithFor,
     isIframeField: aSettings.isIframeField,
     isMultiButton: aSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

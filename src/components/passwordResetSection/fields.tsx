@@ -36,6 +36,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   iteration: number
 }
@@ -83,7 +84,7 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label="Email"
-                target={`psEmail${iteration}`}
+                {...(props.isLabelledWithFor && {target: `psEmail${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
@@ -100,7 +101,7 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label="Current Password"
-                target={`oldPassword${iteration}`}
+                {...(props.isLabelledWithFor && {target: `oldPassword${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
@@ -115,7 +116,7 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label="New Password"
-            target={`newPassword${iteration}`}
+            {...(props.isLabelledWithFor && {target: `newPassword${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
@@ -130,7 +131,7 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label="Confirm New Password"
-                target={`confirmNewPassword${iteration}`}
+                {...(props.isLabelledWithFor && {target: `confirmNewPassword${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
@@ -175,6 +176,7 @@ function mapStateToProps(state: Store) {
     isForm: prSettings.isForm,
     isIframeSection: prSettings.isIframeSection,
     isLabelled: prSettings.isLabelled,
+    isLabelledWithFor: prSettings.isLabelledWithFor,
     isMultiButton: prSettings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {

@@ -9,7 +9,7 @@ const Label = styled.label`
 type Props = {
   isActive: boolean
   label: string
-  target: string
+  target?: string
 }
 
 const maybeLabel: React.FC<Props> = props => {

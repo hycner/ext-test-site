@@ -81,6 +81,7 @@ export type StoreSettingsAddress = Readonly<{
   isIframeField: boolean
   isIframeSection: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -91,6 +92,7 @@ export type StoreSettingsCreditCard = Readonly<{
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -101,6 +103,7 @@ export type StoreSettingsLogin = Readonly<{
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   isThreeField: boolean
   isVisible: boolean
@@ -115,6 +118,7 @@ export type StoreSettingsPasswordReset = Readonly<{
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
+  isLabelledWithFor: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
@@ -137,6 +141,7 @@ const initialState: StoreSettings = {
     isIframeField: false,
     isIframeSection: false,
     isLabelled: false,
+    isLabelledWithFor: true,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
@@ -147,6 +152,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
+    isLabelledWithFor: true,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
@@ -157,6 +163,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
+    isLabelledWithFor: true,
     isMultiButton: false,
     isThreeField: false,
     isVisible: true,
@@ -171,6 +178,7 @@ const initialState: StoreSettings = {
     isForm: false,
     isIframeSection: false,
     isLabelled: false,
+    isLabelledWithFor: true,
     isMultiButton: false,
     isVisible: false,
     iterations: 1,
@@ -204,6 +212,7 @@ export const settingsSchema = yup
         isIframeField: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
+        isLabelledWithFor: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
@@ -216,6 +225,7 @@ export const settingsSchema = yup
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
+        isLabelledWithFor: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
@@ -228,6 +238,7 @@ export const settingsSchema = yup
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
+        isLabelledWithFor: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isThreeField: yup.boolean().required(),
         isVisible: yup.boolean().required(),
@@ -244,6 +255,7 @@ export const settingsSchema = yup
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
+        isLabelledWithFor: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
