@@ -53,7 +53,8 @@ const Fields: React.FC<Props> = props => {
   const [streetTwo, setStreetTwo] = useState<string>('')
   const [zip, setZip] = useState<string>('')
 
-  function onSubmit() {
+  function onSubmit(e: any) {
+    e.preventDefault()
     console.log(`Address (${props.iteration}) submit clicked`)
     console.log({
       city,

@@ -79,7 +79,8 @@ const Fields: React.FC<Props> = props => {
     setIsAlternateDateFormat(!isAlternateDateFormat)
   }
 
-  function onSubmit() {
+  function onSubmit(e: any) {
+    e.preventDefault()
     console.log(`Credit card (${props.iteration}) save clicked`)
     console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
   }

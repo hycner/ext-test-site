@@ -47,7 +47,8 @@ const Fields: React.FC<Props> = props => {
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
 
-  function onSubmit() {
+  function onSubmit(e: any) {
+    e.preventDefault()
     console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
       ...(props.hasEmail && {email}),
