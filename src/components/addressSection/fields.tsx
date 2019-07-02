@@ -53,7 +53,7 @@ const Fields: React.FC<Props> = props => {
   const [streetTwo, setStreetTwo] = useState<string>('')
   const [zip, setZip] = useState<string>('')
 
-  function onSubmit(e: any) {
+  function onSubmit(e: any): void {
     e.preventDefault()
     console.log(`Address (${props.iteration}) submit clicked`)
     console.log({
@@ -69,7 +69,7 @@ const Fields: React.FC<Props> = props => {
     })
   }
 
-  function onClear() {
+  function onClear(): void {
     console.log(`Address (${props.iteration}) clear clicked`)
     setCity('')
     setCountry('')
@@ -82,7 +82,7 @@ const Fields: React.FC<Props> = props => {
     setZip('')
   }
 
-  function onNothing() {
+  function onNothing(): void {
     console.log(`Address (${props.iteration}) nothing clicked`)
   }
 

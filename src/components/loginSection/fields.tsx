@@ -44,7 +44,7 @@ const Fields: React.FC<Props> = props => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  function onSubmit(e: any) {
+  function onSubmit(e: any): void {
     e.preventDefault()
     console.log(`Login (${props.iteration}) submit clicked`)
     console.log({
@@ -54,14 +54,14 @@ const Fields: React.FC<Props> = props => {
     })
   }
 
-  function onClear() {
+  function onClear(): void {
     console.log(`Login (${props.iteration}) clear clicked`)
     setAccountId('')
     setUsername('')
     setPassword('')
   }
 
-  function onNothing() {
+  function onNothing(): void {
     console.log(`Login (${props.iteration}) nothing clicked`)
   }
 

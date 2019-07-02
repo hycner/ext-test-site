@@ -62,7 +62,7 @@ type Props = {
 }
 
 const LoginSection: React.FC<Props> = props => {
-  function toggleField(field: string) {
+  function toggleField(field: string): void {
     dispatch(
       setSettings({
         section: props.section,
@@ -74,7 +74,7 @@ const LoginSection: React.FC<Props> = props => {
     )
   }
 
-  function increaseIterations() {
+  function increaseIterations(): void {
     dispatch(
       setSettings({
         section: props.section,
@@ -84,7 +84,7 @@ const LoginSection: React.FC<Props> = props => {
       })
     )
   }
-  function decreaseIterations() {
+  function decreaseIterations(): void {
     if (props.settings.iterations > 1) {
       dispatch(
         setSettings({
@@ -97,7 +97,7 @@ const LoginSection: React.FC<Props> = props => {
     }
   }
 
-  function renderIterations() {
+  function renderIterations(): JSX.Element[] {
     const iNodes = []
     for (let i = 0; i < props.settings.iterations; i++) {
       if (props.settings.isIframeSection && !props.singleSectionDisplay) {

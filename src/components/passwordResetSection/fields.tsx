@@ -47,7 +47,7 @@ const Fields: React.FC<Props> = props => {
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
 
-  function onSubmit(e: any) {
+  function onSubmit(e: any): void {
     e.preventDefault()
     console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
@@ -58,7 +58,7 @@ const Fields: React.FC<Props> = props => {
     })
   }
 
-  function onClear() {
+  function onClear(): void {
     console.log(`Password Reset (${props.iteration}) clear clicked`)
     setEmail('')
     setOldPassword('')
@@ -66,7 +66,7 @@ const Fields: React.FC<Props> = props => {
     setConfirmNewPassword('')
   }
 
-  function onNothing() {
+  function onNothing(): void {
     console.log(`Password Reset (${props.iteration}) nothing clicked`)
   }
 

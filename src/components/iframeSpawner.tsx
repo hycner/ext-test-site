@@ -42,11 +42,11 @@ const IFrameSpawner: React.FC<Props> = props => {
   const [url, setUrl] = useState<string>('')
   const [iframes, setIframes] = useState<Array<Iframe>>([])
 
-  function onUrlChange(e: React.FormEvent<HTMLInputElement>) {
+  function onUrlChange(e: React.FormEvent<HTMLInputElement>): void {
     setUrl(e.currentTarget.value)
   }
 
-  function onSubmit() {
+  function onSubmit(): void {
     console.log(`spawn iframe button clicked. URL: ${url}`)
     setUrl('')
     setIframes([...iframes, {url}])

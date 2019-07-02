@@ -54,13 +54,13 @@ const Index: React.FC<Props> = props => {
     setDateFormat(e.target.value)
   }
 
-  function onSubmit(e: any) {
+  function onSubmit(e: any): void {
     e.preventDefault()
     console.log(`Credit card (${props.iteration}) save clicked`)
     console.log({cardNumber, cvv, expDateFull, expMonth, expYear, dateFormat, name})
   }
 
-  function onClear() {
+  function onClear(): void {
     console.log(`Credit card (${props.iteration}) clear clicked`)
     setCardNumber('')
     setCvv('')
@@ -70,7 +70,7 @@ const Index: React.FC<Props> = props => {
     setName('')
   }
 
-  function onNothing() {
+  function onNothing(): void {
     console.log(`Credit card (${props.iteration}) nothing clicked`)
   }
 
