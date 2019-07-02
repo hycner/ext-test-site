@@ -176,7 +176,8 @@ const Fields: React.FC<Props> = props => {
                     id={`expiration-month${iteration}`}
                     value={expMonth}
                     onChange={(e: any) => setExpMonth(e.target.value)}
-                    style={{width: '100%'}}
+                    className="ant-select-selection"
+                    style={{width: '100%', height: '100%'}}
                   >
                     {MONTHS.map(x => (
                       <option key={x.value} value={x.value}>
@@ -196,7 +197,8 @@ const Fields: React.FC<Props> = props => {
                     id={`expiration-year${iteration}`}
                     value={expYear}
                     onChange={(e: any) => setExpYear(e.target.value)}
-                    style={{width: '100%'}}
+                    className="ant-select-selection"
+                    style={{width: '100%', height: '100%'}}
                   >
                     {YEARS.map(x => (
                       <option key={x.value} value={x.value}>
