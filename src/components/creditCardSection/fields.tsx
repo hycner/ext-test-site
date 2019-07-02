@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Button, Input, Select, Switch} from 'antd'
+import {Button, Input, Radio, Select} from 'antd'
 import {connect} from 'react-redux'
 
 import {Store} from '../../modules/rootReducer'
@@ -36,9 +36,7 @@ const Wrap = styled.div`
   align-items: center;
   width: 300px;
 `
-const SwitchWrap = styled.div`
-  display: flex;
-  align-items: center;
+const FormatWrap = styled.div`
   margin-top: 2px;
 `
 const ButtonsWrap = styled.div`
@@ -72,17 +70,17 @@ const Fields: React.FC<Props> = props => {
   const [expDateFull, setExpDateFull] = useState<string>('')
   const [expMonth, setExpMonth] = useState<string>('')
   const [expYear, setExpYear] = useState<string>('')
-  const [isAlternateDateFormat, setIsAlternateDateFormat] = useState<boolean>(false)
+  const [dateFormat, setDateFormat] = useState<string>('string')
   const [name, setName] = useState<string>('')
 
-  function toggleDateFormat() {
-    setIsAlternateDateFormat(!isAlternateDateFormat)
+  function changeDateFormat(e: any) {
+    setDateFormat(e.target.value)
   }
 
   function onSubmit(e: any) {
     e.preventDefault()
     console.log(`Credit card (${props.iteration}) save clicked`)
-    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, isAlternateDateFormat, name})
+    console.log({cardNumber, cvv, expDateFull, expMonth, expYear, dateFormat, name})
   }
 
   function onClear() {
@@ -150,7 +148,7 @@ const Fields: React.FC<Props> = props => {
               />
             </div>
 
-            {!isAlternateDateFormat && (
+            {dateFormat === 'string' && (
               <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
@@ -166,7 +164,51 @@ const Fields: React.FC<Props> = props => {
               </div>
             )}
 
-            {isAlternateDateFormat && (
+            {dateFormat === 'select' && (
+              <>
+                <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
+                  <MaybeLabel
+                    isActive={props.isLabelled}
+                    label="Exp Month"
+                    {...(props.isLabelledWithFor && {target: `expiration-month${iteration}`})}
+                  />
+                  <select
+                    id={`expiration-month${iteration}`}
+                    value={expMonth}
+                    onChange={(e: any) => setExpMonth(e.target.value)}
+                    style={{width: '100%'}}
+                  >
+                    {MONTHS.map(x => (
+                      <option key={x.value} value={x.value}>
+                        {x.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
+                  <MaybeLabel
+                    isActive={props.isLabelled}
+                    label="Exp Year"
+                    {...(props.isLabelledWithFor && {target: `expiration-year${iteration}`})}
+                  />
+                  <select
+                    id={`expiration-year${iteration}`}
+                    value={expYear}
+                    onChange={(e: any) => setExpYear(e.target.value)}
+                    style={{width: '100%'}}
+                  >
+                    {YEARS.map(x => (
+                      <option key={x.value} value={x.value}>
+                        {x.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </>
+            )}
+
+            {dateFormat === 'non-standard' && (
               <>
                 <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
                   <MaybeLabel
@@ -211,10 +253,14 @@ const Fields: React.FC<Props> = props => {
             )}
           </div>
 
-          <SwitchWrap>
-            <Switch checked={isAlternateDateFormat} onChange={toggleDateFormat} />
-            &nbsp; Alternate Expiration Format
-          </SwitchWrap>
+          <FormatWrap>
+            <div>Expiration Format:</div>
+            <Radio.Group onChange={changeDateFormat} value={dateFormat}>
+              <Radio value="string">String</Radio>
+              <Radio value="select">Select</Radio>
+              <Radio value="non-standard">Non-Standard</Radio>
+            </Radio.Group>
+          </FormatWrap>
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
