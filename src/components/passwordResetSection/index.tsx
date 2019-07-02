@@ -59,14 +59,14 @@ const PasswordResetSection: React.FC<Props> = props => {
 
     [
       {
-        key: 'hasConfirmNew',
-        label: "Don't Confirm New Password",
-        value: !props.settings.hasConfirmNew,
-      },
-      {
         key: 'hasConfirmOld',
         label: "Don't Verify Current Password",
         value: !props.settings.hasConfirmOld,
+      },
+      {
+        key: 'hasConfirmNew',
+        label: "Don't Confirm New Password",
+        value: !props.settings.hasConfirmNew,
       },
       {
         key: 'hasEmail',
