@@ -1,34 +1,11 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Button, Input, Radio, Select} from 'antd'
+import {Button, Input, Radio} from 'antd'
 import {connect} from 'react-redux'
 
-import {Store} from '../../modules/rootReducer'
-import MaybeLabel from '../_maybeLabel'
-
-type ExpirationValues = Array<{
-  label: string
-  value: string
-}>
-const MONTHS: ExpirationValues = [
-  {value: '01', label: 'January'},
-  {value: '02', label: 'February'},
-  {value: '03', label: 'March'},
-  {value: '04', label: 'April'},
-  {value: '05', label: 'May'},
-  {value: '06', label: 'June'},
-  {value: '07', label: 'July'},
-  {value: '08', label: 'August'},
-  {value: '09', label: 'September'},
-  {value: '10', label: 'October'},
-  {value: '11', label: 'November'},
-  {value: '12', label: 'December'},
-]
-const YEARS: ExpirationValues = []
-const currentYear = new Date().getFullYear()
-for (let i = currentYear; i < currentYear + 10; i++) {
-  YEARS.push({value: String(i).slice(2), label: String(i)})
-}
+import {Store} from '../../../modules/rootReducer'
+import MaybeLabel from '../../_maybeLabel'
+import Expiration from './expiration'
 
 const Wrap = styled.div`
   display: flex;
@@ -64,7 +41,7 @@ type Props = {
   iteration: number
 }
 
-const Fields: React.FC<Props> = props => {
+const Index: React.FC<Props> = props => {
   const [cardNumber, setCardNumber] = useState<string>('')
   const [cvv, setCvv] = useState<string>('')
   const [expDateFull, setExpDateFull] = useState<string>('')
@@ -148,111 +125,18 @@ const Fields: React.FC<Props> = props => {
               />
             </div>
 
-            {dateFormat === 'string' && (
-              <div style={FIELD_STYLE}>
-                <MaybeLabel
-                  isActive={props.isLabelled}
-                  label="Exp Date"
-                  {...(props.isLabelledWithFor && {target: `expiration-date${iteration}`})}
-                />
-                <Input
-                  id={`expiration-date${iteration}`}
-                  placeholder="Expiration Date"
-                  value={expDateFull}
-                  onChange={e => setExpDateFull(e.target.value)}
-                />
-              </div>
-            )}
-
-            {dateFormat === 'select' && (
-              <>
-                <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
-                  <MaybeLabel
-                    isActive={props.isLabelled}
-                    label="Exp Month"
-                    {...(props.isLabelledWithFor && {target: `expiration-month${iteration}`})}
-                  />
-                  <select
-                    id={`expiration-month${iteration}`}
-                    value={expMonth}
-                    onChange={(e: any) => setExpMonth(e.target.value)}
-                    className="ant-select-selection"
-                    style={{width: '100%', height: '100%'}}
-                  >
-                    {MONTHS.map(x => (
-                      <option key={x.value} value={x.value}>
-                        {x.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
-                  <MaybeLabel
-                    isActive={props.isLabelled}
-                    label="Exp Year"
-                    {...(props.isLabelledWithFor && {target: `expiration-year${iteration}`})}
-                  />
-                  <select
-                    id={`expiration-year${iteration}`}
-                    value={expYear}
-                    onChange={(e: any) => setExpYear(e.target.value)}
-                    className="ant-select-selection"
-                    style={{width: '100%', height: '100%'}}
-                  >
-                    {YEARS.map(x => (
-                      <option key={x.value} value={x.value}>
-                        {x.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </>
-            )}
-
-            {dateFormat === 'non-standard' && (
-              <>
-                <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
-                  <MaybeLabel
-                    isActive={props.isLabelled}
-                    label="Exp Month"
-                    {...(props.isLabelledWithFor && {target: `expiration-month${iteration}`})}
-                  />
-                  <Select
-                    id={`expiration-month${iteration}`}
-                    value={expMonth}
-                    onChange={(val: string) => setExpMonth(val)}
-                    style={{width: '100%'}}
-                  >
-                    {MONTHS.map(x => (
-                      <Select.Option key={x.value} value={x.value}>
-                        {x.label}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </div>
-
-                <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
-                  <MaybeLabel
-                    isActive={props.isLabelled}
-                    label="Exp Year"
-                    {...(props.isLabelledWithFor && {target: `expiration-year${iteration}`})}
-                  />
-                  <Select
-                    id={`expiration-year${iteration}`}
-                    value={expYear}
-                    onChange={(val: string) => setExpYear(val)}
-                    style={{width: '100%'}}
-                  >
-                    {YEARS.map(x => (
-                      <Select.Option key={x.value} value={x.value}>
-                        {x.label}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </div>
-              </>
-            )}
+            <Expiration
+              dateFormat={dateFormat}
+              expDateFull={expDateFull}
+              expMonth={expMonth}
+              expYear={expYear}
+              isLabelled={props.isLabelled}
+              isLabelledWithFor={props.isLabelledWithFor}
+              iteration={iteration}
+              setExpDateFull={setExpDateFull}
+              setExpMonth={setExpMonth}
+              setExpYear={setExpYear}
+            />
           </div>
 
           <FormatWrap>
@@ -302,7 +186,7 @@ function mapStateToProps(state: Store) {
   }
 }
 
-export default connect(mapStateToProps)(React.memo(Fields))
+export default connect(mapStateToProps)(React.memo(Index))
 
 // Helper functions
 
