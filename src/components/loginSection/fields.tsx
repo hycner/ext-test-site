@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
+import {useIntl} from 'react-intl';
 
 import {Store} from '../../modules/rootReducer'
 import MaybeLabel from '../_maybeLabel'
@@ -43,6 +44,9 @@ const Fields: React.FC<Props> = props => {
   const [accountId, setAccountId] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const intl = useIntl();
+
+  const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {
     e.preventDefault()
@@ -79,13 +83,13 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Account ID"
+                label={messages.accountId}
                 {...(props.isLabelledWithFor && {target: `accountId${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
                 id={`accountId${iteration}`}
-                placeholder="Account ID"
+                placeholder={messages.accountId}
                 value={accountId}
                 onChange={e => setAccountId(e.target.value)}
               />
@@ -94,41 +98,41 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Username"
+            label={messages.username}
             {...(props.isLabelledWithFor && {target: `username${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
             id={`username${iteration}`}
-            placeholder="Username"
+            placeholder={messages.username}
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Password"
+            label={messages.password}
             {...(props.isLabelledWithFor && {target: `password${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
             id={`password${iteration}`}
-            placeholder="Password"
+            placeholder={messages.password}
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-              Submit
+              {messages.submit}
             </Button>
             {props.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                  Clear
+                  {messages.clear}
                 </Button>
                 <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                  Nothing
+                  {messages.nothing}
                 </Button>
               </>
             )}

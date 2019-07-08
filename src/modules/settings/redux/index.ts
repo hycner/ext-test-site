@@ -15,7 +15,7 @@ type InitActionPayload = {
   settings:
     | StoreSettings
     | {
-        [option: string]: boolean | number
+        [option: string]: boolean | number | string
       }
 }
 type InitAction = {
@@ -71,6 +71,8 @@ export function* setWatcher(): SagaIterator {
   yield takeEvery(INIT, setTask)
 }
 
+export type LocaleOptions = 'en-US' | 'ja-JP'
+
 export type StoreSettingsAddress = Readonly<{
   areIdsUnique: boolean
   hasEmail: boolean
@@ -82,9 +84,11 @@ export type StoreSettingsAddress = Readonly<{
   isIframeSection: boolean
   isLabelled: boolean
   isLabelledWithFor: boolean
+  isLocaleChanged: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
+  locale: LocaleOptions
 }>
 export type StoreSettingsCreditCard = Readonly<{
   areIdsUnique: boolean
@@ -93,9 +97,11 @@ export type StoreSettingsCreditCard = Readonly<{
   isIframeSection: boolean
   isLabelled: boolean
   isLabelledWithFor: boolean
+  isLocaleChanged: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
+  locale: LocaleOptions
 }>
 export type StoreSettingsLogin = Readonly<{
   areIdsUnique: boolean
@@ -104,10 +110,12 @@ export type StoreSettingsLogin = Readonly<{
   isIframeSection: boolean
   isLabelled: boolean
   isLabelledWithFor: boolean
+  isLocaleChanged: boolean
   isMultiButton: boolean
   isThreeField: boolean
   isVisible: boolean
   iterations: number
+  locale: LocaleOptions
 }>
 export type StoreSettingsPasswordReset = Readonly<{
   areIdsUnique: boolean
@@ -119,9 +127,11 @@ export type StoreSettingsPasswordReset = Readonly<{
   isIframeSection: boolean
   isLabelled: boolean
   isLabelledWithFor: boolean
+  isLocaleChanged: boolean
   isMultiButton: boolean
   isVisible: boolean
   iterations: number
+  locale: LocaleOptions
 }>
 export type StoreSettings = Readonly<{
   address: StoreSettingsAddress
@@ -142,9 +152,11 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isLabelled: false,
     isLabelledWithFor: true,
+    isLocaleChanged: false,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
+    locale: 'en-US',
   },
   creditCard: {
     areIdsUnique: true,
@@ -153,9 +165,11 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isLabelled: false,
     isLabelledWithFor: true,
+    isLocaleChanged: false,
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
+    locale: 'en-US',
   },
   login: {
     areIdsUnique: true,
@@ -164,10 +178,12 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isLabelled: false,
     isLabelledWithFor: true,
+    isLocaleChanged: false,
     isMultiButton: false,
     isThreeField: false,
     isVisible: true,
     iterations: 1,
+    locale: 'en-US',
   },
   passwordReset: {
     areIdsUnique: true,
@@ -179,9 +195,11 @@ const initialState: StoreSettings = {
     isIframeSection: false,
     isLabelled: false,
     isLabelledWithFor: true,
+    isLocaleChanged: false,
     isMultiButton: false,
     isVisible: false,
     iterations: 1,
+    locale: 'en-US',
   },
 }
 
@@ -199,6 +217,8 @@ export default function settingsReducer(
   }
 }
 
+const VALID_LOCALES: LocaleOptions[] = ['en-US', 'ja-JP']
+
 export const settingsSchema = yup
   .object({
     address: yup
@@ -213,9 +233,11 @@ export const settingsSchema = yup
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
         isLabelledWithFor: yup.boolean().required(),
+        isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
+        locale: yup.string().oneOf(VALID_LOCALES).required(),
       })
       .required(),
     creditCard: yup
@@ -226,9 +248,11 @@ export const settingsSchema = yup
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
         isLabelledWithFor: yup.boolean().required(),
+        isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
+        locale: yup.string().oneOf(VALID_LOCALES).required(),
       })
       .required(),
     login: yup
@@ -239,10 +263,12 @@ export const settingsSchema = yup
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
         isLabelledWithFor: yup.boolean().required(),
+        isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isThreeField: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
+        locale: yup.string().oneOf(VALID_LOCALES).required(),
       })
       .required(),
     passwordReset: yup
@@ -256,9 +282,11 @@ export const settingsSchema = yup
         isIframeSection: yup.boolean().required(),
         isLabelled: yup.boolean().required(),
         isLabelledWithFor: yup.boolean().required(),
+        isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
+        locale: yup.string().oneOf(VALID_LOCALES).required(),
       })
       .required(),
   })

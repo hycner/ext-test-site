@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
+import { IntlProvider } from 'react-intl';
 
 import {
   SectionTypes,
@@ -12,6 +13,7 @@ import {
 import {dispatch} from '../store'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
 import {ConfigMenuItems} from './_configMenu'
+import intlConfig from '../lib/intl'
 
 import ConfigMenu from './_configMenu'
 import AddressFields from './addressSection/fields'
@@ -118,43 +120,47 @@ const LoginSection: React.FC<Props> = props => {
     return iNodes
   }
 
-  return (
-    <Wrap>
-      <Header>
-        <div>
-          <Icon
-            type={props.settings.isVisible ? 'eye' : 'eye-invisible'}
-            theme="filled"
-            style={ICON_STYLE}
-            onClick={() => toggleField('isVisible')}
-          />
-          &nbsp; {props.label} &nbsp;
-          <Tooltip title={props.description}>
-            <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
-          </Tooltip>
-        </div>
+  const locale = props.settings.isLocaleChanged ? props.settings.locale : 'en-US'
 
-        {props.settings.isVisible && (
-          <SpecificSettings>
+  return (
+    <IntlProvider locale={locale} messages={intlConfig[locale][props.section]}>
+      <Wrap>
+        <Header>
+          <div>
             <Icon
-              type="plus-circle"
+              type={props.settings.isVisible ? 'eye' : 'eye-invisible'}
               theme="filled"
               style={ICON_STYLE}
-              onClick={increaseIterations}
+              onClick={() => toggleField('isVisible')}
             />
-            <Icon
-              type="minus-circle"
-              theme="filled"
-              style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
-              onClick={decreaseIterations}
-            />
-            <ConfigMenu items={props.configMenuItems} toggleFunc={toggleField} />
-          </SpecificSettings>
-        )}
-      </Header>
+            &nbsp; {props.label} &nbsp;
+            <Tooltip title={props.description}>
+              <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
+            </Tooltip>
+          </div>
 
-      {props.settings.isVisible && renderIterations()}
-    </Wrap>
+          {props.settings.isVisible && (
+            <SpecificSettings>
+              <Icon
+                type="plus-circle"
+                theme="filled"
+                style={ICON_STYLE}
+                onClick={increaseIterations}
+              />
+              <Icon
+                type="minus-circle"
+                theme="filled"
+                style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
+                onClick={decreaseIterations}
+              />
+              <ConfigMenu items={props.configMenuItems} toggleFunc={toggleField} />
+            </SpecificSettings>
+          )}
+        </Header>
+
+        {props.settings.isVisible && renderIterations()}
+      </Wrap>
+    </IntlProvider>
   )
 }
 
