@@ -5,7 +5,20 @@ export default {
 
 function enUs() {
   return {
-    address: undefined,
+    address: {
+      city: 'City',
+      clear: 'Clear',
+      country: 'Country',
+      email: 'Email',
+      name: 'Name',
+      nothing: 'Nothing',
+      phone: 'Phone',
+      save: 'Save',
+      state: 'State',
+      street1: 'Street 1',
+      street2: 'Street 2',
+      zip: 'Zip',
+    },
     creditCard: undefined,
     login: {
       accountId: 'Account ID',
@@ -21,7 +34,20 @@ function enUs() {
 
 function jaJP() {
   return {
-    address: undefined,
+    address: {
+      city: '都市', // 'シティ'
+      clear: '消す', // 'クリア'
+      country: '国',
+      email: '電子メイル', // 'Eメール'
+      name: '名',
+      nothing: '何も',
+      phone: '電話',
+      save: '保存', // 'セーブ'
+      state: '県',
+      street1: '通り一', // '通り1', '道1', '道一'
+      street2: '通り二', // '通り2', '道2', '道二'
+      zip: '郵便番号',
+    },
     creditCard: undefined,
     login: {
       accountId: '口座ID', // 'アカウントID'

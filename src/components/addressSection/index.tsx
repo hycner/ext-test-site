@@ -1,8 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Select} from 'antd'
 
+import {dispatch} from '../../store'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
-import {StoreSettingsAddress} from '../../modules/settings/redux'
+import {LocaleOptions, setSettings, StoreSettingsAddress} from '../../modules/settings/redux'
 import {Store} from '../../modules/rootReducer'
 
 import Fields from './fields'
@@ -14,7 +16,34 @@ type Props = {
 }
 
 const AddressSection: React.FC<Props> = props => {
+  function changeLocale(locale: LocaleOptions): void {
+    dispatch(
+      setSettings({
+        section: 'address',
+        settings: {
+          locale,
+        },
+      })
+    )
+  }
+
   const configMenuItems = [
+    [
+      {
+        key: 'isLocaleChanged',
+        label: (
+          <>
+            Change locale to:&nbsp;
+            <Select value={props.settings.locale} onChange={changeLocale}>
+              <Select.Option value="en-US">en-US</Select.Option>
+              <Select.Option value="ja-JP">ja-JP</Select.Option>
+            </Select>
+          </>
+        ),
+        value: props.settings.isLocaleChanged,
+      },
+    ],
+
     [
       {
         key: 'isForm',

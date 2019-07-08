@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
+import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
 import MaybeLabel from '../_maybeLabel'
@@ -52,6 +53,9 @@ const Fields: React.FC<Props> = props => {
   const [streetOne, setStreetOne] = useState<string>('')
   const [streetTwo, setStreetTwo] = useState<string>('')
   const [zip, setZip] = useState<string>('')
+  const intl = useIntl()
+
+  const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {
     e.preventDefault()
@@ -101,13 +105,13 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Name"
+                label={messages.name}
                 {...(props.isLabelledWithFor && {target: `name${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
                 id={`name${iteration}`}
-                placeholder="Name"
+                placeholder={messages.name}
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
@@ -119,12 +123,12 @@ const Fields: React.FC<Props> = props => {
               <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
-                  label="Email"
+                  label={messages.email}
                   {...(props.isLabelledWithFor && {target: `email${iteration}`})}
                 />
                 <Input
                   id={`email${iteration}`}
-                  placeholder="Email"
+                  placeholder={messages.email}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
@@ -135,12 +139,12 @@ const Fields: React.FC<Props> = props => {
               <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
-                  label="Phone"
+                  label={messages.phone}
                   {...(props.isLabelledWithFor && {target: `phone${iteration}`})}
                 />
                 <Input
                   id={`phone${iteration}`}
-                  placeholder="Phone"
+                  placeholder={messages.phone}
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                 />
@@ -150,39 +154,39 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Street 1"
+            label={messages.street1}
             {...(props.isLabelledWithFor && {target: `streetOne${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
             id={`streetOne${iteration}`}
-            placeholder="Street 1"
+            placeholder={messages.street1}
             value={streetOne}
             onChange={e => setStreetOne(e.target.value)}
           />
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Street 2"
+            label={messages.street2}
             {...(props.isLabelledWithFor && {target: `streetTwo${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
             id={`streetTwo${iteration}`}
-            placeholder="Street 2"
+            placeholder={messages.street2}
             value={streetTwo}
             onChange={e => setStreetTwo(e.target.value)}
           />
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="City"
+            label={messages.city}
             {...(props.isLabelledWithFor && {target: `city${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
             id={`city${iteration}`}
-            placeholder="City"
+            placeholder={messages.city}
             value={city}
             onChange={e => setCity(e.target.value)}
           />
@@ -191,12 +195,12 @@ const Fields: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="State"
+                label={messages.state}
                 {...(props.isLabelledWithFor && {target: `state${iteration}`})}
               />
               <Input
                 id={`state${iteration}`}
-                placeholder="State"
+                placeholder={messages.state}
                 value={state}
                 onChange={e => setState(e.target.value)}
               />
@@ -205,12 +209,12 @@ const Fields: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Zip"
+                label={messages.zip}
                 {...(props.isLabelledWithFor && {target: `zip${iteration}`})}
               />
               <Input
                 id={`zip${iteration}`}
-                placeholder="Zip"
+                placeholder={messages.zip}
                 value={zip}
                 onChange={e => setZip(e.target.value)}
               />
@@ -219,28 +223,28 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Country"
+            label={messages.country}
             {...(props.isLabelledWithFor && {target: `country${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
             id={`country${iteration}`}
-            placeholder="Country"
+            placeholder={messages.country}
             value={country}
             onChange={e => setCountry(e.target.value)}
           />
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-              Save
+              {messages.save}
             </Button>
             {props.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                  Clear
+                  {messages.clear}
                 </Button>
                 <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                  Nothing
+                  {messages.nothing}
                 </Button>
               </>
             )}

@@ -17,8 +17,6 @@ type Props = {
 
 const LoginSection: React.FC<Props> = props => {
   function changeLocale(locale: LocaleOptions): void {
-    console.log('** locale', locale)
-
     dispatch(
       setSettings({
         section: 'login',
