@@ -3,7 +3,7 @@ export default {
   'ja-JP': jaJP(),
 }
 
-function enUs () {
+function enUs() {
   return {
     address: undefined,
     creditCard: undefined,
@@ -19,7 +19,7 @@ function enUs () {
   }
 }
 
-function jaJP () {
+function jaJP() {
   return {
     address: undefined,
     creditCard: undefined,

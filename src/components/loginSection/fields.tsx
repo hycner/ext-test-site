@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
-import {useIntl} from 'react-intl';
+import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
 import MaybeLabel from '../_maybeLabel'
@@ -44,7 +44,7 @@ const Fields: React.FC<Props> = props => {
   const [accountId, setAccountId] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const intl = useIntl();
+  const intl = useIntl()
 
   const messages = intl.messages as {[key: string]: string}
 

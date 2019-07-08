@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Icon, Tooltip} from 'antd'
-import { IntlProvider } from 'react-intl';
+import {IntlProvider} from 'react-intl'
 
 import {
   SectionTypes,

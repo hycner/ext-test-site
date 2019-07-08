@@ -237,7 +237,10 @@ export const settingsSchema = yup
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
-        locale: yup.string().oneOf(VALID_LOCALES).required(),
+        locale: yup
+          .string()
+          .oneOf(VALID_LOCALES)
+          .required(),
       })
       .required(),
     creditCard: yup
@@ -252,7 +255,10 @@ export const settingsSchema = yup
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
-        locale: yup.string().oneOf(VALID_LOCALES).required(),
+        locale: yup
+          .string()
+          .oneOf(VALID_LOCALES)
+          .required(),
       })
       .required(),
     login: yup
@@ -268,7 +274,10 @@ export const settingsSchema = yup
         isThreeField: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
-        locale: yup.string().oneOf(VALID_LOCALES).required(),
+        locale: yup
+          .string()
+          .oneOf(VALID_LOCALES)
+          .required(),
       })
       .required(),
     passwordReset: yup
@@ -286,7 +295,10 @@ export const settingsSchema = yup
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
         iterations: yup.number().required(),
-        locale: yup.string().oneOf(VALID_LOCALES).required(),
+        locale: yup
+          .string()
+          .oneOf(VALID_LOCALES)
+          .required(),
       })
       .required(),
   })

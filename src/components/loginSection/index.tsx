@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Select} from 'antd'
 
-import {dispatch} from '../../store';
+import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
 import {LocaleOptions, setSettings, StoreSettingsLogin} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
