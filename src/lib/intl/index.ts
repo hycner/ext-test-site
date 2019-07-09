@@ -1,5 +1,5 @@
-import enUS from './enUS'
-import jaJP from './jaJP'
+import enUS from './en-US'
+import jaJP from './ja-JP'
 
 export default {
   'en-US': enUS,
