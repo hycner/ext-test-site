@@ -47,8 +47,8 @@ const Fields: React.FC<Props> = props => {
   const [oldPassword, setOldPassword] = useState<string>('')
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
-  const intl = useIntl()
 
+  const intl = useIntl()
   const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {

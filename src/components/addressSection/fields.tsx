@@ -53,8 +53,8 @@ const Fields: React.FC<Props> = props => {
   const [streetOne, setStreetOne] = useState<string>('')
   const [streetTwo, setStreetTwo] = useState<string>('')
   const [zip, setZip] = useState<string>('')
-  const intl = useIntl()
 
+  const intl = useIntl()
   const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {

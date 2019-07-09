@@ -50,8 +50,8 @@ const Index: React.FC<Props> = props => {
   const [expYear, setExpYear] = useState<string>('')
   const [dateFormat, setDateFormat] = useState<string>('string')
   const [name, setName] = useState<string>('')
-  const intl = useIntl()
 
+  const intl = useIntl()
   const messages = intl.messages as {[key: string]: string}
 
   function changeDateFormat(e: any) {

@@ -44,8 +44,8 @@ const Fields: React.FC<Props> = props => {
   const [accountId, setAccountId] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const intl = useIntl()
 
+  const intl = useIntl()
   const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {
