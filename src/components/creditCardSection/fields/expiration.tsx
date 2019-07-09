@@ -1,5 +1,6 @@
 import React from 'react'
 import {Input, Select} from 'antd'
+import {useIntl} from 'react-intl'
 
 import MaybeLabel from '../../_maybeLabel'
 
@@ -47,17 +48,20 @@ type Props = {
 }
 
 const Expiration: React.FC<Props> = props => {
+  const intl = useIntl()
+  const messages = intl.messages as {[key: string]: string}
+
   if (props.dateFormat === 'string') {
     return (
       <div style={FIELD_STYLE}>
         <MaybeLabel
           isActive={props.isLabelled}
-          label="Exp Date"
+          label={messages.expDate}
           {...(props.isLabelledWithFor && {target: `expiration-date${props.iteration}`})}
         />
         <Input
           id={`expiration-date${props.iteration}`}
-          placeholder="Expiration Date"
+          placeholder={messages.expDate}
           value={props.expDateFull}
           onChange={e => props.setExpDateFull(e.target.value)}
         />
@@ -71,7 +75,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Exp Month"
+            label={messages.expMonth}
             {...(props.isLabelledWithFor && {target: `expiration-month${props.iteration}`})}
           />
           <select
@@ -92,7 +96,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Exp Year"
+            label={messages.expYear}
             {...(props.isLabelledWithFor && {target: `expiration-year${props.iteration}`})}
           />
           <select
@@ -119,7 +123,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Exp Month"
+            label={messages.expMonth}
             {...(props.isLabelledWithFor && {target: `expiration-month${props.iteration}`})}
           />
           <Select
@@ -139,7 +143,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Exp Year"
+            label={messages.expYear}
             {...(props.isLabelledWithFor && {target: `expiration-year${props.iteration}`})}
           />
           <Select

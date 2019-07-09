@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input, Radio} from 'antd'
 import {connect} from 'react-redux'
+import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
 import MaybeLabel from '../../_maybeLabel'
@@ -49,6 +50,9 @@ const Index: React.FC<Props> = props => {
   const [expYear, setExpYear] = useState<string>('')
   const [dateFormat, setDateFormat] = useState<string>('string')
   const [name, setName] = useState<string>('')
+  const intl = useIntl()
+
+  const messages = intl.messages as {[key: string]: string}
 
   function changeDateFormat(e: any) {
     setDateFormat(e.target.value)
@@ -86,12 +90,12 @@ const Index: React.FC<Props> = props => {
         <Wrap>
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Name on Card"
+            label={messages.name}
             {...(props.isLabelledWithFor && {target: `cardholderName${iteration}`})}
           />
           <Input
             id={`cardholderName${iteration}`}
-            placeholder="Name on Card"
+            placeholder={messages.name}
             style={FIELD_STYLE}
             value={name}
             onChange={e => setName(e.target.value)}
@@ -99,12 +103,12 @@ const Index: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="Card Number"
+            label={messages.number}
             {...(props.isLabelledWithFor && {target: `cardNumber${iteration}`})}
           />
           <Input
             id={`cardNumber${iteration}`}
-            placeholder="Card Number"
+            placeholder={messages.number}
             style={FIELD_STYLE}
             value={cardNumber}
             onChange={e => setCardNumber(e.target.value)}
@@ -114,12 +118,12 @@ const Index: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="CVV"
+                label={messages.cvv}
                 {...(props.isLabelledWithFor && {target: `cvv${iteration}`})}
               />
               <Input
                 id={`cvv${iteration}`}
-                placeholder="CVV"
+                placeholder={messages.cvv}
                 value={cvv}
                 onChange={e => setCvv(e.target.value)}
               />
@@ -150,15 +154,15 @@ const Index: React.FC<Props> = props => {
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-              Save Credit Card
+              {messages.save}
             </Button>
             {props.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                  Clear
+                  {messages.clear}
                 </Button>
                 <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                  Nothing
+                  {messages.nothing}
                 </Button>
               </>
             )}

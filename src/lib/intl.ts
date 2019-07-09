@@ -19,7 +19,17 @@ function enUs() {
       street2: 'Street 2',
       zip: 'Zip',
     },
-    creditCard: undefined,
+    creditCard: {
+      clear: 'Clear',
+      expDate: 'Expiration Date',
+      expMonth: 'Expiration Month',
+      expYear: 'Expiration Year',
+      name: 'Name on Card',
+      nothing: 'Nothing',
+      number: 'Card Number',
+      cvv: 'CVV',
+      save: 'Save Credit Card',
+    },
     login: {
       accountId: 'Account ID',
       clear: 'Clear',
@@ -48,7 +58,17 @@ function jaJP() {
       street2: '通り二', // '通り2', '道2', '道二'
       zip: '郵便番号',
     },
-    creditCard: undefined,
+    creditCard: {
+      clear: '消す', // 'クリア'
+      cvv: 'CVV番号', // 'CVV'
+      expDate: '有効期限',
+      expMonth: '有効期限月',
+      expYear: '有効期限年',
+      name: '名',
+      nothing: '何も',
+      number: '数',
+      save: '保存', // 'セーブ'
+    },
     login: {
       accountId: '口座ID', // 'アカウントID'
       clear: '消す', // 'クリア'
