@@ -76,7 +76,9 @@ const Expiration: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.expMonth}
-            {...(props.isLabelledWithFor && {target: `${messages.expMonth_short}${props.iteration}`})}
+            {...(props.isLabelledWithFor && {
+              target: `${messages.expMonth_short}${props.iteration}`,
+            })}
           />
           <select
             id={`${messages.expMonth_short}${props.iteration}`}
@@ -97,7 +99,9 @@ const Expiration: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.expYear}
-            {...(props.isLabelledWithFor && {target: `${messages.expYear_short}${props.iteration}`})}
+            {...(props.isLabelledWithFor && {
+              target: `${messages.expYear_short}${props.iteration}`,
+            })}
           />
           <select
             id={`${messages.expYear_short}${props.iteration}`}
@@ -124,7 +128,9 @@ const Expiration: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.expMonth}
-            {...(props.isLabelledWithFor && {target: `${messages.expMonth_short}${props.iteration}`})}
+            {...(props.isLabelledWithFor && {
+              target: `${messages.expMonth_short}${props.iteration}`,
+            })}
           />
           <Select
             id={`${messages.expMonth_short}${props.iteration}`}
@@ -144,7 +150,9 @@ const Expiration: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.expYear}
-            {...(props.isLabelledWithFor && {target: `${messages.expYear_short}${props.iteration}`})}
+            {...(props.isLabelledWithFor && {
+              target: `${messages.expYear_short}${props.iteration}`,
+            })}
           />
           <Select
             id={`${messages.expYear_short}${props.iteration}`}

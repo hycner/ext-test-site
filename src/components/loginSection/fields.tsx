@@ -84,7 +84,9 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.accountId}
-                {...(props.isLabelledWithFor && {target: `${messages.accountId_short}${iteration}`})}
+                {...(props.isLabelledWithFor && {
+                  target: `${messages.accountId_short}${iteration}`,
+                })}
               />
               <Input
                 style={FIELD_STYLE}

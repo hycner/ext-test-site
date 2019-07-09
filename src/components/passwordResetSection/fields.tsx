@@ -136,7 +136,9 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.confirmNewPass}
-                {...(props.isLabelledWithFor && {target: `${messages.confirmNewPass_short}${iteration}`})}
+                {...(props.isLabelledWithFor && {
+                  target: `${messages.confirmNewPass_short}${iteration}`,
+                })}
               />
               <Input.Password
                 style={FIELD_STYLE}
