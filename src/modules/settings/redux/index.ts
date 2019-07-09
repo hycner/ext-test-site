@@ -217,7 +217,7 @@ export default function settingsReducer(
   }
 }
 
-const VALID_LOCALES: LocaleOptions[] = ['en-US', 'ja-JP']
+const VALID_LOCALES: LocaleOptions[] = ['af', 'en-US', 'ja-JP']
 
 export const settingsSchema = yup
   .object({
