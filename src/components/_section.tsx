@@ -1,15 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Icon, Tooltip} from 'antd'
+import {Icon, Select, Tooltip} from 'antd';
 import {IntlProvider} from 'react-intl'
 
 import {
+  LocaleOptions,
   SectionTypes,
   setSettings,
   StoreSettingsAddress,
   StoreSettingsCreditCard,
   StoreSettingsLogin,
-} from '../modules/settings/redux'
+} from '../modules/settings/redux';
 import {dispatch} from '../store'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
 import {ConfigMenuItems} from './_configMenu'
@@ -120,6 +121,37 @@ const LoginSection: React.FC<Props> = props => {
     return iNodes
   }
 
+  function changeLocale(locale: LocaleOptions): void {
+    dispatch(
+      setSettings({
+        section: props.section,
+        settings: {
+          locale,
+        },
+      })
+    )
+  }
+
+  const configMenuItems = [
+    [
+      {
+        key: 'isLocaleChanged',
+        label: (
+          <>
+            Change locale to:&nbsp;
+            <Select value={props.settings.locale} onChange={changeLocale}>
+              <Select.Option value="en-US">en-US</Select.Option>
+              <Select.Option value="ja-JP">ja-JP</Select.Option>
+            </Select>
+          </>
+        ),
+        value: props.settings.isLocaleChanged,
+      },
+    ],
+
+    ...props.configMenuItems,
+  ]
+
   const locale = props.settings.isLocaleChanged ? props.settings.locale : 'en-US'
 
   return (
@@ -153,7 +185,7 @@ const LoginSection: React.FC<Props> = props => {
                 style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
                 onClick={decreaseIterations}
               />
-              <ConfigMenu items={props.configMenuItems} toggleFunc={toggleField} />
+              <ConfigMenu items={configMenuItems} toggleFunc={toggleField} />
             </SpecificSettings>
           )}
         </Header>
