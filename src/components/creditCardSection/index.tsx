@@ -1,14 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Select} from 'antd';
+import {Select} from 'antd'
 
+import {dispatch} from '../../store'
 import {Store} from '../../modules/rootReducer'
-import {LocaleOptions, setSettings, StoreSettingsCreditCard} from '../../modules/settings/redux';
+import {LocaleOptions, setSettings, StoreSettingsCreditCard} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 
 import Fields from './fields'
 import Section from '../_section'
-import {dispatch} from '../../store';
 
 type Props = {
   settings: StoreSettingsCreditCard

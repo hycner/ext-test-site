@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input} from 'antd'
 import {connect} from 'react-redux'
+import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
 import MaybeLabel from '../_maybeLabel'
@@ -46,6 +47,9 @@ const Fields: React.FC<Props> = props => {
   const [oldPassword, setOldPassword] = useState<string>('')
   const [newPassword, setNewPassword] = useState<string>('')
   const [confirmNewPassword, setConfirmNewPassword] = useState<string>('')
+  const intl = useIntl()
+
+  const messages = intl.messages as {[key: string]: string}
 
   function onSubmit(e: any): void {
     e.preventDefault()
@@ -84,13 +88,13 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Email"
+                label={messages.email}
                 {...(props.isLabelledWithFor && {target: `psEmail${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
                 id={`psEmail${iteration}`}
-                placeholder="Email"
+                placeholder={messages.email}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
@@ -101,13 +105,13 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Current Password"
+                label={messages.oldPass}
                 {...(props.isLabelledWithFor && {target: `oldPassword${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
                 id={`oldPassword${iteration}`}
-                placeholder="Current Password"
+                placeholder={messages.oldPass}
                 value={oldPassword}
                 onChange={e => setOldPassword(e.target.value)}
               />
@@ -116,13 +120,13 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
-            label="New Password"
+            label={messages.newPass}
             {...(props.isLabelledWithFor && {target: `newPassword${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
             id={`newPassword${iteration}`}
-            placeholder="New Password"
+            placeholder={messages.newPass}
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
           />
@@ -131,13 +135,13 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
-                label="Confirm New Password"
+                label={messages.confirmNewPass}
                 {...(props.isLabelledWithFor && {target: `confirmNewPassword${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
                 id={`confirmNewPassword${iteration}`}
-                placeholder="Confirm New Password"
+                placeholder={messages.confirmNewPass}
                 value={confirmNewPassword}
                 onChange={e => setConfirmNewPassword(e.target.value)}
               />
@@ -146,15 +150,15 @@ const Fields: React.FC<Props> = props => {
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
-              Submit
+              {messages.submit}
             </Button>
             {props.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
-                  Clear
+                  {messages.clear}
                 </Button>
                 <Button style={BTN_STYLE} onClick={onNothing} htmlType="button">
-                  Nothing
+                  {messages.nothing}
                 </Button>
               </>
             )}

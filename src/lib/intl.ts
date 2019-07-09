@@ -38,7 +38,15 @@ function enUs() {
       submit: 'Submit',
       username: 'Username',
     },
-    passwordReset: undefined,
+    passwordReset: {
+      clear: 'Clear',
+      email: 'Email',
+      confirmNewPass: 'Confirm New Password',
+      newPass: 'New Password',
+      nothing: 'Nothing',
+      oldPass: 'Current Password',
+      submit: 'Submit',
+    },
   }
 }
 
@@ -77,6 +85,14 @@ function jaJP() {
       submit: '提出',
       username: 'ユーザー名', // '名前'
     },
-    passwordReset: undefined,
+    passwordReset: {
+      clear: '消す', // 'クリア'
+      email: '電子メイル', // 'Eメール'
+      confirmNewPass: '新しいパスワードを確認',
+      newPass: '新しいパスワード',
+      nothing: '何も',
+      oldPass: '現在のパスワード',
+      submit: '提出',
+    },
   }
 }
