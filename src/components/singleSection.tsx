@@ -9,7 +9,7 @@ import {
   StoreSettingsLogin,
 } from '../modules/settings/redux'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
-import intlConfig from '../lib/intl';
+import intlConfig from '../lib/intl'
 
 type Settings = StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin
 type Props = {
