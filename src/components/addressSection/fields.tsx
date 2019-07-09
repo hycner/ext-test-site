@@ -106,11 +106,11 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.name}
-                {...(props.isLabelledWithFor && {target: `name${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
-                id={`name${iteration}`}
+                id={`${messages.name_short}${iteration}`}
                 placeholder={messages.name}
                 value={name}
                 onChange={e => setName(e.target.value)}
@@ -124,10 +124,10 @@ const Fields: React.FC<Props> = props => {
                 <MaybeLabel
                   isActive={props.isLabelled}
                   label={messages.email}
-                  {...(props.isLabelledWithFor && {target: `email${iteration}`})}
+                  {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
                 />
                 <Input
-                  id={`email${iteration}`}
+                  id={`${messages.email_short}${iteration}`}
                   placeholder={messages.email}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -140,10 +140,10 @@ const Fields: React.FC<Props> = props => {
                 <MaybeLabel
                   isActive={props.isLabelled}
                   label={messages.phone}
-                  {...(props.isLabelledWithFor && {target: `phone${iteration}`})}
+                  {...(props.isLabelledWithFor && {target: `${messages.phone_short}${iteration}`})}
                 />
                 <Input
-                  id={`phone${iteration}`}
+                  id={`${messages.phone_short}${iteration}`}
                   placeholder={messages.phone}
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
@@ -155,11 +155,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.street1}
-            {...(props.isLabelledWithFor && {target: `streetOne${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
-            id={`streetOne${iteration}`}
+            id={`${messages.street1_short}${iteration}`}
             placeholder={messages.street1}
             value={streetOne}
             onChange={e => setStreetOne(e.target.value)}
@@ -168,11 +168,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.street2}
-            {...(props.isLabelledWithFor && {target: `streetTwo${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
-            id={`streetTwo${iteration}`}
+            id={`${messages.street2_short}${iteration}`}
             placeholder={messages.street2}
             value={streetTwo}
             onChange={e => setStreetTwo(e.target.value)}
@@ -181,11 +181,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.city}
-            {...(props.isLabelledWithFor && {target: `city${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
-            id={`city${iteration}`}
+            id={`${messages.city_short}${iteration}`}
             placeholder={messages.city}
             value={city}
             onChange={e => setCity(e.target.value)}
@@ -196,10 +196,10 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.state}
-                {...(props.isLabelledWithFor && {target: `state${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.state_short}${iteration}`})}
               />
               <Input
-                id={`state${iteration}`}
+                id={`${messages.state_short}${iteration}`}
                 placeholder={messages.state}
                 value={state}
                 onChange={e => setState(e.target.value)}
@@ -210,10 +210,10 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.zip}
-                {...(props.isLabelledWithFor && {target: `zip${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.zip_short}${iteration}`})}
               />
               <Input
-                id={`zip${iteration}`}
+                id={`${messages.zip_short}${iteration}`}
                 placeholder={messages.zip}
                 value={zip}
                 onChange={e => setZip(e.target.value)}
@@ -224,11 +224,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.country}
-            {...(props.isLabelledWithFor && {target: `country${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
-            id={`country${iteration}`}
+            id={`${messages.country_short}${iteration}`}
             placeholder={messages.country}
             value={country}
             onChange={e => setCountry(e.target.value)}

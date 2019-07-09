@@ -89,11 +89,11 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.email}
-                {...(props.isLabelledWithFor && {target: `psEmail${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
-                id={`psEmail${iteration}`}
+                id={`${messages.email_short}${iteration}`}
                 placeholder={messages.email}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -106,11 +106,11 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.oldPass}
-                {...(props.isLabelledWithFor && {target: `oldPassword${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
-                id={`oldPassword${iteration}`}
+                id={`${messages.oldPass_short}${iteration}`}
                 placeholder={messages.oldPass}
                 value={oldPassword}
                 onChange={e => setOldPassword(e.target.value)}
@@ -121,11 +121,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.newPass}
-            {...(props.isLabelledWithFor && {target: `newPassword${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
-            id={`newPassword${iteration}`}
+            id={`${messages.newPass_short}${iteration}`}
             placeholder={messages.newPass}
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
@@ -136,11 +136,11 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.confirmNewPass}
-                {...(props.isLabelledWithFor && {target: `confirmNewPassword${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.confirmNewPass_short}${iteration}`})}
               />
               <Input.Password
                 style={FIELD_STYLE}
-                id={`confirmNewPassword${iteration}`}
+                id={`${messages.confirmNewPass_short}${iteration}`}
                 placeholder={messages.confirmNewPass}
                 value={confirmNewPassword}
                 onChange={e => setConfirmNewPassword(e.target.value)}

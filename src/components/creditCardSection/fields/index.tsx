@@ -91,10 +91,10 @@ const Index: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.name}
-            {...(props.isLabelledWithFor && {target: `cardholderName${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
           />
           <Input
-            id={`cardholderName${iteration}`}
+            id={`${messages.name_short}${iteration}`}
             placeholder={messages.name}
             style={FIELD_STYLE}
             value={name}
@@ -104,10 +104,10 @@ const Index: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.number}
-            {...(props.isLabelledWithFor && {target: `cardNumber${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
           />
           <Input
-            id={`cardNumber${iteration}`}
+            id={`${messages.number_short}${iteration}`}
             placeholder={messages.number}
             style={FIELD_STYLE}
             value={cardNumber}
@@ -119,10 +119,10 @@ const Index: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.cvv}
-                {...(props.isLabelledWithFor && {target: `cvv${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
               />
               <Input
-                id={`cvv${iteration}`}
+                id={`${messages.cvv_short}${iteration}`}
                 placeholder={messages.cvv}
                 value={cvv}
                 onChange={e => setCvv(e.target.value)}

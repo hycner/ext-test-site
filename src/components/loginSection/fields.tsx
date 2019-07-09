@@ -84,11 +84,11 @@ const Fields: React.FC<Props> = props => {
               <MaybeLabel
                 isActive={props.isLabelled}
                 label={messages.accountId}
-                {...(props.isLabelledWithFor && {target: `accountId${iteration}`})}
+                {...(props.isLabelledWithFor && {target: `${messages.accountId_short}${iteration}`})}
               />
               <Input
                 style={FIELD_STYLE}
-                id={`accountId${iteration}`}
+                id={`${messages.accountId_short}${iteration}`}
                 placeholder={messages.accountId}
                 value={accountId}
                 onChange={e => setAccountId(e.target.value)}
@@ -99,11 +99,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.username}
-            {...(props.isLabelledWithFor && {target: `username${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.username_short}${iteration}`})}
           />
           <Input
             style={FIELD_STYLE}
-            id={`username${iteration}`}
+            id={`${messages.username_short}${iteration}`}
             placeholder={messages.username}
             value={username}
             onChange={e => setUsername(e.target.value)}
@@ -112,11 +112,11 @@ const Fields: React.FC<Props> = props => {
           <MaybeLabel
             isActive={props.isLabelled}
             label={messages.password}
-            {...(props.isLabelledWithFor && {target: `password${iteration}`})}
+            {...(props.isLabelledWithFor && {target: `${messages.password_short}${iteration}`})}
           />
           <Input.Password
             style={FIELD_STYLE}
-            id={`password${iteration}`}
+            id={`${messages.password_short}${iteration}`}
             placeholder={messages.password}
             value={password}
             onChange={e => setPassword(e.target.value)}
