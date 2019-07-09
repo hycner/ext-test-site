@@ -140,6 +140,7 @@ const LoginSection: React.FC<Props> = props => {
           <>
             Simulate locale&nbsp;
             <Select value={props.settings.locale} onChange={changeLocale}>
+              <Select.Option value="af">af</Select.Option>
               <Select.Option value="en-US">en-US</Select.Option>
               <Select.Option value="ja-JP">ja-JP</Select.Option>
             </Select>

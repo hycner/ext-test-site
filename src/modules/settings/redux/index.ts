@@ -71,7 +71,7 @@ export function* setWatcher(): SagaIterator {
   yield takeEvery(INIT, setTask)
 }
 
-export type LocaleOptions = 'en-US' | 'ja-JP'
+export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 
 export type StoreSettingsAddress = Readonly<{
   areIdsUnique: boolean
@@ -156,7 +156,7 @@ const initialState: StoreSettings = {
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
-    locale: 'en-US',
+    locale: 'ja-JP',
   },
   creditCard: {
     areIdsUnique: true,
@@ -169,7 +169,7 @@ const initialState: StoreSettings = {
     isMultiButton: false,
     isVisible: true,
     iterations: 1,
-    locale: 'en-US',
+    locale: 'ja-JP',
   },
   login: {
     areIdsUnique: true,
@@ -183,7 +183,7 @@ const initialState: StoreSettings = {
     isThreeField: false,
     isVisible: true,
     iterations: 1,
-    locale: 'en-US',
+    locale: 'ja-JP',
   },
   passwordReset: {
     areIdsUnique: true,
@@ -199,7 +199,7 @@ const initialState: StoreSettings = {
     isMultiButton: false,
     isVisible: false,
     iterations: 1,
-    locale: 'en-US',
+    locale: 'ja-JP',
   },
 }
 
