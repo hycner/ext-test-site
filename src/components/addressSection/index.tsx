@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import {StoreSettingsAddress} from '../../modules/settings/redux'
 import {Store} from '../../modules/rootReducer'
+import {ConfigMenuItems} from '../_configMenu';
 
 import Fields from './fields'
 import Section from '../_section'
@@ -14,53 +15,14 @@ type Props = {
 }
 
 const AddressSection: React.FC<Props> = props => {
-  const configMenuItems = [
-    [
-      {
-        key: 'isForm',
-        label: 'Wrap each section in <form>',
-        value: props.settings.isForm,
-      },
-      {
-        key: 'isFieldset',
-        label: 'Wrap each section in <fieldset>',
-        value: props.settings.isFieldset,
-      },
-      {
-        key: 'isIframeSection',
-        label: 'Wrap each section in <iframe>',
-        value: props.settings.isIframeSection,
-      },
-    ],
-
-    [
-      {
-        key: 'areIdsUnique',
-        label: 'Disable Unique IDs',
-        value: !props.settings.areIdsUnique,
-      },
+  const configMenuItems: ConfigMenuItems = [
+    // [
       // {
       //   key: 'isIframeField',
       //   label: 'Wrap each field in <iframe>',
       //   value: props.settings.isIframeField,
       // },
-      {
-        key: 'isMultiButton',
-        label: 'Multiple Buttons',
-        value: props.settings.isMultiButton,
-      },
-      {
-        key: 'isLabelled',
-        label: 'Each Field has a <label>',
-        value: props.settings.isLabelled,
-      },
-      {
-        key: 'isLabelledWithFor',
-        label: "Exclude 'for' on <label>",
-        masterValid: props.settings.isLabelled,
-        value: !props.settings.isLabelledWithFor,
-      },
-    ],
+    // ],
 
     [
       {

@@ -138,7 +138,7 @@ const LoginSection: React.FC<Props> = props => {
         key: 'isLocaleChanged',
         label: (
           <>
-            Change locale to:&nbsp;
+            Simulate locale&nbsp;
             <Select value={props.settings.locale} onChange={changeLocale}>
               <Select.Option value="en-US">en-US</Select.Option>
               <Select.Option value="ja-JP">ja-JP</Select.Option>
@@ -146,6 +146,45 @@ const LoginSection: React.FC<Props> = props => {
           </>
         ),
         value: props.settings.isLocaleChanged,
+      },
+      {
+        key: 'isForm',
+        label: 'Wrap each section in <form>',
+        value: props.settings.isForm,
+      },
+      {
+        key: 'isFieldset',
+        label: 'Wrap each section in <fieldset>',
+        value: props.settings.isFieldset,
+      },
+      {
+        key: 'isIframeSection',
+        label: 'Wrap each section in <iframe>',
+        value: props.settings.isIframeSection,
+      },
+    ],
+
+    [
+      {
+        key: 'areIdsUnique',
+        label: 'Disable Unique IDs',
+        value: !props.settings.areIdsUnique,
+      },
+      {
+        key: 'isMultiButton',
+        label: 'Multiple Buttons',
+        value: props.settings.isMultiButton,
+      },
+      {
+        key: 'isLabelled',
+        label: 'Each Field has a <label>',
+        value: props.settings.isLabelled,
+      },
+      {
+        key: 'isLabelledWithFor',
+        label: "Exclude 'for' on <label>",
+        masterValid: props.settings.isLabelled,
+        value: !props.settings.isLabelledWithFor,
       },
     ],
 
