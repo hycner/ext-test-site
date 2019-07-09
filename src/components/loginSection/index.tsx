@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Store} from '../../modules/rootReducer'
 import {StoreSettingsLogin} from '../../modules/settings/redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
-import {ConfigMenuItems} from '../_configMenu';
+import {ConfigMenuItems} from '../_configMenu'
 
 import Fields from './fields'
 import Section from '../_section'

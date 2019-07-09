@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {SingleSectionDisplay} from '../../modules/app/redux/bootstrap'
 import {StoreSettingsAddress} from '../../modules/settings/redux'
 import {Store} from '../../modules/rootReducer'
-import {ConfigMenuItems} from '../_configMenu';
+import {ConfigMenuItems} from '../_configMenu'
 
 import Fields from './fields'
 import Section from '../_section'
@@ -17,11 +17,11 @@ type Props = {
 const AddressSection: React.FC<Props> = props => {
   const configMenuItems: ConfigMenuItems = [
     // [
-      // {
-      //   key: 'isIframeField',
-      //   label: 'Wrap each field in <iframe>',
-      //   value: props.settings.isIframeField,
-      // },
+    // {
+    //   key: 'isIframeField',
+    //   label: 'Wrap each field in <iframe>',
+    //   value: props.settings.isIframeField,
+    // },
     // ],
 
     [

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Icon, Select, Tooltip} from 'antd';
+import {Icon, Select, Tooltip} from 'antd'
 import {IntlProvider} from 'react-intl'
 
 import {
@@ -10,7 +10,7 @@ import {
   StoreSettingsAddress,
   StoreSettingsCreditCard,
   StoreSettingsLogin,
-} from '../modules/settings/redux';
+} from '../modules/settings/redux'
 import {dispatch} from '../store'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
 import {ConfigMenuItems} from './_configMenu'
