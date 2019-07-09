@@ -1,6 +1,7 @@
 import React from 'react'
 import {Store} from '../modules/rootReducer'
 import {connect} from 'react-redux'
+import {IntlProvider} from 'react-intl'
 
 import {
   StoreSettingsAddress,
@@ -8,10 +9,12 @@ import {
   StoreSettingsLogin,
 } from '../modules/settings/redux'
 import {SingleSectionDisplay} from '../modules/app/redux/bootstrap'
+import intlConfig from '../lib/intl';
 
+type Settings = StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin
 type Props = {
   section: SingleSectionDisplay
-  settings: StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin | {}
+  settings: Settings | {}
 }
 
 const SingleSection: React.FC<Props> = props => {
@@ -21,7 +24,14 @@ const SingleSection: React.FC<Props> = props => {
 
   let Section = require(`./${props.section}Section/fields`).default
 
-  return <Section />
+  const settings = props.settings as Settings
+  const locale = settings.isLocaleChanged ? settings.locale : 'en-US'
+
+  return (
+    <IntlProvider locale={locale} messages={intlConfig[locale][props.section]}>
+      <Section />
+    </IntlProvider>
+  )
 }
 
 function mapStateToProps(state: Store) {
