@@ -168,7 +168,7 @@ const LoginSection: React.FC<Props> = props => {
     [
       {
         key: 'areIdsUnique',
-        label: 'Disable Unique IDs',
+        label: 'Remove Unique IDs',
         value: !props.settings.areIdsUnique,
       },
       {
