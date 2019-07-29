@@ -73,65 +73,34 @@ export function* setWatcher(): SagaIterator {
 
 export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 
-export type StoreSettingsAddress = Readonly<{
+type BaseSettings = Readonly<{
   areIdsUnique: boolean
+  isFieldset: boolean
+  isForm: boolean
+  isIframeSection: boolean
+  isLabelled: boolean
+  isLabelledWithFor: boolean
+  isLocaleChanged: boolean
+  isMultiButton: boolean
+  isVisible: boolean
+  iterations: number
+  locale: LocaleOptions
+}>
+
+export type StoreSettingsAddress = BaseSettings & Readonly<{
   hasEmail: boolean
   hasName: boolean
   hasPhone: boolean
-  isFieldset: boolean
-  isForm: boolean
   isIframeField: boolean
-  isIframeSection: boolean
-  isLabelled: boolean
-  isLabelledWithFor: boolean
-  isLocaleChanged: boolean
-  isMultiButton: boolean
-  isVisible: boolean
-  iterations: number
-  locale: LocaleOptions
 }>
-export type StoreSettingsCreditCard = Readonly<{
-  areIdsUnique: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isIframeSection: boolean
-  isLabelled: boolean
-  isLabelledWithFor: boolean
-  isLocaleChanged: boolean
-  isMultiButton: boolean
-  isVisible: boolean
-  iterations: number
-  locale: LocaleOptions
-}>
-export type StoreSettingsLogin = Readonly<{
-  areIdsUnique: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isIframeSection: boolean
-  isLabelled: boolean
-  isLabelledWithFor: boolean
-  isLocaleChanged: boolean
-  isMultiButton: boolean
+export type StoreSettingsCreditCard = BaseSettings & Readonly<{}>
+export type StoreSettingsLogin = BaseSettings & Readonly<{
   isThreeField: boolean
-  isVisible: boolean
-  iterations: number
-  locale: LocaleOptions
 }>
-export type StoreSettingsPasswordReset = Readonly<{
-  areIdsUnique: boolean
+export type StoreSettingsPasswordReset = BaseSettings & Readonly<{
   hasConfirmNew: boolean
   hasConfirmOld: boolean
   hasEmail: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isIframeSection: boolean
-  isLabelled: boolean
-  isLabelledWithFor: boolean
-  isLocaleChanged: boolean
-  isMultiButton: boolean
-  isVisible: boolean
-  iterations: number
-  locale: LocaleOptions
 }>
 export type StoreSettings = Readonly<{
   address: StoreSettingsAddress
@@ -140,6 +109,7 @@ export type StoreSettings = Readonly<{
   passwordReset: StoreSettingsPasswordReset
   [section: string]: Object
 }>
+
 const initialState: StoreSettings = {
   address: {
     areIdsUnique: true,
