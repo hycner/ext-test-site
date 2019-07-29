@@ -5,6 +5,8 @@ import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testEventHijacking} from './tests'
 
+// EVENTS - ACTIONS
+
 const INIT = 'test/events'
 const PENDING = 'test/events/PENDING'
 const SUCCESS = 'test/events/SUCCESS'
@@ -44,6 +46,8 @@ function testEventsFailure(error: Error): FailureAction {
   }
 }
 
+// EVENTS - SAGAS
+
 // TODO: finish this saga
 export function* testEventsTask(): SagaIterator {
   yield put(testEventsPending())
@@ -68,7 +72,7 @@ export function* testEventsWatcher(): SagaIterator {
   yield takeEvery(INIT, testEventsTask)
 }
 
-// test fail
+// TEST FAIL - ACTIONS
 
 const EVENT_CAUGHT = 'test/events/event-caught'
 
@@ -83,6 +87,8 @@ export function messageEventCaught(): EventCaughtAction {
     payload: `Message event caught at ${new Date().toLocaleTimeString()}`,
   }
 }
+
+// REDUCERS
 
 type StoreTestEvents = Readonly<{
   data: {

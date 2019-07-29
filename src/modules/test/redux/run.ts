@@ -6,7 +6,7 @@ import {testEventsTask} from './events'
 import {testIframesTask} from './iframes'
 import {testDomTask} from './dom'
 
-// run
+// RUN - ACTIONS
 
 const INIT = 'test/run'
 const PENDING = 'test/run/PENDING'
@@ -43,6 +43,8 @@ function runTestsFailure(error: Error): FailureAction {
   }
 }
 
+// RUN - SAGAS
+
 function* runTestsTask(): SagaIterator {
   yield put(runTestsPending())
 
@@ -63,7 +65,7 @@ export function* runTestsWatcher(): SagaIterator {
   yield takeEvery(INIT, runTestsTask)
 }
 
-// increment
+// INCREMENT - ACTIONS
 
 const INCREMENT = 'test/run/increment'
 
@@ -75,7 +77,7 @@ function increment(): IncrementAction {
   return {type: INCREMENT}
 }
 
-// test fail
+// TEST FAIL - ACTIONS
 
 const TEST_FAIL = 'test/run/test-fail'
 
@@ -86,6 +88,8 @@ type TestFailAction = {
 export function testFail(): TestFailAction {
   return {type: TEST_FAIL}
 }
+
+// REDUCERS
 
 type StoreTestRun = {
   data: {

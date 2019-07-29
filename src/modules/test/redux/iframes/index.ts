@@ -5,6 +5,8 @@ import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testIframeAccessibility} from './tests'
 
+// ACTIONS
+
 const INIT = 'test/iframes'
 const PENDING = 'test/iframes/PENDING'
 const SUCCESS = 'test/iframes/SUCCESS'
@@ -41,6 +43,8 @@ function testIframesFailure(error: Error): FailureAction {
   }
 }
 
+// SAGAS
+
 export function* testIframesTask(): SagaIterator {
   yield put(testIframesPending())
   yield delay(1000)
@@ -61,6 +65,8 @@ export function* testIframesTask(): SagaIterator {
 export function* testIframesWatcher(): SagaIterator {
   yield takeEvery(INIT, testIframesTask)
 }
+
+// REDUCERS
 
 type StoreTestIframes = Readonly<{
   data: {

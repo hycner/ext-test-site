@@ -12,9 +12,10 @@ import {
   settingsSchema,
   StoreSettings,
 } from '../../settings/redux'
-import singleSection from '../../../components/singleSection'
 
 export type SingleSectionDisplay = '' | SectionTypes
+
+// ACTIONS
 
 const INIT = 'app/bootstrap'
 const PENDING = 'app/bootstrap/PENDING'
@@ -62,6 +63,8 @@ function bootstrapFailure(error: Error): FailureAction {
     payload: error,
   }
 }
+
+// SAGAS
 
 function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
@@ -150,6 +153,8 @@ function* bootstrapTask(): SagaIterator {
 export function* bootstrapWatcher(): SagaIterator {
   yield takeEvery(INIT, bootstrapTask)
 }
+
+// REDUCERS
 
 type StoreAppBootstrap = Readonly<{
   isDone: boolean

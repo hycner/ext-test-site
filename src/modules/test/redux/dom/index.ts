@@ -5,6 +5,8 @@ import {Action} from '../../../../store'
 import {testFail} from '../run'
 import {testIframeNodeLeaks} from './tests'
 
+// ACTIONS
+
 const INIT = 'test/dom'
 const PENDING = 'test/dom/PENDING'
 const SUCCESS = 'test/dom/SUCCESS'
@@ -44,6 +46,8 @@ function testDomFailure(error: Error): FailureAction {
   }
 }
 
+// SAGAS
+
 export function* testDomTask(): SagaIterator {
   yield put(testDomPending())
   yield delay(1000)
@@ -64,6 +68,8 @@ export function* testDomTask(): SagaIterator {
 export function* testDomWatcher(): SagaIterator {
   yield takeEvery(INIT, testDomTask)
 }
+
+// REDUCERS
 
 type StoreTestDom = Readonly<{
   data: {

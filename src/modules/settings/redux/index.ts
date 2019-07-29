@@ -5,11 +5,14 @@ import * as yup from 'yup'
 import {Action} from '../../../store'
 import {db} from '../../../lib/database'
 
+export type SectionTypes = 'address' | 'creditCard' | 'login' | 'passwordReset'
+
+// ACTIONS
+
 const INIT = 'settings/set/INIT'
 const COMMIT = 'settings/set/COMMIT'
 const RESET = 'settings/RESET'
 
-export type SectionTypes = 'address' | 'creditCard' | 'login' | 'passwordReset'
 type InitActionPayload = {
   section: SectionTypes | 'all'
   settings:
@@ -46,6 +49,8 @@ export function resetSettings(): ResetAction {
   return {type: RESET}
 }
 
+// SAGAS
+
 function* setTask(action: InitAction): SagaIterator {
   const state = yield select(state => state.settings)
 
@@ -70,6 +75,8 @@ function* setTask(action: InitAction): SagaIterator {
 export function* setWatcher(): SagaIterator {
   yield takeEvery(INIT, setTask)
 }
+
+// REDUCERS
 
 export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 
@@ -110,66 +117,40 @@ export type StoreSettings = Readonly<{
   [section: string]: Object
 }>
 
+const baseSettings: BaseSettings = {
+  areIdsUnique: true,
+  isFieldset: false,
+  isForm: false,
+  isIframeSection: false,
+  isLabelled: false,
+  isLabelledWithFor: true,
+  isLocaleChanged: false,
+  isMultiButton: false,
+  isVisible: true,
+  iterations: 1,
+  locale: 'ja-JP',
+}
+
 const initialState: StoreSettings = {
   address: {
-    areIdsUnique: true,
+    ...baseSettings,
     hasEmail: false,
     hasName: false,
     hasPhone: false,
-    isFieldset: false,
-    isForm: false,
     isIframeField: false,
-    isIframeSection: false,
-    isLabelled: false,
-    isLabelledWithFor: true,
-    isLocaleChanged: false,
-    isMultiButton: false,
-    isVisible: true,
-    iterations: 1,
-    locale: 'ja-JP',
   },
   creditCard: {
-    areIdsUnique: true,
-    isFieldset: false,
-    isForm: false,
-    isIframeSection: false,
-    isLabelled: false,
-    isLabelledWithFor: true,
-    isLocaleChanged: false,
-    isMultiButton: false,
-    isVisible: true,
-    iterations: 1,
-    locale: 'ja-JP',
+    ...baseSettings
   },
   login: {
-    areIdsUnique: true,
-    isFieldset: false,
-    isForm: false,
-    isIframeSection: false,
-    isLabelled: false,
-    isLabelledWithFor: true,
-    isLocaleChanged: false,
-    isMultiButton: false,
+    ...baseSettings,
     isThreeField: false,
-    isVisible: true,
-    iterations: 1,
-    locale: 'ja-JP',
   },
   passwordReset: {
-    areIdsUnique: true,
+    ...baseSettings,
     hasConfirmNew: true,
     hasConfirmOld: true,
     hasEmail: false,
-    isFieldset: false,
-    isForm: false,
-    isIframeSection: false,
-    isLabelled: false,
-    isLabelledWithFor: true,
-    isLocaleChanged: false,
-    isMultiButton: false,
-    isVisible: false,
-    iterations: 1,
-    locale: 'ja-JP',
   },
 }
 
@@ -186,6 +167,8 @@ export default function settingsReducer(
       return state
   }
 }
+
+// YUP SCHEMA
 
 const VALID_LOCALES: LocaleOptions[] = ['af', 'en-US', 'ja-JP']
 
