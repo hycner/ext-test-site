@@ -82,6 +82,7 @@ export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 
 type BaseSettings = Readonly<{
   areIdsUnique: boolean
+  areAttrIdentifying: boolean
   isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
@@ -119,6 +120,7 @@ export type StoreSettings = Readonly<{
 
 const baseSettings: BaseSettings = {
   areIdsUnique: true,
+  areAttrIdentifying: true,
   isFieldset: false,
   isForm: false,
   isIframeSection: false,
@@ -151,6 +153,7 @@ const initialState: StoreSettings = {
     hasConfirmNew: true,
     hasConfirmOld: true,
     hasEmail: false,
+    isVisible: false,
   },
 }
 
@@ -177,6 +180,7 @@ export const settingsSchema = yup
     address: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        areAttrIdentifying: yup.boolean().required(),
         hasEmail: yup.boolean().required(),
         hasName: yup.boolean().required(),
         hasPhone: yup.boolean().required(),
@@ -195,10 +199,13 @@ export const settingsSchema = yup
           .oneOf(VALID_LOCALES)
           .required(),
       })
-      .required(),
+      .required()
+      .strict(true)
+      .noUnknown(),
     creditCard: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        areAttrIdentifying: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
@@ -213,10 +220,13 @@ export const settingsSchema = yup
           .oneOf(VALID_LOCALES)
           .required(),
       })
-      .required(),
+      .required()
+      .strict(true)
+      .noUnknown(),
     login: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        areAttrIdentifying: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
@@ -232,10 +242,13 @@ export const settingsSchema = yup
           .oneOf(VALID_LOCALES)
           .required(),
       })
-      .required(),
+      .required()
+      .strict(true)
+      .noUnknown(),
     passwordReset: yup
       .object({
         areIdsUnique: yup.boolean().required(),
+        areAttrIdentifying: yup.boolean().required(),
         hasConfirmNew: yup.boolean().required(),
         hasConfirmOld: yup.boolean().required(),
         hasEmail: yup.boolean().required(),
@@ -253,7 +266,9 @@ export const settingsSchema = yup
           .oneOf(VALID_LOCALES)
           .required(),
       })
-      .required(),
+      .required()
+      .strict(true)
+      .noUnknown(),
   })
   .strict(true)
   .noUnknown()
