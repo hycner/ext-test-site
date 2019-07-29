@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-import {LocaleOptions} from './index'
+import {LocaleOptions} from '../redux'
 
 const VALID_LOCALES: LocaleOptions[] = ['af', 'en-US', 'ja-JP']
 
