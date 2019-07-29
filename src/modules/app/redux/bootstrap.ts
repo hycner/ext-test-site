@@ -9,9 +9,9 @@ import {
   SectionTypes,
   setSettings,
   setSettingsCommit,
-  settingsSchema,
   StoreSettings,
 } from '../../settings/redux'
+import settingsSchema from '../../settings/redux/_settingsSchema'
 
 export type SingleSectionDisplay = '' | SectionTypes
 
