@@ -33,6 +33,7 @@ const BTN_STYLE = {
 }
 
 type Props = {
+  areAttrIdentifying: boolean
   areIdsUnique: boolean
   isFieldset: boolean
   isForm: boolean
@@ -94,8 +95,8 @@ const Index: React.FC<Props> = props => {
             {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
           />
           <Input
-            id={`${messages.name_short}${iteration}`}
-            placeholder={messages.name}
+            id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.name : ''}
             style={FIELD_STYLE}
             value={name}
             onChange={e => setName(e.target.value)}
@@ -107,8 +108,8 @@ const Index: React.FC<Props> = props => {
             {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
           />
           <Input
-            id={`${messages.number_short}${iteration}`}
-            placeholder={messages.number}
+            id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.number : ''}
             style={FIELD_STYLE}
             value={cardNumber}
             onChange={e => setCardNumber(e.target.value)}
@@ -122,14 +123,15 @@ const Index: React.FC<Props> = props => {
                 {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
               />
               <Input
-                id={`${messages.cvv_short}${iteration}`}
-                placeholder={messages.cvv}
+                id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.cvv : ''}
                 value={cvv}
                 onChange={e => setCvv(e.target.value)}
               />
             </div>
 
             <Expiration
+              areAttrIdentifying={props.areAttrIdentifying}
               dateFormat={dateFormat}
               expDateFull={expDateFull}
               expMonth={expMonth}
@@ -177,6 +179,7 @@ function mapStateToProps(state: Store) {
   const cSettings = state.settings.creditCard
 
   return {
+    areAttrIdentifying: cSettings.areAttrIdentifying,
     areIdsUnique: cSettings.areIdsUnique,
     isFieldset: cSettings.isFieldset,
     isForm: cSettings.isForm,

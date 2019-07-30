@@ -30,6 +30,7 @@ const BTN_STYLE = {
 }
 
 type Props = {
+  areAttrIdentifying: boolean
   areIdsUnique: boolean
   hasConfirmNew: boolean
   hasConfirmOld: boolean
@@ -93,8 +94,8 @@ const Fields: React.FC<Props> = props => {
               />
               <Input
                 style={FIELD_STYLE}
-                id={`${messages.email_short}${iteration}`}
-                placeholder={messages.email}
+                id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.email : ''}
                 value={email}
                 onChange={e => setEmail(e.target.value)}
               />
@@ -110,8 +111,8 @@ const Fields: React.FC<Props> = props => {
               />
               <Input.Password
                 style={FIELD_STYLE}
-                id={`${messages.oldPass_short}${iteration}`}
-                placeholder={messages.oldPass}
+                id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.oldPass : ''}
                 value={oldPassword}
                 onChange={e => setOldPassword(e.target.value)}
               />
@@ -125,8 +126,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input.Password
             style={FIELD_STYLE}
-            id={`${messages.newPass_short}${iteration}`}
-            placeholder={messages.newPass}
+            id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.newPass : ''}
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
           />
@@ -142,8 +143,8 @@ const Fields: React.FC<Props> = props => {
               />
               <Input.Password
                 style={FIELD_STYLE}
-                id={`${messages.confirmNewPass_short}${iteration}`}
-                placeholder={messages.confirmNewPass}
+                id={`${props.areAttrIdentifying ? messages.confirmNewPass_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.confirmNewPass : ''}
                 value={confirmNewPassword}
                 onChange={e => setConfirmNewPassword(e.target.value)}
               />
@@ -175,6 +176,7 @@ function mapStateToProps(state: Store) {
   const prSettings = state.settings.passwordReset
 
   return {
+    areAttrIdentifying: prSettings.areAttrIdentifying,
     areIdsUnique: prSettings.areIdsUnique,
     hasConfirmNew: prSettings.hasConfirmNew,
     hasConfirmOld: prSettings.hasConfirmOld,

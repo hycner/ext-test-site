@@ -35,6 +35,7 @@ const FIELD_STYLE = {
 }
 
 type Props = {
+  areAttrIdentifying: boolean
   dateFormat: string
   expDateFull: string
   expMonth: string
@@ -60,8 +61,8 @@ const Expiration: React.FC<Props> = props => {
           {...(props.isLabelledWithFor && {target: `${messages.expDate_short}${props.iteration}`})}
         />
         <Input
-          id={`${messages.expDate_short}${props.iteration}`}
-          placeholder={messages.expDate}
+          id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
+          placeholder={props.areAttrIdentifying ? messages.expDate : ''}
           value={props.expDateFull}
           onChange={e => props.setExpDateFull(e.target.value)}
         />
@@ -81,7 +82,7 @@ const Expiration: React.FC<Props> = props => {
             })}
           />
           <select
-            id={`${messages.expMonth_short}${props.iteration}`}
+            id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
             value={props.expMonth}
             onChange={(e: any) => props.setExpMonth(e.target.value)}
             className="ant-select-selection"
@@ -104,7 +105,7 @@ const Expiration: React.FC<Props> = props => {
             })}
           />
           <select
-            id={`${messages.expYear_short}${props.iteration}`}
+            id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
             value={props.expYear}
             onChange={(e: any) => props.setExpYear(e.target.value)}
             className="ant-select-selection"
@@ -133,7 +134,7 @@ const Expiration: React.FC<Props> = props => {
             })}
           />
           <Select
-            id={`${messages.expMonth_short}${props.iteration}`}
+            id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
             value={props.expMonth}
             onChange={(val: string) => props.setExpMonth(val)}
             style={{width: '100%'}}
@@ -155,7 +156,7 @@ const Expiration: React.FC<Props> = props => {
             })}
           />
           <Select
-            id={`${messages.expYear_short}${props.iteration}`}
+            id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
             value={props.expYear}
             onChange={(val: string) => props.setExpYear(val)}
             style={{width: '100%'}}
