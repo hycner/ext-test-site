@@ -2,6 +2,7 @@ import React from 'react'
 import {Input, Select} from 'antd'
 import {useIntl} from 'react-intl'
 
+import MaybeDivs from '../../_maybeDivs'
 import MaybeLabel from '../../_maybeLabel'
 
 type ExpirationValues = Array<{
@@ -40,6 +41,7 @@ type Props = {
   expDateFull: string
   expMonth: string
   expYear: string
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -62,12 +64,14 @@ const Expiration: React.FC<Props> = props => {
           label={messages.expDate}
           {...(props.isLabelledWithFor && {target: `${messages.expDate_short}${props.iteration}`})}
         />
-        <Input
-          id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
-          placeholder={props.areAttrIdentifying ? messages.expDate : ''}
-          value={props.expDateFull}
-          onChange={e => props.setExpDateFull(e.target.value)}
-        />
+        <MaybeDivs isActive={props.isInputNested}>
+          <Input
+            id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.expDate : ''}
+            value={props.expDateFull}
+            onChange={e => props.setExpDateFull(e.target.value)}
+          />
+        </MaybeDivs>
       </div>
     )
   }
@@ -84,19 +88,21 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expMonth_short}${props.iteration}`,
             })}
           />
-          <select
-            id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
-            value={props.expMonth}
-            onChange={(e: any) => props.setExpMonth(e.target.value)}
-            className="ant-select-selection"
-            style={{width: '100%', height: '100%'}}
-          >
-            {MONTHS.map(x => (
-              <option key={x.value} value={x.value}>
-                {x.label}
-              </option>
-            ))}
-          </select>
+          <MaybeDivs isActive={props.isInputNested}>
+            <select
+              id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
+              value={props.expMonth}
+              onChange={(e: any) => props.setExpMonth(e.target.value)}
+              className="ant-select-selection"
+              style={{width: '100%', height: '100%'}}
+            >
+              {MONTHS.map(x => (
+                <option key={x.value} value={x.value}>
+                  {x.label}
+                </option>
+              ))}
+            </select>
+          </MaybeDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
@@ -108,19 +114,21 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expYear_short}${props.iteration}`,
             })}
           />
-          <select
-            id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
-            value={props.expYear}
-            onChange={(e: any) => props.setExpYear(e.target.value)}
-            className="ant-select-selection"
-            style={{width: '100%', height: '100%'}}
-          >
-            {YEARS.map(x => (
-              <option key={x.value} value={x.value}>
-                {x.label}
-              </option>
-            ))}
-          </select>
+          <MaybeDivs isActive={props.isInputNested}>
+            <select
+              id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
+              value={props.expYear}
+              onChange={(e: any) => props.setExpYear(e.target.value)}
+              className="ant-select-selection"
+              style={{width: '100%', height: '100%'}}
+            >
+              {YEARS.map(x => (
+                <option key={x.value} value={x.value}>
+                  {x.label}
+                </option>
+              ))}
+            </select>
+          </MaybeDivs>
         </div>
       </>
     )
@@ -138,18 +146,20 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expMonth_short}${props.iteration}`,
             })}
           />
-          <Select
-            id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
-            value={props.expMonth}
-            onChange={(val: string) => props.setExpMonth(val)}
-            style={{width: '100%'}}
-          >
-            {MONTHS.map(x => (
-              <Select.Option key={x.value} value={x.value}>
-                {x.label}
-              </Select.Option>
-            ))}
-          </Select>
+          <MaybeDivs isActive={props.isInputNested}>
+            <Select
+              id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
+              value={props.expMonth}
+              onChange={(val: string) => props.setExpMonth(val)}
+              style={{width: '100%'}}
+            >
+              {MONTHS.map(x => (
+                <Select.Option key={x.value} value={x.value}>
+                  {x.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </MaybeDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
@@ -161,18 +171,20 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expYear_short}${props.iteration}`,
             })}
           />
-          <Select
-            id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
-            value={props.expYear}
-            onChange={(val: string) => props.setExpYear(val)}
-            style={{width: '100%'}}
-          >
-            {YEARS.map(x => (
-              <Select.Option key={x.value} value={x.value}>
-                {x.label}
-              </Select.Option>
-            ))}
-          </Select>
+          <MaybeDivs isActive={props.isInputNested}>
+            <Select
+              id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
+              value={props.expYear}
+              onChange={(val: string) => props.setExpYear(val)}
+              style={{width: '100%'}}
+            >
+              {YEARS.map(x => (
+                <Select.Option key={x.value} value={x.value}>
+                  {x.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </MaybeDivs>
         </div>
       </>
     )

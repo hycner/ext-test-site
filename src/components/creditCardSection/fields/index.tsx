@@ -5,8 +5,9 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
-import MaybeLabel from '../../_maybeLabel'
 import Expiration from './expiration'
+import MaybeDivs from '../../_maybeDivs'
+import MaybeLabel from '../../_maybeLabel'
 
 const Wrap = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ type Props = {
   areIdsUnique: boolean
   isFieldset: boolean
   isForm: boolean
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -96,13 +98,15 @@ const Index: React.FC<Props> = props => {
             label={messages.name}
             {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
           />
-          <Input
-            id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.name : ''}
-            style={FIELD_STYLE}
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.name : ''}
+              style={FIELD_STYLE}
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </MaybeDivs>
 
           <MaybeLabel
             isActive={props.isLabelled}
@@ -110,13 +114,15 @@ const Index: React.FC<Props> = props => {
             label={messages.number}
             {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
           />
-          <Input
-            id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.number : ''}
-            style={FIELD_STYLE}
-            value={cardNumber}
-            onChange={e => setCardNumber(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.number : ''}
+              style={FIELD_STYLE}
+              value={cardNumber}
+              onChange={e => setCardNumber(e.target.value)}
+            />
+          </MaybeDivs>
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
@@ -126,12 +132,14 @@ const Index: React.FC<Props> = props => {
                 label={messages.cvv}
                 {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
               />
-              <Input
-                id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.cvv : ''}
-                value={cvv}
-                onChange={e => setCvv(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.cvv : ''}
+                  value={cvv}
+                  onChange={e => setCvv(e.target.value)}
+                />
+              </MaybeDivs>
             </div>
 
             <Expiration
@@ -140,6 +148,7 @@ const Index: React.FC<Props> = props => {
               expDateFull={expDateFull}
               expMonth={expMonth}
               expYear={expYear}
+              isInputNested={props.isInputNested}
               isLabelled={props.isLabelled}
               isLabelledOnlyText={props.isLabelledOnlyText}
               isLabelledWithFor={props.isLabelledWithFor}
@@ -188,6 +197,7 @@ function mapStateToProps(state: Store) {
     areIdsUnique: settings.areIdsUnique,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
+    isInputNested: settings.isInputNested,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,

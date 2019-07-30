@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeDivs from '../_maybeDivs'
 import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
@@ -37,6 +38,7 @@ type Props = {
   hasPhone: boolean
   isFieldset: boolean
   isForm: boolean
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -111,13 +113,15 @@ const Fields: React.FC<Props> = props => {
                 label={messages.name}
                 {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
               />
-              <Input
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.name : ''}
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  style={FIELD_STYLE}
+                  id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.name : ''}
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
+              </MaybeDivs>
             </>
           )}
 
@@ -130,12 +134,14 @@ const Fields: React.FC<Props> = props => {
                   label={messages.email}
                   {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
                 />
-                <Input
-                  id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.email : ''}
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
+                <MaybeDivs isActive={props.isInputNested}>
+                  <Input
+                    id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
+                    placeholder={props.areAttrIdentifying ? messages.email : ''}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                </MaybeDivs>
               </div>
             )}
 
@@ -147,12 +153,14 @@ const Fields: React.FC<Props> = props => {
                   label={messages.phone}
                   {...(props.isLabelledWithFor && {target: `${messages.phone_short}${iteration}`})}
                 />
-                <Input
-                  id={`${props.areAttrIdentifying ? messages.phone_short : ''}${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.phone : ''}
-                  value={phone}
-                  onChange={e => setPhone(e.target.value)}
-                />
+                <MaybeDivs isActive={props.isInputNested}>
+                  <Input
+                    id={`${props.areAttrIdentifying ? messages.phone_short : ''}${iteration}`}
+                    placeholder={props.areAttrIdentifying ? messages.phone : ''}
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                  />
+                </MaybeDivs>
               </div>
             )}
           </div>
@@ -163,13 +171,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.street1}
             {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
           />
-          <Input
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.street1 : ''}
-            value={streetOne}
-            onChange={e => setStreetOne(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.street1 : ''}
+              value={streetOne}
+              onChange={e => setStreetOne(e.target.value)}
+            />
+          </MaybeDivs>
 
           <MaybeLabel
             isActive={props.isLabelled}
@@ -177,13 +187,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.street2}
             {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
           />
-          <Input
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.street2 : ''}
-            value={streetTwo}
-            onChange={e => setStreetTwo(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.street2 : ''}
+              value={streetTwo}
+              onChange={e => setStreetTwo(e.target.value)}
+            />
+          </MaybeDivs>
 
           <MaybeLabel
             isActive={props.isLabelled}
@@ -191,13 +203,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.city}
             {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
           />
-          <Input
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.city : ''}
-            value={city}
-            onChange={e => setCity(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.city : ''}
+              value={city}
+              onChange={e => setCity(e.target.value)}
+            />
+          </MaybeDivs>
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
@@ -207,12 +221,14 @@ const Fields: React.FC<Props> = props => {
                 label={messages.state}
                 {...(props.isLabelledWithFor && {target: `${messages.state_short}${iteration}`})}
               />
-              <Input
-                id={`${props.areAttrIdentifying ? messages.state_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.state : ''}
-                value={state}
-                onChange={e => setState(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  id={`${props.areAttrIdentifying ? messages.state_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.state : ''}
+                  value={state}
+                  onChange={e => setState(e.target.value)}
+                />
+              </MaybeDivs>
             </div>
 
             <div style={FIELD_STYLE}>
@@ -222,12 +238,14 @@ const Fields: React.FC<Props> = props => {
                 label={messages.zip}
                 {...(props.isLabelledWithFor && {target: `${messages.zip_short}${iteration}`})}
               />
-              <Input
-                id={`${props.areAttrIdentifying ? messages.zip_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.zip : ''}
-                value={zip}
-                onChange={e => setZip(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  id={`${props.areAttrIdentifying ? messages.zip_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.zip : ''}
+                  value={zip}
+                  onChange={e => setZip(e.target.value)}
+                />
+              </MaybeDivs>
             </div>
           </div>
 
@@ -237,13 +255,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.country}
             {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
           />
-          <Input
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.country : ''}
-            value={country}
-            onChange={e => setCountry(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.country : ''}
+              value={country}
+              onChange={e => setCountry(e.target.value)}
+            />
+          </MaybeDivs>
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
@@ -277,6 +297,7 @@ function mapStateToProps(state: Store) {
     hasPhone: settings.hasPhone,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
+    isInputNested: settings.isInputNested,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,

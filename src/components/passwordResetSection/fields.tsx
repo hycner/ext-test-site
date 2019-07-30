@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeDivs from '../_maybeDivs'
 import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
@@ -37,6 +38,7 @@ type Props = {
   hasEmail: boolean
   isFieldset: boolean
   isForm: boolean
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -94,13 +96,15 @@ const Fields: React.FC<Props> = props => {
                 label={messages.email}
                 {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
               />
-              <Input
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.email : ''}
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  style={FIELD_STYLE}
+                  id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.email : ''}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </MaybeDivs>
             </>
           )}
 
@@ -112,13 +116,15 @@ const Fields: React.FC<Props> = props => {
                 label={messages.oldPass}
                 {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
               />
-              <Input.Password
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.oldPass : ''}
-                value={oldPassword}
-                onChange={e => setOldPassword(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input.Password
+                  style={FIELD_STYLE}
+                  id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.oldPass : ''}
+                  value={oldPassword}
+                  onChange={e => setOldPassword(e.target.value)}
+                />
+              </MaybeDivs>
             </>
           )}
 
@@ -128,13 +134,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.newPass}
             {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
           />
-          <Input.Password
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.newPass : ''}
-            value={newPassword}
-            onChange={e => setNewPassword(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input.Password
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.newPass : ''}
+              value={newPassword}
+              onChange={e => setNewPassword(e.target.value)}
+            />
+          </MaybeDivs>
 
           {props.hasConfirmNew && (
             <>
@@ -146,13 +154,17 @@ const Fields: React.FC<Props> = props => {
                   target: `${messages.confirmNewPass_short}${iteration}`,
                 })}
               />
-              <Input.Password
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.confirmNewPass_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.confirmNewPass : ''}
-                value={confirmNewPassword}
-                onChange={e => setConfirmNewPassword(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input.Password
+                  style={FIELD_STYLE}
+                  id={`${
+                    props.areAttrIdentifying ? messages.confirmNewPass_short : ''
+                  }${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.confirmNewPass : ''}
+                  value={confirmNewPassword}
+                  onChange={e => setConfirmNewPassword(e.target.value)}
+                />
+              </MaybeDivs>
             </>
           )}
 
@@ -188,6 +200,7 @@ function mapStateToProps(state: Store) {
     hasEmail: settings.hasEmail,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
+    isInputNested: settings.isInputNested,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,

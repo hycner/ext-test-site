@@ -85,6 +85,7 @@ type BaseSettings = Readonly<{
   isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -95,21 +96,24 @@ type BaseSettings = Readonly<{
   locale: LocaleOptions
 }>
 
-export type StoreSettingsAddress = BaseSettings & Readonly<{
-  hasEmail: boolean
-  hasName: boolean
-  hasPhone: boolean
-  isIframeField: boolean
-}>
+export type StoreSettingsAddress = BaseSettings &
+  Readonly<{
+    hasEmail: boolean
+    hasName: boolean
+    hasPhone: boolean
+    isIframeField: boolean
+  }>
 export type StoreSettingsCreditCard = BaseSettings & Readonly<{}>
-export type StoreSettingsLogin = BaseSettings & Readonly<{
-  isThreeField: boolean
-}>
-export type StoreSettingsPasswordReset = BaseSettings & Readonly<{
-  hasConfirmNew: boolean
-  hasConfirmOld: boolean
-  hasEmail: boolean
-}>
+export type StoreSettingsLogin = BaseSettings &
+  Readonly<{
+    isThreeField: boolean
+  }>
+export type StoreSettingsPasswordReset = BaseSettings &
+  Readonly<{
+    hasConfirmNew: boolean
+    hasConfirmOld: boolean
+    hasEmail: boolean
+  }>
 
 export type StoreSettings = Readonly<{
   address: StoreSettingsAddress
@@ -125,6 +129,7 @@ const baseSettings: BaseSettings = {
   isFieldset: false,
   isForm: false,
   isIframeSection: false,
+  isInputNested: false,
   isLabelled: false,
   isLabelledOnlyText: false,
   isLabelledWithFor: true,
@@ -144,7 +149,7 @@ const initialState: StoreSettings = {
     isIframeField: false,
   },
   creditCard: {
-    ...baseSettings
+    ...baseSettings,
   },
   login: {
     ...baseSettings,

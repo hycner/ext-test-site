@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
+import MaybeDivs from '../_maybeDivs'
 import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
@@ -34,6 +35,7 @@ type Props = {
   areIdsUnique: boolean
   isFieldset: boolean
   isForm: boolean
+  isInputNested: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -91,13 +93,15 @@ const Fields: React.FC<Props> = props => {
                   target: `${messages.accountId_short}${iteration}`,
                 })}
               />
-              <Input
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.accountId_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.accountId : ''}
-                value={accountId}
-                onChange={e => setAccountId(e.target.value)}
-              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  style={FIELD_STYLE}
+                  id={`${props.areAttrIdentifying ? messages.accountId_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.accountId : ''}
+                  value={accountId}
+                  onChange={e => setAccountId(e.target.value)}
+                />
+              </MaybeDivs>
             </>
           )}
 
@@ -107,13 +111,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.username}
             {...(props.isLabelledWithFor && {target: `${messages.username_short}${iteration}`})}
           />
-          <Input
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.username_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.username: ''}
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.username_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.username : ''}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+          </MaybeDivs>
 
           <MaybeLabel
             isActive={props.isLabelled}
@@ -121,13 +127,15 @@ const Fields: React.FC<Props> = props => {
             label={messages.password}
             {...(props.isLabelledWithFor && {target: `${messages.password_short}${iteration}`})}
           />
-          <Input.Password
-            style={FIELD_STYLE}
-            id={`${props.areAttrIdentifying ? messages.password_short : ''}${iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.password : ''}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+          <MaybeDivs isActive={props.isInputNested}>
+            <Input.Password
+              style={FIELD_STYLE}
+              id={`${props.areAttrIdentifying ? messages.password_short : ''}${iteration}`}
+              placeholder={props.areAttrIdentifying ? messages.password : ''}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </MaybeDivs>
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
@@ -158,6 +166,7 @@ function mapStateToProps(state: Store) {
     areIdsUnique: settings.areIdsUnique,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
+    isInputNested: settings.isInputNested,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,

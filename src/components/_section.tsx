@@ -168,22 +168,22 @@ const LoginSection: React.FC<Props> = props => {
     [
       {
         key: 'areIdsUnique',
-        label: 'Remove Unique IDs',
+        label: 'Remove unique IDs',
         value: !props.settings.areIdsUnique,
       },
       {
         key: 'areAttrIdentifying',
-        label: 'Remove Identifying Attributes',
+        label: 'Remove identifying attributes',
         value: !props.settings.areAttrIdentifying,
       },
       {
         key: 'isMultiButton',
-        label: 'Multiple Buttons',
+        label: 'Multiple buttons',
         value: props.settings.isMultiButton,
       },
       {
         key: 'isLabelled',
-        label: 'Each Field has a <label> with text',
+        label: 'Each field has a <label> with text',
         value: props.settings.isLabelled,
       },
       {
@@ -197,6 +197,11 @@ const LoginSection: React.FC<Props> = props => {
         label: "Exclude 'for' on <label>",
         masterValid: props.settings.isLabelled && !props.settings.isLabelledOnlyText,
         value: !props.settings.isLabelledWithFor,
+      },
+      {
+        key: 'isInputNested',
+        label: 'Each field is nested in <div>s',
+        value: props.settings.isInputNested,
       },
     ],
 
