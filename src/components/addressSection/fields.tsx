@@ -38,6 +38,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isIframeField: boolean
   isMultiButton: boolean
@@ -106,6 +107,7 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.name}
                 {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
               />
@@ -124,6 +126,7 @@ const Fields: React.FC<Props> = props => {
               <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
+                  isOnlyText={props.isLabelledOnlyText}
                   label={messages.email}
                   {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
                 />
@@ -140,6 +143,7 @@ const Fields: React.FC<Props> = props => {
               <div style={FIELD_STYLE}>
                 <MaybeLabel
                   isActive={props.isLabelled}
+                  isOnlyText={props.isLabelledOnlyText}
                   label={messages.phone}
                   {...(props.isLabelledWithFor && {target: `${messages.phone_short}${iteration}`})}
                 />
@@ -155,6 +159,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.street1}
             {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
           />
@@ -168,6 +173,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.street2}
             {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
           />
@@ -181,6 +187,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.city}
             {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
           />
@@ -196,6 +203,7 @@ const Fields: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.state}
                 {...(props.isLabelledWithFor && {target: `${messages.state_short}${iteration}`})}
               />
@@ -210,6 +218,7 @@ const Fields: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.zip}
                 {...(props.isLabelledWithFor && {target: `${messages.zip_short}${iteration}`})}
               />
@@ -224,6 +233,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.country}
             {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
           />
@@ -268,6 +278,7 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isLabelled: settings.isLabelled,
+    isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isIframeField: settings.isIframeField,
     isMultiButton: settings.isMultiButton,

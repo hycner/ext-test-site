@@ -86,6 +86,7 @@ type BaseSettings = Readonly<{
   isForm: boolean
   isIframeSection: boolean
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isLocaleChanged: boolean
   isMultiButton: boolean
@@ -125,6 +126,7 @@ const baseSettings: BaseSettings = {
   isForm: false,
   isIframeSection: false,
   isLabelled: false,
+  isLabelledOnlyText: false,
   isLabelledWithFor: true,
   isLocaleChanged: false,
   isMultiButton: false,

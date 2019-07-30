@@ -183,13 +183,19 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isLabelled',
-        label: 'Each Field has a <label>',
+        label: 'Each Field has a <label> with text',
         value: props.settings.isLabelled,
+      },
+      {
+        key: 'isLabelledOnlyText',
+        label: 'Exclude wrapping <label>',
+        masterValid: props.settings.isLabelled,
+        value: props.settings.isLabelledOnlyText,
       },
       {
         key: 'isLabelledWithFor',
         label: "Exclude 'for' on <label>",
-        masterValid: props.settings.isLabelled,
+        masterValid: props.settings.isLabelled && !props.settings.isLabelledOnlyText,
         value: !props.settings.isLabelledWithFor,
       },
     ],

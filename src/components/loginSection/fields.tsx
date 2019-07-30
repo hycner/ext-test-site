@@ -35,6 +35,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isMultiButton: boolean
   isThreeField: boolean
@@ -84,6 +85,7 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.accountId}
                 {...(props.isLabelledWithFor && {
                   target: `${messages.accountId_short}${iteration}`,
@@ -101,6 +103,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.username}
             {...(props.isLabelledWithFor && {target: `${messages.username_short}${iteration}`})}
           />
@@ -114,6 +117,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.password}
             {...(props.isLabelledWithFor && {target: `${messages.password_short}${iteration}`})}
           />
@@ -156,6 +160,7 @@ function mapStateToProps(state: Store) {
     isForm: settings.isForm,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
+    isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isThreeField: settings.isThreeField,
     isMultiButton: settings.isMultiButton,

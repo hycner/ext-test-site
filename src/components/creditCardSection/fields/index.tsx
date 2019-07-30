@@ -38,6 +38,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isMultiButton: boolean
   iteration: number
@@ -91,6 +92,7 @@ const Index: React.FC<Props> = props => {
         <Wrap>
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.name}
             {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
           />
@@ -104,6 +106,7 @@ const Index: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.number}
             {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
           />
@@ -119,6 +122,7 @@ const Index: React.FC<Props> = props => {
             <div style={FIELD_STYLE}>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.cvv}
                 {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
               />
@@ -137,6 +141,7 @@ const Index: React.FC<Props> = props => {
               expMonth={expMonth}
               expYear={expYear}
               isLabelled={props.isLabelled}
+              isLabelledOnlyText={props.isLabelledOnlyText}
               isLabelledWithFor={props.isLabelledWithFor}
               iteration={iteration}
               setExpDateFull={setExpDateFull}
@@ -184,6 +189,7 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isLabelled: settings.isLabelled,
+    isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isMultiButton: settings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

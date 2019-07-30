@@ -8,12 +8,14 @@ const Label = styled.label`
 
 type Props = {
   isActive: boolean
+  isOnlyText: boolean
   label: string
   target?: string
 }
 
 const maybeLabel: React.FC<Props> = props => {
   if (!props.isActive) return null
+  if (props.isOnlyText) return <>{props.label}</>
 
   return <Label htmlFor={props.target}>{props.label}</Label>
 }

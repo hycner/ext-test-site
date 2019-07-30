@@ -15,6 +15,8 @@ import settingsSchema from '../../settings/schemas/settingsSchema'
 
 export type SingleSectionDisplay = '' | SectionTypes
 
+// todo: Config Option - nest inputs in <div>s
+
 // ACTIONS
 
 const INIT = 'app/bootstrap'

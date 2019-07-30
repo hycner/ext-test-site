@@ -38,6 +38,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isMultiButton: boolean
   iteration: number
@@ -89,6 +90,7 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.email}
                 {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
               />
@@ -106,6 +108,7 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.oldPass}
                 {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
               />
@@ -121,6 +124,7 @@ const Fields: React.FC<Props> = props => {
 
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.newPass}
             {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
           />
@@ -136,6 +140,7 @@ const Fields: React.FC<Props> = props => {
             <>
               <MaybeLabel
                 isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
                 label={messages.confirmNewPass}
                 {...(props.isLabelledWithFor && {
                   target: `${messages.confirmNewPass_short}${iteration}`,
@@ -185,6 +190,7 @@ function mapStateToProps(state: Store) {
     isForm: settings.isForm,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
+    isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isMultiButton: settings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props

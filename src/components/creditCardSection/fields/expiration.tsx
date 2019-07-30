@@ -41,6 +41,7 @@ type Props = {
   expMonth: string
   expYear: string
   isLabelled: boolean
+  isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   iteration: string | number
   setExpDateFull: (date: string) => void
@@ -57,6 +58,7 @@ const Expiration: React.FC<Props> = props => {
       <div style={FIELD_STYLE}>
         <MaybeLabel
           isActive={props.isLabelled}
+          isOnlyText={props.isLabelledOnlyText}
           label={messages.expDate}
           {...(props.isLabelledWithFor && {target: `${messages.expDate_short}${props.iteration}`})}
         />
@@ -76,6 +78,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.expMonth}
             {...(props.isLabelledWithFor && {
               target: `${messages.expMonth_short}${props.iteration}`,
@@ -99,6 +102,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.expYear}
             {...(props.isLabelledWithFor && {
               target: `${messages.expYear_short}${props.iteration}`,
@@ -128,6 +132,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.expMonth}
             {...(props.isLabelledWithFor && {
               target: `${messages.expMonth_short}${props.iteration}`,
@@ -150,6 +155,7 @@ const Expiration: React.FC<Props> = props => {
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <MaybeLabel
             isActive={props.isLabelled}
+            isOnlyText={props.isLabelledOnlyText}
             label={messages.expYear}
             {...(props.isLabelledWithFor && {
               target: `${messages.expYear_short}${props.iteration}`,
