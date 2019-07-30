@@ -173,20 +173,20 @@ const Fields: React.FC<Props> = props => {
 }
 
 function mapStateToProps(state: Store) {
-  const prSettings = state.settings.passwordReset
+  const settings = state.settings.passwordReset
 
   return {
-    areAttrIdentifying: prSettings.areAttrIdentifying,
-    areIdsUnique: prSettings.areIdsUnique,
-    hasConfirmNew: prSettings.hasConfirmNew,
-    hasConfirmOld: prSettings.hasConfirmOld,
-    hasEmail: prSettings.hasEmail,
-    isFieldset: prSettings.isFieldset,
-    isForm: prSettings.isForm,
-    isIframeSection: prSettings.isIframeSection,
-    isLabelled: prSettings.isLabelled,
-    isLabelledWithFor: prSettings.isLabelledWithFor,
-    isMultiButton: prSettings.isMultiButton,
+    areAttrIdentifying: settings.areAttrIdentifying,
+    areIdsUnique: settings.areIdsUnique,
+    hasConfirmNew: settings.hasConfirmNew,
+    hasConfirmOld: settings.hasConfirmOld,
+    hasEmail: settings.hasEmail,
+    isFieldset: settings.isFieldset,
+    isForm: settings.isForm,
+    isIframeSection: settings.isIframeSection,
+    isLabelled: settings.isLabelled,
+    isLabelledWithFor: settings.isLabelledWithFor,
+    isMultiButton: settings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

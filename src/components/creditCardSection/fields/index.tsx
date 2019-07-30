@@ -176,16 +176,16 @@ const Index: React.FC<Props> = props => {
 }
 
 function mapStateToProps(state: Store) {
-  const cSettings = state.settings.creditCard
+  const settings = state.settings.creditCard
 
   return {
-    areAttrIdentifying: cSettings.areAttrIdentifying,
-    areIdsUnique: cSettings.areIdsUnique,
-    isFieldset: cSettings.isFieldset,
-    isForm: cSettings.isForm,
-    isLabelled: cSettings.isLabelled,
-    isLabelledWithFor: cSettings.isLabelledWithFor,
-    isMultiButton: cSettings.isMultiButton,
+    areAttrIdentifying: settings.areAttrIdentifying,
+    areIdsUnique: settings.areIdsUnique,
+    isFieldset: settings.isFieldset,
+    isForm: settings.isForm,
+    isLabelled: settings.isLabelled,
+    isLabelledWithFor: settings.isLabelledWithFor,
+    isMultiButton: settings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

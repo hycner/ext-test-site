@@ -257,20 +257,20 @@ const Fields: React.FC<Props> = props => {
 }
 
 function mapStateToProps(state: Store) {
-  const aSettings = state.settings.address
+  const settings = state.settings.address
 
   return {
-    areAttrIdentifying: aSettings.areAttrIdentifying,
-    areIdsUnique: aSettings.areIdsUnique,
-    hasEmail: aSettings.hasEmail,
-    hasName: aSettings.hasName,
-    hasPhone: aSettings.hasPhone,
-    isFieldset: aSettings.isFieldset,
-    isForm: aSettings.isForm,
-    isLabelled: aSettings.isLabelled,
-    isLabelledWithFor: aSettings.isLabelledWithFor,
-    isIframeField: aSettings.isIframeField,
-    isMultiButton: aSettings.isMultiButton,
+    areAttrIdentifying: settings.areAttrIdentifying,
+    areIdsUnique: settings.areIdsUnique,
+    hasEmail: settings.hasEmail,
+    hasName: settings.hasName,
+    hasPhone: settings.hasPhone,
+    isFieldset: settings.isFieldset,
+    isForm: settings.isForm,
+    isLabelled: settings.isLabelled,
+    isLabelledWithFor: settings.isLabelledWithFor,
+    isIframeField: settings.isIframeField,
+    isMultiButton: settings.isMultiButton,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'address' && {
       iteration: state.app.bootstrap.singleDisplayIteration,
