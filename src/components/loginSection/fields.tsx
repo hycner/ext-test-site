@@ -30,6 +30,7 @@ const BTN_STYLE = {
 }
 
 type Props = {
+  areAttrIdentifying: boolean
   areIdsUnique: boolean
   isFieldset: boolean
   isForm: boolean
@@ -90,8 +91,8 @@ const Fields: React.FC<Props> = props => {
               />
               <Input
                 style={FIELD_STYLE}
-                id={`${messages.accountId_short}${iteration}`}
-                placeholder={messages.accountId}
+                id={`${props.areAttrIdentifying ? messages.accountId_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.accountId : ''}
                 value={accountId}
                 onChange={e => setAccountId(e.target.value)}
               />
@@ -105,8 +106,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input
             style={FIELD_STYLE}
-            id={`${messages.username_short}${iteration}`}
-            placeholder={messages.username}
+            id={`${props.areAttrIdentifying ? messages.username_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.username: ''}
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
@@ -118,8 +119,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input.Password
             style={FIELD_STYLE}
-            id={`${messages.password_short}${iteration}`}
-            placeholder={messages.password}
+            id={`${props.areAttrIdentifying ? messages.password_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.password : ''}
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
@@ -149,6 +150,7 @@ function mapStateToProps(state: Store) {
   const lSettings = state.settings.login
 
   return {
+    areAttrIdentifying: lSettings.areAttrIdentifying,
     areIdsUnique: lSettings.areIdsUnique,
     isFieldset: lSettings.isFieldset,
     isForm: lSettings.isForm,

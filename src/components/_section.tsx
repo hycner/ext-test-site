@@ -172,6 +172,11 @@ const LoginSection: React.FC<Props> = props => {
         value: !props.settings.areIdsUnique,
       },
       {
+        key: 'areAttrIdentifying',
+        label: 'Remove Identifying Attributes',
+        value: !props.settings.areAttrIdentifying,
+      },
+      {
         key: 'isMultiButton',
         label: 'Multiple Buttons',
         value: props.settings.isMultiButton,

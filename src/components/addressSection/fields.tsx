@@ -30,6 +30,7 @@ const BTN_STYLE = {
 }
 
 type Props = {
+  areAttrIdentifying: boolean
   areIdsUnique: boolean
   hasEmail: boolean
   hasName: boolean
@@ -110,8 +111,8 @@ const Fields: React.FC<Props> = props => {
               />
               <Input
                 style={FIELD_STYLE}
-                id={`${messages.name_short}${iteration}`}
-                placeholder={messages.name}
+                id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.name : ''}
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
@@ -127,8 +128,8 @@ const Fields: React.FC<Props> = props => {
                   {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
                 />
                 <Input
-                  id={`${messages.email_short}${iteration}`}
-                  placeholder={messages.email}
+                  id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.email : ''}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
@@ -143,8 +144,8 @@ const Fields: React.FC<Props> = props => {
                   {...(props.isLabelledWithFor && {target: `${messages.phone_short}${iteration}`})}
                 />
                 <Input
-                  id={`${messages.phone_short}${iteration}`}
-                  placeholder={messages.phone}
+                  id={`${props.areAttrIdentifying ? messages.phone_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.phone : ''}
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                 />
@@ -159,8 +160,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input
             style={FIELD_STYLE}
-            id={`${messages.street1_short}${iteration}`}
-            placeholder={messages.street1}
+            id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.street1 : ''}
             value={streetOne}
             onChange={e => setStreetOne(e.target.value)}
           />
@@ -172,8 +173,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input
             style={FIELD_STYLE}
-            id={`${messages.street2_short}${iteration}`}
-            placeholder={messages.street2}
+            id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.street2 : ''}
             value={streetTwo}
             onChange={e => setStreetTwo(e.target.value)}
           />
@@ -185,8 +186,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input
             style={FIELD_STYLE}
-            id={`${messages.city_short}${iteration}`}
-            placeholder={messages.city}
+            id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.city : ''}
             value={city}
             onChange={e => setCity(e.target.value)}
           />
@@ -199,8 +200,8 @@ const Fields: React.FC<Props> = props => {
                 {...(props.isLabelledWithFor && {target: `${messages.state_short}${iteration}`})}
               />
               <Input
-                id={`${messages.state_short}${iteration}`}
-                placeholder={messages.state}
+                id={`${props.areAttrIdentifying ? messages.state_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.state : ''}
                 value={state}
                 onChange={e => setState(e.target.value)}
               />
@@ -213,8 +214,8 @@ const Fields: React.FC<Props> = props => {
                 {...(props.isLabelledWithFor && {target: `${messages.zip_short}${iteration}`})}
               />
               <Input
-                id={`${messages.zip_short}${iteration}`}
-                placeholder={messages.zip}
+                id={`${props.areAttrIdentifying ? messages.zip_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.zip : ''}
                 value={zip}
                 onChange={e => setZip(e.target.value)}
               />
@@ -228,8 +229,8 @@ const Fields: React.FC<Props> = props => {
           />
           <Input
             style={FIELD_STYLE}
-            id={`${messages.country_short}${iteration}`}
-            placeholder={messages.country}
+            id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
+            placeholder={props.areAttrIdentifying ? messages.country : ''}
             value={country}
             onChange={e => setCountry(e.target.value)}
           />
@@ -259,6 +260,7 @@ function mapStateToProps(state: Store) {
   const aSettings = state.settings.address
 
   return {
+    areAttrIdentifying: aSettings.areAttrIdentifying,
     areIdsUnique: aSettings.areIdsUnique,
     hasEmail: aSettings.hasEmail,
     hasName: aSettings.hasName,

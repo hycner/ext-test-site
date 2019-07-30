@@ -80,8 +80,8 @@ export function* setWatcher(): SagaIterator {
 export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 
 type BaseSettings = Readonly<{
-  areIdsUnique: boolean
   areAttrIdentifying: boolean
+  areIdsUnique: boolean
   isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
@@ -109,6 +109,7 @@ export type StoreSettingsPasswordReset = BaseSettings & Readonly<{
   hasConfirmOld: boolean
   hasEmail: boolean
 }>
+
 export type StoreSettings = Readonly<{
   address: StoreSettingsAddress
   creditCard: StoreSettingsCreditCard
@@ -118,8 +119,8 @@ export type StoreSettings = Readonly<{
 }>
 
 const baseSettings: BaseSettings = {
-  areIdsUnique: true,
   areAttrIdentifying: true,
+  areIdsUnique: true,
   isFieldset: false,
   isForm: false,
   isIframeSection: false,
