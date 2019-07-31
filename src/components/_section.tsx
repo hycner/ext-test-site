@@ -205,7 +205,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNestedWithRandomText',
-        label: 'Add adjacent random text',
+        label: 'Add random text',
         masterValid: props.settings.isInputNested,
         value: props.settings.isInputNestedWithRandomText,
       },
