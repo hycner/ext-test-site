@@ -39,6 +39,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
+  isInputNestedWithRandomText: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -96,7 +97,7 @@ const Fields: React.FC<Props> = props => {
                 label={messages.email}
                 {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input
                   style={FIELD_STYLE}
                   id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
@@ -116,7 +117,7 @@ const Fields: React.FC<Props> = props => {
                 label={messages.oldPass}
                 {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input.Password
                   style={FIELD_STYLE}
                   id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
@@ -134,7 +135,7 @@ const Fields: React.FC<Props> = props => {
             label={messages.newPass}
             {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested}>
+          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
             <Input.Password
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
@@ -154,7 +155,7 @@ const Fields: React.FC<Props> = props => {
                   target: `${messages.confirmNewPass_short}${iteration}`,
                 })}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input.Password
                   style={FIELD_STYLE}
                   id={`${
@@ -201,6 +202,7 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
+    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,

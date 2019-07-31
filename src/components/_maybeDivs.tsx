@@ -1,6 +1,7 @@
 import React from 'react'
 
 type Props = {
+  hasRandomText: boolean
   isActive: boolean
   children: React.ReactNode
 }
@@ -11,7 +12,10 @@ const maybeDivs: React.FC<Props> = props => {
   if (props.isActive) {
     wrap = (
       <div>
-        <div>{props.children}</div>
+        {props.hasRandomText && String(Math.round(Math.random() * 1000000))}
+        <div>
+          {props.children}
+        </div>
       </div>
     )
   } else {

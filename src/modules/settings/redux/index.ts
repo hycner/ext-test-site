@@ -86,6 +86,7 @@ type BaseSettings = Readonly<{
   isForm: boolean
   isIframeSection: boolean
   isInputNested: boolean
+  isInputNestedWithRandomText: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -131,6 +132,7 @@ const baseSettings: BaseSettings = {
   isForm: false,
   isIframeSection: false,
   isInputNested: false,
+  isInputNestedWithRandomText: false,
   isLabelled: false,
   isLabelledOnlyText: false,
   isLabelledWithFor: true,

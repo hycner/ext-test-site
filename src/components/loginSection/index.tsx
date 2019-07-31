@@ -31,9 +31,17 @@ const LoginSection: React.FC<Props> = props => {
   ]
 
   let iterationHeight = 140
+
   if (props.settings.isThreeField) iterationHeight += 37
   if (props.settings.is2FA) iterationHeight += 37
+
   if (props.settings.isLabelled) {
+    iterationHeight += 21 * 2
+    if (props.settings.isThreeField) iterationHeight += 21
+    if (props.settings.is2FA) iterationHeight += 21
+  }
+
+  if (props.settings.isInputNested && props.settings.isInputNestedWithRandomText) {
     iterationHeight += 21 * 2
     if (props.settings.isThreeField) iterationHeight += 21
     if (props.settings.is2FA) iterationHeight += 21

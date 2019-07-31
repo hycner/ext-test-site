@@ -203,6 +203,12 @@ const LoginSection: React.FC<Props> = props => {
         label: "Each field's input is nested in <div>s",
         value: props.settings.isInputNested,
       },
+      {
+        key: 'isInputNestedWithRandomText',
+        label: 'Add adjacent random text',
+        masterValid: props.settings.isInputNested,
+        value: props.settings.isInputNestedWithRandomText,
+      },
     ],
 
     ...props.configMenuItems,

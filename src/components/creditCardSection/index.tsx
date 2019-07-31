@@ -18,7 +18,12 @@ const CreditCardSection: React.FC<Props> = props => {
   const configMenuItems: ConfigMenuItems = []
 
   let iterationHeight = 228
+
   if (props.settings.isLabelled) {
+    iterationHeight += 21 * 3
+  }
+
+  if (props.settings.isInputNested && props.settings.isInputNestedWithRandomText) {
     iterationHeight += 21 * 3
   }
 

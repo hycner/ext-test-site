@@ -39,6 +39,7 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
+  isInputNestedWithRandomText: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -113,7 +114,7 @@ const Fields: React.FC<Props> = props => {
                 label={messages.name}
                 {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input
                   style={FIELD_STYLE}
                   id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
@@ -134,7 +135,7 @@ const Fields: React.FC<Props> = props => {
                   label={messages.email}
                   {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
                 />
-                <MaybeDivs isActive={props.isInputNested}>
+                <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                   <Input
                     id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
                     placeholder={props.areAttrIdentifying ? messages.email : ''}
@@ -153,7 +154,7 @@ const Fields: React.FC<Props> = props => {
                   label={messages.phone}
                   {...(props.isLabelledWithFor && {target: `${messages.phone_short}${iteration}`})}
                 />
-                <MaybeDivs isActive={props.isInputNested}>
+                <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                   <Input
                     id={`${props.areAttrIdentifying ? messages.phone_short : ''}${iteration}`}
                     placeholder={props.areAttrIdentifying ? messages.phone : ''}
@@ -171,7 +172,7 @@ const Fields: React.FC<Props> = props => {
             label={messages.street1}
             {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested}>
+          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
             <Input
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
@@ -187,7 +188,7 @@ const Fields: React.FC<Props> = props => {
             label={messages.street2}
             {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested}>
+          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
             <Input
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
@@ -203,7 +204,7 @@ const Fields: React.FC<Props> = props => {
             label={messages.city}
             {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested}>
+          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
             <Input
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
@@ -221,7 +222,7 @@ const Fields: React.FC<Props> = props => {
                 label={messages.state}
                 {...(props.isLabelledWithFor && {target: `${messages.state_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input
                   id={`${props.areAttrIdentifying ? messages.state_short : ''}${iteration}`}
                   placeholder={props.areAttrIdentifying ? messages.state : ''}
@@ -238,7 +239,7 @@ const Fields: React.FC<Props> = props => {
                 label={messages.zip}
                 {...(props.isLabelledWithFor && {target: `${messages.zip_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested}>
+              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
                 <Input
                   id={`${props.areAttrIdentifying ? messages.zip_short : ''}${iteration}`}
                   placeholder={props.areAttrIdentifying ? messages.zip : ''}
@@ -255,7 +256,7 @@ const Fields: React.FC<Props> = props => {
             label={messages.country}
             {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested}>
+          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
             <Input
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
@@ -298,6 +299,7 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
+    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,

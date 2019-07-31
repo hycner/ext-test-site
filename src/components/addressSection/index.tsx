@@ -44,9 +44,17 @@ const AddressSection: React.FC<Props> = props => {
   ]
 
   let iterationHeight = 250
+
   if (props.settings.hasEmail) iterationHeight += 37
   if (props.settings.hasPhone) iterationHeight += 37
+
   if (props.settings.isLabelled) {
+    iterationHeight += 21 * 5
+    if (props.settings.hasEmail) iterationHeight += 21
+    if (props.settings.hasPhone) iterationHeight += 21
+  }
+
+  if (props.settings.isInputNested && props.settings.isInputNestedWithRandomText) {
     iterationHeight += 21 * 5
     if (props.settings.hasEmail) iterationHeight += 21
     if (props.settings.hasPhone) iterationHeight += 21
