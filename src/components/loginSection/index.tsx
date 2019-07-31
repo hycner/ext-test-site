@@ -19,7 +19,7 @@ const LoginSection: React.FC<Props> = props => {
     [
       {
         key: 'isThreeField',
-        label: 'Three fields',
+        label: 'Account ID field (3-field logins)',
         value: props.settings.isThreeField,
       },
       {
