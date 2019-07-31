@@ -183,7 +183,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isLabelled',
-        label: 'Each field has a <label> with text',
+        label: 'Each field includes a <label> with text',
         value: props.settings.isLabelled,
       },
       {
@@ -200,7 +200,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNested',
-        label: 'Each field is nested in <div>s',
+        label: "Each field's input is nested in <div>s",
         value: props.settings.isInputNested,
       },
     ],
