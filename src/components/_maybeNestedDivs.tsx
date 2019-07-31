@@ -6,16 +6,14 @@ type Props = {
   children: React.ReactNode
 }
 
-const maybeDivs: React.FC<Props> = props => {
+const maybeNestedDivs: React.FC<Props> = props => {
   let wrap
 
   if (props.isActive) {
     wrap = (
       <div>
         {props.hasRandomText && String(Math.round(Math.random() * 1000000))}
-        <div>
-          {props.children}
-        </div>
+        <div>{props.children}</div>
       </div>
     )
   } else {
@@ -24,4 +22,4 @@ const maybeDivs: React.FC<Props> = props => {
 
   return wrap
 }
-export default React.memo(maybeDivs)
+export default React.memo(maybeNestedDivs)

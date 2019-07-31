@@ -6,7 +6,7 @@ import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
 import Expiration from './expiration'
-import MaybeDivs from '../../_maybeDivs'
+import MaybeNestedDivs from '../../_maybeNestedDivs'
 import MaybeLabel from '../../_maybeLabel'
 
 const Wrap = styled.div`
@@ -99,7 +99,10 @@ const Index: React.FC<Props> = props => {
             label={messages.name}
             {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <Input
               id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
               placeholder={props.areAttrIdentifying ? messages.name : ''}
@@ -107,7 +110,7 @@ const Index: React.FC<Props> = props => {
               value={name}
               onChange={e => setName(e.target.value)}
             />
-          </MaybeDivs>
+          </MaybeNestedDivs>
 
           <MaybeLabel
             isActive={props.isLabelled}
@@ -115,7 +118,10 @@ const Index: React.FC<Props> = props => {
             label={messages.number}
             {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <Input
               id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
               placeholder={props.areAttrIdentifying ? messages.number : ''}
@@ -123,7 +129,7 @@ const Index: React.FC<Props> = props => {
               value={cardNumber}
               onChange={e => setCardNumber(e.target.value)}
             />
-          </MaybeDivs>
+          </MaybeNestedDivs>
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
@@ -133,14 +139,17 @@ const Index: React.FC<Props> = props => {
                 label={messages.cvv}
                 {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+              <MaybeNestedDivs
+                isActive={props.isInputNested}
+                hasRandomText={props.isInputNestedWithRandomText}
+              >
                 <Input
                   id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
                   placeholder={props.areAttrIdentifying ? messages.cvv : ''}
                   value={cvv}
                   onChange={e => setCvv(e.target.value)}
                 />
-              </MaybeDivs>
+              </MaybeNestedDivs>
             </div>
 
             <Expiration

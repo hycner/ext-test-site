@@ -200,7 +200,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNested',
-        label: "Nest input in <div>s",
+        label: 'Nest input in <div>s',
         value: props.settings.isInputNested,
       },
       {

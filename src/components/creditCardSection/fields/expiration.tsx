@@ -2,7 +2,7 @@ import React from 'react'
 import {Input, Select} from 'antd'
 import {useIntl} from 'react-intl'
 
-import MaybeDivs from '../../_maybeDivs'
+import MaybeNestedDivs from '../../_maybeNestedDivs'
 import MaybeLabel from '../../_maybeLabel'
 
 type ExpirationValues = Array<{
@@ -65,14 +65,17 @@ const Expiration: React.FC<Props> = props => {
           label={messages.expDate}
           {...(props.isLabelledWithFor && {target: `${messages.expDate_short}${props.iteration}`})}
         />
-        <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+        <MaybeNestedDivs
+          isActive={props.isInputNested}
+          hasRandomText={props.isInputNestedWithRandomText}
+        >
           <Input
             id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
             placeholder={props.areAttrIdentifying ? messages.expDate : ''}
             value={props.expDateFull}
             onChange={e => props.setExpDateFull(e.target.value)}
           />
-        </MaybeDivs>
+        </MaybeNestedDivs>
       </div>
     )
   }
@@ -89,7 +92,10 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expMonth_short}${props.iteration}`,
             })}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <select
               id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
               value={props.expMonth}
@@ -103,7 +109,7 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
-          </MaybeDivs>
+          </MaybeNestedDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
@@ -115,7 +121,10 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expYear_short}${props.iteration}`,
             })}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <select
               id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
               value={props.expYear}
@@ -129,7 +138,7 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
-          </MaybeDivs>
+          </MaybeNestedDivs>
         </div>
       </>
     )
@@ -147,7 +156,10 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expMonth_short}${props.iteration}`,
             })}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <Select
               id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
               value={props.expMonth}
@@ -160,7 +172,7 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
-          </MaybeDivs>
+          </MaybeNestedDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
@@ -172,7 +184,10 @@ const Expiration: React.FC<Props> = props => {
               target: `${messages.expYear_short}${props.iteration}`,
             })}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <Select
               id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
               value={props.expYear}
@@ -185,7 +200,7 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
-          </MaybeDivs>
+          </MaybeNestedDivs>
         </div>
       </>
     )

@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import MaybeDivs from '../_maybeDivs'
+import MaybeNestedDivs from '../_maybeNestedDivs'
 import MaybeLabel from '../_maybeLabel'
 
 const Wrap = styled.div`
@@ -97,7 +97,10 @@ const Fields: React.FC<Props> = props => {
                 label={messages.email}
                 {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+              <MaybeNestedDivs
+                isActive={props.isInputNested}
+                hasRandomText={props.isInputNestedWithRandomText}
+              >
                 <Input
                   style={FIELD_STYLE}
                   id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
@@ -105,7 +108,7 @@ const Fields: React.FC<Props> = props => {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
-              </MaybeDivs>
+              </MaybeNestedDivs>
             </>
           )}
 
@@ -117,7 +120,10 @@ const Fields: React.FC<Props> = props => {
                 label={messages.oldPass}
                 {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
               />
-              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+              <MaybeNestedDivs
+                isActive={props.isInputNested}
+                hasRandomText={props.isInputNestedWithRandomText}
+              >
                 <Input.Password
                   style={FIELD_STYLE}
                   id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
@@ -125,7 +131,7 @@ const Fields: React.FC<Props> = props => {
                   value={oldPassword}
                   onChange={e => setOldPassword(e.target.value)}
                 />
-              </MaybeDivs>
+              </MaybeNestedDivs>
             </>
           )}
 
@@ -135,7 +141,10 @@ const Fields: React.FC<Props> = props => {
             label={messages.newPass}
             {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
           />
-          <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+          <MaybeNestedDivs
+            isActive={props.isInputNested}
+            hasRandomText={props.isInputNestedWithRandomText}
+          >
             <Input.Password
               style={FIELD_STYLE}
               id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
@@ -143,7 +152,7 @@ const Fields: React.FC<Props> = props => {
               value={newPassword}
               onChange={e => setNewPassword(e.target.value)}
             />
-          </MaybeDivs>
+          </MaybeNestedDivs>
 
           {props.hasConfirmNew && (
             <>
@@ -155,7 +164,10 @@ const Fields: React.FC<Props> = props => {
                   target: `${messages.confirmNewPass_short}${iteration}`,
                 })}
               />
-              <MaybeDivs isActive={props.isInputNested} hasRandomText={props.isInputNestedWithRandomText}>
+              <MaybeNestedDivs
+                isActive={props.isInputNested}
+                hasRandomText={props.isInputNestedWithRandomText}
+              >
                 <Input.Password
                   style={FIELD_STYLE}
                   id={`${
@@ -165,7 +177,7 @@ const Fields: React.FC<Props> = props => {
                   value={confirmNewPassword}
                   onChange={e => setConfirmNewPassword(e.target.value)}
                 />
-              </MaybeDivs>
+              </MaybeNestedDivs>
             </>
           )}
 
