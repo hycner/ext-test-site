@@ -163,6 +163,11 @@ const LoginSection: React.FC<Props> = props => {
         label: 'Wrap each section in <iframe>',
         value: props.settings.isIframeSection,
       },
+      {
+        key: 'isMultiButton',
+        label: 'Multiple buttons',
+        value: props.settings.isMultiButton,
+      },
     ],
 
     [
@@ -177,13 +182,8 @@ const LoginSection: React.FC<Props> = props => {
         value: !props.settings.areAttrIdentifying,
       },
       {
-        key: 'isMultiButton',
-        label: 'Multiple buttons',
-        value: props.settings.isMultiButton,
-      },
-      {
         key: 'isLabelled',
-        label: 'Each field includes a <label> with text',
+        label: 'Include a <label> with text',
         value: props.settings.isLabelled,
       },
       {
@@ -200,7 +200,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNested',
-        label: "Each field's input is nested in <div>s",
+        label: "Nest input in <div>s",
         value: props.settings.isInputNested,
       },
       {
