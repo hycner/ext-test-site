@@ -5,8 +5,9 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import MaybeNestedDivs from '../_maybeNestedDivs'
+import MaybeDivWrap from '../_maybeDivWrap'
 import MaybeLabel from '../_maybeLabel'
+import MaybeNestedDivs from '../_maybeNestedDivs'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -45,6 +46,7 @@ type Props = {
   isLabelledWithFor: boolean
   isIframeField: boolean
   isMultiButton: boolean
+  isWrappedInDiv: boolean
   iteration: number
 }
 
@@ -97,6 +99,7 @@ const Fields: React.FC<Props> = props => {
 
   let Form = props.isForm ? RealForm : FakeForm
   let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
+  // todo: finish implementing field-level iframe or remove
   let IframeField = props.isIframeField ? RealIframeField : FakeIframeField
 
   let iteration = props.iteration > 1 ? props.iteration : ''
@@ -107,7 +110,7 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.hasName && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -126,7 +129,7 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setName(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
           <div style={{display: 'flex', width: '100%'}}>
@@ -175,62 +178,68 @@ const Fields: React.FC<Props> = props => {
             )}
           </div>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.street1}
-            {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.street1 : ''}
-              value={streetOne}
-              onChange={e => setStreetOne(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.street1}
+              {...(props.isLabelledWithFor && {target: `${messages.street1_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.street1_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.street1 : ''}
+                value={streetOne}
+                onChange={e => setStreetOne(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.street2}
-            {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.street2 : ''}
-              value={streetTwo}
-              onChange={e => setStreetTwo(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.street2}
+              {...(props.isLabelledWithFor && {target: `${messages.street2_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.street2_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.street2 : ''}
+                value={streetTwo}
+                onChange={e => setStreetTwo(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.city}
-            {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.city : ''}
-              value={city}
-              onChange={e => setCity(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.city}
+              {...(props.isLabelledWithFor && {target: `${messages.city_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.city_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.city : ''}
+                value={city}
+                onChange={e => setCity(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
@@ -274,24 +283,26 @@ const Fields: React.FC<Props> = props => {
             </div>
           </div>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.country}
-            {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.country : ''}
-              value={country}
-              onChange={e => setCountry(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.country}
+              {...(props.isLabelledWithFor && {target: `${messages.country_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.country_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.country : ''}
+                value={country}
+                onChange={e => setCountry(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
@@ -332,6 +343,7 @@ function mapStateToProps(state: Store) {
     isLabelledWithFor: settings.isLabelledWithFor,
     isIframeField: settings.isIframeField,
     isMultiButton: settings.isMultiButton,
+    isWrappedInDiv: settings.isWrappedInDiv,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'address' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

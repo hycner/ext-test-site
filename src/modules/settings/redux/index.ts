@@ -93,6 +93,7 @@ type BaseSettings = Readonly<{
   isLocaleChanged: boolean
   isMultiButton: boolean
   isVisible: boolean
+  isWrappedInDiv: boolean
   iterations: number
   locale: LocaleOptions
 }>
@@ -139,6 +140,7 @@ const baseSettings: BaseSettings = {
   isLocaleChanged: false,
   isMultiButton: false,
   isVisible: true,
+  isWrappedInDiv: false,
   iterations: 1,
   locale: 'ja-JP',
 }

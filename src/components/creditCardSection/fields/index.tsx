@@ -6,8 +6,9 @@ import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
 import Expiration from './expiration'
-import MaybeNestedDivs from '../../_maybeNestedDivs'
+import MaybeDivWrap from '../../_maybeDivWrap'
 import MaybeLabel from '../../_maybeLabel'
+import MaybeNestedDivs from '../../_maybeNestedDivs'
 
 const Wrap = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ type Props = {
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isMultiButton: boolean
+  isWrappedInDiv: boolean
   iteration: number
 }
 
@@ -93,43 +95,47 @@ const Index: React.FC<Props> = props => {
     <Form>
       <Fieldset>
         <Wrap>
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.name}
-            {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.name : ''}
-              style={FIELD_STYLE}
-              value={name}
-              onChange={e => setName(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.name}
+              {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.name : ''}
+                style={FIELD_STYLE}
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.number}
-            {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.number : ''}
-              style={FIELD_STYLE}
-              value={cardNumber}
-              onChange={e => setCardNumber(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.number}
+              {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.number : ''}
+                style={FIELD_STYLE}
+                value={cardNumber}
+                onChange={e => setCardNumber(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
           <div style={{display: 'flex'}}>
             <div style={FIELD_STYLE}>
@@ -163,6 +169,7 @@ const Index: React.FC<Props> = props => {
               isLabelled={props.isLabelled}
               isLabelledOnlyText={props.isLabelledOnlyText}
               isLabelledWithFor={props.isLabelledWithFor}
+              isWrappedInDiv={props.isWrappedInDiv}
               iteration={iteration}
               setExpDateFull={setExpDateFull}
               setExpMonth={setExpMonth}
@@ -214,6 +221,7 @@ function mapStateToProps(state: Store) {
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isMultiButton: settings.isMultiButton,
+    isWrappedInDiv: settings.isWrappedInDiv,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

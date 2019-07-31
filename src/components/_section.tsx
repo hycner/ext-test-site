@@ -182,6 +182,11 @@ const LoginSection: React.FC<Props> = props => {
         value: !props.settings.areAttrIdentifying,
       },
       {
+        key: 'isWrappedInDiv',
+        label: 'Wrap in <div>',
+        value: props.settings.isWrappedInDiv,
+      },
+      {
         key: 'isLabelled',
         label: 'Include a <label> with text',
         value: props.settings.isLabelled,

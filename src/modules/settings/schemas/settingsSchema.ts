@@ -25,6 +25,7 @@ export default yup
         isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
+        isWrappedInDiv: yup.boolean().required(),
         iterations: yup.number().required(),
         locale: yup
           .string()
@@ -49,6 +50,7 @@ export default yup
         isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
+        isWrappedInDiv: yup.boolean().required(),
         iterations: yup.number().required(),
         locale: yup
           .string()
@@ -75,6 +77,7 @@ export default yup
         isMultiButton: yup.boolean().required(),
         isThreeField: yup.boolean().required(),
         isVisible: yup.boolean().required(),
+        isWrappedInDiv: yup.boolean().required(),
         iterations: yup.number().required(),
         locale: yup
           .string()
@@ -102,6 +105,7 @@ export default yup
         isLocaleChanged: yup.boolean().required(),
         isMultiButton: yup.boolean().required(),
         isVisible: yup.boolean().required(),
+        isWrappedInDiv: yup.boolean().required(),
         iterations: yup.number().required(),
         locale: yup
           .string()

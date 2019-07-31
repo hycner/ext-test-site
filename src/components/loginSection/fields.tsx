@@ -5,8 +5,9 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import MaybeNestedDivs from '../_maybeNestedDivs'
+import MaybeDivWrap from '../_maybeDivWrap'
 import MaybeLabel from '../_maybeLabel'
+import MaybeNestedDivs from '../_maybeNestedDivs'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -43,6 +44,7 @@ type Props = {
   isLabelledWithFor: boolean
   isMultiButton: boolean
   isThreeField: boolean
+  isWrappedInDiv: boolean
   iteration: number
 }
 
@@ -87,7 +89,7 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.isThreeField && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -108,11 +110,11 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setAccountId(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
           {props.is2FA && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -133,46 +135,50 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setTwoFA(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.username}
-            {...(props.isLabelledWithFor && {target: `${messages.username_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.username_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.username : ''}
-              value={username}
-              onChange={e => setUsername(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.username}
+              {...(props.isLabelledWithFor && {target: `${messages.username_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.username_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.username : ''}
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.password}
-            {...(props.isLabelledWithFor && {target: `${messages.password_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input.Password
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.password_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.password : ''}
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.password}
+              {...(props.isLabelledWithFor && {target: `${messages.password_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input.Password
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.password_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.password : ''}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
@@ -212,6 +218,7 @@ function mapStateToProps(state: Store) {
     isLabelledWithFor: settings.isLabelledWithFor,
     isThreeField: settings.isThreeField,
     isMultiButton: settings.isMultiButton,
+    isWrappedInDiv: settings.isWrappedInDiv,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'login' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

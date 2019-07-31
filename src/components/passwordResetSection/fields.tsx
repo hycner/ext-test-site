@@ -5,8 +5,9 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import MaybeNestedDivs from '../_maybeNestedDivs'
 import MaybeLabel from '../_maybeLabel'
+import MaybeDivWrap from '../_maybeDivWrap'
+import MaybeNestedDivs from '../_maybeNestedDivs'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -44,6 +45,7 @@ type Props = {
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
   isMultiButton: boolean
+  isWrappedInDiv: boolean
   iteration: number
 }
 
@@ -90,7 +92,7 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.hasEmail && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -109,11 +111,11 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setEmail(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
           {props.hasConfirmOld && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -132,30 +134,32 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setOldPassword(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.newPass}
-            {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
-          />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasRandomText={props.isInputNestedWithRandomText}
-          >
-            <Input.Password
-              style={FIELD_STYLE}
-              id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
-              placeholder={props.areAttrIdentifying ? messages.newPass : ''}
-              value={newPassword}
-              onChange={e => setNewPassword(e.target.value)}
+          <MaybeDivWrap isActive={props.isWrappedInDiv}>
+            <MaybeLabel
+              isActive={props.isLabelled}
+              isOnlyText={props.isLabelledOnlyText}
+              label={messages.newPass}
+              {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
             />
-          </MaybeNestedDivs>
+            <MaybeNestedDivs
+              isActive={props.isInputNested}
+              hasRandomText={props.isInputNestedWithRandomText}
+            >
+              <Input.Password
+                style={FIELD_STYLE}
+                id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
+                placeholder={props.areAttrIdentifying ? messages.newPass : ''}
+                value={newPassword}
+                onChange={e => setNewPassword(e.target.value)}
+              />
+            </MaybeNestedDivs>
+          </MaybeDivWrap>
 
           {props.hasConfirmNew && (
-            <>
+            <MaybeDivWrap isActive={props.isWrappedInDiv}>
               <MaybeLabel
                 isActive={props.isLabelled}
                 isOnlyText={props.isLabelledOnlyText}
@@ -178,7 +182,7 @@ const Fields: React.FC<Props> = props => {
                   onChange={e => setConfirmNewPassword(e.target.value)}
                 />
               </MaybeNestedDivs>
-            </>
+            </MaybeDivWrap>
           )}
 
           <ButtonsWrap>
@@ -220,6 +224,7 @@ function mapStateToProps(state: Store) {
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
     isMultiButton: settings.isMultiButton,
+    isWrappedInDiv: settings.isWrappedInDiv,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {
       iteration: state.app.bootstrap.singleDisplayIteration,
