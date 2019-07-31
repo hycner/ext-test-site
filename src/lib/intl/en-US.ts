@@ -41,7 +41,7 @@ export default {
   },
   login: {
     twoFA: 'Two-Factor Authentication Code',
-    twoFA_short: '2fa',
+    twoFA_short: '2faCode',
     accountId: 'Account ID',
     accountId_short: 'accountId',
     clear: 'Clear',
