@@ -40,6 +40,8 @@ export default {
     save: '保存', // 'セーブ'
   },
   login: {
+    twoFA: '二要素認証コード',
+    twoFA_short: '二要素認証コード',
     accountId: '口座ID', // 'アカウントID'
     accountId_short: '口座ID',
     clear: '消す', // 'クリア'

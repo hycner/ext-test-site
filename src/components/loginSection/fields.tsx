@@ -33,6 +33,7 @@ const BTN_STYLE = {
 type Props = {
   areAttrIdentifying: boolean
   areIdsUnique: boolean
+  is2FA: boolean
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
@@ -46,6 +47,7 @@ type Props = {
 
 const Fields: React.FC<Props> = props => {
   const [accountId, setAccountId] = useState<string>('')
+  const [twoFA, setTwoFA] = useState<string>('')
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -100,6 +102,28 @@ const Fields: React.FC<Props> = props => {
                   placeholder={props.areAttrIdentifying ? messages.accountId : ''}
                   value={accountId}
                   onChange={e => setAccountId(e.target.value)}
+                />
+              </MaybeDivs>
+            </>
+          )}
+
+          {props.is2FA && (
+            <>
+              <MaybeLabel
+                isActive={props.isLabelled}
+                isOnlyText={props.isLabelledOnlyText}
+                label={messages.twoFA}
+                {...(props.isLabelledWithFor && {
+                  target: `${messages.twoFA_short}${iteration}`,
+                })}
+              />
+              <MaybeDivs isActive={props.isInputNested}>
+                <Input
+                  style={FIELD_STYLE}
+                  id={`${props.areAttrIdentifying ? messages.twoFA_short : ''}${iteration}`}
+                  placeholder={props.areAttrIdentifying ? messages.twoFA : ''}
+                  value={twoFA}
+                  onChange={e => setTwoFA(e.target.value)}
                 />
               </MaybeDivs>
             </>
@@ -164,6 +188,7 @@ function mapStateToProps(state: Store) {
   return {
     areAttrIdentifying: settings.areAttrIdentifying,
     areIdsUnique: settings.areIdsUnique,
+    is2FA: settings.is2FA,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,

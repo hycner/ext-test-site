@@ -40,6 +40,8 @@ export default {
     save: 'Bespaar Kredietkaart',
   },
   login: {
+    twoFA: 'Tweefaktor-Verifikasiekode',
+    twoFA_short: 'tweefaktorKode',
     accountId: 'Rekening ID',
     accountId_short: 'rekeningId',
     clear: 'Duidelik',

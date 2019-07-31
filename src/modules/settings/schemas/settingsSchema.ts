@@ -60,6 +60,7 @@ export default yup
       .object({
         areIdsUnique: yup.boolean().required(),
         areAttrIdentifying: yup.boolean().required(),
+        is2FA: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),

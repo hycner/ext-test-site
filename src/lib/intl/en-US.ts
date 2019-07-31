@@ -40,6 +40,8 @@ export default {
     save: 'Save Credit Card',
   },
   login: {
+    twoFA: 'Two-Factor Authentication Code',
+    twoFA_short: '2fa',
     accountId: 'Account ID',
     accountId_short: 'accountId',
     clear: 'Clear',

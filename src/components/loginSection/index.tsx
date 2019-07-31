@@ -22,14 +22,21 @@ const LoginSection: React.FC<Props> = props => {
         label: 'Three fields',
         value: props.settings.isThreeField,
       },
+      {
+        key: 'is2FA',
+        label: '2FA field',
+        value: props.settings.is2FA,
+      },
     ],
   ]
 
   let iterationHeight = 140
   if (props.settings.isThreeField) iterationHeight += 37
+  if (props.settings.is2FA) iterationHeight += 37
   if (props.settings.isLabelled) {
     iterationHeight += 21 * 2
     if (props.settings.isThreeField) iterationHeight += 21
+    if (props.settings.is2FA) iterationHeight += 21
   }
 
   return (
