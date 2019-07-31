@@ -1,4 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Div = styled.div`
+  width: 100%;
+`
 
 type Props = {
   hasRandomText: boolean
@@ -11,10 +16,10 @@ const maybeNestedDivs: React.FC<Props> = props => {
 
   if (props.isActive) {
     wrap = (
-      <div>
+      <Div>
         {props.hasRandomText && String(Math.round(Math.random() * 1000000))}
-        <div>{props.children}</div>
-      </div>
+        <Div>{props.children}</Div>
+      </Div>
     )
   } else {
     wrap = <>{props.children}</>
