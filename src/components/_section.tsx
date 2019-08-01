@@ -171,6 +171,7 @@ const LoginSection: React.FC<Props> = props => {
     ],
 
     [
+      // todo: make this dissappear if areAttrIdentifying is true as it trumps it
       {
         key: 'areIdsUnique',
         label: 'Remove unique IDs',
