@@ -3,7 +3,6 @@ import {Input, Select} from 'antd'
 import {useIntl} from 'react-intl'
 
 import MaybeLabel from '../../_maybeLabel'
-import MaybeDivWrap from '../../_maybeDivWrap'
 import MaybeNestedDivs from '../../_maybeNestedDivs'
 
 type ExpirationValues = Array<{
