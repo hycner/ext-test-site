@@ -82,6 +82,7 @@ export type LocaleOptions = 'af' | 'en-US' | 'ja-JP'
 type BaseSettings = Readonly<{
   areAttrIdentifying: boolean
   areIdsUnique: boolean
+  isAdjacentInput: boolean
   isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
@@ -131,6 +132,7 @@ export type StoreSettings = Readonly<{
 const baseSettings: BaseSettings = {
   areAttrIdentifying: true,
   areIdsUnique: true,
+  isAdjacentInput: false,
   isFieldset: false,
   isForm: false,
   isIframeSection: false,

@@ -37,6 +37,7 @@ const BTN_STYLE = {
 type Props = {
   areAttrIdentifying: boolean
   areIdsUnique: boolean
+  isAdjacentInput: boolean
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
@@ -117,6 +118,7 @@ const Index: React.FC<Props> = props => {
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
+              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -140,6 +142,7 @@ const Index: React.FC<Props> = props => {
                 value={cardNumber}
                 onChange={e => setCardNumber(e.target.value)}
               />
+              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -163,6 +166,7 @@ const Index: React.FC<Props> = props => {
                   value={cvv}
                   onChange={e => setCvv(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </div>
 
@@ -172,6 +176,7 @@ const Index: React.FC<Props> = props => {
               expDateFull={expDateFull}
               expMonth={expMonth}
               expYear={expYear}
+              isAdjacentInput={props.isAdjacentInput}
               isInputNested={props.isInputNested}
               isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
               isInputNestedWithRandomText={props.isInputNestedWithRandomText}
@@ -223,6 +228,7 @@ function mapStateToProps(state: Store) {
   return {
     areAttrIdentifying: settings.areAttrIdentifying,
     areIdsUnique: settings.areIdsUnique,
+    isAdjacentInput: settings.isAdjacentInput,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,

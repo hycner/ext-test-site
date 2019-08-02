@@ -41,6 +41,7 @@ type Props = {
   expDateFull: string
   expMonth: string
   expYear: string
+  isAdjacentInput: boolean
   isInputNested: boolean
   isInputNestedWithDeepInput: boolean
   isInputNestedWithRandomText: boolean
@@ -80,6 +81,7 @@ const Expiration: React.FC<Props> = props => {
             value={props.expDateFull}
             onChange={e => props.setExpDateFull(e.target.value)}
           />
+          {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
         </MaybeNestedDivs>
       </div>
     )
@@ -116,6 +118,7 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
+            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
           </MaybeNestedDivs>
         </div>
 
@@ -147,6 +150,7 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
+            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
           </MaybeNestedDivs>
         </div>
       </>
@@ -183,6 +187,7 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
+            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
           </MaybeNestedDivs>
         </div>
 
@@ -213,6 +218,7 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
+            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
           </MaybeNestedDivs>
         </div>
       </>

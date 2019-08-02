@@ -5,6 +5,12 @@ const Div = styled.div`
   width: 100%;
 `
 
+const FIELD_STYLE = {
+  marginLeft: 2,
+  marginRight: 2,
+  marginBottom: 5,
+}
+
 type Props = {
   hasDeepInput: boolean
   hasRandomText: boolean
@@ -21,10 +27,10 @@ const maybeNestedDivs: React.FC<Props> = props => {
       <Div>
         {props.hasRandomText && String(Math.round(Math.random() * 1000000))}
         <Div>{props.children}</Div>
-        {props.hasShallowInput && <input type="text" />}
+        {props.hasShallowInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
         {props.hasDeepInput && (
           <Div>
-            <input type="text" />
+            <input type="text" className="ant-input" style={FIELD_STYLE} />
           </Div>
         )}
       </Div>

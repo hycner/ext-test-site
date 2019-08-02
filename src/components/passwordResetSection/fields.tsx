@@ -37,6 +37,7 @@ type Props = {
   hasConfirmNew: boolean
   hasConfirmOld: boolean
   hasEmail: boolean
+  isAdjacentInput: boolean
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
@@ -114,6 +115,7 @@ const Fields: React.FC<Props> = props => {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -139,6 +141,7 @@ const Fields: React.FC<Props> = props => {
                   value={oldPassword}
                   onChange={e => setOldPassword(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -163,6 +166,7 @@ const Fields: React.FC<Props> = props => {
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
               />
+              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -191,6 +195,7 @@ const Fields: React.FC<Props> = props => {
                   value={confirmNewPassword}
                   onChange={e => setConfirmNewPassword(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -225,6 +230,7 @@ function mapStateToProps(state: Store) {
     hasConfirmNew: settings.hasConfirmNew,
     hasConfirmOld: settings.hasConfirmOld,
     hasEmail: settings.hasEmail,
+    isAdjacentInput: settings.isAdjacentInput,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,

@@ -35,6 +35,7 @@ type Props = {
   areAttrIdentifying: boolean
   areIdsUnique: boolean
   is2FA: boolean
+  isAdjacentInput: boolean
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
@@ -113,6 +114,7 @@ const Fields: React.FC<Props> = props => {
                   value={accountId}
                   onChange={e => setAccountId(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -140,6 +142,7 @@ const Fields: React.FC<Props> = props => {
                   value={twoFA}
                   onChange={e => setTwoFA(e.target.value)}
                 />
+                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -164,6 +167,7 @@ const Fields: React.FC<Props> = props => {
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
+              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -187,6 +191,7 @@ const Fields: React.FC<Props> = props => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
+              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -218,6 +223,7 @@ function mapStateToProps(state: Store) {
     areAttrIdentifying: settings.areAttrIdentifying,
     areIdsUnique: settings.areIdsUnique,
     is2FA: settings.is2FA,
+    isAdjacentInput: settings.isAdjacentInput,
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,

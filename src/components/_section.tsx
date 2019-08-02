@@ -172,20 +172,14 @@ const LoginSection: React.FC<Props> = props => {
 
     [
       {
-        key: 'areAttrIdentifying',
-        label: 'Remove identifying attributes',
-        value: !props.settings.areAttrIdentifying,
-      },
-      {
-        key: 'areIdsUnique',
-        label: 'Remove unique IDs',
-        masterValid: props.settings.areAttrIdentifying,
-        value: !props.settings.areIdsUnique,
-      },
-      {
         key: 'isWrappedInDiv',
         label: 'Wrap in <div>',
         value: props.settings.isWrappedInDiv,
+      },
+      {
+        key: 'isAdjacentInput',
+        label: 'Add adjacent <input>',
+        value: props.settings.isAdjacentInput,
       },
       {
         key: 'isLabelled',
@@ -206,7 +200,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNested',
-        label: 'Nest input in <div>s',
+        label: 'Nest primary <input> in <div>s',
         value: props.settings.isInputNested,
       },
       {
@@ -217,15 +211,26 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNestedWithShallowInput',
-        label: 'Add input halfway',
+        label: 'Add <input> halfway',
         masterValid: props.settings.isInputNested,
         value: props.settings.isInputNestedWithShallowInput,
       },
       {
         key: 'isInputNestedWithDeepInput',
-        label: 'Add input deep',
+        label: 'Add <input> deep',
         masterValid: props.settings.isInputNested,
         value: props.settings.isInputNestedWithDeepInput,
+      },
+      {
+        key: 'areAttrIdentifying',
+        label: 'Remove identifying attributes',
+        value: !props.settings.areAttrIdentifying,
+      },
+      {
+        key: 'areIdsUnique',
+        label: 'Remove unique IDs',
+        masterValid: props.settings.areAttrIdentifying,
+        value: !props.settings.areIdsUnique,
       },
     ],
 

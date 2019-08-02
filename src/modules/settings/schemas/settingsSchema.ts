@@ -4,6 +4,8 @@ import {LocaleOptions} from '../redux'
 
 const VALID_LOCALES: LocaleOptions[] = ['af', 'en-US', 'ja-JP']
 
+// todo: populate base settings abstractly
+
 export default yup
   .object({
     address: yup
@@ -13,6 +15,7 @@ export default yup
         hasEmail: yup.boolean().required(),
         hasName: yup.boolean().required(),
         hasPhone: yup.boolean().required(),
+        isAdjacentInput: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeField: yup.boolean().required(),
@@ -41,6 +44,7 @@ export default yup
       .object({
         areIdsUnique: yup.boolean().required(),
         areAttrIdentifying: yup.boolean().required(),
+        isAdjacentInput: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
@@ -68,6 +72,7 @@ export default yup
       .object({
         areIdsUnique: yup.boolean().required(),
         areAttrIdentifying: yup.boolean().required(),
+        isAdjacentInput: yup.boolean().required(),
         is2FA: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
@@ -100,6 +105,7 @@ export default yup
         hasConfirmNew: yup.boolean().required(),
         hasConfirmOld: yup.boolean().required(),
         hasEmail: yup.boolean().required(),
+        isAdjacentInput: yup.boolean().required(),
         isFieldset: yup.boolean().required(),
         isForm: yup.boolean().required(),
         isIframeSection: yup.boolean().required(),
