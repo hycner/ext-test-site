@@ -114,7 +114,9 @@ const Fields: React.FC<Props> = props => {
                   value={accountId}
                   onChange={e => setAccountId(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -142,7 +144,9 @@ const Fields: React.FC<Props> = props => {
                   value={twoFA}
                   onChange={e => setTwoFA(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -167,7 +171,9 @@ const Fields: React.FC<Props> = props => {
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -191,7 +197,9 @@ const Fields: React.FC<Props> = props => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 

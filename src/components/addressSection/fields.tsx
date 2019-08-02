@@ -133,7 +133,9 @@ const Fields: React.FC<Props> = props => {
                   value={name}
                   onChange={e => setName(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
@@ -159,7 +161,9 @@ const Fields: React.FC<Props> = props => {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                   />
-                  {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                  {props.isAdjacentInput && (
+                    <input type="text" className="ant-input" style={FIELD_STYLE} />
+                  )}
                 </MaybeNestedDivs>
               </div>
             )}
@@ -184,7 +188,9 @@ const Fields: React.FC<Props> = props => {
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
                   />
-                  {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                  {props.isAdjacentInput && (
+                    <input type="text" className="ant-input" style={FIELD_STYLE} />
+                  )}
                 </MaybeNestedDivs>
               </div>
             )}
@@ -210,7 +216,9 @@ const Fields: React.FC<Props> = props => {
                 value={streetOne}
                 onChange={e => setStreetOne(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -234,7 +242,9 @@ const Fields: React.FC<Props> = props => {
                 value={streetTwo}
                 onChange={e => setStreetTwo(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -258,7 +268,9 @@ const Fields: React.FC<Props> = props => {
                 value={city}
                 onChange={e => setCity(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -282,7 +294,9 @@ const Fields: React.FC<Props> = props => {
                   value={state}
                   onChange={e => setState(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </div>
 
@@ -305,7 +319,9 @@ const Fields: React.FC<Props> = props => {
                   value={zip}
                   onChange={e => setZip(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </div>
           </div>
@@ -330,7 +346,9 @@ const Fields: React.FC<Props> = props => {
                 value={country}
                 onChange={e => setCountry(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 

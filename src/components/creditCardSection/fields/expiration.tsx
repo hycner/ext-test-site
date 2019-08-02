@@ -118,7 +118,9 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
-            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+            {props.isAdjacentInput && (
+              <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
           </MaybeNestedDivs>
         </div>
 
@@ -150,7 +152,9 @@ const Expiration: React.FC<Props> = props => {
                 </option>
               ))}
             </select>
-            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+            {props.isAdjacentInput && (
+              <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
           </MaybeNestedDivs>
         </div>
       </>
@@ -187,7 +191,9 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
-            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+            {props.isAdjacentInput && (
+              <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
           </MaybeNestedDivs>
         </div>
 
@@ -218,7 +224,9 @@ const Expiration: React.FC<Props> = props => {
                 </Select.Option>
               ))}
             </Select>
-            {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+            {props.isAdjacentInput && (
+              <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
           </MaybeNestedDivs>
         </div>
       </>

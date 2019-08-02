@@ -118,7 +118,9 @@ const Index: React.FC<Props> = props => {
                 value={name}
                 onChange={e => setName(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -142,7 +144,9 @@ const Index: React.FC<Props> = props => {
                 value={cardNumber}
                 onChange={e => setCardNumber(e.target.value)}
               />
-              {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+              {props.isAdjacentInput && (
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -166,7 +170,9 @@ const Index: React.FC<Props> = props => {
                   value={cvv}
                   onChange={e => setCvv(e.target.value)}
                 />
-                {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+                {props.isAdjacentInput && (
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                )}
               </MaybeNestedDivs>
             </div>
 
