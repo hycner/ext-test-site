@@ -171,16 +171,16 @@ const LoginSection: React.FC<Props> = props => {
     ],
 
     [
-      // todo: make this dissappear if areAttrIdentifying is true as it trumps it
-      {
-        key: 'areIdsUnique',
-        label: 'Remove unique IDs',
-        value: !props.settings.areIdsUnique,
-      },
       {
         key: 'areAttrIdentifying',
         label: 'Remove identifying attributes',
         value: !props.settings.areAttrIdentifying,
+      },
+      {
+        key: 'areIdsUnique',
+        label: 'Remove unique IDs',
+        masterValid: props.settings.areAttrIdentifying,
+        value: !props.settings.areIdsUnique,
       },
       {
         key: 'isWrappedInDiv',
