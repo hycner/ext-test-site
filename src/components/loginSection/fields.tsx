@@ -38,7 +38,9 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
+  isInputNestedWithDeepInput: boolean
   isInputNestedWithRandomText: boolean
+  isInputNestedWithShallowInput: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -100,7 +102,9 @@ const Fields: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   style={FIELD_STYLE}
@@ -125,7 +129,9 @@ const Fields: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   style={FIELD_STYLE}
@@ -147,7 +153,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 style={FIELD_STYLE}
@@ -168,7 +176,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input.Password
                 style={FIELD_STYLE}
@@ -211,7 +221,9 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
+    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
     isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
+    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
     isIframeSection: settings.isIframeSection,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,

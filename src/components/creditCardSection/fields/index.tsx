@@ -40,7 +40,9 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
+  isInputNestedWithDeepInput: boolean
   isInputNestedWithRandomText: boolean
+  isInputNestedWithShallowInput: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -104,7 +106,9 @@ const Index: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
@@ -125,7 +129,9 @@ const Index: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
@@ -147,7 +153,9 @@ const Index: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
@@ -165,7 +173,9 @@ const Index: React.FC<Props> = props => {
               expMonth={expMonth}
               expYear={expYear}
               isInputNested={props.isInputNested}
+              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
               isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
               isLabelled={props.isLabelled}
               isLabelledOnlyText={props.isLabelledOnlyText}
               isLabelledWithFor={props.isLabelledWithFor}
@@ -216,7 +226,9 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
+    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
     isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
+    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,

@@ -42,7 +42,9 @@ type Props = {
   expMonth: string
   expYear: string
   isInputNested: boolean
+  isInputNestedWithDeepInput: boolean
   isInputNestedWithRandomText: boolean
+  isInputNestedWithShallowInput: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -68,7 +70,9 @@ const Expiration: React.FC<Props> = props => {
         />
         <MaybeNestedDivs
           isActive={props.isInputNested}
+          hasDeepInput={props.isInputNestedWithDeepInput}
           hasRandomText={props.isInputNestedWithRandomText}
+          hasShallowInput={props.isInputNestedWithShallowInput}
         >
           <Input
             id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
@@ -95,7 +99,9 @@ const Expiration: React.FC<Props> = props => {
           />
           <MaybeNestedDivs
             isActive={props.isInputNested}
+            hasDeepInput={props.isInputNestedWithDeepInput}
             hasRandomText={props.isInputNestedWithRandomText}
+            hasShallowInput={props.isInputNestedWithShallowInput}
           >
             <select
               id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
@@ -124,7 +130,9 @@ const Expiration: React.FC<Props> = props => {
           />
           <MaybeNestedDivs
             isActive={props.isInputNested}
+            hasDeepInput={props.isInputNestedWithDeepInput}
             hasRandomText={props.isInputNestedWithRandomText}
+            hasShallowInput={props.isInputNestedWithShallowInput}
           >
             <select
               id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
@@ -159,7 +167,9 @@ const Expiration: React.FC<Props> = props => {
           />
           <MaybeNestedDivs
             isActive={props.isInputNested}
+            hasDeepInput={props.isInputNestedWithDeepInput}
             hasRandomText={props.isInputNestedWithRandomText}
+            hasShallowInput={props.isInputNestedWithShallowInput}
           >
             <Select
               id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
@@ -187,7 +197,9 @@ const Expiration: React.FC<Props> = props => {
           />
           <MaybeNestedDivs
             isActive={props.isInputNested}
+            hasDeepInput={props.isInputNestedWithDeepInput}
             hasRandomText={props.isInputNestedWithRandomText}
+            hasShallowInput={props.isInputNestedWithShallowInput}
           >
             <Select
               id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}

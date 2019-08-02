@@ -211,9 +211,21 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNestedWithRandomText',
-        label: 'Add random text',
+        label: 'Add random text halfway',
         masterValid: props.settings.isInputNested,
         value: props.settings.isInputNestedWithRandomText,
+      },
+      {
+        key: 'isInputNestedWithShallowInput',
+        label: 'Add input halfway',
+        masterValid: props.settings.isInputNested,
+        value: props.settings.isInputNestedWithShallowInput,
+      },
+      {
+        key: 'isInputNestedWithDeepInput',
+        label: 'Add input deep',
+        masterValid: props.settings.isInputNested,
+        value: props.settings.isInputNestedWithDeepInput,
       },
     ],
 

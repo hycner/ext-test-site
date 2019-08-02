@@ -40,7 +40,9 @@ type Props = {
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
+  isInputNestedWithDeepInput: boolean
   isInputNestedWithRandomText: boolean
+  isInputNestedWithShallowInput: boolean
   isLabelled: boolean
   isLabelledOnlyText: boolean
   isLabelledWithFor: boolean
@@ -119,7 +121,9 @@ const Fields: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   style={FIELD_STYLE}
@@ -143,7 +147,9 @@ const Fields: React.FC<Props> = props => {
                 />
                 <MaybeNestedDivs
                   isActive={props.isInputNested}
+                  hasDeepInput={props.isInputNestedWithDeepInput}
                   hasRandomText={props.isInputNestedWithRandomText}
+                  hasShallowInput={props.isInputNestedWithShallowInput}
                 >
                   <Input
                     id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
@@ -165,7 +171,9 @@ const Fields: React.FC<Props> = props => {
                 />
                 <MaybeNestedDivs
                   isActive={props.isInputNested}
+                  hasDeepInput={props.isInputNestedWithDeepInput}
                   hasRandomText={props.isInputNestedWithRandomText}
+                  hasShallowInput={props.isInputNestedWithShallowInput}
                 >
                   <Input
                     id={`${props.areAttrIdentifying ? messages.phone_short : ''}${iteration}`}
@@ -187,7 +195,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 style={FIELD_STYLE}
@@ -208,7 +218,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 style={FIELD_STYLE}
@@ -229,7 +241,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 style={FIELD_STYLE}
@@ -251,7 +265,9 @@ const Fields: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   id={`${props.areAttrIdentifying ? messages.state_short : ''}${iteration}`}
@@ -271,7 +287,9 @@ const Fields: React.FC<Props> = props => {
               />
               <MaybeNestedDivs
                 isActive={props.isInputNested}
+                hasDeepInput={props.isInputNestedWithDeepInput}
                 hasRandomText={props.isInputNestedWithRandomText}
+                hasShallowInput={props.isInputNestedWithShallowInput}
               >
                 <Input
                   id={`${props.areAttrIdentifying ? messages.zip_short : ''}${iteration}`}
@@ -292,7 +310,9 @@ const Fields: React.FC<Props> = props => {
             />
             <MaybeNestedDivs
               isActive={props.isInputNested}
+              hasDeepInput={props.isInputNestedWithDeepInput}
               hasRandomText={props.isInputNestedWithRandomText}
+              hasShallowInput={props.isInputNestedWithShallowInput}
             >
               <Input
                 style={FIELD_STYLE}
@@ -337,7 +357,9 @@ function mapStateToProps(state: Store) {
     isFieldset: settings.isFieldset,
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
+    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
     isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
+    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
     isLabelled: settings.isLabelled,
     isLabelledOnlyText: settings.isLabelledOnlyText,
     isLabelledWithFor: settings.isLabelledWithFor,
