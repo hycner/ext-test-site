@@ -189,7 +189,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isLabelled',
-        label: 'Include a <label> with text',
+        label: 'Add a <label> with text',
         value: props.settings.isLabelled,
       },
       {
