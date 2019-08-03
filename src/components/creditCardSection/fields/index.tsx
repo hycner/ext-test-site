@@ -23,6 +23,9 @@ const ButtonsWrap = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
 `
+const Div = styled.div`
+  width: 100%;
+`
 
 const FIELD_STYLE = {
   marginLeft: 2,
@@ -42,6 +45,7 @@ type Props = {
   isForm: boolean
   isInputNested: boolean
   isInputNestedWithDeepInput: boolean
+  isDeeperInput: boolean
   isInputNestedWithRandomText: boolean
   isInputNestedWithShallowInput: boolean
   isLabelled: boolean
@@ -121,6 +125,11 @@ const Index: React.FC<Props> = props => {
               {props.isAdjacentInput && (
                 <input type="text" className="ant-input" style={FIELD_STYLE} />
               )}
+              {props.isDeeperInput && (
+                <Div>
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                </Div>
+              )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
 
@@ -146,6 +155,11 @@ const Index: React.FC<Props> = props => {
               />
               {props.isAdjacentInput && (
                 <input type="text" className="ant-input" style={FIELD_STYLE} />
+              )}
+              {props.isDeeperInput && (
+                <Div>
+                  <input type="text" className="ant-input" style={FIELD_STYLE} />
+                </Div>
               )}
             </MaybeNestedDivs>
           </MaybeDivWrap>
@@ -173,6 +187,11 @@ const Index: React.FC<Props> = props => {
                 {props.isAdjacentInput && (
                   <input type="text" className="ant-input" style={FIELD_STYLE} />
                 )}
+                {props.isDeeperInput && (
+                  <Div>
+                    <input type="text" className="ant-input" style={FIELD_STYLE} />
+                  </Div>
+                )}
               </MaybeNestedDivs>
             </div>
 
@@ -185,6 +204,7 @@ const Index: React.FC<Props> = props => {
               isAdjacentInput={props.isAdjacentInput}
               isInputNested={props.isInputNested}
               isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+              isDeeperInput={props.isDeeperInput}
               isInputNestedWithRandomText={props.isInputNestedWithRandomText}
               isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
               isLabelled={props.isLabelled}
@@ -239,6 +259,7 @@ function mapStateToProps(state: Store) {
     isForm: settings.isForm,
     isInputNested: settings.isInputNested,
     isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
+    isDeeperInput: settings.isDeeperInput,
     isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
     isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
     isLabelled: settings.isLabelled,

@@ -178,8 +178,13 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isAdjacentInput',
-        label: 'Add adjacent <input>',
+        label: 'Add <input> adjacent',
         value: props.settings.isAdjacentInput,
+      },
+      {
+        key: 'isDeeperInput',
+        label: 'Add <input> deeper',
+        value: props.settings.isDeeperInput,
       },
       {
         key: 'isLabelled',
@@ -217,7 +222,7 @@ const LoginSection: React.FC<Props> = props => {
       },
       {
         key: 'isInputNestedWithDeepInput',
-        label: 'Add <input> deep',
+        label: 'Add <input> at same depth',
         masterValid: props.settings.isInputNested,
         value: props.settings.isInputNestedWithDeepInput,
       },

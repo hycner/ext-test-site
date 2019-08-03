@@ -1,9 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
 import {Input, Select} from 'antd'
 import {useIntl} from 'react-intl'
 
 import MaybeLabel from '../../_maybeLabel'
 import MaybeNestedDivs from '../../_maybeNestedDivs'
+
+const Div = styled.div`
+  width: 100%;
+`
 
 type ExpirationValues = Array<{
   label: string
@@ -44,6 +49,7 @@ type Props = {
   isAdjacentInput: boolean
   isInputNested: boolean
   isInputNestedWithDeepInput: boolean
+  isDeeperInput: boolean
   isInputNestedWithRandomText: boolean
   isInputNestedWithShallowInput: boolean
   isLabelled: boolean
@@ -82,6 +88,11 @@ const Expiration: React.FC<Props> = props => {
             onChange={e => props.setExpDateFull(e.target.value)}
           />
           {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
+          {props.isDeeperInput && (
+            <Div>
+              <input type="text" className="ant-input" style={FIELD_STYLE} />
+            </Div>
+          )}
         </MaybeNestedDivs>
       </div>
     )
@@ -121,6 +132,11 @@ const Expiration: React.FC<Props> = props => {
             {props.isAdjacentInput && (
               <input type="text" className="ant-input" style={FIELD_STYLE} />
             )}
+            {props.isDeeperInput && (
+              <Div>
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              </Div>
+            )}
           </MaybeNestedDivs>
         </div>
 
@@ -154,6 +170,11 @@ const Expiration: React.FC<Props> = props => {
             </select>
             {props.isAdjacentInput && (
               <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
+            {props.isDeeperInput && (
+              <Div>
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              </Div>
             )}
           </MaybeNestedDivs>
         </div>
@@ -194,6 +215,11 @@ const Expiration: React.FC<Props> = props => {
             {props.isAdjacentInput && (
               <input type="text" className="ant-input" style={FIELD_STYLE} />
             )}
+            {props.isDeeperInput && (
+              <Div>
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              </Div>
+            )}
           </MaybeNestedDivs>
         </div>
 
@@ -226,6 +252,11 @@ const Expiration: React.FC<Props> = props => {
             </Select>
             {props.isAdjacentInput && (
               <input type="text" className="ant-input" style={FIELD_STYLE} />
+            )}
+            {props.isDeeperInput && (
+              <Div>
+                <input type="text" className="ant-input" style={FIELD_STYLE} />
+              </Div>
             )}
           </MaybeNestedDivs>
         </div>
