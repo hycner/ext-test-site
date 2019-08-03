@@ -121,6 +121,11 @@ const Fields: React.FC<Props> = props => {
                 {props.isAdjacentInput && (
                   <input type="text" className="ant-input" style={FIELD_STYLE} />
                 )}
+                {props.isDeeperInput && (
+                  <Div>
+                    <input type="text" className="ant-input" style={FIELD_STYLE} />
+                  </Div>
+                )}
               </MaybeNestedDivs>
             </MaybeDivWrap>
           )}
