@@ -54,7 +54,6 @@ type Props = {
 
 export const App: React.FC<Props> = props => {
   useEffect(() => {
-    // setTimeout(() => dispatch(bootstrap()), 5000)
     dispatch(bootstrap())
   }, [])
 
@@ -62,7 +61,7 @@ export const App: React.FC<Props> = props => {
     <Wrap>
       {!props.singleComponentDisplay && !props.singleSectionDisplay && (
         <>
-          <Header>Extension Tester</Header>
+          <Header>Extension DOM Tester</Header>
 
           <SubAreaWrap>
             <LoginSection />

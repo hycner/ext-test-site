@@ -1,6 +1,6 @@
 {
   "short_name": "Ext Test",
-  "name": "Extension Test Site",
+  "name": "Extension DOM Test Site",
   "icons": [
     {
       "src": "favicon.ico",
