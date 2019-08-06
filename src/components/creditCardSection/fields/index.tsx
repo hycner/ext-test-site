@@ -1,14 +1,12 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Button, Input, Radio} from 'antd'
+import {Button, Radio} from 'antd'
 import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
 import Expiration from './expiration'
-import MaybeDivWrap from '../../_maybeDivWrap'
-import MaybeLabel from '../../_maybeLabel'
-import MaybeNestedDivs from '../../_maybeNestedDivs'
+import GenericInput from '../../_genericInput'
 
 const Wrap = styled.div`
   display: flex;
@@ -23,15 +21,7 @@ const ButtonsWrap = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
 `
-const Div = styled.div`
-  width: 100%;
-`
 
-const FIELD_STYLE = {
-  marginLeft: 2,
-  marginRight: 2,
-  marginBottom: 5,
-}
 const BTN_STYLE = {
   marginLeft: 2,
   marginRight: 2,
@@ -102,98 +92,63 @@ const Index: React.FC<Props> = props => {
     <Form>
       <Fieldset>
         <Wrap>
-          <MaybeDivWrap isActive={props.isWrappedInDiv}>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              isOnlyText={props.isLabelledOnlyText}
-              label={messages.name}
-              {...(props.isLabelledWithFor && {target: `${messages.name_short}${iteration}`})}
-            />
-            <MaybeNestedDivs
-              isActive={props.isInputNested}
-              hasDeepInput={props.isInputNestedWithDeepInput}
-              hasRandomText={props.isInputNestedWithRandomText}
-              hasShallowInput={props.isInputNestedWithShallowInput}
-            >
-              <Input
-                id={`${props.areAttrIdentifying ? messages.name_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.name : ''}
-                style={FIELD_STYLE}
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
-              {props.isAdjacentInput && (
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              )}
-              {props.isDeeperInput && (
-                <Div>
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                </Div>
-              )}
-            </MaybeNestedDivs>
-          </MaybeDivWrap>
+          <GenericInput
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={iteration}
+            labelKey="name"
+            messages={messages}
+            value={name}
+            valueSetter={setName}
+          />
 
-          <MaybeDivWrap isActive={props.isWrappedInDiv}>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              isOnlyText={props.isLabelledOnlyText}
-              label={messages.number}
-              {...(props.isLabelledWithFor && {target: `${messages.number_short}${iteration}`})}
-            />
-            <MaybeNestedDivs
-              isActive={props.isInputNested}
-              hasDeepInput={props.isInputNestedWithDeepInput}
-              hasRandomText={props.isInputNestedWithRandomText}
-              hasShallowInput={props.isInputNestedWithShallowInput}
-            >
-              <Input
-                id={`${props.areAttrIdentifying ? messages.number_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.number : ''}
-                style={FIELD_STYLE}
-                value={cardNumber}
-                onChange={e => setCardNumber(e.target.value)}
-              />
-              {props.isAdjacentInput && (
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              )}
-              {props.isDeeperInput && (
-                <Div>
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                </Div>
-              )}
-            </MaybeNestedDivs>
-          </MaybeDivWrap>
+          <GenericInput
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={iteration}
+            labelKey="number"
+            messages={messages}
+            value={cardNumber}
+            valueSetter={setCardNumber}
+          />
 
           <div style={{display: 'flex'}}>
-            <div style={FIELD_STYLE}>
-              <MaybeLabel
-                isActive={props.isLabelled}
-                isOnlyText={props.isLabelledOnlyText}
-                label={messages.cvv}
-                {...(props.isLabelledWithFor && {target: `${messages.cvv_short}${iteration}`})}
-              />
-              <MaybeNestedDivs
-                isActive={props.isInputNested}
-                hasDeepInput={props.isInputNestedWithDeepInput}
-                hasRandomText={props.isInputNestedWithRandomText}
-                hasShallowInput={props.isInputNestedWithShallowInput}
-              >
-                <Input
-                  id={`${props.areAttrIdentifying ? messages.cvv_short : ''}${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.cvv : ''}
-                  value={cvv}
-                  onChange={e => setCvv(e.target.value)}
-                />
-                {props.isAdjacentInput && (
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                )}
-                {props.isDeeperInput && (
-                  <Div>
-                    <input type="text" className="ant-input" style={FIELD_STYLE} />
-                  </Div>
-                )}
-              </MaybeNestedDivs>
-            </div>
+            <GenericInput
+              areAttrIdentifying={props.areAttrIdentifying}
+              isAdjacentInput={props.isAdjacentInput}
+              isDeeperInput={props.isDeeperInput}
+              isInputNested={props.isInputNested}
+              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+              isLabelled={props.isLabelled}
+              isLabelledOnlyText={props.isLabelledOnlyText}
+              isLabelledWithFor={props.isLabelledWithFor}
+              isWrappedInDiv={props.isWrappedInDiv}
+              iteration={iteration}
+              labelKey="cvv"
+              messages={messages}
+              value={cvv}
+              valueSetter={setCvv}
+            />
 
             <Expiration
               areAttrIdentifying={props.areAttrIdentifying}
