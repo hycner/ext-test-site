@@ -41,11 +41,11 @@ type Props = {
   hasName: boolean
   hasPhone: boolean
   isAdjacentInput: boolean
+  isDeeperInput: boolean
   isFieldset: boolean
   isForm: boolean
   isInputNested: boolean
   isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
   isInputNestedWithRandomText: boolean
   isInputNestedWithShallowInput: boolean
   isLabelled: boolean
