@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Button, Input} from 'antd'
+import {Button} from 'antd'
 import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import MaybeLabel from '../_maybeLabel'
-import MaybeDivWrap from '../_maybeDivWrap'
-import MaybeNestedDivs from '../_maybeNestedDivs'
+import GenericInput from '../_genericInput'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -20,15 +18,7 @@ const ButtonsWrap = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
 `
-const Div = styled.div`
-  width: 100%;
-`
 
-const FIELD_STYLE = {
-  marginLeft: 2,
-  marginRight: 2,
-  marginBottom: 5,
-}
 const BTN_STYLE = {
   marginLeft: 2,
   marginRight: 2,
@@ -99,137 +89,88 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.hasEmail && (
-            <MaybeDivWrap isActive={props.isWrappedInDiv}>
-              <MaybeLabel
-                isActive={props.isLabelled}
-                isOnlyText={props.isLabelledOnlyText}
-                label={messages.email}
-                {...(props.isLabelledWithFor && {target: `${messages.email_short}${iteration}`})}
-              />
-              <MaybeNestedDivs
-                isActive={props.isInputNested}
-                hasDeepInput={props.isInputNestedWithDeepInput}
-                hasRandomText={props.isInputNestedWithRandomText}
-                hasShallowInput={props.isInputNestedWithShallowInput}
-              >
-                <Input
-                  style={FIELD_STYLE}
-                  id={`${props.areAttrIdentifying ? messages.email_short : ''}${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.email : ''}
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                {props.isAdjacentInput && (
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                )}
-                {props.isDeeperInput && (
-                  <Div>
-                    <input type="text" className="ant-input" style={FIELD_STYLE} />
-                  </Div>
-                )}
-              </MaybeNestedDivs>
-            </MaybeDivWrap>
+            <GenericInput
+              areAttrIdentifying={props.areAttrIdentifying}
+              isAdjacentInput={props.isAdjacentInput}
+              isDeeperInput={props.isDeeperInput}
+              isInputNested={props.isInputNested}
+              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+              isLabelled={props.isLabelled}
+              isLabelledOnlyText={props.isLabelledOnlyText}
+              isLabelledWithFor={props.isLabelledWithFor}
+              isWrappedInDiv={props.isWrappedInDiv}
+              iteration={iteration}
+              labelKey="email"
+              messages={messages}
+              value={email}
+              valueSetter={setEmail}
+            />
           )}
 
           {props.hasConfirmOld && (
-            <MaybeDivWrap isActive={props.isWrappedInDiv}>
-              <MaybeLabel
-                isActive={props.isLabelled}
-                isOnlyText={props.isLabelledOnlyText}
-                label={messages.oldPass}
-                {...(props.isLabelledWithFor && {target: `${messages.oldPass_short}${iteration}`})}
-              />
-              <MaybeNestedDivs
-                isActive={props.isInputNested}
-                hasDeepInput={props.isInputNestedWithDeepInput}
-                hasRandomText={props.isInputNestedWithRandomText}
-                hasShallowInput={props.isInputNestedWithShallowInput}
-              >
-                <Input.Password
-                  style={FIELD_STYLE}
-                  id={`${props.areAttrIdentifying ? messages.oldPass_short : ''}${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.oldPass : ''}
-                  value={oldPassword}
-                  onChange={e => setOldPassword(e.target.value)}
-                />
-                {props.isAdjacentInput && (
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                )}
-                {props.isDeeperInput && (
-                  <Div>
-                    <input type="text" className="ant-input" style={FIELD_STYLE} />
-                  </Div>
-                )}
-              </MaybeNestedDivs>
-            </MaybeDivWrap>
+            <GenericInput
+              areAttrIdentifying={props.areAttrIdentifying}
+              isAdjacentInput={props.isAdjacentInput}
+              isDeeperInput={props.isDeeperInput}
+              isInputNested={props.isInputNested}
+              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+              isLabelled={props.isLabelled}
+              isLabelledOnlyText={props.isLabelledOnlyText}
+              isLabelledWithFor={props.isLabelledWithFor}
+              isPassword={true}
+              isWrappedInDiv={props.isWrappedInDiv}
+              iteration={iteration}
+              labelKey="oldPass"
+              messages={messages}
+              value={oldPassword}
+              valueSetter={setOldPassword}
+            />
           )}
 
-          <MaybeDivWrap isActive={props.isWrappedInDiv}>
-            <MaybeLabel
-              isActive={props.isLabelled}
-              isOnlyText={props.isLabelledOnlyText}
-              label={messages.newPass}
-              {...(props.isLabelledWithFor && {target: `${messages.newPass_short}${iteration}`})}
-            />
-            <MaybeNestedDivs
-              isActive={props.isInputNested}
-              hasDeepInput={props.isInputNestedWithDeepInput}
-              hasRandomText={props.isInputNestedWithRandomText}
-              hasShallowInput={props.isInputNestedWithShallowInput}
-            >
-              <Input.Password
-                style={FIELD_STYLE}
-                id={`${props.areAttrIdentifying ? messages.newPass_short : ''}${iteration}`}
-                placeholder={props.areAttrIdentifying ? messages.newPass : ''}
-                value={newPassword}
-                onChange={e => setNewPassword(e.target.value)}
-              />
-              {props.isAdjacentInput && (
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              )}
-              {props.isDeeperInput && (
-                <Div>
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                </Div>
-              )}
-            </MaybeNestedDivs>
-          </MaybeDivWrap>
+          <GenericInput
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isPassword={true}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={iteration}
+            labelKey="newPass"
+            messages={messages}
+            value={newPassword}
+            valueSetter={setNewPassword}
+          />
 
           {props.hasConfirmNew && (
-            <MaybeDivWrap isActive={props.isWrappedInDiv}>
-              <MaybeLabel
-                isActive={props.isLabelled}
-                isOnlyText={props.isLabelledOnlyText}
-                label={messages.confirmNewPass}
-                {...(props.isLabelledWithFor && {
-                  target: `${messages.confirmNewPass_short}${iteration}`,
-                })}
-              />
-              <MaybeNestedDivs
-                isActive={props.isInputNested}
-                hasDeepInput={props.isInputNestedWithDeepInput}
-                hasRandomText={props.isInputNestedWithRandomText}
-                hasShallowInput={props.isInputNestedWithShallowInput}
-              >
-                <Input.Password
-                  style={FIELD_STYLE}
-                  id={`${
-                    props.areAttrIdentifying ? messages.confirmNewPass_short : ''
-                  }${iteration}`}
-                  placeholder={props.areAttrIdentifying ? messages.confirmNewPass : ''}
-                  value={confirmNewPassword}
-                  onChange={e => setConfirmNewPassword(e.target.value)}
-                />
-                {props.isAdjacentInput && (
-                  <input type="text" className="ant-input" style={FIELD_STYLE} />
-                )}
-                {props.isDeeperInput && (
-                  <Div>
-                    <input type="text" className="ant-input" style={FIELD_STYLE} />
-                  </Div>
-                )}
-              </MaybeNestedDivs>
-            </MaybeDivWrap>
+            <GenericInput
+              areAttrIdentifying={props.areAttrIdentifying}
+              isAdjacentInput={props.isAdjacentInput}
+              isDeeperInput={props.isDeeperInput}
+              isInputNested={props.isInputNested}
+              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+              isLabelled={props.isLabelled}
+              isLabelledOnlyText={props.isLabelledOnlyText}
+              isLabelledWithFor={props.isLabelledWithFor}
+              isPassword={true}
+              isWrappedInDiv={props.isWrappedInDiv}
+              iteration={iteration}
+              labelKey="confirmNewPass"
+              messages={messages}
+              value={confirmNewPassword}
+              valueSetter={setConfirmNewPassword}
+            />
           )}
 
           <ButtonsWrap>
