@@ -27,17 +27,17 @@ const AddressSection: React.FC<Props> = props => {
     [
       {
         key: 'hasEmail',
-        label: 'Email Field',
+        label: 'Add email field',
         value: props.settings.hasEmail,
       },
       {
         key: 'hasName',
-        label: 'Name Field',
+        label: 'Add name field',
         value: props.settings.hasName,
       },
       {
         key: 'hasPhone',
-        label: 'Phone Field',
+        label: 'Add phone field',
         value: props.settings.hasPhone,
       },
     ],
