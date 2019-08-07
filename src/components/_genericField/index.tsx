@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import {Input, Select} from 'antd'
 
-import MaybeDivWrap from './_maybeDivWrap'
-import MaybeNestedDivs from './_maybeNestedDivs'
-import MaybeLabel from './_maybeLabel'
+import MaybeDivWrap from './maybeDivWrap'
+import MaybeNestedDivs from './maybeNestedDivs'
+import MaybeLabel from './maybeLabel'
 
 const FIELD_STYLE = {
   marginLeft: 2,
