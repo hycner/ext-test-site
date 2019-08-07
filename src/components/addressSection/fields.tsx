@@ -26,25 +26,6 @@ const BTN_STYLE = {
 }
 
 type Props = {
-  areAttrIdentifying: boolean
-  areIdsUnique: boolean
-  hasEmail: boolean
-  hasName: boolean
-  hasPhone: boolean
-  isAdjacentInput: boolean
-  isDeeperInput: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
-  isIframeField: boolean
-  isMultiButton: boolean
-  isWrappedInDiv: boolean
   iteration: number
   settings: StoreSettingsAddress
 }
@@ -69,9 +50,9 @@ const Fields: React.FC<Props> = props => {
     console.log({
       city,
       country,
-      ...(props.hasEmail && {email}),
+      ...(props.settings.hasEmail && {email}),
       name,
-      ...(props.hasPhone && {phone}),
+      ...(props.settings.hasPhone && {phone}),
       state,
       streetOne,
       streetTwo,
@@ -96,19 +77,19 @@ const Fields: React.FC<Props> = props => {
     console.log(`Address (${props.iteration}) nothing clicked`)
   }
 
-  let Form = props.isForm ? RealForm : FakeForm
-  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
+  let Form = props.settings.isForm ? RealForm : FakeForm
+  let Fieldset = props.settings.isFieldset ? RealFieldset : FakeFieldset
   // todo: finish implementing field-level iframe or remove
-  let IframeField = props.isIframeField ? RealIframeField : FakeIframeField
+  let IframeField = props.settings.isIframeField ? RealIframeField : FakeIframeField
 
   let iteration = props.iteration > 1 ? props.iteration : ''
-  if (!props.areIdsUnique) iteration = ''
+  if (!props.settings.areIdsUnique) iteration = ''
 
   return (
     <Form>
       <Fieldset>
         <Wrap>
-          {props.hasName && (
+          {props.settings.hasName && (
             <GenericField
               iteration={iteration}
               labelKey="name"
@@ -120,7 +101,7 @@ const Fields: React.FC<Props> = props => {
           )}
 
           <div style={{display: 'flex', width: '100%'}}>
-            {props.hasEmail && (
+            {props.settings.hasEmail && (
               <GenericField
                 iteration={iteration}
                 labelKey="email"
@@ -131,7 +112,7 @@ const Fields: React.FC<Props> = props => {
               />
             )}
 
-            {props.hasPhone && (
+            {props.settings.hasPhone && (
               <GenericField
                 iteration={iteration}
                 labelKey="phone"
@@ -203,7 +184,7 @@ const Fields: React.FC<Props> = props => {
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
               {messages.save}
             </Button>
-            {props.isMultiButton && (
+            {props.settings.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
                   {messages.clear}
@@ -224,25 +205,6 @@ function mapStateToProps(state: Store) {
   const settings = state.settings.address
 
   return {
-    areAttrIdentifying: settings.areAttrIdentifying,
-    areIdsUnique: settings.areIdsUnique,
-    hasEmail: settings.hasEmail,
-    hasName: settings.hasName,
-    hasPhone: settings.hasPhone,
-    isAdjacentInput: settings.isAdjacentInput,
-    isFieldset: settings.isFieldset,
-    isForm: settings.isForm,
-    isInputNested: settings.isInputNested,
-    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
-    isDeeperInput: settings.isDeeperInput,
-    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
-    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
-    isLabelled: settings.isLabelled,
-    isLabelledOnlyText: settings.isLabelledOnlyText,
-    isLabelledWithFor: settings.isLabelledWithFor,
-    isIframeField: settings.isIframeField,
-    isMultiButton: settings.isMultiButton,
-    isWrappedInDiv: settings.isWrappedInDiv,
     settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'address' && {

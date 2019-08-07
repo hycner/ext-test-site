@@ -26,23 +26,6 @@ const BTN_STYLE = {
 }
 
 type Props = {
-  areAttrIdentifying: boolean
-  areIdsUnique: boolean
-  is2FA: boolean
-  isAdjacentInput: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
-  isMultiButton: boolean
-  isThreeField: boolean
-  isWrappedInDiv: boolean
   iteration: number
   settings: StoreSettingsLogin
 }
@@ -62,7 +45,7 @@ const Fields: React.FC<Props> = props => {
     console.log({
       username,
       password,
-      ...(props.isThreeField && {accountId}),
+      ...(props.settings.isThreeField && {accountId}),
     })
   }
 
@@ -77,17 +60,17 @@ const Fields: React.FC<Props> = props => {
     console.log(`Login (${props.iteration}) nothing clicked`)
   }
 
-  let Form = props.isForm ? RealForm : FakeForm
-  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
+  let Form = props.settings.isForm ? RealForm : FakeForm
+  let Fieldset = props.settings.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
-  if (!props.areIdsUnique) iteration = ''
+  if (!props.settings.areIdsUnique) iteration = ''
 
   return (
     <Form>
       <Fieldset>
         <Wrap>
-          {props.isThreeField && (
+          {props.settings.isThreeField && (
             <GenericField
               iteration={iteration}
               labelKey="accountId"
@@ -98,7 +81,7 @@ const Fields: React.FC<Props> = props => {
             />
           )}
 
-          {props.is2FA && (
+          {props.settings.is2FA && (
             <GenericField
               iteration={iteration}
               labelKey="twoFA"
@@ -132,7 +115,7 @@ const Fields: React.FC<Props> = props => {
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
               {messages.submit}
             </Button>
-            {props.isMultiButton && (
+            {props.settings.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
                   {messages.clear}
@@ -153,24 +136,6 @@ function mapStateToProps(state: Store) {
   const settings = state.settings.login
 
   return {
-    areAttrIdentifying: settings.areAttrIdentifying,
-    areIdsUnique: settings.areIdsUnique,
-    is2FA: settings.is2FA,
-    isAdjacentInput: settings.isAdjacentInput,
-    isFieldset: settings.isFieldset,
-    isForm: settings.isForm,
-    isInputNested: settings.isInputNested,
-    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
-    isDeeperInput: settings.isDeeperInput,
-    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
-    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
-    isIframeSection: settings.isIframeSection,
-    isLabelled: settings.isLabelled,
-    isLabelledOnlyText: settings.isLabelledOnlyText,
-    isLabelledWithFor: settings.isLabelledWithFor,
-    isThreeField: settings.isThreeField,
-    isMultiButton: settings.isMultiButton,
-    isWrappedInDiv: settings.isWrappedInDiv,
     settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'login' && {

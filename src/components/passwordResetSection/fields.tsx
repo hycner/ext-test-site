@@ -26,24 +26,6 @@ const BTN_STYLE = {
 }
 
 type Props = {
-  areAttrIdentifying: boolean
-  areIdsUnique: boolean
-  hasConfirmNew: boolean
-  hasConfirmOld: boolean
-  hasEmail: boolean
-  isAdjacentInput: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
-  isMultiButton: boolean
-  isWrappedInDiv: boolean
   iteration: number
   settings: StoreSettingsPasswordReset
 }
@@ -61,10 +43,10 @@ const Fields: React.FC<Props> = props => {
     e.preventDefault()
     console.log(`Password Reset (${props.iteration}) submit clicked`)
     console.log({
-      ...(props.hasEmail && {email}),
-      ...(props.hasConfirmOld && {oldPassword}),
+      ...(props.settings.hasEmail && {email}),
+      ...(props.settings.hasConfirmOld && {oldPassword}),
       newPassword,
-      ...(props.hasConfirmNew && {confirmNewPassword}),
+      ...(props.settings.hasConfirmNew && {confirmNewPassword}),
     })
   }
 
@@ -80,17 +62,17 @@ const Fields: React.FC<Props> = props => {
     console.log(`Password Reset (${props.iteration}) nothing clicked`)
   }
 
-  let Form = props.isForm ? RealForm : FakeForm
-  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
+  let Form = props.settings.isForm ? RealForm : FakeForm
+  let Fieldset = props.settings.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
-  if (!props.areIdsUnique) iteration = ''
+  if (!props.settings.areIdsUnique) iteration = ''
 
   return (
     <Form>
       <Fieldset>
         <Wrap>
-          {props.hasEmail && (
+          {props.settings.hasEmail && (
             <GenericField
               iteration={iteration}
               labelKey="email"
@@ -101,7 +83,7 @@ const Fields: React.FC<Props> = props => {
             />
           )}
 
-          {props.hasConfirmOld && (
+          {props.settings.hasConfirmOld && (
             <GenericField
               isPassword={true}
               iteration={iteration}
@@ -123,7 +105,7 @@ const Fields: React.FC<Props> = props => {
             valueSetter={setNewPassword}
           />
 
-          {props.hasConfirmNew && (
+          {props.settings.hasConfirmNew && (
             <GenericField
               isPassword={true}
               iteration={iteration}
@@ -139,7 +121,7 @@ const Fields: React.FC<Props> = props => {
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
               {messages.submit}
             </Button>
-            {props.isMultiButton && (
+            {props.settings.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
                   {messages.clear}
@@ -160,25 +142,6 @@ function mapStateToProps(state: Store) {
   const settings = state.settings.passwordReset
 
   return {
-    areAttrIdentifying: settings.areAttrIdentifying,
-    areIdsUnique: settings.areIdsUnique,
-    hasConfirmNew: settings.hasConfirmNew,
-    hasConfirmOld: settings.hasConfirmOld,
-    hasEmail: settings.hasEmail,
-    isAdjacentInput: settings.isAdjacentInput,
-    isFieldset: settings.isFieldset,
-    isForm: settings.isForm,
-    isInputNested: settings.isInputNested,
-    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
-    isDeeperInput: settings.isDeeperInput,
-    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
-    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
-    isIframeSection: settings.isIframeSection,
-    isLabelled: settings.isLabelled,
-    isLabelledOnlyText: settings.isLabelledOnlyText,
-    isLabelledWithFor: settings.isLabelledWithFor,
-    isMultiButton: settings.isMultiButton,
-    isWrappedInDiv: settings.isWrappedInDiv,
     settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'passwordReset' && {

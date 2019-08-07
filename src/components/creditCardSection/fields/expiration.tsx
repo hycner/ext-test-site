@@ -35,21 +35,10 @@ const FIELD_STYLE = {
 }
 
 type Props = {
-  areAttrIdentifying: boolean
   dateFormat: string
   expDateFull: string
   expMonth: string
   expYear: string
-  isAdjacentInput: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
-  isWrappedInDiv: boolean
   iteration: string | number
   setExpDateFull: (date: string) => void
   setExpMonth: (month: string) => void

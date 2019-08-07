@@ -29,21 +29,6 @@ const BTN_STYLE = {
 }
 
 type Props = {
-  areAttrIdentifying: boolean
-  areIdsUnique: boolean
-  isAdjacentInput: boolean
-  isFieldset: boolean
-  isForm: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
-  isMultiButton: boolean
-  isWrappedInDiv: boolean
   iteration: number
   settings: StoreSettingsCreditCard
 }
@@ -84,11 +69,11 @@ const Index: React.FC<Props> = props => {
     console.log(`Credit card (${props.iteration}) nothing clicked`)
   }
 
-  let Form = props.isForm ? RealForm : FakeForm
-  let Fieldset = props.isFieldset ? RealFieldset : FakeFieldset
+  let Form = props.settings.isForm ? RealForm : FakeForm
+  let Fieldset = props.settings.isFieldset ? RealFieldset : FakeFieldset
 
   let iteration = props.iteration > 1 ? props.iteration : ''
-  if (!props.areIdsUnique) iteration = ''
+  if (!props.settings.areIdsUnique) iteration = ''
 
   return (
     <Form>
@@ -123,21 +108,10 @@ const Index: React.FC<Props> = props => {
             />
 
             <Expiration
-              areAttrIdentifying={props.areAttrIdentifying}
               dateFormat={dateFormat}
               expDateFull={expDateFull}
               expMonth={expMonth}
               expYear={expYear}
-              isAdjacentInput={props.isAdjacentInput}
-              isInputNested={props.isInputNested}
-              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-              isDeeperInput={props.isDeeperInput}
-              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-              isLabelled={props.isLabelled}
-              isLabelledOnlyText={props.isLabelledOnlyText}
-              isLabelledWithFor={props.isLabelledWithFor}
-              isWrappedInDiv={props.isWrappedInDiv}
               iteration={iteration}
               setExpDateFull={setExpDateFull}
               setExpMonth={setExpMonth}
@@ -159,7 +133,7 @@ const Index: React.FC<Props> = props => {
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
               {messages.save}
             </Button>
-            {props.isMultiButton && (
+            {props.settings.isMultiButton && (
               <>
                 <Button style={BTN_STYLE} onClick={onClear} htmlType="reset">
                   {messages.clear}
@@ -180,21 +154,6 @@ function mapStateToProps(state: Store) {
   const settings = state.settings.creditCard
 
   return {
-    areAttrIdentifying: settings.areAttrIdentifying,
-    areIdsUnique: settings.areIdsUnique,
-    isAdjacentInput: settings.isAdjacentInput,
-    isFieldset: settings.isFieldset,
-    isForm: settings.isForm,
-    isInputNested: settings.isInputNested,
-    isInputNestedWithDeepInput: settings.isInputNestedWithDeepInput,
-    isDeeperInput: settings.isDeeperInput,
-    isInputNestedWithRandomText: settings.isInputNestedWithRandomText,
-    isInputNestedWithShallowInput: settings.isInputNestedWithShallowInput,
-    isLabelled: settings.isLabelled,
-    isLabelledOnlyText: settings.isLabelledOnlyText,
-    isLabelledWithFor: settings.isLabelledWithFor,
-    isMultiButton: settings.isMultiButton,
-    isWrappedInDiv: settings.isWrappedInDiv,
     settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {
