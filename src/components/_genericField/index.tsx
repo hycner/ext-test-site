@@ -23,7 +23,7 @@ type Props = {
   iteration: number | string
   labelKey: string
   messages: {[key: string]: string}
-  selectOptions?: Array<{label: string, value: string}>
+  selectOptions?: Array<{label: string; value: string}>
   settings: StoreSettingsSections
   value: string
   valueSetter: (value: string) => void
@@ -91,36 +91,34 @@ function renderSelect(props: Props, label: string, labelShort: string) {
 
   return (
     <>
-      {props.isSelectAntd
-        ? (
-          <Select
-            id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
-            value={props.value}
-            onChange={(val: string) => props.valueSetter(val)}
-            style={{width: '100%'}}
-          >
-            {props.selectOptions.map(x => (
-              <Select.Option key={x.value} value={x.value}>
-                {x.label}
-              </Select.Option>
-            ))}
-          </Select>
-        ) : (
-          <select
-            id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
-            value={props.value}
-            onChange={(e: any) => props.valueSetter(e.target.value)}
-            className="ant-select-selection"
-            style={{width: '100%', height: '100%'}}
-          >
-            {props.selectOptions.map(x => (
-              <option key={x.value} value={x.value}>
-                {x.label}
-              </option>
-            ))}
-          </select>
-        )
-      }
+      {props.isSelectAntd ? (
+        <Select
+          id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
+          value={props.value}
+          onChange={(val: string) => props.valueSetter(val)}
+          style={{width: '100%'}}
+        >
+          {props.selectOptions.map(x => (
+            <Select.Option key={x.value} value={x.value}>
+              {x.label}
+            </Select.Option>
+          ))}
+        </Select>
+      ) : (
+        <select
+          id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
+          value={props.value}
+          onChange={(e: any) => props.valueSetter(e.target.value)}
+          className="ant-select-selection"
+          style={{width: '100%', height: '100%'}}
+        >
+          {props.selectOptions.map(x => (
+            <option key={x.value} value={x.value}>
+              {x.label}
+            </option>
+          ))}
+        </select>
+      )}
       {props.settings.isAdjacentInput && (
         <input type="text" className="ant-input" style={FIELD_STYLE} />
       )}
