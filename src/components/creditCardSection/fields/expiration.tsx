@@ -1,6 +1,7 @@
 import React from 'react'
 import {useIntl} from 'react-intl'
 
+import {StoreSettingsCreditCard} from '../../../modules/settings/redux'
 import GenericField from '../../_genericField'
 
 type ExpirationValues = Array<{
@@ -53,6 +54,7 @@ type Props = {
   setExpDateFull: (date: string) => void
   setExpMonth: (month: string) => void
   setExpYear: (year: string) => void
+  settings: StoreSettingsCreditCard
 }
 
 const Expiration: React.FC<Props> = props => {
@@ -62,20 +64,10 @@ const Expiration: React.FC<Props> = props => {
   if (props.dateFormat === 'string') {
     return (
       <GenericField
-        areAttrIdentifying={props.areAttrIdentifying}
-        isAdjacentInput={props.isAdjacentInput}
-        isDeeperInput={props.isDeeperInput}
-        isInputNested={props.isInputNested}
-        isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-        isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-        isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-        isLabelled={props.isLabelled}
-        isLabelledOnlyText={props.isLabelledOnlyText}
-        isLabelledWithFor={props.isLabelledWithFor}
-        isWrappedInDiv={props.isWrappedInDiv}
         iteration={props.iteration}
         labelKey="expDate"
         messages={messages}
+        settings={props.settings}
         value={props.expDateFull}
         valueSetter={props.setExpDateFull}
       />
@@ -87,21 +79,11 @@ const Expiration: React.FC<Props> = props => {
       <>
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={props.iteration}
             labelKey="expMonth"
             messages={messages}
             selectOptions={MONTHS}
+            settings={props.settings}
             value={props.expMonth}
             valueSetter={props.setExpMonth}
           />
@@ -109,21 +91,11 @@ const Expiration: React.FC<Props> = props => {
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={props.iteration}
             labelKey="expYear"
             messages={messages}
             selectOptions={YEARS}
+            settings={props.settings}
             value={props.expYear}
             valueSetter={props.setExpYear}
           />
@@ -137,22 +109,12 @@ const Expiration: React.FC<Props> = props => {
       <>
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
             isSelectAntd={true}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={props.iteration}
             labelKey="expMonth"
             messages={messages}
             selectOptions={MONTHS}
+            settings={props.settings}
             value={props.expMonth}
             valueSetter={props.setExpMonth}
           />
@@ -160,22 +122,12 @@ const Expiration: React.FC<Props> = props => {
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
             isSelectAntd={true}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={props.iteration}
             labelKey="expYear"
             messages={messages}
             selectOptions={YEARS}
+            settings={props.settings}
             value={props.expYear}
             valueSetter={props.setExpYear}
           />

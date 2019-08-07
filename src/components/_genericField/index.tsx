@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Input, Select} from 'antd'
 
+import {StoreSettingsSections} from '../../modules/settings/redux'
 import MaybeDivWrap from './maybeDivWrap'
 import MaybeNestedDivs from './maybeNestedDivs'
 import MaybeLabel from './maybeLabel'
@@ -17,23 +18,13 @@ const Div = styled.div`
 `
 
 type Props = {
-  areAttrIdentifying: boolean
-  isAdjacentInput: boolean
-  isDeeperInput: boolean
-  isInputNested: boolean
-  isInputNestedWithDeepInput: boolean
-  isInputNestedWithRandomText: boolean
-  isInputNestedWithShallowInput: boolean
-  isLabelled: boolean
-  isLabelledOnlyText: boolean
-  isLabelledWithFor: boolean
   isPassword?: boolean
   isSelectAntd?: boolean
-  isWrappedInDiv: boolean
   iteration: number | string
   labelKey: string
   messages: {[key: string]: string}
   selectOptions?: Array<{label: string, value: string}>
+  settings: StoreSettingsSections
   value: string
   valueSetter: (value: string) => void
 }
@@ -43,18 +34,18 @@ const genericField: React.FC<Props> = props => {
   const labelShort = props.messages[`${[props.labelKey]}_short`]
 
   return (
-    <MaybeDivWrap isActive={props.isWrappedInDiv}>
+    <MaybeDivWrap isActive={props.settings.isWrappedInDiv}>
       <MaybeLabel
-        isActive={props.isLabelled}
-        isOnlyText={props.isLabelledOnlyText}
+        isActive={props.settings.isLabelled}
+        isOnlyText={props.settings.isLabelledOnlyText}
         label={label}
-        {...(props.isLabelledWithFor && {target: `${labelShort}${props.iteration}`})}
+        {...(props.settings.isLabelledWithFor && {target: `${labelShort}${props.iteration}`})}
       />
       <MaybeNestedDivs
-        isActive={props.isInputNested}
-        hasDeepInput={props.isInputNestedWithDeepInput}
-        hasRandomText={props.isInputNestedWithRandomText}
-        hasShallowInput={props.isInputNestedWithShallowInput}
+        isActive={props.settings.isInputNested}
+        hasDeepInput={props.settings.isInputNestedWithDeepInput}
+        hasRandomText={props.settings.isInputNestedWithRandomText}
+        hasShallowInput={props.settings.isInputNestedWithShallowInput}
       >
         {renderField(props, label, labelShort)}
       </MaybeNestedDivs>
@@ -78,15 +69,15 @@ function renderInput(props: Props, label: string, labelShort: string) {
     <>
       <TheInput
         style={FIELD_STYLE}
-        id={`${props.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
-        placeholder={props.areAttrIdentifying ? label : ''}
+        id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
+        placeholder={props.settings.areAttrIdentifying ? label : ''}
         value={props.value}
         onChange={e => props.valueSetter(e.target.value)}
       />
-      {props.isAdjacentInput && (
+      {props.settings.isAdjacentInput && (
         <input type="text" className="ant-input" style={FIELD_STYLE} />
       )}
-      {props.isDeeperInput && (
+      {props.settings.isDeeperInput && (
         <Div>
           <input type="text" className="ant-input" style={FIELD_STYLE} />
         </Div>
@@ -103,7 +94,7 @@ function renderSelect(props: Props, label: string, labelShort: string) {
       {props.isSelectAntd
         ? (
           <Select
-            id={`${props.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
+            id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
             value={props.value}
             onChange={(val: string) => props.valueSetter(val)}
             style={{width: '100%'}}
@@ -116,7 +107,7 @@ function renderSelect(props: Props, label: string, labelShort: string) {
           </Select>
         ) : (
           <select
-            id={`${props.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
+            id={`${props.settings.areAttrIdentifying ? labelShort : ''}${props.iteration}`}
             value={props.value}
             onChange={(e: any) => props.valueSetter(e.target.value)}
             className="ant-select-selection"
@@ -130,10 +121,10 @@ function renderSelect(props: Props, label: string, labelShort: string) {
           </select>
         )
       }
-      {props.isAdjacentInput && (
+      {props.settings.isAdjacentInput && (
         <input type="text" className="ant-input" style={FIELD_STYLE} />
       )}
-      {props.isDeeperInput && (
+      {props.settings.isDeeperInput && (
         <Div>
           <input type="text" className="ant-input" style={FIELD_STYLE} />
         </Div>

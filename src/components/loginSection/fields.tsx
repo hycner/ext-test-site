@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
+import {StoreSettingsLogin} from '../../modules/settings/redux'
 import GenericField from '../_genericField'
 
 const Wrap = styled.div`
@@ -43,6 +44,7 @@ type Props = {
   isThreeField: boolean
   isWrappedInDiv: boolean
   iteration: number
+  settings: StoreSettingsLogin
 }
 
 const Fields: React.FC<Props> = props => {
@@ -87,20 +89,10 @@ const Fields: React.FC<Props> = props => {
         <Wrap>
           {props.isThreeField && (
             <GenericField
-              areAttrIdentifying={props.areAttrIdentifying}
-              isAdjacentInput={props.isAdjacentInput}
-              isDeeperInput={props.isDeeperInput}
-              isInputNested={props.isInputNested}
-              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-              isLabelled={props.isLabelled}
-              isLabelledOnlyText={props.isLabelledOnlyText}
-              isLabelledWithFor={props.isLabelledWithFor}
-              isWrappedInDiv={props.isWrappedInDiv}
               iteration={iteration}
               labelKey="accountId"
               messages={messages}
+              settings={props.settings}
               value={accountId}
               valueSetter={setAccountId}
             />
@@ -108,60 +100,30 @@ const Fields: React.FC<Props> = props => {
 
           {props.is2FA && (
             <GenericField
-              areAttrIdentifying={props.areAttrIdentifying}
-              isAdjacentInput={props.isAdjacentInput}
-              isDeeperInput={props.isDeeperInput}
-              isInputNested={props.isInputNested}
-              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-              isLabelled={props.isLabelled}
-              isLabelledOnlyText={props.isLabelledOnlyText}
-              isLabelledWithFor={props.isLabelledWithFor}
-              isWrappedInDiv={props.isWrappedInDiv}
               iteration={iteration}
               labelKey="twoFA"
               messages={messages}
+              settings={props.settings}
               value={twoFA}
               valueSetter={setTwoFA}
             />
           )}
 
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={iteration}
             labelKey="username"
             messages={messages}
+            settings={props.settings}
             value={username}
             valueSetter={setUsername}
           />
 
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
             isPassword={true}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={iteration}
             labelKey="password"
             messages={messages}
+            settings={props.settings}
             value={password}
             valueSetter={setPassword}
           />
@@ -209,6 +171,7 @@ function mapStateToProps(state: Store) {
     isThreeField: settings.isThreeField,
     isMultiButton: settings.isMultiButton,
     isWrappedInDiv: settings.isWrappedInDiv,
+    settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'login' && {
       iteration: state.app.bootstrap.singleDisplayIteration,

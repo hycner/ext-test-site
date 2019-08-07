@@ -121,6 +121,7 @@ export type StoreSettingsPasswordReset = BaseSettings &
     hasConfirmOld: boolean
     hasEmail: boolean
   }>
+export type StoreSettingsSections = StoreSettingsAddress | StoreSettingsCreditCard | StoreSettingsLogin | StoreSettingsPasswordReset
 
 export type StoreSettings = Readonly<{
   address: StoreSettingsAddress

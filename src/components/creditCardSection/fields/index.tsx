@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
+import {StoreSettingsCreditCard} from '../../../modules/settings/redux'
 import Expiration from './expiration'
 import GenericField from '../../_genericField'
 
@@ -44,6 +45,7 @@ type Props = {
   isMultiButton: boolean
   isWrappedInDiv: boolean
   iteration: number
+  settings: StoreSettingsCreditCard
 }
 
 const Index: React.FC<Props> = props => {
@@ -93,59 +95,29 @@ const Index: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={iteration}
             labelKey="name"
             messages={messages}
+            settings={props.settings}
             value={name}
             valueSetter={setName}
           />
 
           <GenericField
-            areAttrIdentifying={props.areAttrIdentifying}
-            isAdjacentInput={props.isAdjacentInput}
-            isDeeperInput={props.isDeeperInput}
-            isInputNested={props.isInputNested}
-            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-            isLabelled={props.isLabelled}
-            isLabelledOnlyText={props.isLabelledOnlyText}
-            isLabelledWithFor={props.isLabelledWithFor}
-            isWrappedInDiv={props.isWrappedInDiv}
             iteration={iteration}
             labelKey="number"
             messages={messages}
+            settings={props.settings}
             value={cardNumber}
             valueSetter={setCardNumber}
           />
 
           <div style={{display: 'flex'}}>
             <GenericField
-              areAttrIdentifying={props.areAttrIdentifying}
-              isAdjacentInput={props.isAdjacentInput}
-              isDeeperInput={props.isDeeperInput}
-              isInputNested={props.isInputNested}
-              isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
-              isInputNestedWithRandomText={props.isInputNestedWithRandomText}
-              isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
-              isLabelled={props.isLabelled}
-              isLabelledOnlyText={props.isLabelledOnlyText}
-              isLabelledWithFor={props.isLabelledWithFor}
-              isWrappedInDiv={props.isWrappedInDiv}
               iteration={iteration}
               labelKey="cvv"
               messages={messages}
+              settings={props.settings}
               value={cvv}
               valueSetter={setCvv}
             />
@@ -170,6 +142,7 @@ const Index: React.FC<Props> = props => {
               setExpDateFull={setExpDateFull}
               setExpMonth={setExpMonth}
               setExpYear={setExpYear}
+              settings={props.settings}
             />
           </div>
 
@@ -222,6 +195,7 @@ function mapStateToProps(state: Store) {
     isLabelledWithFor: settings.isLabelledWithFor,
     isMultiButton: settings.isMultiButton,
     isWrappedInDiv: settings.isWrappedInDiv,
+    settings,
     // iteration is passed in from Redux if in a single section display, otherwise it is passed in via regular props
     ...(state.app.bootstrap.singleSectionDisplay === 'creditCard' && {
       iteration: state.app.bootstrap.singleDisplayIteration,
