@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import GenericInput from '../_genericInput'
+import GenericField from '../_genericField'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -107,7 +107,7 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.hasName && (
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}
@@ -129,7 +129,7 @@ const Fields: React.FC<Props> = props => {
 
           <div style={{display: 'flex', width: '100%'}}>
             {props.hasEmail && (
-              <GenericInput
+              <GenericField
                 areAttrIdentifying={props.areAttrIdentifying}
                 isAdjacentInput={props.isAdjacentInput}
                 isDeeperInput={props.isDeeperInput}
@@ -150,7 +150,7 @@ const Fields: React.FC<Props> = props => {
             )}
 
             {props.hasPhone && (
-              <GenericInput
+              <GenericField
                 areAttrIdentifying={props.areAttrIdentifying}
                 isAdjacentInput={props.isAdjacentInput}
                 isDeeperInput={props.isDeeperInput}
@@ -171,7 +171,7 @@ const Fields: React.FC<Props> = props => {
             )}
           </div>
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -190,7 +190,7 @@ const Fields: React.FC<Props> = props => {
             valueSetter={setStreetOne}
           />
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -209,7 +209,7 @@ const Fields: React.FC<Props> = props => {
             valueSetter={setStreetTwo}
           />
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -229,7 +229,7 @@ const Fields: React.FC<Props> = props => {
           />
 
           <div style={{display: 'flex'}}>
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}
@@ -248,7 +248,7 @@ const Fields: React.FC<Props> = props => {
               valueSetter={setState}
             />
 
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}
@@ -268,7 +268,7 @@ const Fields: React.FC<Props> = props => {
             />
           </div>
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}

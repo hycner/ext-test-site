@@ -1,14 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
-import {Input, Select} from 'antd'
 import {useIntl} from 'react-intl'
 
-import MaybeLabel from '../../_maybeLabel'
-import MaybeNestedDivs from '../../_maybeNestedDivs'
-
-const Div = styled.div`
-  width: 100%;
-`
+import GenericField from '../../_genericField'
 
 type ExpirationValues = Array<{
   label: string
@@ -68,33 +61,24 @@ const Expiration: React.FC<Props> = props => {
 
   if (props.dateFormat === 'string') {
     return (
-      <div style={FIELD_STYLE}>
-        <MaybeLabel
-          isActive={props.isLabelled}
-          isOnlyText={props.isLabelledOnlyText}
-          label={messages.expDate}
-          {...(props.isLabelledWithFor && {target: `${messages.expDate_short}${props.iteration}`})}
-        />
-        <MaybeNestedDivs
-          isActive={props.isInputNested}
-          hasDeepInput={props.isInputNestedWithDeepInput}
-          hasRandomText={props.isInputNestedWithRandomText}
-          hasShallowInput={props.isInputNestedWithShallowInput}
-        >
-          <Input
-            id={`${props.areAttrIdentifying ? messages.expDate_short : ''}${props.iteration}`}
-            placeholder={props.areAttrIdentifying ? messages.expDate : ''}
-            value={props.expDateFull}
-            onChange={e => props.setExpDateFull(e.target.value)}
-          />
-          {props.isAdjacentInput && <input type="text" className="ant-input" style={FIELD_STYLE} />}
-          {props.isDeeperInput && (
-            <Div>
-              <input type="text" className="ant-input" style={FIELD_STYLE} />
-            </Div>
-          )}
-        </MaybeNestedDivs>
-      </div>
+      <GenericField
+        areAttrIdentifying={props.areAttrIdentifying}
+        isAdjacentInput={props.isAdjacentInput}
+        isDeeperInput={props.isDeeperInput}
+        isInputNested={props.isInputNested}
+        isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+        isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+        isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+        isLabelled={props.isLabelled}
+        isLabelledOnlyText={props.isLabelledOnlyText}
+        isLabelledWithFor={props.isLabelledWithFor}
+        isWrappedInDiv={props.isWrappedInDiv}
+        iteration={props.iteration}
+        labelKey="expDate"
+        messages={messages}
+        value={props.expDateFull}
+        valueSetter={props.setExpDateFull}
+      />
     )
   }
 
@@ -102,81 +86,47 @@ const Expiration: React.FC<Props> = props => {
     return (
       <>
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.expMonth}
-            {...(props.isLabelledWithFor && {
-              target: `${messages.expMonth_short}${props.iteration}`,
-            })}
+          <GenericField
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={props.iteration}
+            labelKey="expMonth"
+            messages={messages}
+            selectOptions={MONTHS}
+            value={props.expMonth}
+            valueSetter={props.setExpMonth}
           />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasDeepInput={props.isInputNestedWithDeepInput}
-            hasRandomText={props.isInputNestedWithRandomText}
-            hasShallowInput={props.isInputNestedWithShallowInput}
-          >
-            <select
-              id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
-              value={props.expMonth}
-              onChange={(e: any) => props.setExpMonth(e.target.value)}
-              className="ant-select-selection"
-              style={{width: '100%', height: '100%'}}
-            >
-              {MONTHS.map(x => (
-                <option key={x.value} value={x.value}>
-                  {x.label}
-                </option>
-              ))}
-            </select>
-            {props.isAdjacentInput && (
-              <input type="text" className="ant-input" style={FIELD_STYLE} />
-            )}
-            {props.isDeeperInput && (
-              <Div>
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              </Div>
-            )}
-          </MaybeNestedDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.expYear}
-            {...(props.isLabelledWithFor && {
-              target: `${messages.expYear_short}${props.iteration}`,
-            })}
+          <GenericField
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={props.iteration}
+            labelKey="expYear"
+            messages={messages}
+            selectOptions={YEARS}
+            value={props.expYear}
+            valueSetter={props.setExpYear}
           />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasDeepInput={props.isInputNestedWithDeepInput}
-            hasRandomText={props.isInputNestedWithRandomText}
-            hasShallowInput={props.isInputNestedWithShallowInput}
-          >
-            <select
-              id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
-              value={props.expYear}
-              onChange={(e: any) => props.setExpYear(e.target.value)}
-              className="ant-select-selection"
-              style={{width: '100%', height: '100%'}}
-            >
-              {YEARS.map(x => (
-                <option key={x.value} value={x.value}>
-                  {x.label}
-                </option>
-              ))}
-            </select>
-            {props.isAdjacentInput && (
-              <input type="text" className="ant-input" style={FIELD_STYLE} />
-            )}
-            {props.isDeeperInput && (
-              <Div>
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              </Div>
-            )}
-          </MaybeNestedDivs>
         </div>
       </>
     )
@@ -186,79 +136,49 @@ const Expiration: React.FC<Props> = props => {
     return (
       <>
         <div style={{...FIELD_STYLE, flex: '120px 0 0'}}>
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.expMonth}
-            {...(props.isLabelledWithFor && {
-              target: `${messages.expMonth_short}${props.iteration}`,
-            })}
+          <GenericField
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isSelectAntd={true}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={props.iteration}
+            labelKey="expMonth"
+            messages={messages}
+            selectOptions={MONTHS}
+            value={props.expMonth}
+            valueSetter={props.setExpMonth}
           />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasDeepInput={props.isInputNestedWithDeepInput}
-            hasRandomText={props.isInputNestedWithRandomText}
-            hasShallowInput={props.isInputNestedWithShallowInput}
-          >
-            <Select
-              id={`${props.areAttrIdentifying ? messages.expMonth_short : ''}${props.iteration}`}
-              value={props.expMonth}
-              onChange={(val: string) => props.setExpMonth(val)}
-              style={{width: '100%'}}
-            >
-              {MONTHS.map(x => (
-                <Select.Option key={x.value} value={x.value}>
-                  {x.label}
-                </Select.Option>
-              ))}
-            </Select>
-            {props.isAdjacentInput && (
-              <input type="text" className="ant-input" style={FIELD_STYLE} />
-            )}
-            {props.isDeeperInput && (
-              <Div>
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              </Div>
-            )}
-          </MaybeNestedDivs>
         </div>
 
         <div style={{...FIELD_STYLE, flex: '80px 0 0'}}>
-          <MaybeLabel
-            isActive={props.isLabelled}
-            isOnlyText={props.isLabelledOnlyText}
-            label={messages.expYear}
-            {...(props.isLabelledWithFor && {
-              target: `${messages.expYear_short}${props.iteration}`,
-            })}
+          <GenericField
+            areAttrIdentifying={props.areAttrIdentifying}
+            isAdjacentInput={props.isAdjacentInput}
+            isDeeperInput={props.isDeeperInput}
+            isInputNested={props.isInputNested}
+            isInputNestedWithDeepInput={props.isInputNestedWithDeepInput}
+            isInputNestedWithRandomText={props.isInputNestedWithRandomText}
+            isInputNestedWithShallowInput={props.isInputNestedWithShallowInput}
+            isLabelled={props.isLabelled}
+            isLabelledOnlyText={props.isLabelledOnlyText}
+            isLabelledWithFor={props.isLabelledWithFor}
+            isSelectAntd={true}
+            isWrappedInDiv={props.isWrappedInDiv}
+            iteration={props.iteration}
+            labelKey="expYear"
+            messages={messages}
+            selectOptions={YEARS}
+            value={props.expYear}
+            valueSetter={props.setExpYear}
           />
-          <MaybeNestedDivs
-            isActive={props.isInputNested}
-            hasDeepInput={props.isInputNestedWithDeepInput}
-            hasRandomText={props.isInputNestedWithRandomText}
-            hasShallowInput={props.isInputNestedWithShallowInput}
-          >
-            <Select
-              id={`${props.areAttrIdentifying ? messages.expYear_short : ''}${props.iteration}`}
-              value={props.expYear}
-              onChange={(val: string) => props.setExpYear(val)}
-              style={{width: '100%'}}
-            >
-              {YEARS.map(x => (
-                <Select.Option key={x.value} value={x.value}>
-                  {x.label}
-                </Select.Option>
-              ))}
-            </Select>
-            {props.isAdjacentInput && (
-              <input type="text" className="ant-input" style={FIELD_STYLE} />
-            )}
-            {props.isDeeperInput && (
-              <Div>
-                <input type="text" className="ant-input" style={FIELD_STYLE} />
-              </Div>
-            )}
-          </MaybeNestedDivs>
         </div>
       </>
     )

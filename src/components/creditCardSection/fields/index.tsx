@@ -6,7 +6,7 @@ import {useIntl} from 'react-intl'
 
 import {Store} from '../../../modules/rootReducer'
 import Expiration from './expiration'
-import GenericInput from '../../_genericInput'
+import GenericField from '../../_genericField'
 
 const Wrap = styled.div`
   display: flex;
@@ -92,7 +92,7 @@ const Index: React.FC<Props> = props => {
     <Form>
       <Fieldset>
         <Wrap>
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -111,7 +111,7 @@ const Index: React.FC<Props> = props => {
             valueSetter={setName}
           />
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -131,7 +131,7 @@ const Index: React.FC<Props> = props => {
           />
 
           <div style={{display: 'flex'}}>
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}

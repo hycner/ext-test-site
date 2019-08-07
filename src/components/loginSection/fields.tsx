@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {useIntl} from 'react-intl'
 
 import {Store} from '../../modules/rootReducer'
-import GenericInput from '../_genericInput'
+import GenericField from '../_genericField'
 
 const Wrap = styled.div`
   margin-bottom: 10px;
@@ -86,7 +86,7 @@ const Fields: React.FC<Props> = props => {
       <Fieldset>
         <Wrap>
           {props.isThreeField && (
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}
@@ -107,7 +107,7 @@ const Fields: React.FC<Props> = props => {
           )}
 
           {props.is2FA && (
-            <GenericInput
+            <GenericField
               areAttrIdentifying={props.areAttrIdentifying}
               isAdjacentInput={props.isAdjacentInput}
               isDeeperInput={props.isDeeperInput}
@@ -127,7 +127,7 @@ const Fields: React.FC<Props> = props => {
             />
           )}
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
@@ -146,7 +146,7 @@ const Fields: React.FC<Props> = props => {
             valueSetter={setUsername}
           />
 
-          <GenericInput
+          <GenericField
             areAttrIdentifying={props.areAttrIdentifying}
             isAdjacentInput={props.isAdjacentInput}
             isDeeperInput={props.isDeeperInput}
