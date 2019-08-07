@@ -18,6 +18,16 @@ const LoginSection: React.FC<Props> = props => {
   const configMenuItems: ConfigMenuItems = [
     [
       {
+        key: 'isUsername',
+        label: 'Remove username field',
+        value: !props.settings.isUsername,
+      },
+      {
+        key: 'isPassword',
+        label: 'Remove password field',
+        value: !props.settings.isPassword,
+      },
+      {
         key: 'isThreeField',
         label: 'Add account ID field',
         value: props.settings.isThreeField,

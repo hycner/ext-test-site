@@ -92,24 +92,28 @@ const Fields: React.FC<Props> = props => {
             />
           )}
 
-          <GenericField
-            iteration={iteration}
-            labelKey="username"
-            messages={messages}
-            settings={props.settings}
-            value={username}
-            valueSetter={setUsername}
-          />
+          {props.settings.isUsername && (
+            <GenericField
+              iteration={iteration}
+              labelKey="username"
+              messages={messages}
+              settings={props.settings}
+              value={username}
+              valueSetter={setUsername}
+            />
+          )}
 
-          <GenericField
-            isPassword={true}
-            iteration={iteration}
-            labelKey="password"
-            messages={messages}
-            settings={props.settings}
-            value={password}
-            valueSetter={setPassword}
-          />
+          {props.settings.isPassword && (
+            <GenericField
+              isPassword={true}
+              iteration={iteration}
+              labelKey="password"
+              messages={messages}
+              settings={props.settings}
+              value={password}
+              valueSetter={setPassword}
+            />
+          )}
 
           <ButtonsWrap>
             <Button style={BTN_STYLE} onClick={onSubmit} htmlType="submit">
