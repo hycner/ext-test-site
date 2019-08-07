@@ -83,12 +83,12 @@ type BaseSettings = Readonly<{
   areAttrIdentifying: boolean
   areIdsUnique: boolean
   isAdjacentInput: boolean
+  isDeeperInput: boolean
   isFieldset: boolean
   isForm: boolean
   isIframeSection: boolean
   isInputNested: boolean
   isInputNestedWithDeepInput: boolean
-  isDeeperInput: boolean
   isInputNestedWithRandomText: boolean
   isInputNestedWithShallowInput: boolean
   isLabelled: boolean
@@ -141,12 +141,12 @@ const baseSettings: BaseSettings = {
   areAttrIdentifying: true,
   areIdsUnique: true,
   isAdjacentInput: false,
+  isDeeperInput: false,
   isFieldset: false,
   isForm: false,
   isIframeSection: false,
   isInputNested: false,
   isInputNestedWithDeepInput: false,
-  isDeeperInput: false,
   isInputNestedWithRandomText: false,
   isInputNestedWithShallowInput: false,
   isLabelled: false,
