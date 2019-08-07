@@ -4,7 +4,6 @@ import {LocaleOptions} from '../redux'
 
 const VALID_LOCALES: LocaleOptions[] = ['af', 'en-US', 'ja-JP']
 
-// todo: populate base settings abstractly
 function getDefaults() {
   return {
     areAttrIdentifying: yup.boolean().required(),
