@@ -70,8 +70,9 @@ function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
 
   try {
+    // todo: figure this out
     // for event testing
-    window.addEventListener('message', messageCallback)
+    // window.addEventListener('message', messageCallback)
 
     // load settings
     const settings: StoreSettings = yield call(db.getItem, 'settings')
