@@ -12,18 +12,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+
     - name: Installation
       run: npm ci
+
     - name: Verify Formatting
       run: npm run format:dry
-        npm run types:ci
-        npm run test:ci
+
     - name: Check Types
       run: npm run types:ci
-        npm run test:ci
+      
     - name: Run Tests
       run: npm run test:ci
