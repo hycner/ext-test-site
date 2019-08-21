@@ -1,4 +1,4 @@
-name: Check Project Integrity
+name: Audit Project Integrity
 
 on: [push]
 
