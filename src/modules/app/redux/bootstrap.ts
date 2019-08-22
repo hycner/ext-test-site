@@ -54,10 +54,10 @@ function bootstrapSuccess(payload: {
 }): SuccessAction {
   return {
     type: SUCCESS,
-    payload,
+    payload
   }
 }
-function bootstrapFailure(error: Error): FailureAction {
+function bootstrapFailure(error: Error): string {
   return {
     type: FAILURE,
     payload: error,
