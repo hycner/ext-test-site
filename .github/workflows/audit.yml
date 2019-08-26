@@ -29,3 +29,6 @@ jobs:
       
     - name: Run Tests
       run: npm run test:ci
+
+    - name: Deploy Preview to Zeit (Now)
+      uses: actions/zeit-now@1.0.0
