@@ -31,6 +31,7 @@ type Props = {
 }
 
 const Fields: React.FC<Props> = props => {
+  const [orgId, setOrgId] = useState<string>('')
   const [accountId, setAccountId] = useState<string>('')
   const [twoFA, setTwoFA] = useState<string>('')
   const [username, setUsername] = useState<string>('')
@@ -45,12 +46,14 @@ const Fields: React.FC<Props> = props => {
     console.log({
       username,
       password,
+      ...(props.settings.isOrgId && {orgId}),
       ...(props.settings.isAccountId && {accountId}),
     })
   }
 
   function onClear(): void {
     console.log(`Login (${props.iteration}) clear clicked`)
+    setOrgId('')
     setAccountId('')
     setUsername('')
     setPassword('')
@@ -70,6 +73,17 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Fieldset>
         <Wrap>
+          {props.settings.isOrgId && (
+            <GenericField
+              iteration={iteration}
+              labelKey="orgId"
+              messages={messages}
+              settings={props.settings}
+              value={orgId}
+              valueSetter={setOrgId}
+            />
+          )}
+
           {props.settings.isAccountId && (
             <GenericField
               iteration={iteration}

@@ -46,6 +46,8 @@ export default {
     accountId_short: 'accountId',
     clear: 'Clear',
     nothing: 'Nothing',
+    orgId: 'Organization ID',
+    orgId_short: 'orgId',
     password: 'Password',
     password_short: 'password',
     submit: 'Submit',

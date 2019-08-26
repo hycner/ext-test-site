@@ -37,6 +37,11 @@ const LoginSection: React.FC<Props> = props => {
         label: 'Add account ID field',
         value: props.settings.isAccountId,
       },
+      {
+        key: 'isOrgId',
+        label: 'Add organization ID field',
+        value: props.settings.isOrgId,
+      },
     ],
   ]
 

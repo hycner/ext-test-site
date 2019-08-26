@@ -46,6 +46,8 @@ export default {
     accountId_short: 'rekeningId',
     clear: 'Duidelik',
     nothing: 'Niks',
+    orgId: 'Organisasie ID',
+    orgId_short: 'orgId',
     password: 'Wagwoord',
     password_short: 'wagwoord',
     submit: 'Indien',

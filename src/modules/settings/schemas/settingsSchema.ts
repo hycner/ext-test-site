@@ -57,6 +57,7 @@ export default yup
         ...getDefaults(),
         is2FA: yup.boolean().required(),
         isAccountId: yup.boolean().required(),
+        isOrgId: yup.boolean().required(),
         isPassword: yup.boolean().required(),
         isUsername: yup.boolean().required(),
       })

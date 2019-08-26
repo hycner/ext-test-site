@@ -46,6 +46,8 @@ export default {
     accountId_short: '口座ID',
     clear: '消す', // 'クリア'
     nothing: '何も',
+    orgId: '組織ID',
+    orgId_short: '組織ID',
     password: '合言葉', // 'パスワード'
     password_short: '合言葉',
     submit: '提出',
