@@ -114,7 +114,7 @@ export type StoreSettingsLogin = BaseSettings &
   Readonly<{
     is2FA: boolean
     isPassword: boolean
-    isThreeField: boolean
+    isAccountId: boolean
     isUsername: boolean
   }>
 export type StoreSettingsPasswordReset = BaseSettings &
@@ -175,7 +175,7 @@ const initialState: StoreSettings = {
     ...baseSettings,
     is2FA: false,
     isPassword: true,
-    isThreeField: false,
+    isAccountId: false,
     isUsername: true,
   },
   passwordReset: {

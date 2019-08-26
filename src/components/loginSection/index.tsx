@@ -28,9 +28,9 @@ const LoginSection: React.FC<Props> = props => {
         value: !props.settings.isPassword,
       },
       {
-        key: 'isThreeField',
+        key: 'isAccountId',
         label: 'Add account ID field',
-        value: props.settings.isThreeField,
+        value: props.settings.isAccountId,
       },
       {
         key: 'is2FA',
@@ -42,18 +42,18 @@ const LoginSection: React.FC<Props> = props => {
 
   let iterationHeight = 140
 
-  if (props.settings.isThreeField) iterationHeight += 37
+  if (props.settings.isAccountId) iterationHeight += 37
   if (props.settings.is2FA) iterationHeight += 37
 
   if (props.settings.isLabelled) {
     iterationHeight += 21 * 2
-    if (props.settings.isThreeField) iterationHeight += 21
+    if (props.settings.isAccountId) iterationHeight += 21
     if (props.settings.is2FA) iterationHeight += 21
   }
 
   if (props.settings.isInputNested && props.settings.isInputNestedWithRandomText) {
     iterationHeight += 21 * 2
-    if (props.settings.isThreeField) iterationHeight += 21
+    if (props.settings.isAccountId) iterationHeight += 21
     if (props.settings.is2FA) iterationHeight += 21
   }
 

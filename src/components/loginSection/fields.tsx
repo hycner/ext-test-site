@@ -45,7 +45,7 @@ const Fields: React.FC<Props> = props => {
     console.log({
       username,
       password,
-      ...(props.settings.isThreeField && {accountId}),
+      ...(props.settings.isAccountId && {accountId}),
     })
   }
 
@@ -70,7 +70,7 @@ const Fields: React.FC<Props> = props => {
     <Form>
       <Fieldset>
         <Wrap>
-          {props.settings.isThreeField && (
+          {props.settings.isAccountId && (
             <GenericField
               iteration={iteration}
               labelKey="accountId"
