@@ -31,6 +31,7 @@ jobs:
       
     - name: Run Tests
       run: npm run test:ci
+
   deploy:
     name: Deploy Project
 
@@ -53,7 +54,7 @@ jobs:
     - name: Installation
       run: npm ci
 
-    - name: Deploy Preview to Zeit (Now)
+    - name: Deploy to Zeit/Now
       uses: actions/zeit-now@1.0.0
       env:
           ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
