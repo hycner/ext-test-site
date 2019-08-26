@@ -1,9 +1,11 @@
-name: Audit Project Integrity
+name: Audit & Maybe Deploy
 
 on: [push]
 
 jobs:
-  build:
+  audit:
+    name: Audit Project
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,6 +31,29 @@ jobs:
       
     - name: Run Tests
       run: npm run test:ci
+  deploy:
+    name: Deploy Project
+
+    needs: audit
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Installation
+      run: npm ci
 
     - name: Deploy Preview to Zeit (Now)
       uses: actions/zeit-now@1.0.0
+      env:
+          ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
