@@ -28,14 +28,14 @@ const LoginSection: React.FC<Props> = props => {
         value: !props.settings.isPassword,
       },
       {
-        key: 'isAccountId',
-        label: 'Add account ID field',
-        value: props.settings.isAccountId,
-      },
-      {
         key: 'is2FA',
         label: 'Add 2FA field',
         value: props.settings.is2FA,
+      },
+      {
+        key: 'isAccountId',
+        label: 'Add account ID field',
+        value: props.settings.isAccountId,
       },
     ],
   ]

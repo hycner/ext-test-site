@@ -113,8 +113,8 @@ export type StoreSettingsCreditCard = BaseSettings & Readonly<{}>
 export type StoreSettingsLogin = BaseSettings &
   Readonly<{
     is2FA: boolean
-    isPassword: boolean
     isAccountId: boolean
+    isPassword: boolean
     isUsername: boolean
   }>
 export type StoreSettingsPasswordReset = BaseSettings &
@@ -174,8 +174,8 @@ const initialState: StoreSettings = {
   login: {
     ...baseSettings,
     is2FA: false,
-    isPassword: true,
     isAccountId: false,
+    isPassword: true,
     isUsername: true,
   },
   passwordReset: {
