@@ -75,7 +75,7 @@ function* bootstrapTask(): SagaIterator {
     // window.addEventListener('message', messageCallback)
 
     // load settings
-    const settings: StoreSettings | undefined  = yield call(db.getItem, 'settings')
+    const settings: StoreSettings | undefined = yield call(db.getItem, 'settings')
 
     try {
       if (!settings) throw new Error('No Settings found')
