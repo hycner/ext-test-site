@@ -13,10 +13,10 @@
     "test": "react-app-rewired test",
     "test:ci": "CI=true react-app-rewired test",
     "eject": "react-scripts eject",
-    "format": "./node_modules/.bin/prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "format:dry": "./node_modules/.bin/prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
-    "types": "./node_modules/.bin/tsc --watch",
-    "types:ci": "./node_modules/.bin/tsc"
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format:dry": "prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
+    "types": "tsc --watch",
+    "types:ci": "tsc"
   },
   "dependencies": {
     "antd": "3.23.6",
