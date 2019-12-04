@@ -3,7 +3,6 @@ import {SagaIterator} from 'redux-saga'
 
 import {Action, dispatch} from '../../../store'
 import {db} from '../../../lib/database'
-import {messageCallback} from '../../test/redux/events/tests'
 import {
   resetSettings,
   SectionTypes,
@@ -44,7 +43,7 @@ type FailureAction = {
 export function bootstrap(): InitAction {
   return {type: INIT}
 }
-function bootstrapPending(): PendingAction {
+export function bootstrapPending(): PendingAction {
   return {type: PENDING}
 }
 function bootstrapSuccess(payload: {
@@ -66,14 +65,10 @@ function bootstrapFailure(error: Error): FailureAction {
 
 // SAGAS
 
-function* bootstrapTask(): SagaIterator {
+export function* bootstrapTask(): SagaIterator {
   yield put(bootstrapPending())
 
   try {
-    // todo: figure this out
-    // for event testing
-    // window.addEventListener('message', messageCallback)
-
     // load settings
     const settings: StoreSettings | undefined = yield call(db.getItem, 'settings')
 
