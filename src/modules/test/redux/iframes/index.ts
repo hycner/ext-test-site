@@ -13,17 +13,17 @@ const SUCCESS = 'test/iframes/SUCCESS'
 const FAILURE = 'test/iframes/FAILURE'
 
 type InitAction = {
-  type: 'test/iframes'
+  type: typeof INIT
 }
 type PendingAction = {
-  type: 'test/iframes/PENDING'
+  type: typeof PENDING
 }
 type SuccessAction = {
-  type: 'test/iframes/SUCCESS'
+  type: typeof SUCCESS
   payload: string[]
 }
 type FailureAction = {
-  type: 'test/iframes/FAILURE'
+  type: typeof FAILURE
   payload: Error
 }
 

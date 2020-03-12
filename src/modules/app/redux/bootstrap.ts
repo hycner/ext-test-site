@@ -22,13 +22,13 @@ const SUCCESS = 'app/bootstrap/SUCCESS'
 const FAILURE = 'app/bootstrap/FAILURE'
 
 type InitAction = {
-  type: 'app/bootstrap'
+  type: typeof INIT
 }
 type PendingAction = {
-  type: 'app/bootstrap/PENDING'
+  type: typeof PENDING
 }
 type SuccessAction = {
-  type: 'app/bootstrap/SUCCESS'
+  type: typeof SUCCESS
   payload: {
     singleComponentDisplay: boolean | string
     singleDisplayIteration: number
@@ -36,7 +36,7 @@ type SuccessAction = {
   }
 }
 type FailureAction = {
-  type: 'app/bootstrap/FAILURE'
+  type: typeof FAILURE
   payload: Error
 }
 

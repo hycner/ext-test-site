@@ -13,17 +13,17 @@ const SUCCESS = 'test/events/SUCCESS'
 const FAILURE = 'test/events/FAILURE'
 
 type InitAction = {
-  type: 'test/events'
+  type: typeof INIT
 }
 type PendingAction = {
-  type: 'test/events/PENDING'
+  type: typeof PENDING
 }
 type SuccessAction = {
-  type: 'test/events/SUCCESS'
+  type: typeof SUCCESS
   payload: string[]
 }
 type FailureAction = {
-  type: 'test/events/FAILURE'
+  type: typeof FAILURE
   payload: Error
 }
 
