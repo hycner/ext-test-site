@@ -14,7 +14,7 @@
     "test:ci": "CI=true react-app-rewired test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "format:dry": "prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format:ci": "prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
     "types": "tsc --watch",
     "types:ci": "tsc"
   },

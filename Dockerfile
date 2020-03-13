@@ -10,6 +10,6 @@ RUN npm ci
 COPY ./ ./
 
 # Run tests
-RUN npm run format:dry && \
+RUN npm run format:ci && \
   npm run types:ci && \
   npm run test:ci

@@ -24,11 +24,11 @@ jobs:
       run: npm ci
 
     - name: Verify Formatting
-      run: npm run format:dry
+      run: npm run format:ci
 
     - name: Check Types
       run: npm run types:ci
-      
+
     - name: Run Tests
       run: npm run test:ci
 
