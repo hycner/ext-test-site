@@ -115,6 +115,7 @@ const LoginSection: React.FC<Props> = props => {
           />
         )
       } else {
+        // @ts-ignore
         iNodes.push(<props.fieldsComponent key={i} iteration={i + 1} />)
       }
     }
