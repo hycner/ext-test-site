@@ -1,5 +1,5 @@
 import {put} from 'redux-saga/effects'
-import { bootstrapTask, bootstrapPending } from "../bootstrap"
+import {bootstrapTask, bootstrapPending} from '../bootstrap'
 
 describe('Saga: Bootstrap', () => {
   it('sets pending state on start', () => {
