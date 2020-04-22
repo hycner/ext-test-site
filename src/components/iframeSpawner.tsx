@@ -68,7 +68,7 @@ const IFrameSpawner: React.FC<Props> = props => {
         disabled={!url}
         loading={props.areTestsRunning}
       >
-        Spawn New IFrame
+        Spawn New IFrame 2
       </Button>
 
       {iframes.map((x: Iframe, i: number) => (
