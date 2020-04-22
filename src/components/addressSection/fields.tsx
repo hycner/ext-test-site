@@ -80,7 +80,7 @@ const Fields: React.FC<Props> = props => {
   let Form = props.settings.isForm ? RealForm : FakeForm
   let Fieldset = props.settings.isFieldset ? RealFieldset : FakeFieldset
   // todo: finish implementing field-level iframe or remove
-  let IframeField = props.settings.isIframeField ? RealIframeField : FakeIframeField
+  // let IframeField = props.settings.isIframeField ? RealIframeField : FakeIframeField
 
   let iteration = props.iteration > 1 ? props.iteration : ''
   if (!props.settings.areIdsUnique) iteration = ''
@@ -232,9 +232,9 @@ function RealFieldset(props: ChildProps) {
 function FakeFieldset(props: ChildProps) {
   return <>{props.children}</>
 }
-function RealIframeField(props: ChildProps) {
-  return <iframe>{props.children}</iframe>
-}
-function FakeIframeField(props: ChildProps) {
-  return <>{props.children}</>
-}
+// function RealIframeField(props: ChildProps) {
+//   return <iframe>{props.children}</iframe>
+// }
+// function FakeIframeField(props: ChildProps) {
+//   return <>{props.children}</>
+// }
