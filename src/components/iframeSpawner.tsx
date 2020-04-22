@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import {Button, Icon, Input, Tooltip} from 'antd'
+import {Button, Input, Tooltip} from 'antd'
+import { QuestionCircleFilled } from '@ant-design/icons';
 
 const Wrap = styled.div`
   display: flex;
@@ -52,7 +53,7 @@ const IFrameSpawner: React.FC<Props> = props => {
       <Header>
         IFrame Spawner &nbsp;
         <Tooltip title="Spawns iframes below. If you spawn an iframe with the same url that this site is hosted at, then DOM iframe access tests will fail.">
-          <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
+          <QuestionCircleFilled style={ICON_STYLE} />
         </Tooltip>
       </Header>
       <Input placeholder="URL" value={url} onChange={onUrlChange} />

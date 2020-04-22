@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Checkbox, Divider, Icon, Popover} from 'antd'
+import {Checkbox, Divider, Popover} from 'antd'
+import { SettingFilled } from '@ant-design/icons';
 
 const SettingWrap = styled.div`
   margin-bottom: 10px;
@@ -58,7 +59,7 @@ const configMenu: React.FC<Props> = props => {
 
   return (
     <Popover content={popoverContent} title="Configuration" placement="bottomLeft">
-      <Icon type="setting" theme="filled" style={ICON_STYLE} />
+      <SettingFilled style={ICON_STYLE} />
     </Popover>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Icon, Select, Tooltip} from 'antd'
+import {Select, Tooltip} from 'antd'
+import { EyeFilled, EyeInvisibleFilled, MinusCircleFilled, PlusCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import {IntlProvider} from 'react-intl'
 
 import {
@@ -245,34 +246,30 @@ const LoginSection: React.FC<Props> = props => {
 
   const locale = props.settings.isLocaleChanged ? props.settings.locale : 'en-US'
 
+  const VisibleIcon = props.settings.isVisible ? EyeFilled : EyeInvisibleFilled
+
   return (
     <IntlProvider locale={locale} messages={intlConfig[locale][props.section]}>
       <Wrap>
         <Header>
           <div>
-            <Icon
-              type={props.settings.isVisible ? 'eye' : 'eye-invisible'}
-              theme="filled"
+            <VisibleIcon
               style={ICON_STYLE}
               onClick={() => toggleField('isVisible')}
             />
             &nbsp; {props.label} &nbsp;
             <Tooltip title={props.description}>
-              <Icon type="question-circle" theme="filled" style={ICON_STYLE} />
+              <QuestionCircleFilled style={ICON_STYLE} />
             </Tooltip>
           </div>
 
           {props.settings.isVisible && (
             <SpecificSettings>
-              <Icon
-                type="plus-circle"
-                theme="filled"
+              <PlusCircleFilled
                 style={ICON_STYLE}
                 onClick={increaseIterations}
               />
-              <Icon
-                type="minus-circle"
-                theme="filled"
+              <MinusCircleFilled
                 style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
                 onClick={decreaseIterations}
               />
