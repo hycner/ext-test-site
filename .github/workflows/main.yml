@@ -21,13 +21,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Installation
-      run: npm ci
+      run: yarn
 
     - name: Verify Formatting
-      run: npm run format:ci
+      run: yarn format:ci
 
     - name: Check Types
-      run: npm run types:ci
+      run: yarn types:ci
 
     - name: Run Tests
-      run: npm run test:ci
+      run: yarn test:ci
