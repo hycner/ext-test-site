@@ -56,12 +56,7 @@ const IFrameSpawner: React.FC<Props> = props => {
         </Tooltip>
       </Header>
       <Input placeholder="URL" value={url} onChange={onUrlChange} />
-      <Button
-        type="primary"
-        style={BTN_STYLE}
-        onClick={onSubmit}
-        disabled={!url}
-      >
+      <Button type="primary" style={BTN_STYLE} onClick={onSubmit} disabled={!url}>
         Spawn New IFrame
       </Button>
 

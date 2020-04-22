@@ -118,7 +118,7 @@ export function* bootstrapTask(): SagaIterator {
 
     // if a single component/section render, then listen for localstorage changes to reload settings
     if (singleSectionDisplay || singleComponentDisplay) {
-      window.addEventListener('storage', function(changes) {
+      window.addEventListener('storage', function (changes) {
         if (
           window.location.href.includes(changes.url) &&
           window.location.href !== changes.url &&

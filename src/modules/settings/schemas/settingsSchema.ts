@@ -25,10 +25,7 @@ function getDefaults() {
     isVisible: yup.boolean().required(),
     isWrappedInDiv: yup.boolean().required(),
     iterations: yup.number().required(),
-    locale: yup
-      .string()
-      .oneOf(VALID_LOCALES)
-      .required(),
+    locale: yup.string().oneOf(VALID_LOCALES).required(),
   }
 }
 
