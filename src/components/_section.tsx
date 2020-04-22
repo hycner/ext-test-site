@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Select, Tooltip} from 'antd'
-import { EyeFilled, EyeInvisibleFilled, MinusCircleFilled, PlusCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
+import {
+  EyeFilled,
+  EyeInvisibleFilled,
+  MinusCircleFilled,
+  PlusCircleFilled,
+  QuestionCircleFilled,
+} from '@ant-design/icons'
 import {IntlProvider} from 'react-intl'
 
 import {
@@ -253,10 +259,7 @@ const LoginSection: React.FC<Props> = props => {
       <Wrap>
         <Header>
           <div>
-            <VisibleIcon
-              style={ICON_STYLE}
-              onClick={() => toggleField('isVisible')}
-            />
+            <VisibleIcon style={ICON_STYLE} onClick={() => toggleField('isVisible')} />
             &nbsp; {props.label} &nbsp;
             <Tooltip title={props.description}>
               <QuestionCircleFilled style={ICON_STYLE} />
@@ -265,10 +268,7 @@ const LoginSection: React.FC<Props> = props => {
 
           {props.settings.isVisible && (
             <SpecificSettings>
-              <PlusCircleFilled
-                style={ICON_STYLE}
-                onClick={increaseIterations}
-              />
+              <PlusCircleFilled style={ICON_STYLE} onClick={increaseIterations} />
               <MinusCircleFilled
                 style={props.settings.iterations > 1 ? ICON_STYLE : DISABLED_ICON_STYLE}
                 onClick={decreaseIterations}

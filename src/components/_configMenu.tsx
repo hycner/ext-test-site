@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Checkbox, Divider, Popover} from 'antd'
-import { SettingFilled } from '@ant-design/icons';
+import {SettingFilled} from '@ant-design/icons'
 
 const SettingWrap = styled.div`
   margin-bottom: 10px;

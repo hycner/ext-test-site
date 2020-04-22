@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Button, Input, Tooltip} from 'antd'
-import { QuestionCircleFilled } from '@ant-design/icons';
+import {QuestionCircleFilled} from '@ant-design/icons'
 
 const Wrap = styled.div`
   display: flex;
