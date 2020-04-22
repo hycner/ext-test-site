@@ -1,2 +1,2 @@
 # ext-test-site
-Site to play with testing browser extensions that interact with the DOM
+Site to play with testing browser extensions that interact with the DOM 
