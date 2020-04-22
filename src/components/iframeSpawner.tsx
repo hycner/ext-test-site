@@ -1,9 +1,6 @@
 import React, {useState} from 'react'
-import {connect} from 'react-redux'
 import styled from 'styled-components'
 import {Button, Icon, Input, Tooltip} from 'antd'
-
-import {Store} from '../modules/rootReducer'
 
 const Wrap = styled.div`
   display: flex;
@@ -31,9 +28,7 @@ const BTN_STYLE = {
   marginBottom: 20,
 }
 
-type Props = {
-  areTestsRunning: boolean
-}
+type Props = {}
 type Iframe = {
   url: string
 }
@@ -66,7 +61,6 @@ const IFrameSpawner: React.FC<Props> = props => {
         style={BTN_STYLE}
         onClick={onSubmit}
         disabled={!url}
-        loading={props.areTestsRunning}
       >
         Spawn New IFrame
       </Button>
@@ -81,10 +75,4 @@ const IFrameSpawner: React.FC<Props> = props => {
   )
 }
 
-function mapStateToProps(state: Store) {
-  return {
-    areTestsRunning: state.test.run.isLoading,
-  }
-}
-
-export default connect(mapStateToProps)(React.memo(IFrameSpawner))
+export default React.memo(IFrameSpawner)

@@ -15,7 +15,6 @@ import LoginSection from './loginSection'
 import PasswordResetSection from './passwordResetSection'
 import SingleComponent from './singleComponent'
 import SingleSection from './singleSection'
-import TestRunner from './testRunner'
 
 const Wrap = styled.div`
   display: flex;
@@ -74,7 +73,6 @@ export const App: React.FC<Props> = props => {
             <Divider />
           </DividerWrap>
 
-          <TestRunner />
           <IFrameSpawner />
         </>
       )}
