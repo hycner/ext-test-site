@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "10.15.1"
+    "node": "12.14.1"
   },
   "scripts": {
     "start": "PORT=3010 react-app-rewired start",
