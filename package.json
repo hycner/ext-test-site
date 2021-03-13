@@ -6,7 +6,7 @@
     "node": "12.x"
   },
   "scripts": {
-    "start": "PORT=3010 react-app-rewired start",
+    "start": "BROWSER=none PORT=3010 react-app-rewired start",
     "build": "react-app-rewired build",
     "now-build": "npm run build",
     "deploy": "now ./build --name ext-test-site",
