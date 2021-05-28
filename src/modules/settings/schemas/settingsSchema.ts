@@ -57,6 +57,7 @@ export default yup
         isOrgId: yup.boolean().required(),
         isPassword: yup.boolean().required(),
         isUsername: yup.boolean().required(),
+        isUsernameTypePassword: yup.boolean().required(),
       })
       .required()
       .strict(true)

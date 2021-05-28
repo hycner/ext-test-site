@@ -108,6 +108,7 @@ const Fields: React.FC<Props> = props => {
 
           {props.settings.isUsername && (
             <GenericField
+              isPassword={props.settings.isUsernameTypePassword}
               iteration={iteration}
               labelKey="username"
               messages={messages}

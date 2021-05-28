@@ -117,6 +117,7 @@ export type StoreSettingsLogin = BaseSettings &
     isOrgId: boolean
     isPassword: boolean
     isUsername: boolean
+    isUsernameTypePassword: boolean
   }>
 export type StoreSettingsPasswordReset = BaseSettings &
   Readonly<{
@@ -179,6 +180,7 @@ const initialState: StoreSettings = {
     isOrgId: false,
     isPassword: true,
     isUsername: true,
+    isUsernameTypePassword: false,
   },
   passwordReset: {
     ...baseSettings,
